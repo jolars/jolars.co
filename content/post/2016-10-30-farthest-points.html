@@ -1,0 +1,150 @@
+---
+title: "Finding the farthest points in a point cloud"
+author: "Johan Larsson"
+categories: ["R"]
+date: 2016-10-30
+tags: ["qualpalr", "color-science"]
+---
+
+
+
+<p>My R package <a href="https://github.com/jolars/qualpalr">qualpalr</a> selects qualitative
+colors by projecting a bunch of colors (as points) to the three-dimensional
+DIN99d color space wherein the distance between any pair colors approximate
+their differences in appearance. The package then tries to choose the <code>n</code>
+colors so that the minimal pairwise distance among them is maximized, that is,
+we want the most similar pair of colors to be as dissimilar as possible.</p>
+<p>This turns out to be much less trivial that one would suspect, which posts on
+<a href="http://scicomp.stackexchange.com/questions/20030/selecting-most-scattered-points-from-a-set-of-points">Computational Science</a>,
+<a href="https://se.mathworks.com/matlabcentral/answers/42622-how-can-i-choose-a-subset-of-k-points-the-farthest-apart">MATLAB Central</a>,
+<a href="http://stackoverflow.com/questions/27971223/finding-largest-minimum-distance-among-k-objects-in-n-possible-distinct-position">Stack Overflow</a>, and
+and <a href="http://cs.stackexchange.com/questions/22767/choosing-a-subset-to-maximize-the-minimum-distance-between-points">Computer Science</a>
+can attest to.</p>
+<p>Up til now, qualpalr solved this problem with a greedy approach. If we, for instance,
+want to find <code>n</code> points we did the following.</p>
+<pre><code>M &lt;- Compute a distance matrix of all points in the sample
+X &lt;- Select the two most distant points from M
+for i = 3:n
+    X(i) &lt;- Select point in M that maximize the mindistance to all points in X</code></pre>
+<p>In R, this code looked like this (in two dimensions):</p>
+<pre class="r"><code>set.seed(1)
+# find n points
+n &lt;- 3
+mat  &lt;- matrix(runif(100), ncol = 2)
+
+dmat &lt;- as.matrix(stats::dist(mat))
+ind &lt;- integer(n)
+ind[1:2] &lt;- as.vector(arrayInd(which.max(dmat), .dim = dim(dmat)))
+
+for (i in 3:n) {
+  mm &lt;- dmat[ind, -ind, drop = FALSE]
+  k &lt;- which.max(mm[(1:ncol(mm) - 1) * nrow(mm) + max.col(t(-mm))])
+  ind[i] &lt;- as.numeric(dimnames(mm)[[2]][k])
+}
+
+par(mfrow = c(1, 2))
+plot(mat, asp = 1, xlab = &quot;&quot;, ylab = &quot;&quot;)
+plot(mat, asp = 1, xlab = &quot;&quot;, ylab = &quot;&quot;)
+points(mat[ind, ], pch = 19)
+text(mat[ind, ], adj = c(0, -1.5))</code></pre>
+<div class="figure">
+<img src="/post/2016-10-30-farthest-points_files/figure-html/greedy_approach-1.png" alt="Numbers note the order the points were picked in." width="864" />
+<p class="caption">
+(#fig:greedy_approach)Numbers note the order the points were picked in.
+</p>
+</div>
+<p>While this greedy procedure is fast and works well for large values of <code>n</code>
+it is quite inefficient in the example above. It is plain to see that there are
+other subsets of 3 points that would have a larger minimum distance but because
+we base our selection on the previous 2 points that were selected to be
+maximally distant, the algorithm has to pick a suboptimal third point. The
+minimum distance in our example is 0.7641338.</p>
+<p>The solution I came up with is based on a solution from
+Schlomer et al. <span class="citation">@schlomer_farthest-point_2011</span> who devised of an algorithm to
+partition a sets of points into subsets whilst maximizing the minimal distance.
+They used <a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">delaunay triangulations</a>
+but I decided to simply use the distance matrix instead. The algorithm works as
+follows.</p>
+<pre><code>M &lt;- Compute a distance matrix of all points in the sample
+S &lt;- Sample n points randomly from M
+repeat
+    for i = 1:n
+        M    &lt;- Add S(i) back into M
+        S(i) &lt;- Find point in M\S with max mindistance to any point in S
+until M did not change</code></pre>
+<p>Iteratively, we put one point from our candidate subset (S) back into the
+original se (M) and check all distances between the points in S to those in
+M to find the point with the highest minimum distance. Rinse and repeat until
+we are only putting back the same points we started the loop with, which
+always happens. Let’s see how this works on the same data set we used above.</p>
+<pre class="r"><code>r &lt;- sample.int(nrow(dmat), n)
+
+repeat {
+  r_old &lt;- r
+  for (i in 1:n) {
+    mm &lt;- dmat[r[-i], -r[-i], drop = FALSE]
+    k &lt;- which.max(mm[(1:ncol(mm) - 1) * nrow(mm) + max.col(t(-mm))])
+    r[i] &lt;- as.numeric(dimnames(mm)[[2]][k])
+  }
+  if (identical(r_old, r)) break
+}
+
+par(mfrow = c(1, 2))
+plot(mat, asp = 1, xlab = &quot;&quot;, ylab = &quot;&quot;)
+plot(mat, asp = 1, xlab = &quot;&quot;, ylab = &quot;&quot;)
+points(mat[r, ], pch = 19)
+text(mat[r, ], adj = c(0, -1.5))</code></pre>
+<div class="figure">
+<img src="/post/2016-10-30-farthest-points_files/figure-html/new_approach-1.png" alt="The new algorithm for picking points." width="864" />
+<p class="caption">
+(#fig:new_approach)The new algorithm for picking points.
+</p>
+</div>
+<p>Here, we end up with a minimum distance of 0.8619587. In
+qualpalr, this means that we now achieve slightly more distinct colors.</p>
+<div id="performance" class="section level2">
+<h2>Performance</h2>
+<p>The new algorithm is slightly slower than the old, greedy approach and slightly
+more verbose</p>
+<pre class="r"><code>f_greedy &lt;- function(data, n) {
+  dmat &lt;- as.matrix(stats::dist(data))
+  ind &lt;- integer(n)
+  ind[1:2] &lt;- as.vector(arrayInd(which.max(dmat), .dim = dim(dmat)))
+  for (i in 3:n) {
+    mm &lt;- dmat[ind, -ind, drop = FALSE]
+    k &lt;- which.max(mm[(1:ncol(mm) - 1) * nrow(mm) + max.col(t(-mm))])
+    ind[i] &lt;- as.numeric(dimnames(mm)[[2]][k])
+  }
+  ind
+}
+
+f_new &lt;- function(dat, n) {
+  dmat &lt;- as.matrix(stats::dist(data))
+  r &lt;- sample.int(nrow(dmat), n)
+  repeat {
+    r_old &lt;- r
+    for (i in 1:n) {
+      mm &lt;- dmat[r[-i], -r[-i], drop = FALSE]
+      k &lt;- which.max(mm[(1:ncol(mm) - 1) * nrow(mm) + max.col(t(-mm))])
+      r[i] &lt;- as.numeric(dimnames(mm)[[2]][k])
+    }
+    if (identical(r_old, r)) return(r)
+  }
+}</code></pre>
+<pre class="r"><code>n &lt;- 5
+data &lt;- matrix(runif(900), ncol = 3)
+microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)</code></pre>
+<pre><code>## Unit: milliseconds
+##               expr      min       lq     mean   median       uq      max
+##  f_greedy(data, n) 1.733002 1.817518 2.380807 1.941628 2.186522 46.39788
+##     f_new(data, n) 2.072204 2.630308 3.226308 2.904638 3.346518 16.05119
+##  neval cld
+##   1000  a 
+##   1000   b</code></pre>
+<p>The newest development version of qualpalr now uses this updated algorithm which
+has also been generalized and included as a new function in my R
+package <a href="https://github.com/jolars/euclidr">euclidr</a> called <code>farthest_points</code>.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+</div>

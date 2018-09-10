@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 2.4.0">
+  <meta name="generator" content="Hugo 0.48" />
+  <meta name="author" content="Johan Larsson">
+
+  
+  
+  
+  
+    
+  
+  <meta name="description" content="My R package qualpalr selects qualitative colors by projecting a bunch of colors (as points) to the three-dimensional DIN99d color space wherein the distance between any pair colors approximate their differences in appearance. The package then tries to choose the n colors so that the minimal pairwise distance among them is maximized, that is, we want the most similar pair of colors to be as dissimilar as possible.
+This turns out to be much less trivial that one would suspect, which posts on Computational Science, MATLAB Central, Stack Overflow, and and Computer Science can attest to.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2016-10-30-farthest-points/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#0095eb">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7cMerriweather%7cRoboto&#43;Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-85513662-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Johan Larsson">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Johan Larsson">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/2016-10-30-farthest-points/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@johanlarsson86">
+  <meta property="twitter:creator" content="@johanlarsson86">
+  
+  <meta property="og:site_name" content="Johan Larsson">
+  <meta property="og:url" content="/post/2016-10-30-farthest-points/">
+  <meta property="og:title" content="Finding the farthest points in a point cloud | Johan Larsson">
+  <meta property="og:description" content="My R package qualpalr selects qualitative colors by projecting a bunch of colors (as points) to the three-dimensional DIN99d color space wherein the distance between any pair colors approximate their differences in appearance. The package then tries to choose the n colors so that the minimal pairwise distance among them is maximized, that is, we want the most similar pair of colors to be as dissimilar as possible.
+This turns out to be much less trivial that one would suspect, which posts on Computational Science, MATLAB Central, Stack Overflow, and and Computer Science can attest to.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2016-10-30T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2016-10-30T00:00:00&#43;00:00">
+  
+
+  
+
+  
+
+  <title>Finding the farthest points in a point cloud | Johan Larsson</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Johan Larsson</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/files/cv.pdf">
+            
+            <span>CV</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Finding the farthest points in a point cloud</h1>
+
+    
+
+<div class="article-metadata">
+
+  
+  
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Johan Larsson">
+  </span>
+  
+
+  <span class="article-date">
+    
+    <meta content="2016-10-30 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2016-10-30 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      Oct 30, 2016
+    </time>
+  </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Johan Larsson">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/2016-10-30-farthest-points/#disqus_thread"></a>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/r/">R</a>
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Finding%20the%20farthest%20points%20in%20a%20point%20cloud&amp;url=%2fpost%2f2016-10-30-farthest-points%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2016-10-30-farthest-points%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2016-10-30-farthest-points%2f&amp;title=Finding%20the%20farthest%20points%20in%20a%20point%20cloud"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2016-10-30-farthest-points%2f&amp;title=Finding%20the%20farthest%20points%20in%20a%20point%20cloud"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Finding%20the%20farthest%20points%20in%20a%20point%20cloud&amp;body=%2fpost%2f2016-10-30-farthest-points%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+
+    <div class="article-style" itemprop="articleBody">
+      <p>My R package <a href="https://github.com/jolars/qualpalr">qualpalr</a> selects qualitative
+colors by projecting a bunch of colors (as points) to the three-dimensional
+DIN99d color space wherein the distance between any pair colors approximate
+their differences in appearance. The package then tries to choose the <code>n</code>
+colors so that the minimal pairwise distance among them is maximized, that is,
+we want the most similar pair of colors to be as dissimilar as possible.</p>
+<p>This turns out to be much less trivial that one would suspect, which posts on
+<a href="http://scicomp.stackexchange.com/questions/20030/selecting-most-scattered-points-from-a-set-of-points">Computational Science</a>,
+<a href="https://se.mathworks.com/matlabcentral/answers/42622-how-can-i-choose-a-subset-of-k-points-the-farthest-apart">MATLAB Central</a>,
+<a href="http://stackoverflow.com/questions/27971223/finding-largest-minimum-distance-among-k-objects-in-n-possible-distinct-position">Stack Overflow</a>, and
+and <a href="http://cs.stackexchange.com/questions/22767/choosing-a-subset-to-maximize-the-minimum-distance-between-points">Computer Science</a>
+can attest to.</p>
+<p>Up til now, qualpalr solved this problem with a greedy approach. If we, for instance,
+want to find <code>n</code> points we did the following.</p>
+<pre><code>M &lt;- Compute a distance matrix of all points in the sample
+X &lt;- Select the two most distant points from M
+for i = 3:n
+    X(i) &lt;- Select point in M that maximize the mindistance to all points in X</code></pre>
+<p>In R, this code looked like this (in two dimensions):</p>
+<pre class="r"><code>set.seed(1)
+# find n points
+n &lt;- 3
+mat  &lt;- matrix(runif(100), ncol = 2)
+
+dmat &lt;- as.matrix(stats::dist(mat))
+ind &lt;- integer(n)
+ind[1:2] &lt;- as.vector(arrayInd(which.max(dmat), .dim = dim(dmat)))
+
+for (i in 3:n) {
+  mm &lt;- dmat[ind, -ind, drop = FALSE]
+  k &lt;- which.max(mm[(1:ncol(mm) - 1) * nrow(mm) + max.col(t(-mm))])
+  ind[i] &lt;- as.numeric(dimnames(mm)[[2]][k])
+}
+
+par(mfrow = c(1, 2))
+plot(mat, asp = 1, xlab = &quot;&quot;, ylab = &quot;&quot;)
+plot(mat, asp = 1, xlab = &quot;&quot;, ylab = &quot;&quot;)
+points(mat[ind, ], pch = 19)
+text(mat[ind, ], adj = c(0, -1.5))</code></pre>
+<div class="figure">
+<img src="/post/2016-10-30-farthest-points_files/figure-html/greedy_approach-1.png" alt="Numbers note the order the points were picked in." width="864" />
+<p class="caption">
+(#fig:greedy_approach)Numbers note the order the points were picked in.
+</p>
+</div>
+<p>While this greedy procedure is fast and works well for large values of <code>n</code>
+it is quite inefficient in the example above. It is plain to see that there are
+other subsets of 3 points that would have a larger minimum distance but because
+we base our selection on the previous 2 points that were selected to be
+maximally distant, the algorithm has to pick a suboptimal third point. The
+minimum distance in our example is 0.7641338.</p>
+<p>The solution I came up with is based on a solution from
+Schlomer et al. <span class="citation">@schlomer_farthest-point_2011</span> who devised of an algorithm to
+partition a sets of points into subsets whilst maximizing the minimal distance.
+They used <a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">delaunay triangulations</a>
+but I decided to simply use the distance matrix instead. The algorithm works as
+follows.</p>
+<pre><code>M &lt;- Compute a distance matrix of all points in the sample
+S &lt;- Sample n points randomly from M
+repeat
+    for i = 1:n
+        M    &lt;- Add S(i) back into M
+        S(i) &lt;- Find point in M\S with max mindistance to any point in S
+until M did not change</code></pre>
+<p>Iteratively, we put one point from our candidate subset (S) back into the
+original se (M) and check all distances between the points in S to those in
+M to find the point with the highest minimum distance. Rinse and repeat until
+we are only putting back the same points we started the loop with, which
+always happens. Let’s see how this works on the same data set we used above.</p>
+<pre class="r"><code>r &lt;- sample.int(nrow(dmat), n)
+
+repeat {
+  r_old &lt;- r
+  for (i in 1:n) {
+    mm &lt;- dmat[r[-i], -r[-i], drop = FALSE]
+    k &lt;- which.max(mm[(1:ncol(mm) - 1) * nrow(mm) + max.col(t(-mm))])
+    r[i] &lt;- as.numeric(dimnames(mm)[[2]][k])
+  }
+  if (identical(r_old, r)) break
+}
+
+par(mfrow = c(1, 2))
+plot(mat, asp = 1, xlab = &quot;&quot;, ylab = &quot;&quot;)
+plot(mat, asp = 1, xlab = &quot;&quot;, ylab = &quot;&quot;)
+points(mat[r, ], pch = 19)
+text(mat[r, ], adj = c(0, -1.5))</code></pre>
+<div class="figure">
+<img src="/post/2016-10-30-farthest-points_files/figure-html/new_approach-1.png" alt="The new algorithm for picking points." width="864" />
+<p class="caption">
+(#fig:new_approach)The new algorithm for picking points.
+</p>
+</div>
+<p>Here, we end up with a minimum distance of 0.8619587. In
+qualpalr, this means that we now achieve slightly more distinct colors.</p>
+<div id="performance" class="section level2">
+<h2>Performance</h2>
+<p>The new algorithm is slightly slower than the old, greedy approach and slightly
+more verbose</p>
+<pre class="r"><code>f_greedy &lt;- function(data, n) {
+  dmat &lt;- as.matrix(stats::dist(data))
+  ind &lt;- integer(n)
+  ind[1:2] &lt;- as.vector(arrayInd(which.max(dmat), .dim = dim(dmat)))
+  for (i in 3:n) {
+    mm &lt;- dmat[ind, -ind, drop = FALSE]
+    k &lt;- which.max(mm[(1:ncol(mm) - 1) * nrow(mm) + max.col(t(-mm))])
+    ind[i] &lt;- as.numeric(dimnames(mm)[[2]][k])
+  }
+  ind
+}
+
+f_new &lt;- function(dat, n) {
+  dmat &lt;- as.matrix(stats::dist(data))
+  r &lt;- sample.int(nrow(dmat), n)
+  repeat {
+    r_old &lt;- r
+    for (i in 1:n) {
+      mm &lt;- dmat[r[-i], -r[-i], drop = FALSE]
+      k &lt;- which.max(mm[(1:ncol(mm) - 1) * nrow(mm) + max.col(t(-mm))])
+      r[i] &lt;- as.numeric(dimnames(mm)[[2]][k])
+    }
+    if (identical(r_old, r)) return(r)
+  }
+}</code></pre>
+<pre class="r"><code>n &lt;- 5
+data &lt;- matrix(runif(900), ncol = 3)
+microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)</code></pre>
+<pre><code>## Unit: milliseconds
+##               expr      min       lq     mean   median       uq      max
+##  f_greedy(data, n) 1.733002 1.817518 2.380807 1.941628 2.186522 46.39788
+##     f_new(data, n) 2.072204 2.630308 3.226308 2.904638 3.346518 16.05119
+##  neval cld
+##   1000  a 
+##   1000   b</code></pre>
+<p>The newest development version of qualpalr now uses this updated algorithm which
+has also been generalized and included as a new function in my R
+package <a href="https://github.com/jolars/euclidr">euclidr</a> called <code>farthest_points</code>.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+</div>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/qualpalr/">qualpalr</a>
+  
+  <a class="badge badge-light" href="/tags/color-science/">color-science</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/2016-10-15-introducing-qualpalr/">Introducing qualpalr</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "larssonjohan-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2018 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+
+    
+    
+    
+    <script id="dsq-count-scr" src="//larssonjohan-com.disqus.com/count.js" async></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "Search Results",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    <script src="/js/search.js"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+  </body>
+</html>
+

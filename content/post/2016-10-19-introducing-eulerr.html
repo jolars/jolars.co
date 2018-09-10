@@ -1,0 +1,158 @@
+---
+title: "Introducing eulerr"
+author: "Johan Larsson"
+date: 2016-10-19
+categories: ["R"]
+tags: ["eulerr", "euler-diagrams"]
+---
+
+
+
+<p><strong>eulerr</strong> is an <a href="https://www.r-project.org">R</a> package that generates
+area-proportional euler diagrams to display set
+relationships (intersections, unions, and disjoints) with circles.
+<a href="https://en.wikipedia.org/wiki/Euler_diagram">Euler diagrams</a> are Venn
+diagrams without the requirement that all set interactions be present (whether
+they are empty or not). That is, depending on input, eulerr will sometimes
+produce Venn diagrams but sometimes not.</p>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>R features a number of packages that produce euler and/or venn diagrams;
+some of the more prominent ones (on CRAN) are</p>
+<ul>
+<li><a href="https://cran.r-project.org/package=eVenn">eVenn</a>,</li>
+<li><a href="https://cran.r-project.org/package=VennDiagram">VennDiagram</a>,</li>
+<li><a href="https://cran.r-project.org/package=venn">venn</a>,</li>
+<li><a href="https://cran.r-project.org/package=colorfulVennPlot">colorfulVennPlot</a>, and</li>
+<li><a href="https://cran.r-project.org/package=venneuler">venneuler</a>.</li>
+</ul>
+<p>The last of these (venneuler) serves as the primary inspiration for this package,
+along with the refinements that Ben Fredrickson has presented on his
+<a href="http://www.benfrederickson.com/">blog</a> and made available in his javascript
+<a href="https://github.com/benfred/venn.js">venn.js</a>.</p>
+<p>venneuler, however, is written in java, preventing R users from
+browsing the source code (unless they are also literate in java) or
+contributing. Furthermore, venneuler is known to produce imperfect output for
+set configurations that have perfect solutions. Consider,
+for instance, the following example in which the intersection between <code>A</code> and
+<code>B</code> is unwanted.</p>
+<pre class="r"><code>library(venneuler, quietly = TRUE)
+venn_fit &lt;- venneuler(c(A = 75, B = 50, &quot;A&amp;B&quot; = 0))
+plot(venn_fit)</code></pre>
+<div class="figure">
+<img src="/post/2016-10-19-introducing-eulerr_files/figure-html/venneuler_failure-1.png" alt="venneuler plot with unwanted overlap." width="672" />
+<p class="caption">
+(#fig:venneuler_failure)venneuler plot with unwanted overlap.
+</p>
+</div>
+</div>
+<div id="enter-eulerr" class="section level2">
+<h2>Enter eulerr</h2>
+<p>eulerr is based on the improvements to <strong>venneuler</strong> that Ben Fredrickson
+introcued with <strong>venn.js</strong> but has been coded from scratch, uses different
+optimizers, and returns the residuals and stress statistic that venneuler
+features.</p>
+<div id="input" class="section level3">
+<h3>Input</h3>
+<p>Currently, it is possible to provide input to <code>eulerr</code> as either</p>
+<ul>
+<li>a named numeric vector or</li>
+<li>a matrix of logicals with columns representing sets and rows the set
+relationships for each observation.</li>
+</ul>
+<pre class="r"><code>library(eulerr)
+
+# Input in the form of a named numeric vector
+fit1 &lt;- euler(c(&quot;A&quot; = 25, &quot;B&quot; = 5, &quot;C&quot; = 5,
+                &quot;A&amp;B&quot; = 5, &quot;A&amp;C&quot; = 5, &quot;B&amp;C&quot; = 3,
+                &quot;A&amp;B&amp;C&quot; = 3))
+
+# Input as a matrix of logicals
+set.seed(1)
+mat &lt;-
+  cbind(
+    A = sample(c(TRUE, TRUE, FALSE), size = 50, replace = TRUE),
+    B = sample(c(TRUE, FALSE), size = 50, replace = TRUE),
+    C = sample(c(TRUE, FALSE, FALSE, FALSE), size = 50, replace = TRUE)
+  )
+fit2 &lt;- euler(mat)</code></pre>
+</div>
+<div id="fit" class="section level3">
+<h3>Fit</h3>
+<p>We inspect our results by printing the eulerr object</p>
+<pre class="r"><code>fit2</code></pre>
+<pre><code>##       original fitted residuals regionError
+## A           10 10.164    -0.164       0.003
+## B            7  7.138    -0.138       0.003
+## C            5  5.119    -0.119       0.002
+## A&amp;B         15 15.173    -0.173       0.003
+## A&amp;C          1  0.571     0.429       0.010
+## B&amp;C          2  1.802     0.198       0.005
+## A&amp;B&amp;C        5  5.141    -0.141       0.003
+## 
+## diagError: 0.01 
+## stress:    0.001</code></pre>
+<p>or directly access and plot the residuals.</p>
+<pre class="r"><code># Cleveland dot plot of the residuals
+dotchart(resid(fit2))
+abline(v = 0, lty = 3)</code></pre>
+<div class="figure">
+<img src="/post/2016-10-19-introducing-eulerr_files/figure-html/residual_plot-1.png" alt="Residuals for the eulerr fit." width="480" />
+<p class="caption">
+(#fig:residual_plot)Residuals for the eulerr fit.
+</p>
+</div>
+<p>This shows us that the <code>A&amp;B&amp;C</code> intersection is somewhat overrepresented in
+<code>fit2</code>. Given that these residuals are on the scale of the original
+values, however, the residuals are arguably of little concern.</p>
+<p>For an overall measure of the fit of the solution, we use the same stress
+statistic that Leland Wilkinson presented in his academic paper on venneuler
+(<span class="citation">@wilkinson_exact_2012</span>), which is given by the sums of squared residuals divided
+by the total sums of squares:
+<span class="math display">\[\frac{\sum_{i=1}^n (f_i - y_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}\]</span></p>
+<p>We fetch it from the <code>stress</code> attribute of the <code>eulerr</code> object.</p>
+<pre class="r"><code>fit2$stress</code></pre>
+<pre><code>## [1] 0.0005865</code></pre>
+<p>We can now be confident that eulerr provides a reasonable representation of
+our input. Were it otherwise, we would do best to stop here and look for another
+way to visualize our data. (I suggest the excellent
+<a href="https://cran.r-project.org/package=UpSetR">UpSetR</a> package.)</p>
+</div>
+<div id="plotting" class="section level3">
+<h3>Plotting</h3>
+<p>No we get to the fun part: plotting our diagram. This is easy, as well as
+highly customizable, with eulerr.</p>
+<pre class="r"><code>plot(fit2)
+
+# Change fill colors, border type (remove) and fontface.
+plot(fit2,
+     fill = list(col = c(&quot;dodgerblue4&quot;, &quot;darkgoldenrod1&quot;, &quot;cornsilk4&quot;)),
+     edges = list(lty = 1:3),
+     labels = list(font = 2))</code></pre>
+<div class="figure">
+<img src="/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr_plot-1.png" alt="eulerr plots can be modified in every possible way." width="336" /><img src="/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr_plot-2.png" alt="eulerr plots can be modified in every possible way." width="336" />
+<p class="caption">
+(#fig:eulerr_plot)eulerr plots can be modified in every possible way.
+</p>
+</div>
+<p>eulerr’s default color palette is taken from
+<a href="https://cran.r-project.org/package=qualpalr">qualpalr</a> – another
+package that I have developed – which uses color difference algorithms to
+generate distinct qualitative color palettes.</p>
+</div>
+</div>
+<div id="details" class="section level2">
+<h2>Details</h2>
+<p>Details of the implementation will be left for a future vignette but almost
+completely resemble the approach documented
+<a href="http://www.benfrederickson.com/better-venn-diagrams/">here</a>.</p>
+</div>
+<div id="thanks" class="section level2">
+<h2>Thanks</h2>
+<p>eulerr would not be possible without Ben Fredrickson’s work on
+<a href="http://www.benfrederickson.com">venn.js</a> or Leland Wilkinson’s
+<a href="https://cran.r-project.org/package=venneuler">venneuler</a>.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+</div>
