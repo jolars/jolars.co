@@ -16,6 +16,7 @@ a problem for sequential of diverging data since we can interpolate colors to
 any range we desire:
 
 ```{r}
+set.seed(1)
 pal <- RColorBrewer::brewer.pal(4, "PuBuGn")
 color_ramp <- colorRampPalette(pal, space = "Lab")
 ```
