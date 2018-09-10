@@ -50,9 +50,7 @@ This turns out to be much less trivial that one would suspect, which posts on Co
     
       
       
-        
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous">
       
     
 
@@ -68,6 +66,8 @@ This turns out to be much less trivial that one would suspect, which posts on Co
   
 
   <link rel="stylesheet" href="/styles.css">
+  
+  <link rel="stylesheet" href="/css/custom.css">
   
 
   
@@ -101,8 +101,8 @@ This turns out to be much less trivial that one would suspect, which posts on Co
 
   <meta property="twitter:card" content="summary_large_image">
   
-  <meta property="twitter:site" content="@johanlarsson86">
-  <meta property="twitter:creator" content="@johanlarsson86">
+  <meta property="twitter:site" content="@https://twitter.com/johanlarsson86">
+  <meta property="twitter:creator" content="@https://twitter.com/johanlarsson86">
   
   <meta property="og:site_name" content="Johan Larsson">
   <meta property="og:url" content="/post/2016-10-30-farthest-points/">
@@ -113,7 +113,7 @@ This turns out to be much less trivial that one would suspect, which posts on Co
   
   <meta property="article:published_time" content="2016-10-30T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2016-10-30T00:00:00&#43;00:00">
+  <meta property="article:modified_time" content="2018-09-10T20:28:59&#43;02:00">
   
 
   
@@ -270,9 +270,11 @@ This turns out to be much less trivial that one would suspect, which posts on Co
 
   <span class="article-date">
     
+        Last updated on
+    
     <meta content="2016-10-30 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-    <time datetime="2016-10-30 00:00:00 &#43;0000 UTC" itemprop="dateModified">
-      Oct 30, 2016
+    <time datetime="2018-09-10 20:28:59 &#43;0200 CEST" itemprop="dateModified">
+      Sep 10, 2018
     </time>
   </span>
   <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
@@ -392,10 +394,10 @@ plot(mat, asp = 1, xlab = &quot;&quot;, ylab = &quot;&quot;)
 plot(mat, asp = 1, xlab = &quot;&quot;, ylab = &quot;&quot;)
 points(mat[ind, ], pch = 19)
 text(mat[ind, ], adj = c(0, -1.5))</code></pre>
-<div class="figure">
-<img src="/post/2016-10-30-farthest-points_files/figure-html/greedy_approach-1.png" alt="Numbers note the order the points were picked in." width="864" />
+<div class="figure"><span id="fig:greedy-approach"></span>
+<img src="/post/2016-10-30-farthest-points_files/figure-html/greedy-approach-1.png" alt="Numbers note the order the points were picked in." width="864" />
 <p class="caption">
-(#fig:greedy_approach)Numbers note the order the points were picked in.
+Figure 1: Numbers note the order the points were picked in.
 </p>
 </div>
 <p>While this greedy procedure is fast and works well for large values of <code>n</code>
@@ -405,7 +407,7 @@ we base our selection on the previous 2 points that were selected to be
 maximally distant, the algorithm has to pick a suboptimal third point. The
 minimum distance in our example is 0.7641338.</p>
 <p>The solution I came up with is based on a solution from
-Schlomer et al. <span class="citation">@schlomer_farthest-point_2011</span> who devised of an algorithm to
+Schlomer et al. <span class="citation">Schlömer, Heck, and Deussen (2011)</span> who devised of an algorithm to
 partition a sets of points into subsets whilst maximizing the minimal distance.
 They used <a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">delaunay triangulations</a>
 but I decided to simply use the distance matrix instead. The algorithm works as
@@ -439,10 +441,10 @@ plot(mat, asp = 1, xlab = &quot;&quot;, ylab = &quot;&quot;)
 plot(mat, asp = 1, xlab = &quot;&quot;, ylab = &quot;&quot;)
 points(mat[r, ], pch = 19)
 text(mat[r, ], adj = c(0, -1.5))</code></pre>
-<div class="figure">
-<img src="/post/2016-10-30-farthest-points_files/figure-html/new_approach-1.png" alt="The new algorithm for picking points." width="864" />
+<div class="figure"><span id="fig:new-approach"></span>
+<img src="/post/2016-10-30-farthest-points_files/figure-html/new-approach-1.png" alt="The new algorithm for picking points." width="864" />
 <p class="caption">
-(#fig:new_approach)The new algorithm for picking points.
+Figure 2: The new algorithm for picking points.
 </p>
 </div>
 <p>Here, we end up with a minimum distance of 0.8619587. In
@@ -481,17 +483,20 @@ data &lt;- matrix(runif(900), ncol = 3)
 microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)</code></pre>
 <pre><code>## Unit: milliseconds
 ##               expr      min       lq     mean   median       uq      max
-##  f_greedy(data, n) 1.778671 1.967046 2.853641 2.265702 3.147772 56.05002
-##     f_new(data, n) 2.139262 2.834055 3.851773 3.388533 4.483306 18.17031
+##  f_greedy(data, n) 1.748765 1.868886 2.515583 1.986717 2.418984 44.24989
+##     f_new(data, n) 2.120713 2.646218 3.318365 2.983650 3.500854 20.15811
 ##  neval cld
 ##   1000  a 
 ##   1000   b</code></pre>
-<p>The newest development version of qualpalr now uses this updated algorithm which
-has also been generalized and included as a new function in my R
-package <a href="https://github.com/jolars/euclidr">euclidr</a> called <code>farthest_points</code>.</p>
+<p>The newest development version of qualpalr now uses this updated algorithm.</p>
 </div>
-<div id="references" class="section level2">
+<div id="references" class="section level2 unnumbered">
 <h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-schlomer_farthest-point_2011">
+<p>Schlömer, Thomas, Daniel Heck, and Oliver Deussen. 2011. “Farthest-Point Optimized Point Sets with Maximized Minimum Distance.” In, 135. ACM Press. <a href="https://doi.org/10/bpmnsh" class="uri">https://doi.org/10/bpmnsh</a>.</p>
+</div>
+</div>
 </div>
 
     </div>
@@ -635,6 +640,8 @@ package <a href="https://github.com/jolars/euclidr">euclidr</a> called <code>far
       
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
         
       
 

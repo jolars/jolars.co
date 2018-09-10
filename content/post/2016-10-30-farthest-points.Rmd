@@ -4,6 +4,7 @@ author: "Johan Larsson"
 categories: ["R"]
 date: 2016-10-30
 tags: ["qualpalr", "color-science"]
+bibliography: [../../static/library.bib]
 ---
 
 My R package [qualpalr](https://github.com/jolars/qualpalr) selects qualitative
@@ -32,7 +33,7 @@ for i = 3:n
 
 In R, this code looked like this (in two dimensions):
 
-```{r greedy_approach, fig.height=5, fig.width=9,fig.aling='center',fig.cap='Numbers note the order the points were picked in.'}
+```{r greedy-approach, fig.height=5, fig.width=9, fig.cap='Numbers note the order the points were picked in.'}
 set.seed(1)
 # find n points
 n <- 3
@@ -86,7 +87,7 @@ we are only putting back the same points we started the loop with, which
 always happens. Let's see how this works on the same data set we used above.
 
 
-```{r new_approach, fig.height=5, fig.width=9,fig.aling='center',fig.cap='The new algorithm for picking points.'}
+```{r new-approach, fig.height=5, fig.width=9,fig.aling='center',fig.cap='The new algorithm for picking points.'}
 r <- sample.int(nrow(dmat), n)
 
 repeat {
@@ -149,8 +150,6 @@ microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)
 
 ```
 
-The newest development version of qualpalr now uses this updated algorithm which
-has also been generalized and included as a new function in my R 
-package [euclidr](https://github.com/jolars/euclidr) called `farthest_points`.
+The newest development version of qualpalr now uses this updated algorithm.
 
 ## References

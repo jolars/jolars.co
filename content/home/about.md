@@ -10,9 +10,11 @@ weight = 5
 # List your academic interests.
 [interests]
   interests = [
-    "Statistics",
     "Machine Learning",
     "Stochastical Optimization",
+    "Reproducible Research",
+    "Package Development",
+    "Data Visualization",
     "High-Performance Computing"
   ]
 

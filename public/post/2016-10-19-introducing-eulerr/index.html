@@ -50,9 +50,7 @@ Background R features a number of packages that produce euler and/or venn diagra
     
       
       
-        
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" crossorigin="anonymous">
       
     
 
@@ -68,6 +66,8 @@ Background R features a number of packages that produce euler and/or venn diagra
   
 
   <link rel="stylesheet" href="/styles.css">
+  
+  <link rel="stylesheet" href="/css/custom.css">
   
 
   
@@ -101,8 +101,8 @@ Background R features a number of packages that produce euler and/or venn diagra
 
   <meta property="twitter:card" content="summary_large_image">
   
-  <meta property="twitter:site" content="@johanlarsson86">
-  <meta property="twitter:creator" content="@johanlarsson86">
+  <meta property="twitter:site" content="@https://twitter.com/johanlarsson86">
+  <meta property="twitter:creator" content="@https://twitter.com/johanlarsson86">
   
   <meta property="og:site_name" content="Johan Larsson">
   <meta property="og:url" content="/post/2016-10-19-introducing-eulerr/">
@@ -113,7 +113,7 @@ Background R features a number of packages that produce euler and/or venn diagra
   
   <meta property="article:published_time" content="2016-10-19T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2016-10-19T00:00:00&#43;00:00">
+  <meta property="article:modified_time" content="2018-09-10T20:42:37&#43;02:00">
   
 
   
@@ -270,9 +270,11 @@ Background R features a number of packages that produce euler and/or venn diagra
 
   <span class="article-date">
     
+        Last updated on
+    
     <meta content="2016-10-19 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-    <time datetime="2016-10-19 00:00:00 &#43;0000 UTC" itemprop="dateModified">
-      Oct 19, 2016
+    <time datetime="2018-09-10 20:42:37 &#43;0200 CEST" itemprop="dateModified">
+      Sep 10, 2018
     </time>
   </span>
   <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
@@ -471,11 +473,11 @@ highly customizable, with eulerr.</p>
 
 # Change fill colors, border type (remove) and fontface.
 plot(fit2,
-     fill = list(col = c(&quot;dodgerblue4&quot;, &quot;darkgoldenrod1&quot;, &quot;cornsilk4&quot;)),
+     fills = list(col = c(&quot;dodgerblue4&quot;, &quot;darkgoldenrod1&quot;, &quot;cornsilk4&quot;)),
      edges = list(lty = 1:3),
      labels = list(font = 2))</code></pre>
 <div class="figure"><span id="fig:eulerr-plot"></span>
-<img src="/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr-plot-1.png" alt="eulerr plots can be modified in every possible way." width="336" /><img src="/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr-plot-2.png" alt="eulerr plots can be modified in every possible way." width="336" />
+<img src="/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr-plot-1.png" alt="eulerr plots can be modified in every possible way." width="240" /><img src="/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr-plot-2.png" alt="eulerr plots can be modified in every possible way." width="240" />
 <p class="caption">
 Figure 3: eulerr plots can be modified in every possible way.
 </p>
@@ -638,6 +640,8 @@ completely resemble the approach documented
       
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
         
       
 

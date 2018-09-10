@@ -17,5 +17,38 @@ weight = 60
 
 ## eulerr
 
-**eulerr** is an R-package that generates area-proportional Euler
-Diagrams
+An R-package that generates area-proportional Euler
+Diagrams. 
+
+[CRAN-version](https://CRAN.R-project.org/package=eulerr),
+[Development version](https://github.com/jolars/eulerr)
+
+## sgdnet
+
+An R and C++-based implementation of the incremental gradient algorithm
+SAGA for fitting generalized linear models.
+
+[Development version](https://github.com/jolars/sgdnet)
+
+## qualpalr
+
+A package that generates qualitative color palettes algorithmically to
+maximize distinctiveness, as well as cater to color deficient people.
+
+[CRAN-version](https://CRAN.R-project.org/package=qualpalr),
+[Development version](https://github.com/jolars/qualpalr)
+
+## komadown
+
+A basic API to enable knitting KOMA-script-generated $\LaTeX$ files from 
+R-Markdown documents.
+
+[CRAN-version](https://CRAN.R-project.org/package=komadown),
+[Development version](https://github.com/jolars/komadown)
+
+## tactile
+
+Additional plots and themes for **lattice**.
+
+[CRAN-version](https://CRAN.R-project.org/package=tactile),
+[Development version](https://github.com/jolars/tactile)

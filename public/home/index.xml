@@ -108,7 +108,14 @@
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
       
       <guid>/home/r-packages/</guid>
-      <description>eulerr eulerr is an R-package that generates area-proportional Euler Diagrams</description>
+      <description>eulerr An R-package that generates area-proportional Euler Diagrams.
+CRAN-version, Development version
+sgdnet An R and C++-based implementation of the incremental gradient algorithm SAGA for fitting generalized linear models.
+Development version
+qualpalr A package that generates qualitative color palettes algorithmically to maximize distinctiveness, as well as cater to color deficient people.
+CRAN-version, Development version
+komadown A basic API to enable knitting KOMA-script-generated $\LaTeX$ files from R-Markdown documents.
+CRAN-version, Development version</description>
     </item>
     
     <item>

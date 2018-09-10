@@ -65,10 +65,10 @@ plot(mat, asp = 1, xlab = &amp;quot;&amp;quot;, ylab = &amp;quot;&amp;quot;)
 plot(mat, asp = 1, xlab = &amp;quot;&amp;quot;, ylab = &amp;quot;&amp;quot;)
 points(mat[ind, ], pch = 19)
 text(mat[ind, ], adj = c(0, -1.5))&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/post/2016-10-30-farthest-points_files/figure-html/greedy_approach-1.png&#34; alt=&#34;Numbers note the order the points were picked in.&#34; width=&#34;864&#34; /&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:greedy-approach&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2016-10-30-farthest-points_files/figure-html/greedy-approach-1.png&#34; alt=&#34;Numbers note the order the points were picked in.&#34; width=&#34;864&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-(#fig:greedy_approach)Numbers note the order the points were picked in.
+Figure 1: Numbers note the order the points were picked in.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;While this greedy procedure is fast and works well for large values of &lt;code&gt;n&lt;/code&gt;
@@ -78,7 +78,7 @@ we base our selection on the previous 2 points that were selected to be
 maximally distant, the algorithm has to pick a suboptimal third point. The
 minimum distance in our example is 0.7641338.&lt;/p&gt;
 &lt;p&gt;The solution I came up with is based on a solution from
-Schlomer et al. &lt;span class=&#34;citation&#34;&gt;@schlomer_farthest-point_2011&lt;/span&gt; who devised of an algorithm to
+Schlomer et al. &lt;span class=&#34;citation&#34;&gt;Schlömer, Heck, and Deussen (2011)&lt;/span&gt; who devised of an algorithm to
 partition a sets of points into subsets whilst maximizing the minimal distance.
 They used &lt;a href=&#34;https://en.wikipedia.org/wiki/Delaunay_triangulation&#34;&gt;delaunay triangulations&lt;/a&gt;
 but I decided to simply use the distance matrix instead. The algorithm works as
@@ -112,10 +112,10 @@ plot(mat, asp = 1, xlab = &amp;quot;&amp;quot;, ylab = &amp;quot;&amp;quot;)
 plot(mat, asp = 1, xlab = &amp;quot;&amp;quot;, ylab = &amp;quot;&amp;quot;)
 points(mat[r, ], pch = 19)
 text(mat[r, ], adj = c(0, -1.5))&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/post/2016-10-30-farthest-points_files/figure-html/new_approach-1.png&#34; alt=&#34;The new algorithm for picking points.&#34; width=&#34;864&#34; /&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:new-approach&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2016-10-30-farthest-points_files/figure-html/new-approach-1.png&#34; alt=&#34;The new algorithm for picking points.&#34; width=&#34;864&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
-(#fig:new_approach)The new algorithm for picking points.
+Figure 2: The new algorithm for picking points.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Here, we end up with a minimum distance of 0.8619587. In
@@ -154,17 +154,20 @@ data &amp;lt;- matrix(runif(900), ncol = 3)
 microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Unit: milliseconds
 ##               expr      min       lq     mean   median       uq      max
-##  f_greedy(data, n) 1.778671 1.967046 2.853641 2.265702 3.147772 56.05002
-##     f_new(data, n) 2.139262 2.834055 3.851773 3.388533 4.483306 18.17031
+##  f_greedy(data, n) 1.748765 1.868886 2.515583 1.986717 2.418984 44.24989
+##     f_new(data, n) 2.120713 2.646218 3.318365 2.983650 3.500854 20.15811
 ##  neval cld
 ##   1000  a 
 ##   1000   b&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The newest development version of qualpalr now uses this updated algorithm which
-has also been generalized and included as a new function in my R
-package &lt;a href=&#34;https://github.com/jolars/euclidr&#34;&gt;euclidr&lt;/a&gt; called &lt;code&gt;farthest_points&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The newest development version of qualpalr now uses this updated algorithm.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;references&#34; class=&#34;section level2&#34;&gt;
+&lt;div id=&#34;references&#34; class=&#34;section level2 unnumbered&#34;&gt;
 &lt;h2&gt;References&lt;/h2&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
+&lt;div id=&#34;ref-schlomer_farthest-point_2011&#34;&gt;
+&lt;p&gt;Schlömer, Thomas, Daniel Heck, and Oliver Deussen. 2011. “Farthest-Point Optimized Point Sets with Maximized Minimum Distance.” In, 135. ACM Press. &lt;a href=&#34;https://doi.org/10/bpmnsh&#34; class=&#34;uri&#34;&gt;https://doi.org/10/bpmnsh&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 </description>
     </item>
@@ -293,11 +296,11 @@ highly customizable, with eulerr.&lt;/p&gt;
 
 # Change fill colors, border type (remove) and fontface.
 plot(fit2,
-     fill = list(col = c(&amp;quot;dodgerblue4&amp;quot;, &amp;quot;darkgoldenrod1&amp;quot;, &amp;quot;cornsilk4&amp;quot;)),
+     fills = list(col = c(&amp;quot;dodgerblue4&amp;quot;, &amp;quot;darkgoldenrod1&amp;quot;, &amp;quot;cornsilk4&amp;quot;)),
      edges = list(lty = 1:3),
      labels = list(font = 2))&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:eulerr-plot&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr-plot-1.png&#34; alt=&#34;eulerr plots can be modified in every possible way.&#34; width=&#34;336&#34; /&gt;&lt;img src=&#34;/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr-plot-2.png&#34; alt=&#34;eulerr plots can be modified in every possible way.&#34; width=&#34;336&#34; /&gt;
+&lt;img src=&#34;/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr-plot-1.png&#34; alt=&#34;eulerr plots can be modified in every possible way.&#34; width=&#34;240&#34; /&gt;&lt;img src=&#34;/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr-plot-2.png&#34; alt=&#34;eulerr plots can be modified in every possible way.&#34; width=&#34;240&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 3: eulerr plots can be modified in every possible way.
 &lt;/p&gt;

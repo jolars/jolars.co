@@ -120,12 +120,12 @@ way to visualize our data. (I suggest the excellent
 No we get to the fun part: plotting our diagram. This is easy, as well as
 highly customizable, with eulerr.
 
-```{r eulerr-plot, fig.width=3.5, fig.height=3.5, fig.show='hold', fig.cap='eulerr plots can be modified in every possible way.'}
+```{r eulerr-plot, fig.width=2.5, fig.height=2.5, fig.show='hold', fig.cap='eulerr plots can be modified in every possible way.'}
 plot(fit2)
 
 # Change fill colors, border type (remove) and fontface.
 plot(fit2,
-     fill = list(col = c("dodgerblue4", "darkgoldenrod1", "cornsilk4")),
+     fills = list(col = c("dodgerblue4", "darkgoldenrod1", "cornsilk4")),
      edges = list(lty = 1:3),
      labels = list(font = 2))
 ```

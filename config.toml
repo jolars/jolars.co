@@ -34,11 +34,13 @@ hasCJKLanguage = false  # Set `true` for Chinese/Japanese/Korean languages.
 defaultContentLanguageInSubdir = false
 
 # Get last modified date for content from Git?
-enableGitInfo = false
+enableGitInfo = true
 
 [outputs]
   home = [ "HTML", "CSS", "RSS", "JSON" ]
   section = [ "HTML", "RSS" ]
+  taxonomy = [ "HTML", "RSS" ]
+  taxonomyTerm = [ "HTML", "RSS" ]
 
 # Configure BlackFriday Markdown rendering.
 #   See: https://gohugo.io/getting-started/configuration/#configure-blackfriday
@@ -62,7 +64,7 @@ enableGitInfo = false
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
-  organizations = [ { name = "Lund University", url = "" } ]
+  organizations = [ { name = "Malmö University", url = "" } ]
 
   gravatar = true  # Get your avatar from Gravatar.com? (true/false)
   avatar = "portrait.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
@@ -150,8 +152,8 @@ enableGitInfo = false
   #   For more info on the highlighting options, see:
   #   https://sourcethemes.com/academic/docs/writing-markdown-latex/#highlighting-options
   highlight = true
-  highlight_languages = []
-  # highlight_style = "github"
+  highlight_languages = ["r"]
+  highlight_style = "dracula"
 
   # Enable native social sharing buttons?
   sharing = true
@@ -163,7 +165,7 @@ enableGitInfo = false
 
   # Link custom CSS and JS assets
   #   (relative to /static/css and /static/js respectively)
-  custom_css = []
+  custom_css = ["custom.css"]
   custom_js  = []
 
   # Publication types.
@@ -232,7 +234,7 @@ enableGitInfo = false
   [[params.social]]
     icon = "twitter"
     icon_pack = "fab"
-    link = "//twitter.com/johanlarsson86"
+    link = "https://twitter.com/johanlarsson86"
 
   [[params.social]]
     icon = "google-scholar"
@@ -242,12 +244,12 @@ enableGitInfo = false
   [[params.social]]
     icon = "github"
     icon_pack = "fab"
-    link = "//github.com/jolars"
+    link = "https:://github.com/jolars"
 
   [[params.social]]
     icon = "orcid"
     icon_pack = "ai"
-    link = "https://github.com/jolars"
+    link = "https://orcid.org/0000-0002-4029-5945"
 
   [[params.social]]
     icon = "researchgate"
@@ -307,9 +309,9 @@ enableGitInfo = false
   # Configuration of Algolia search engine.
   # Paste the values from your Algolia dashboard.
   [params.search.algolia]
-    app_id = ""
-    api_key = ""
-    index_name = ""
+    app_id = "V7TM5987OK"
+    api_key = "8bbd1989f9634a4512efc7aa3959f820"
+    index_name = "larssonjohan.com"
     show_logo = false
 
 # Taxonomies.
@@ -325,15 +327,3 @@ enableGitInfo = false
 # Configure the English version of the website.
 [languages.en]
   languageCode = "en-us"
-
-# Uncomment the lines below to configure your website in a second language.
-#[languages.zh]
-#  languageCode = "zh-Hans"
-#  title = "Chinese website title..."
-#  [languages.zh.params]
-#    name = "Your name in Chinese..."
-#    role = "Your role in Chinese..."
-#  [[languages.zh.menu.main]]
-#    name = "Wo"
-#    url = "#about"
-#    weight = 1
