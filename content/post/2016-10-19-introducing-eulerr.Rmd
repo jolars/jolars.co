@@ -4,7 +4,7 @@ author: "Johan Larsson"
 date: 2016-10-19
 categories: ["R"]
 tags: ["eulerr", "euler-diagrams"]
-bibliography: [../../library.bib]
+bibliography: [../../static/library.bib]
 ---
 
 **eulerr** is an [R](https://www.r-project.org) package that generates
