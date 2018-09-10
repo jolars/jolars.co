@@ -136,8 +136,8 @@ data &lt;- matrix(runif(900), ncol = 3)
 microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)</code></pre>
 <pre><code>## Unit: milliseconds
 ##               expr      min       lq     mean   median       uq      max
-##  f_greedy(data, n) 1.733002 1.817518 2.380807 1.941628 2.186522 46.39788
-##     f_new(data, n) 2.072204 2.630308 3.226308 2.904638 3.346518 16.05119
+##  f_greedy(data, n) 1.778671 1.967046 2.853641 2.265702 3.147772 56.05002
+##     f_new(data, n) 2.139262 2.834055 3.851773 3.388533 4.483306 18.17031
 ##  neval cld
 ##   1000  a 
 ##   1000   b</code></pre>

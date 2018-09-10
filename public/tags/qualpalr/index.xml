@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Qualpalr on Johan Larsson</title>
-    <link>/tags/qualpalr/</link>
+    <link>http://larssonjohan.com/tags/qualpalr/</link>
     <description>Recent content in Qualpalr on Johan Larsson</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
     <lastBuildDate>Sun, 30 Oct 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/qualpalr/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://larssonjohan.com/tags/qualpalr/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Finding the farthest points in a point cloud</title>
-      <link>/post/2016-10-30-farthest-points/</link>
+      <link>http://larssonjohan.com/post/2016-10-30-farthest-points/</link>
       <pubDate>Sun, 30 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/2016-10-30-farthest-points/</guid>
+      <guid>http://larssonjohan.com/post/2016-10-30-farthest-points/</guid>
       <description>My R package qualpalr selects qualitative colors by projecting a bunch of colors (as points) to the three-dimensional DIN99d color space wherein the distance between any pair colors approximate their differences in appearance. The package then tries to choose the n colors so that the minimal pairwise distance among them is maximized, that is, we want the most similar pair of colors to be as dissimilar as possible.
 This turns out to be much less trivial that one would suspect, which posts on Computational Science, MATLAB Central, Stack Overflow, and and Computer Science can attest to.</description>
     </item>
     
     <item>
       <title>Introducing qualpalr</title>
-      <link>/post/2016-10-15-introducing-qualpalr/</link>
+      <link>http://larssonjohan.com/post/2016-10-15-introducing-qualpalr/</link>
       <pubDate>Sat, 15 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/2016-10-15-introducing-qualpalr/</guid>
+      <guid>http://larssonjohan.com/post/2016-10-15-introducing-qualpalr/</guid>
       <description>With the advent of colorbrewer there now exists good options to generate color palettes for sequential, diverging, and qualitative data. In R, these palettes can be accessed via the popular RColorBrewer package. Those palettes, however, are limited to a fixed number of colors. This isn’t much of a problem for sequential of diverging data since we can interpolate colors to any range we desire:</description>
     </item>
     

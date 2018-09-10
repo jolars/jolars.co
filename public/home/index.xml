@@ -2,112 +2,112 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Homes on Johan Larsson</title>
-    <link>/home/</link>
+    <link>http://larssonjohan.com/home/</link>
     <description>Recent content in Homes on Johan Larsson</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018</copyright>
     <lastBuildDate>Sun, 15 Oct 2017 00:00:00 +0200</lastBuildDate>
     
-	<atom:link href="/home/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://larssonjohan.com/home/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>/home/hero_carousel/</link>
+      <link>http://larssonjohan.com/home/hero_carousel/</link>
       <pubDate>Sun, 15 Oct 2017 00:00:00 +0200</pubDate>
       
-      <guid>/home/hero_carousel/</guid>
+      <guid>http://larssonjohan.com/home/hero_carousel/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Academic</title>
-      <link>/home/hero/</link>
+      <link>http://larssonjohan.com/home/hero/</link>
       <pubDate>Sun, 15 Oct 2017 00:00:00 +0200</pubDate>
       
-      <guid>/home/hero/</guid>
+      <guid>http://larssonjohan.com/home/hero/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>/home/about/</link>
+      <link>http://larssonjohan.com/home/about/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/home/about/</guid>
+      <guid>http://larssonjohan.com/home/about/</guid>
       <description>Biography I am master&amp;rsquo;s student in statistics at Lund University as well as a R-package developer.</description>
     </item>
     
     <item>
       <title>Skills</title>
-      <link>/home/skills/</link>
+      <link>http://larssonjohan.com/home/skills/</link>
       <pubDate>Wed, 20 Sep 2017 00:00:00 +0200</pubDate>
       
-      <guid>/home/skills/</guid>
+      <guid>http://larssonjohan.com/home/skills/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Selected Publications</title>
-      <link>/home/publications_selected/</link>
+      <link>http://larssonjohan.com/home/publications_selected/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/home/publications_selected/</guid>
+      <guid>http://larssonjohan.com/home/publications_selected/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Recent Publications</title>
-      <link>/home/publications/</link>
+      <link>http://larssonjohan.com/home/publications/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/home/publications/</guid>
+      <guid>http://larssonjohan.com/home/publications/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Selected Talks</title>
-      <link>/home/talks_selected/</link>
+      <link>http://larssonjohan.com/home/talks_selected/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/home/talks_selected/</guid>
+      <guid>http://larssonjohan.com/home/talks_selected/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Recent &amp; Upcoming Talks</title>
-      <link>/home/talks/</link>
+      <link>http://larssonjohan.com/home/talks/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/home/talks/</guid>
+      <guid>http://larssonjohan.com/home/talks/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Recent Posts</title>
-      <link>/home/posts/</link>
+      <link>http://larssonjohan.com/home/posts/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/home/posts/</guid>
+      <guid>http://larssonjohan.com/home/posts/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Projects</title>
-      <link>/home/projects/</link>
+      <link>http://larssonjohan.com/home/projects/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/home/projects/</guid>
+      <guid>http://larssonjohan.com/home/projects/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Teaching</title>
-      <link>/home/teaching/</link>
+      <link>http://larssonjohan.com/home/teaching/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/home/teaching/</guid>
+      <guid>http://larssonjohan.com/home/teaching/</guid>
       <description>This is an example of using the custom widget to create your own homepage section.
 I am a teaching instructor for the following courses at University X:
  CS101: An intro to computer science CS102: An intro to computer science CS103: An intro to computer science CS104: An intro to computer science CS105: An intro to computer science CS106: An intro to computer science CS107: An intro to computer science  </description>
@@ -115,28 +115,28 @@ I am a teaching instructor for the following courses at University X:
     
     <item>
       <title>Tags</title>
-      <link>/home/tags/</link>
+      <link>http://larssonjohan.com/home/tags/</link>
       <pubDate>Wed, 20 Sep 2017 00:00:00 +0200</pubDate>
       
-      <guid>/home/tags/</guid>
+      <guid>http://larssonjohan.com/home/tags/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Search</title>
-      <link>/home/search/</link>
+      <link>http://larssonjohan.com/home/search/</link>
       <pubDate>Mon, 23 Jul 2018 00:00:00 +0200</pubDate>
       
-      <guid>/home/search/</guid>
+      <guid>http://larssonjohan.com/home/search/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Contact</title>
-      <link>/home/contact/</link>
+      <link>http://larssonjohan.com/home/contact/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0200</pubDate>
       
-      <guid>/home/contact/</guid>
+      <guid>http://larssonjohan.com/home/contact/</guid>
       <description></description>
     </item>
     
