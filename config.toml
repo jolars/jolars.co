@@ -122,7 +122,7 @@ enableGitInfo = false
 
   # Enable global LaTeX math rendering?
   #   If false, you can enable it locally on a per page basis.
-  math = false
+  math = true
 
   # Highlight.js options
   #   highlight
@@ -277,7 +277,12 @@ enableGitInfo = false
 [[menu.main]]
   name = "Posts"
   url = "#posts"
-  weight = 3
+  weight = 2
+
+[[menu.main]]
+    name = "R-Packages"
+    url = "#r-packages"
+    weight = 3
 
 [[menu.main]]
   name = "Contact"

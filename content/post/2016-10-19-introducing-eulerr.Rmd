@@ -4,6 +4,7 @@ author: "Johan Larsson"
 date: 2016-10-19
 categories: ["R"]
 tags: ["eulerr", "euler-diagrams"]
+bibliography: [../../library.bib]
 ---
 
 **eulerr** is an [R](https://www.r-project.org) package that generates
@@ -37,7 +38,7 @@ set configurations that have perfect solutions. Consider,
 for instance, the following example in which the intersection between `A` and
 `B` is unwanted.
 
-```{r venneuler_failure, fig.height=5, fight.width=5, fig.cap='venneuler plot with unwanted overlap.'}
+```{r venneuler-failure, fig.height=5, fight.width=5, fig.cap='venneuler plot with unwanted overlap.'}
 library(venneuler, quietly = TRUE)
 venn_fit <- venneuler(c(A = 75, B = 50, "A&B" = 0))
 plot(venn_fit)
@@ -87,7 +88,7 @@ fit2
 
 or directly access and plot the residuals.
 
-```{r residual_plot, fig.cap='Residuals for the eulerr fit.', fig.height = 5, fig.width = 5}
+```{r residual-plot, fig.cap='Residuals for the eulerr fit.', fig.height = 5, fig.width = 5}
 # Cleveland dot plot of the residuals
 dotchart(resid(fit2))
 abline(v = 0, lty = 3)
@@ -119,7 +120,7 @@ way to visualize our data. (I suggest the excellent
 No we get to the fun part: plotting our diagram. This is easy, as well as
 highly customizable, with eulerr.
 
-```{r eulerr_plot, fig.width=3.5, fig.height=3.5, fig.show='hold', fig.cap='eulerr plots can be modified in every possible way.'}
+```{r eulerr-plot, fig.width=3.5, fig.height=3.5, fig.show='hold', fig.cap='eulerr plots can be modified in every possible way.'}
 plot(fit2)
 
 # Change fill colors, border type (remove) and fontface.

@@ -39,10 +39,10 @@ for instance, the following example in which the intersection between <code>A</c
 <pre class="r"><code>library(venneuler, quietly = TRUE)
 venn_fit &lt;- venneuler(c(A = 75, B = 50, &quot;A&amp;B&quot; = 0))
 plot(venn_fit)</code></pre>
-<div class="figure">
-<img src="/post/2016-10-19-introducing-eulerr_files/figure-html/venneuler_failure-1.png" alt="venneuler plot with unwanted overlap." width="672" />
+<div class="figure"><span id="fig:venneuler-failure"></span>
+<img src="/post/2016-10-19-introducing-eulerr_files/figure-html/venneuler-failure-1.png" alt="venneuler plot with unwanted overlap." width="672" />
 <p class="caption">
-(#fig:venneuler_failure)venneuler plot with unwanted overlap.
+Figure 1: venneuler plot with unwanted overlap.
 </p>
 </div>
 </div>
@@ -96,10 +96,10 @@ fit2 &lt;- euler(mat)</code></pre>
 <pre class="r"><code># Cleveland dot plot of the residuals
 dotchart(resid(fit2))
 abline(v = 0, lty = 3)</code></pre>
-<div class="figure">
-<img src="/post/2016-10-19-introducing-eulerr_files/figure-html/residual_plot-1.png" alt="Residuals for the eulerr fit." width="480" />
+<div class="figure"><span id="fig:residual-plot"></span>
+<img src="/post/2016-10-19-introducing-eulerr_files/figure-html/residual-plot-1.png" alt="Residuals for the eulerr fit." width="480" />
 <p class="caption">
-(#fig:residual_plot)Residuals for the eulerr fit.
+Figure 2: Residuals for the eulerr fit.
 </p>
 </div>
 <p>This shows us that the <code>A&amp;B&amp;C</code> intersection is somewhat overrepresented in
@@ -129,10 +129,10 @@ plot(fit2,
      fill = list(col = c(&quot;dodgerblue4&quot;, &quot;darkgoldenrod1&quot;, &quot;cornsilk4&quot;)),
      edges = list(lty = 1:3),
      labels = list(font = 2))</code></pre>
-<div class="figure">
-<img src="/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr_plot-1.png" alt="eulerr plots can be modified in every possible way." width="336" /><img src="/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr_plot-2.png" alt="eulerr plots can be modified in every possible way." width="336" />
+<div class="figure"><span id="fig:eulerr-plot"></span>
+<img src="/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr-plot-1.png" alt="eulerr plots can be modified in every possible way." width="336" /><img src="/post/2016-10-19-introducing-eulerr_files/figure-html/eulerr-plot-2.png" alt="eulerr plots can be modified in every possible way." width="336" />
 <p class="caption">
-(#fig:eulerr_plot)eulerr plots can be modified in every possible way.
+Figure 3: eulerr plots can be modified in every possible way.
 </p>
 </div>
 <p>eulerr’s default color palette is taken from

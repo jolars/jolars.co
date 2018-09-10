@@ -18,7 +18,7 @@
   <meta name="description" content="Statistician, Physical Therapist">
 
   
-  <link rel="alternate" hreflang="en-us" href="http://larssonjohan.com/categories/r/">
+  <link rel="alternate" hreflang="en-us" href="/categories/r/">
 
   
 
@@ -88,15 +88,15 @@
   
 
   
-  <link rel="alternate" href="http://larssonjohan.com/categories/r/index.xml" type="application/rss+xml" title="Johan Larsson">
-  <link rel="feed" href="http://larssonjohan.com/categories/r/index.xml" type="application/rss+xml" title="Johan Larsson">
+  <link rel="alternate" href="/categories/r/index.xml" type="application/rss+xml" title="Johan Larsson">
+  <link rel="feed" href="/categories/r/index.xml" type="application/rss+xml" title="Johan Larsson">
   
 
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="http://larssonjohan.com/categories/r/">
+  <link rel="canonical" href="/categories/r/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -104,7 +104,7 @@
   <meta property="twitter:creator" content="@johanlarsson86">
   
   <meta property="og:site_name" content="Johan Larsson">
-  <meta property="og:url" content="http://larssonjohan.com/categories/r/">
+  <meta property="og:url" content="/categories/r/">
   <meta property="og:title" content="R | Johan Larsson">
   <meta property="og:description" content="Statistician, Physical Therapist">
   <meta property="og:locale" content="en-us">
@@ -188,6 +188,25 @@
         
 
         <li class="nav-item">
+          <a class="nav-link" href="/#r-packages">
+            
+            <span>R-Packages</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
           <a class="nav-link" href="/#contact">
             
             <span>Contact</span>
@@ -237,7 +256,7 @@
   
   
   <div>
-    <h2><a href="http://larssonjohan.com/post/2016-10-30-farthest-points/">Finding the farthest points in a point cloud</a></h2>
+    <h2><a href="/post/2016-10-30-farthest-points/">Finding the farthest points in a point cloud</a></h2>
     <div class="article-style">
       
       My R package qualpalr selects qualitative colors by projecting a bunch of colors (as points) to the three-dimensional DIN99d color space wherein the distance between any pair colors approximate their differences in appearance. The package then tries to choose the n colors so that the minimal pairwise distance among them is maximized, that is, we want the most similar pair of colors to be as dissimilar as possible.
@@ -247,7 +266,7 @@ This turns out to be much less trivial that one would suspect, which posts on Co
   </div>
   
   <div>
-    <h2><a href="http://larssonjohan.com/post/2016-10-19-introducing-eulerr/">Introducing eulerr</a></h2>
+    <h2><a href="/post/2016-10-19-introducing-eulerr/">Introducing eulerr</a></h2>
     <div class="article-style">
       
       eulerr is an R package that generates area-proportional euler diagrams to display set relationships (intersections, unions, and disjoints) with circles. Euler diagrams are Venn diagrams without the requirement that all set interactions be present (whether they are empty or not). That is, depending on input, eulerr will sometimes produce Venn diagrams but sometimes not.
@@ -257,7 +276,7 @@ Background R features a number of packages that produce euler and/or venn diagra
   </div>
   
   <div>
-    <h2><a href="http://larssonjohan.com/post/2016-10-15-introducing-qualpalr/">Introducing qualpalr</a></h2>
+    <h2><a href="/post/2016-10-15-introducing-qualpalr/">Introducing qualpalr</a></h2>
     <div class="article-style">
       
       With the advent of colorbrewer there now exists good options to generate color palettes for sequential, diverging, and qualitative data. In R, these palettes can be accessed via the popular RColorBrewer package. Those palettes, however, are limited to a fixed number of colors. This isn’t much of a problem for sequential of diverging data since we can interpolate colors to any range we desire:
@@ -271,6 +290,10 @@ Background R features a number of packages that produce euler and/or venn diagra
 </div>
 <div class="container">
   <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
   
 
   <p class="powered-by">
@@ -322,6 +345,15 @@ Background R features a number of packages that produce euler and/or venn diagra
 
     
     
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        CommonHTML: { linebreaks: { automatic: true } },
+        tex2jax: { inlineMath: [ ['$', '$'], ['\\(','\\)'] ], displayMath: [ ['$$','$$'], ['\\[', '\\]'] ], processEscapes: false },
+        TeX: { noUndefined: { attributes: { mathcolor: 'red', mathbackground: '#FFEEEE', mathsize: '90%' } } },
+        messageStyle: 'none'
+      });
+    </script>
+    
 
     
     
@@ -339,6 +371,8 @@ Background R features a number of packages that produce euler and/or venn diagra
       
 
       
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
       
     
 
