@@ -38,5 +38,6 @@ weight = 5
 
 # Biography
 
-I am master's student in statistics at Lund University as well as a 
-R-package developer.
+I am master's student in statistics and avid R-package developer with a 
+keen interest for machine learning, and in particular, fast methods
+for generalized linear models using stochastic gradient methods.
