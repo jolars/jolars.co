@@ -5,6 +5,11 @@ date: 2016-10-15
 categories: ["R"]
 tags: ["qualpalr", "color-science"]
 bibliography: [../../static/library.bib]
+header:
+  image: "headers/france.svg"
+summary: "Let me introduce qualpalr: an R package that generates qualitative 
+          color palettes with distinct colors using color difference
+          algorithms."
 ---
 
 With the advent of [colorbrewer](http://colorbrewer2.org/) there now exists good

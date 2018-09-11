@@ -4,6 +4,9 @@ author: "Johan Larsson"
 categories: ["R"]
 date: 2016-10-30
 tags: ["qualpalr", "color-science"]
+header:
+  image: "headers/farthest-points.png"
+summary: "A better algorithm for finding a subset of points that maximize the minimal distance between them."
 bibliography: [../../static/library.bib]
 ---
 

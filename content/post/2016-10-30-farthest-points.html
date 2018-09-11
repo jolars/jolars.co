@@ -4,6 +4,9 @@ author: "Johan Larsson"
 categories: ["R"]
 date: 2016-10-30
 tags: ["qualpalr", "color-science"]
+header:
+  image: "headers/farthest-points.png"
+summary: "A better algorithm for finding a subset of points that maximize the minimal distance between them."
 bibliography: [../../static/library.bib]
 ---
 
@@ -137,8 +140,8 @@ data &lt;- matrix(runif(900), ncol = 3)
 microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)</code></pre>
 <pre><code>## Unit: milliseconds
 ##               expr      min       lq     mean   median       uq      max
-##  f_greedy(data, n) 1.750455 1.851581 2.458783 2.045144 2.452183 46.34969
-##     f_new(data, n) 2.129756 2.664449 3.261842 2.992672 3.515026 21.62087
+##  f_greedy(data, n) 1.741076 1.994111 2.891930 2.338522 3.150876 48.87690
+##     f_new(data, n) 2.061692 2.839694 3.853848 3.417853 4.485978 17.59046
 ##  neval cld
 ##   1000  a 
 ##   1000   b</code></pre>
