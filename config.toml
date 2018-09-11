@@ -292,6 +292,11 @@ enableGitInfo = true
     weight = 3
 
 [[menu.main]]
+    name = "Publications"
+    url = "#publications"
+    weight = 4
+
+[[menu.main]]
   name = "Contact"
   url = "#contact"
   weight = 6
