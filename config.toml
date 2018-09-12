@@ -261,6 +261,11 @@ enableGitInfo = true
     icon_pack = "ai"
     link = "https://publons.com/author/1299032"
 
+  [[params.social]]
+    icon = "zotero"
+    icon_pack = "ai"
+    link = "https://www.zotero.org/laika86"
+
   # Link to a PDF of your resume/CV from the About widget.
   # To enable, copy your resume/CV to `static/files/cv.pdf` and uncomment the lines below.
   # [[params.social]]
