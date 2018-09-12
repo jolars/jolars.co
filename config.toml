@@ -13,7 +13,7 @@ title = "Johan Larsson"
 
 # Your copyright notice - appears in site footer.
 # To display a copyright symbol, type `&copy;`.
-copyright = "&copy; 2018"
+copyright = "&copy; Johan Larsson 2018"
 
 theme = "hugo-academic"
 enableEmoji = true
