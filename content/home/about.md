@@ -36,6 +36,6 @@ weight = 5
  
 +++
 
-I am master's student in statistics and avid R-package developer with a 
-keen interest for machine learning, and in particular, fast methods
-for generalized linear models using stochastic gradient methods.
+I am master's student in statistics and avid R-package developer with
+a particular interest for statistical learning, optimization,
+and data visualization.
