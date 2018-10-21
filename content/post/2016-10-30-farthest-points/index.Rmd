@@ -4,11 +4,10 @@ author: "Johan Larsson"
 categories: ["R"]
 date: 2016-10-30
 tags: ["qualpalr", "color-science"]
-header:
-  image: "headers/farthest-points.png"
 summary: "A better algorithm for finding a subset of points that maximize the minimal distance between them."
-bibliography: [../../static/library.bib]
+bibliography: [../../../static/library.bib]
 ---
+
 
 My R package [qualpalr](https://github.com/jolars/qualpalr) selects qualitative
 colors by projecting a bunch of colors (as points) to the three-dimensional
@@ -36,11 +35,15 @@ for i = 3:n
 
 In R, this code looked like this (in two dimensions):
 
-```{r greedy-approach, fig.height=5, fig.width=9, fig.cap='Numbers note the order the points were picked in.'}
+```{r greedy-approach, fig.align = "center", fig.height=5, fig.width=5, fig.cap='Greedy approach to farthest-point picking.'}
+# packages
+library(lattice)
+
 set.seed(1)
 # find n points
 n <- 3
-mat  <- matrix(runif(100), ncol = 2)
+mat  <- as.data.frame(matrix(runif(100), ncol = 2))
+colnames(mat) <- c("x", "y")
 
 dmat <- as.matrix(stats::dist(mat))
 ind <- integer(n)
@@ -52,11 +55,12 @@ for (i in 3:n) {
   ind[i] <- as.numeric(dimnames(mm)[[2]][k])
 }
 
-par(mfrow = c(1, 2))
-plot(mat, asp = 1, xlab = "", ylab = "")
-plot(mat, asp = 1, xlab = "", ylab = "")
-points(mat[ind, ], pch = 19)
-text(mat[ind, ], adj = c(0, -1.5))
+xyplot(y ~ x, data = mat,
+       asp = 1,
+       panel = function(x, y, ...) {
+         panel.xyplot(x, y, ...)
+         panel.points(x[ind], y[ind], pch = 19)
+       })
 ```
 
 While this greedy procedure is fast and works well for large values of `n`
@@ -90,8 +94,8 @@ we are only putting back the same points we started the loop with, which
 always happens. Let's see how this works on the same data set we used above.
 
 
-```{r new-approach, fig.height=5, fig.width=9,fig.aling='center',fig.cap='The new algorithm for picking points.'}
-r <- sample.int(nrow(dmat), n)
+```{r new-approach, fig.height=5, fig.width=5,fig.aling='center',fig.cap='New approach to farthest-point picking.'}
+r <- sample(nrow(dmat), n)
 
 repeat {
   r_old <- r
@@ -103,11 +107,12 @@ repeat {
   if (identical(r_old, r)) break
 }
 
-par(mfrow = c(1, 2))
-plot(mat, asp = 1, xlab = "", ylab = "")
-plot(mat, asp = 1, xlab = "", ylab = "")
-points(mat[r, ], pch = 19)
-text(mat[r, ], adj = c(0, -1.5))
+xyplot(y ~ x, data = mat,
+       asp = 1,
+       panel = function(x, y, ...) {
+         panel.xyplot(x, y, ...)
+         panel.points(x[r], y[r], pch = 19)
+       })
 ```
 
 Here, we end up with a minimum distance of `r min(stats::dist(mat[r, ]))`. In
@@ -146,11 +151,15 @@ f_new <- function(dat, n) {
 }
 ```
 
-```{r benchmark}
+```{r benchmark, warning = FALSE, message = FALSE, fig.cap = "Benchmark results for the new and old algorithm.", fig.width = 6, fig.height = 2.5}
+library(microbenchmark)
+library(ggplot2)
 n <- 5
 data <- matrix(runif(900), ncol = 3)
-microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)
-
+bench <- microbenchmark(Greedy = f_greedy(data, n), 
+                        New = f_new(data, n),
+                        times = 1000L)
+autoplot(bench)
 ```
 
 The newest development version of qualpalr now uses this updated algorithm.

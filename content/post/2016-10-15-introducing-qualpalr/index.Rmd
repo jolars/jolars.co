@@ -3,10 +3,8 @@ title: "Introducing qualpalr"
 author: "Johan Larsson"
 date: 2016-10-15
 categories: ["R"]
-tags: ["qualpalr", "color-science"]
-bibliography: [../../static/library.bib]
-header:
-  image: "headers/france.svg"
+tags: ["Color Science", "qualpalr", "R"]
+bibliography: [../../../static/library.bib]
 summary: "Let me introduce qualpalr: an R package that generates qualitative 
           color palettes with distinct colors using color difference
           algorithms."
@@ -17,7 +15,7 @@ options to generate color palettes for sequential, diverging, and qualitative
 data. In R, these palettes can be accessed via the popular
 [RColorBrewer](https://cran.r-project.org/package=RColorBrewer) package. Those
 palettes, however, are limited to a fixed number of colors. This isn't much of 
-a problem for sequential of diverging data since we can interpolate colors to 
+a problem for sequential or diverging data since we can interpolate colors to 
 any range we desire:
 
 ```{r}
@@ -106,9 +104,9 @@ options(rgl.useNULL = TRUE)
 library(rgl)
 
 # Set up color subspace as in qualpal()
-h = c(-200, 120)
-s = c(0.3, 0.8)
-l = c(0.4, 0.9)
+h <- c(-200, 120)
+s <- c(0.3, 0.8)
+l <- c(0.4, 0.9)
 
 # Generate a quasi-random tour sequence
 rnd <- randtoolbox::sobol(n = 1000, dim = 3, scrambling = 2)
@@ -151,6 +149,9 @@ CIELab (not shown here), and then finally the DIN99d space.
 XYZ    <- qualpalr:::sRGB_XYZ(RGB)
 DIN99d <- qualpalr:::XYZ_DIN99d(XYZ)
 
+fn <- file.path("~", "Documents", "test.png")
+
+open3d(windowRect = c(0, 0, 1000, 1000))
 plot3d(DIN99d, col = rgb(RGB), main = "DIN99d")
 rglwidget()
 ```
@@ -171,7 +172,7 @@ an example using `n = 5.`
 ```{r choice, echo = FALSE, fig.cap = "The selected colors (in DIN99d space)."}
 pal <- qualpal(5, list(h = c(-200, 120), s = c(0.3, 0.8), l = c(0.4, 0.9)))
 plot3d(DIN99d, col = rgb(RGB), main = "DIN99d", alpha = 0.1)
-plot3d(pal$DIN99d, col = pal$hex, main = "DIN99d", add = TRUE, size = 5)
+plot3d(pal$DIN99d, col = pal$hex, main = "DIN99d", add = TRUE, size = 10)
 rglwidget()
 ```
 
