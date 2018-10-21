@@ -64,7 +64,8 @@ enableGitInfo = true
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
-  organizations = [ { name = "Lund University", url = "" } ]
+  organizations = [ { name = "Lund University", url = "https://www.stat.lu.se" },
+                    { name = "Malmö University", url = "https://mau.se"} ]
 
   gravatar = true  # Get your avatar from Gravatar.com? (true/false)
   avatar = "portrait.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
@@ -74,6 +75,7 @@ enableGitInfo = true
   phone = "+46 730353836"
   skype = "johan.larsson604"
   telegram = ""
+  twitter = "johanlarsson86"
 
   # Enable Keybase in Contact widget by entering your keybase.io username.
   keybase = ""
@@ -182,7 +184,10 @@ enableGitInfo = true
     'Manuscript',  # 3
     'Report',  # 4
     'Book',  # 5
-    'Book section'  # 6
+    'Book section',  # 6
+    'Bachelor Thesis', # 7
+    'Master Thesis',
+    'PhD Thesis' # 8
   ]
 
   # Configuration of talk pages.
@@ -302,14 +307,14 @@ enableGitInfo = true
   weight = 2
 
 [[menu.main]]
-    name = "R-Packages"
+    name = "Software"
     url = "#r-packages"
-    weight = 3
+    weight = 4
 
 [[menu.main]]
     name = "Publications"
-    url = "#publications"
-    weight = 4
+    url = "#publications_selected"
+    weight = 3
 
 [[menu.main]]
    name = "CV"
@@ -320,8 +325,6 @@ enableGitInfo = true
   name = "Contact"
   url = "#contact"
   weight = 7
-
-
 
 # Search.
 [params.search]
