@@ -308,7 +308,7 @@ enableGitInfo = true
 
 [[menu.main]]
     name = "Software"
-    url = "#r-packages"
+    url = "#software"
     weight = 4
 
 [[menu.main]]
