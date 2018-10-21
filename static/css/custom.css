@@ -17,3 +17,7 @@ html {
 #navbar-main {
   background: #222222 !important;
 }
+
+.card-text h4 {
+  text-transform: lowercase;
+}
