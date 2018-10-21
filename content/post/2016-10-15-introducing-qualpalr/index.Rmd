@@ -151,7 +151,6 @@ DIN99d <- qualpalr:::XYZ_DIN99d(XYZ)
 
 fn <- file.path("~", "Documents", "test.png")
 
-open3d(windowRect = c(0, 0, 1000, 1000))
 plot3d(DIN99d, col = rgb(RGB), main = "DIN99d")
 rglwidget()
 ```
