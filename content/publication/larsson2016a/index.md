@@ -18,7 +18,7 @@ authors = ["Johan Larsson", "Michael Miller", "Eva Ekvall Hansson"]
 publication_types = ["2"]
 
 # Publication name and optional abbreviated version.
-publication = "Gait & Posture"
+publication = "Gait & Posture, 45, 31–34"
 publication_short = ""
 
 # Abstract and optional shortened version.
