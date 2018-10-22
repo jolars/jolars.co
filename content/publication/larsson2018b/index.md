@@ -44,13 +44,13 @@ projects: ["euler-diagrams"]
 tags: ["Venn diagrams", "Euler diagrams"]
 url_pdf: "http://lup.lub.lu.se/student-papers/record/8934042/file/8935805.pdf"
 url_preprint: ""
-url_code: "https://github.com/jolars/eulerr2017bsc"
+url_code: ""
 url_dataset: ""
 url_project: ""
 url_slides: ""
 url_video: ""
 url_poster: ""
-url_source: ""
+url_source: "https://github.com/jolars/eulerr2017bsc"
 # url_custom: [{name = "Custom Link", url = "http://example.org"}]
 doi: ""
 # image:
