@@ -44,7 +44,7 @@ projects: ["euler-diagrams"]
 tags: ["Venn diagrams", "Euler diagrams"]
 url_pdf: "http://lup.lub.lu.se/student-papers/record/8934042/file/8935805.pdf"
 url_preprint: ""
-url_code: ""
+url_code: "https://github.com/jolars/eulerr2017bsc"
 url_dataset: ""
 url_project: ""
 url_slides: ""
