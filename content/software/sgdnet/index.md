@@ -12,7 +12,7 @@ summary = "Fast Sparse Linear Models for Big Data with SAGA."
 tags = ["R", "sgdnet", "Machine Learning", "SAGA", "Elastic Net"]
 
 # Optional external URL for project (replaces project detail page).
-external_link = "https://github.com/jolars/sgdnet"
+external_link = "https://jolars.github.io/sgdnet/"
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your project's folder.
