@@ -118,7 +118,7 @@ is documented at <https://jolars.github.io/polylabelr/>.
 
 ## Euler diagrams
 
-To come back around to where we started at, **polylabelr** has now bee
+To come back around to where we started at, **polylabelr** has now been
 employed in the development branch 
 of **eulerr** where it is used to quickly and appropriately 
 figure out locations for the labels of the diagram.
