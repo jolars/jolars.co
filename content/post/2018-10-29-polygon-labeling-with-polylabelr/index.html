@@ -1,0 +1,135 @@
+---
+title: Polygon labeling with polylabelr
+author: Johan Larsson
+date: '2018-10-29'
+slug: polygon-labeling-with-polylabelr
+categories:
+  - R
+tags:
+  - Euler diagrams
+  - Polygon
+  - Labeling
+  - R
+  - eulerr
+  - polylabelr
+  - Geometry
+image:
+  caption: ''
+  focal_point: 'right'
+summary: Using polylabelr to find visual centers of polygons and
+  label Euler diagrams
+bibliography: [library.bib]
+---
+
+
+
+<div id="labeling-euler-diagram-overlaps" class="section level2">
+<h2>Labeling Euler diagram overlaps</h2>
+<p>The purpose of my R package <a href="https://github.com/jolars/eulerr">eulerr</a>
+is to fit and <em>visualize</em> Euler diagrams. Besides the various intricacies
+involved in fitting the diagrams, there are many interesting
+problems involved in their visualization. One of these is the labeling of the
+overlaps.</p>
+<p>Naturally, simply positioning the labels at the shapes’ centers
+fails more often than not. Nevertheless, this stategy is employed by
+<strong>venneuler</strong>, for instance, and the plots usually demand
+manual tuning.</p>
+<pre class="r"><code># an example set combination
+s &lt;- c(&quot;SE&quot; = 13, &quot;Treat&quot; = 28, &quot;Anti-CCP&quot; = 101, &quot;DAS28&quot; = 91,
+       &quot;SE&amp;Treat&quot; = 1, &quot;SE&amp;DAS28&quot; = 14, &quot;Treat&amp;Anti-CCP&quot; = 6,
+       &quot;SE&amp;Anti-CCP&amp;DAS28&quot; = 1)
+
+library(venneuler, quietly = TRUE)
+fit_venneuler &lt;- venneuler(s)
+plot(fit_venneuler)</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<img src="/post/2018-10-29-polygon-labeling-with-polylabelr/index_files/figure-html/unnamed-chunk-2-1.png" alt="A plot from venneuler with suboptimal label placements." width="336" />
+<p class="caption">
+Figure 1: A plot from venneuler with suboptimal label placements.
+</p>
+</div>
+<p>Up til now, I solved this in <strong>eulerr</strong> by, for each overlap,
+filling one of the involved shapes (circles or ellipses) with points
+and then numerically optimizing the location of the point using a
+Nelder–Mead optimizer. However, given that the solution to
+finding the distance between a point and an ellipse—at least one that
+is rotated—itself requires a numerical solution <span class="citation">(Eberly 2013)</span>, this procedure
+turned out to be quite inefficient.</p>
+</div>
+<div id="the-promise-of-polygons" class="section level2">
+<h2>The promise of polygons</h2>
+<p>R has powerful functionality for plotting in general, but lacks
+capabilities for drawing ellipses using curves. High-resolution
+polygons are thankfully a readily available remedy for this and have
+since several version back been used also in <strong>eulerr</strong>.</p>
+<p>The upside of using polygons, however, are that they are usually
+much easier, even if sometimes inefficient,
+to work with. For instance, they make constructing separate shapes
+for each overlap a breeze using the polyclip package <span class="citation">(Johnson and Baddeley 2018)</span>.</p>
+<p>And because basically all shapes in digital maps are polygons,
+there happens to exist a multitude of other useful tools to deal with
+a wide variety of tasks related to polygons. One of these turned out
+to be precisely what I needed: polylabel <span class="citation">(Mapbox 2018)</span> from the Mapbox suite.
+Because the details of the library
+<a href="https://blog.mapbox.com/a-new-algorithm-for-finding-a-visual-center-of-a-polygon-7c77e6492fbc">have already been explained elsewhere</a>
+I will spare you the details, but briefly put it uses quadtree
+binning to divide the polygon into square bins, pruning away dead-ends.
+It is inefficient and will, according to the authors, find
+a point that is “guaranteed to be a global optimum within the given precision”.</p>
+<p>Because it appeared to be such a valuable tool for R users, I decided
+to create a wrapper for the c++ header for polylabel and
+bundle it as a package for R users.</p>
+<pre class="r"><code># install.packages(&quot;polylabelr&quot;)
+library(polylabelr)
+
+# a concave polygon with a hole
+x &lt;- c(0, 6, 3, 9, 10, 12, 4, 0, NA, 2, 5, 3)
+y &lt;- c(0, 0, 1, 3, 1, 5, 3, 0, NA, 1, 2, 2)
+
+# locate the pole of inaccessibility
+p &lt;- poi(x, y, precision = 0.01)
+
+plot.new()
+plot.window(range(x, na.rm = TRUE), range(y, na.rm = TRUE), asp = 1)
+polypath(x, y, col = &quot;grey90&quot;, rule = &quot;evenodd&quot;)
+points(p, cex = 2, pch = 16)</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="/post/2018-10-29-polygon-labeling-with-polylabelr/index_files/figure-html/unnamed-chunk-3-1.png" alt="Locating poles of inaccessibility with polylabel." width="336" />
+<p class="caption">
+Figure 2: Locating poles of inaccessibility with polylabel.
+</p>
+</div>
+<p>The package <a href="https://CRAN.R-project.org/package=polylabelr">is availabe on cran</a>,
+the source code is located at <a href="https://github.com/jolars/polylabelr" class="uri">https://github.com/jolars/polylabelr</a> and
+is documented at <a href="https://jolars.github.io/polylabelr/" class="uri">https://jolars.github.io/polylabelr/</a>.</p>
+</div>
+<div id="euler-diagrams" class="section level2">
+<h2>Euler diagrams</h2>
+<p>To come back around to where we started at, <strong>polylabelr</strong> has now bee
+employed in the development branch
+of <strong>eulerr</strong> where it is used to quickly and appropriately
+figure out locations for the labels of the diagram.</p>
+<pre class="r"><code>library(eulerr)
+
+plot(euler(s))</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="/post/2018-10-29-polygon-labeling-with-polylabelr/index_files/figure-html/unnamed-chunk-4-1.png" alt="An Euler diagram with appropriate label placement." width="336" />
+<p class="caption">
+Figure 3: An Euler diagram with appropriate label placement.
+</p>
+</div>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-eberly2013">
+<p>Eberly, David. 2013. “Distance from a Point to an Ellipse, an Ellipsoid, or a Hyperellipsoid.” <em>Geometric Tools</em>. https://www.geometrictools.com/Documentation/DistancePointEllipseEllipsoid.pdf.</p>
+</div>
+<div id="ref-johnson2018">
+<p>Johnson, Angus, and Adrian Baddeley. 2018. “polyclip: Polygon Clipping.” https://CRAN.R-project.org/package=polyclip.</p>
+</div>
+<div id="ref-mapbox2018a">
+<p>Mapbox. 2018. “A Fast Algorithm for Finding the Pole of Inaccessibility of a Polygon (in JavaScript and C++): Mapbox/Polylabel.” Mapbox.</p>
+</div>
+</div>
+</div>
