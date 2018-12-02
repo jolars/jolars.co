@@ -36,6 +36,6 @@ weight = 5
  
 +++
 
-I am master's student in statistics and avid R-package developer with
+I am PhD student in statistics and R-package developer with
 a particular interest for statistical learning, optimization,
 and data visualization.
