@@ -1,0 +1,215 @@
+---
+lang: en
+csl: vancouver-full.csl
+bibliography: library.bib
+output: 
+  pdf_document:
+    template: template.tex
+---
+
+# Education
+
+## Degrees
+
+2018 -- now
+  : **PhD in Statistics**, *Department of Statistics, Lund University*
+  : I am currently enrolled in the PhD program at the
+    Department of Statistics at Lund University. My supervisor
+    has yet to be announced.
+
+2018
+  : **Bachelor's degree in statistics**, *Lund University*
+  : I developed an algorithm for creating area-proportional Euler diagrams
+    using ellipses. This work also resulted in a conference paper and
+    oral presentation at the SetWR conference in Edinburgh.
+
+2015 -- 2017
+  : **Master’s degree in medical science with a major in physical therapy**,
+    *Lund University*
+  : In my masters thesis I design and piloted a randomized controlled trial.
+
+2011 -- 2014
+  : **Bachelor's degree in Physical  Therapy**, *Lund University*
+  : For my bachelor thesis, me and my co-author traveled to Tokyo to interview
+    physical therapists about their professional role and use of technology.
+
+## Courses
+
+2018
+  : **Data Mining and Visualization**, *7.5 ECTS, Lund University*
+  : **Linux Development Environment**, *7.5 ECTS, Umeå University*
+  : **Statistical methods with R**, *7.5 ECTS, Karolinska Institute*
+
+2017
+  : **Statistics: Bayesian methods**, *7.5 ECTS, Lund University*
+  : **Statistics: Probability and inference theory**,
+    *7.5 ECTS, Lund University*
+  : **Statistics: Special assignment**, *15 ECTS, Lund University*
+  : **Statistics: Econometrics**, *7.5 ECTS, Lund University*
+  : **Statistics: Time Series Analysis**, *7.5 ECTS, Lund University*
+  : **Statistics: Statistical theory**, *7.5 ECTS, Lund University*
+  : **Statistics: Sampling Techniques**, *7.5 ECTS, Lund University*
+
+2016
+  : **Statistics: Basic Course**, *30 ECTS, Lund University*
+
+2014 -- 2015
+  : **Summer research course**,
+    *18 ECTS, Faculty of Medicine, Lund University*
+  : I worked as a research assistant at a specialized clinic for pain
+    rehabilitation and presented a poster at EFIC in 2015 and IASP in 2016.
+
+2013 -- 2014
+  : **Summer research scholarship**,
+    *15 ECTS, Faculty of Medicine, Lund University*
+  : As a part of a stipend, I undertook a course in basic academic knowledge.
+
+# Work experience
+
+2018
+  : **Google Summer of Code**, *The R Project for Statistical Computing*
+  : A project supervised by Toby Dylan Hocking and Michael Weylandt wherein
+    which I translated the incremental stochastic gradient algorithm
+    SAGA to R and implemented it to work for generalized linear models, such as
+    Gaussian (univariate and multi-task), logistic
+    (binomial and multinomial), Poisson, and Cox regression.
+
+2017 -- now
+  : **Physical therapist**,
+    *The Department of Orofacial Pain and Jaw Function, Malmö University*
+  : Clinical work and quantitative assessment of sensory function.
+
+2016 -- now
+  : **Teacher Assistant**, *The Department of Health Sciences, Lund University*  
+  : I teach anatomy, palpation, and examination skills to students at the
+    medical school of Lund University.
+
+2014 -- now
+  : **Physical Therapist**, *Vårdcentralen Södra Sandby, Region Skåne*
+  : Clinical work at a primary care center in southern Skåne.
+
+## Research
+
+2015 -- 2018
+  : **Research assistant**, *SMIL*
+  : SensoriMotor Integration Lund (SMIL) is a collaborative effort between
+    Lund University, Skåne University Hospital, Malmö University, and Umeå
+    University, in which we are assessing the utility of a gym-based treatment
+    for patients with persistent neck pain.
+
+2015
+  : **Research assistant**,
+    *The Department of Pain Rehabilitation, Skåne University Hospital*
+  : Together with supervisors Eva-Maj Malmström and Hans Westergren I studied
+    patients with longstanding whiplash-associated disorders, which has so far
+    resulted in one publication and two posters.
+
+2014
+  : **Research assistant**, *Department of Clinical Sciences, Lund University*
+  : As part of a research stipend from the Faculty of Medicine at Lund
+    University, I -- under supervision of Eva-Ekvall Hansson and
+    Michael Miller -- studied the gait of dizzy, elderly patients. This work
+    resulted in two publications.
+
+2014
+  : **Transcriber**, *Department of Health Sciences, Lund University*
+  : For a brief period, I worked as a transcriber for a research project within
+    gerontology.
+
+## Teaching
+
+2016 -- now
+  : **Teaching assistant**, *Department of Physiotherapy, Lund University*
+  : I serve as a teaching assistant for students at the program of medicine.
+
+## Supervisor
+
+2017 -- 2019
+  : **Assistant Supervisor, bachelor's thesis**,
+    *The Department of Orofacial Pain and Jaw Function, Malmö University*
+  : Supervision of two students at undergraduate level for a project regarding
+    exercise for neck and jaw pain.
+
+2017 -- 2018
+  : **Assistant Supervisor, master's thesis**,
+    *The Department of Orofacial Pain and Jaw Function, Malmö University*
+  : Supervision of two students at master's level for a project about
+    biofeedback and posture.
+
+## Reviewer
+
+* Gait & Posture (ISSN: 0966-6362)
+* Journal of Clinical Interventions in Aging (ISSN: 1178-1998)
+* Spine (ISSN: 0362-2436)
+* Archives of Physical Medicine and Rehabilitation (ISSN: 0003-9993)
+
+See [publons.com/a/1299032](http://publons.com/a/1299032) for additional
+information.
+
+
+## Miscellaneous
+
+2017
+  : **Network analyses**, *SBU, Stockholm, Sweden*
+
+2016
+  : **Conducting systematic reviews**, *HTA-0, Malmö, Sweden*
+
+# Publications
+
+[@larsson2018]
+
+[@westergren2017]
+
+[@larsson2016a]
+
+[@larsson2015]
+
+## Theses
+
+[@larsson2018b]
+
+[@larsson2017]
+
+[@najafi2014]
+
+## Conference papers
+
+[@larsson2018a]
+
+## Conference abstracts
+
+[@larsson2016]
+
+[@westergren2015]
+
+## Scientific communication
+
+[@larsson2016b]
+
+# Software packages
+
+eulerr
+:    Area-Proportional Euler diagrams with ellipses.
+:    <https://CRAN.R-project.org/package=eulerr>
+
+qualpalr
+:    Automatic generation of qualitative color palettes
+     using color difference algorithms.
+:    <https://CRAN.R-project.org/package=qualpalr>
+
+komadown
+:    R Markdown templates based on the 'KOMA-Script' 
+     classes for LaTeX, additionally offering cross-referencing
+     via the 'bookdown' package.
+:    <https://CRAN.R-project.org/package=komadown>
+
+sgdnet
+:    Elastic Net-regularized Generalized Linear Models via the 
+     efficient SAGA algorithm.
+:    <https://github.com/jolars/sgdnet>
+
+tactile
+:    Extensions to 'lattice', providing new high-level functions, 
+     methods for existing functions, panel functions, and a theme.
+:    <https://CRAN.R-project.org/package=tactile>
