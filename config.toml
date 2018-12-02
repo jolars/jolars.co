@@ -60,12 +60,11 @@ enableGitInfo = true
 
   # Your details.
   name = "Johan Larsson"
-  role = "Statistician"
+  role = "PhD Student"
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
-  organizations = [ { name = "Lund University", url = "https://www.stat.lu.se" },
-                    { name = "Malmö University", url = "https://mau.se"} ]
+  organizations = [ { name = "Department of Statistics, Lund University", url = "https://www.stat.lu.se" }]
 
   gravatar = true  # Get your avatar from Gravatar.com? (true/false)
   avatar = "portrait.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
@@ -103,10 +102,10 @@ enableGitInfo = true
   #   1: Google Maps
   #   2: OpenStreetMap (Mapnik)
   #   3: OpenStreetMap (Mapbox)
-  map = 0
+  map = 2
   map_api_key = ""
-  latitude = "37.4275"
-  longitude = "-122.1697"
+  latitude = "55.709842"
+  longitude = "13.213764"
   zoom = 15
 
   # Date and time format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
