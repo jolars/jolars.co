@@ -70,7 +70,7 @@ enableGitInfo = true
   phone = "+46 730353836"
   skype = "johan.larsson604"
   telegram = ""
-  keybase = ""  # Your keybase.io username.
+  keybase = "johanlarsson"  # Your keybase.io username.
 
   # Enter an optional link for booking appointments (e.g. calendly.com).
   appointment_url = "https://calendly.com/johanlarsson"
