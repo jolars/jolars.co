@@ -65,7 +65,7 @@ enableGitInfo = true
 
   # Details for contact widget
   email = "mail@larssonjohan.com"
-  address = "Holger Crafoords Ekonomicentrum, Tycho Brahes väg 1, 223 63 Lund, Sweden"
+  address = "Holger Crafoords Ekonomicentrum, Tycho Brahes väg 1, 223 63 Lund, Sweden, room EC1:338"
   #office_hours = "E-mail for appointment."
   phone = "+46 730353836"
   skype = "johan.larsson604"
