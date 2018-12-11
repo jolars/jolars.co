@@ -11,7 +11,7 @@ weight = 5
 [interests]
   interests = [
     "Machine Learning",
-    "Stochastical Optimization",
+    "Stochastic Optimization",
     "Reproducible Research",
     "Package Development",
     "Data Visualization",
