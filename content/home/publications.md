@@ -19,6 +19,7 @@ count = 10
 #   1 = Detailed
 #   2 = APA
 #   3 = MLA
+#   4 = Stream
 list_format = 3
 
 # Filter by publication type.
@@ -33,6 +34,6 @@ list_format = 3
 publication_type = "-1"
 
 # Exclude publications that are shown in the Selected Publications widget?
-exclude_selected = false
+exclude_featured = false
 +++
 

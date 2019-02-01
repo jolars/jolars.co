@@ -1,41 +1,13 @@
 +++
 # About/Biography widget.
-widget = "about"
-active = true
+widget = "about"  # Do not modify this line!
+active = true  # Activate this widget? true/false
+weight = 5  # Order that this section will appear in.
 date = 2016-04-20T00:00:00
 
-# Order that this section will appear in.
-weight = 5
+title = "Biography"
 
-# List your academic interests.
-[interests]
-  interests = [
-    "Machine Learning",
-    "Stochastic Optimization",
-    "Reproducible Research",
-    "Package Development",
-    "Data Visualization",
-    "High-Performance Computing"
-  ]
-
-# List your qualifications (such as academic degrees).
-[[education.courses]]
-  course = "BSc Statistics"
-  institution = "Lund University"
-  year = 2018
-
-[[education.courses]]
-  course = "MSc Medical Sciences"
-  institution = "Lund University"
-  year = 2016
-
-[[education.courses]]
-  course = "BSc Physical Therapy"
-  institution = "Lund University"
-  year = 2014
- 
+# Choose the user profile to display
+# This should be the username of a profile in your `content/author/` folder.
+author = "Admin"
 +++
-
-I am PhD student in statistics and R-package developer with
-a particular interest for statistical learning, optimization,
-and data visualization.

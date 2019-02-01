@@ -39,7 +39,7 @@ abstract: "Euler diagrams are common and intuitive visualizations for data invol
   meanwhile, fit better
   on all accounts save for the diagError metric in the case of three-set diagrams."
 abstract_short: ""
-selected: true
+featured: true
 projects: ["euler-diagrams"]
 tags: ["Venn diagrams", "Euler diagrams"]
 url_pdf: "http://lup.lub.lu.se/student-papers/record/8934042/file/8935805.pdf"
