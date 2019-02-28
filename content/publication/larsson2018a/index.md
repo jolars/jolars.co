@@ -7,8 +7,11 @@ authors = ["Johan Larsson", "Peter Gustafsson"]
 
 publication = "In: *Proceedings of International Workshop on Set Visualization and Reasoning*, CEUR Workshop Proceedings, Edinburgh, United Kingdom, pp. 91"
 
+# Abstract
 abstract = "Euler diagrams are common and user-friendly visualizations for set relationships. Most Euler diagrams use circles, but circles do not always   yield accurate diagrams. A promising alternative is ellipses, which, in theory, enable accurate diagrams for a wider range of input. Elliptical diagrams, however, have not yet been implemented for more than three sets or three-set diagrams where there are disjoint or subset relationships. The aim of this paper is to present eulerr: a software package for elliptical Euler diagrams for, in theory, any number of sets. It fits Euler diagrams using numerical optimization and exact-area algorithms through a two-step procedure, first generating an initial layout using pairwise relationships and then finalizing this layout using all set relationships."
-abstract_short = "The R package **eulerr** fits area-proportional elliptical Euler diagrams to set relationships using numerical optimization and exact-area routines. This paper presents a few case studies in fitting diagrams using **eulerr**."
+
+# Summary
+summary = "The R package **eulerr** fits area-proportional elliptical Euler diagrams to set relationships using numerical optimization and exact-area routines. This paper presents a few case studies in fitting diagrams using **eulerr**."
 
 featured = true
 
@@ -26,6 +29,7 @@ url_slides = "files/larsson2018a_slides.pdf"
 url_video = ""
 url_poster = ""
 url_source = ""
+#links = [{name = "Custom Link", url = "http://example.org"}]
 
 math = false
 

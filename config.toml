@@ -74,32 +74,11 @@ enableGitInfo = true
   keybase = "johanlarsson"  # Your keybase.io username.
 
   # Enter an optional link for booking appointments (e.g. calendly.com).
-  appointment_url = "https://calendly.com/johanlarsson"
+  appointment_url = "https://doodle.com/johanlarsson"
 
   # Discussion link (e.g. link to a forum, mailing list, or chat).
   #   Uncomment line below to use.
   #   discussion = { name = "Discuss", url = "https://discourse.gohugo.io" }
-
-  # Enable/disable map in Contact widget.
-  # To show your address on a map in the contact widget, you need to enter your latitude, longitude and choose
-  # a map provider below.
-  # To use Google Maps, set `map = 1` and enter your API key that can be obtained here:
-  #   https://developers.google.com/maps/documentation/javascript/get-api-key
-  # To use OpenStreetMap tiles, set `map = 2`.
-  # To use OpenStreetMap on a high traffic site, set `map = 3` and enter your API key that can be obtained here:
-  #   https://www.mapbox.com/studio/account/tokens
-  # To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
-  #
-  # Map provider:
-  #   0: No map
-  #   1: Google Maps
-  #   2: OpenStreetMap (Mapnik)
-  #   3: OpenStreetMap (Mapbox)
-  map = 2
-  map_api_key = ""
-  latitude = "55.709842"
-  longitude = "13.213764"
-  zoom = 15
 
   # SITE SETUP
 
@@ -210,36 +189,6 @@ enableGitInfo = true
     # Show talk time?
     time = true
 
-  # Configuration of publication pages.
-  [params.publications]
-    # Date format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
-    #   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
-    date_format = "January, 2006"
-
-  # Configuration of project pages.
-  [params.projects]
-    # List publications and talks related to the project?
-    list_children = true
-
-    # Post list format.
-    #   0 = Simple
-    #   1 = Detailed
-    #   2 = Stream
-    post_format = 2
-
-    # Publication list format.
-    #   0 = Simple
-    #   1 = Detailed
-    #   2 = APA
-    #   3 = MLA
-    publication_format = 3
-
-    # Talk list format.
-    #   0 = Simple
-    #   1 = Detailed
-    #   2 = Stream
-    talk_format = 2
-
   # Social/Academic Networking
   #
   # Icon pack "fab" includes the following social network icons:
@@ -314,60 +263,6 @@ enableGitInfo = true
   #   icon = "cv"
   #   icon_pack = "ai"
   #   link = "files/cv.pdf"
-
-# Navigation Links
-#   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
-#     desired widget in your `content/home/` folder.
-#   The weight parameter defines the order that the links will appear in.
-[params.menus]
-  # Align the main menu to the right of the page? (true/false)
-  align_right = true
-
-[[menu.main]]
-  name = "Home"
-  url = "#about"
-  weight = 1
-
-[[menu.main]]
-  name = "Posts"
-  url = "#posts"
-  weight = 2
-
-[[menu.main]]
-    name = "Software"
-    url = "#software"
-    weight = 4
-
-[[menu.main]]
-    name = "Publications"
-    url = "#publications_selected"
-    weight = 3
-
-[[menu.main]]
-   name = "CV"
-   url = "files/cv/cv.pdf"
-   weight = 6
-
-[[menu.main]]
-  name = "Contact"
-  url = "#contact"
-  weight = 7
-
-# Search.
-[params.search]
-  # Search provider:
-  #   0: No search engine
-  #   1: Built-in (Fuse)
-  #   2: Algolia (https://www.algolia.com)
-  engine = 1
-
-  # Configuration of Algolia search engine.
-  # Paste the values from your Algolia dashboard.
-  [params.search.algolia]
-    app_id = "V7TM5987OK"
-    api_key = "8bbd1989f9634a4512efc7aa3959f820"
-    index_name = "larssonjohan.com"
-    show_logo = false
 
 # Taxonomies.
 [taxonomies]
