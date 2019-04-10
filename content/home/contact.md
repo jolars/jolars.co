@@ -2,6 +2,7 @@
 # Contact widget.
 widget = "contact"
 active = true
+headless = true
 
 title = "Contact"
 subtitle = ""

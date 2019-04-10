@@ -4,6 +4,7 @@
 widget = "pages"
 active = true
 weight = 25
+headless = true
 
 title = "Recent Publications"
 subtitle = ""

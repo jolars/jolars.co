@@ -5,6 +5,7 @@ date = 2017-09-20T00:00:00
 
 # Activate this widget? true/false
 active = false
+headless = true
 
 title = "Skills"
 subtitle = ""

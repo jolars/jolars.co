@@ -2,6 +2,7 @@
 # Slider widget.
 widget = "slider"  # Do not modify this line!
 active = false  # Activate this widget? true/false
+headless = true
 
 # Order that this section will appear in.
 weight = 1

@@ -2,6 +2,7 @@
 # Search widget.
 widget = "search"
 active = false
+headless = true
 
 title = "Search"
 subtitle = ""
