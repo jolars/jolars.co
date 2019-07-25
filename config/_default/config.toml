@@ -18,9 +18,6 @@ copyright = "&copy; {year} Johan Larsson"
 # Enable analytics by entering your Google Analytics tracking ID
 googleAnalytics = "UA-85513662-1"
 
-# Enable comments by entering your Disqus shortname
-disqusShortname = "larssonjohan-com"
-
 ############################
 ## Advanced options below ##
 ############################
@@ -35,12 +32,12 @@ enableGitInfo = true
 defaultContentLanguage = "en"
 hasCJKLanguage = false  # Set `true` for Chinese/Japanese/Korean languages.
 defaultContentLanguageInSubdir = false
+removePathAccents = true  # Workaround for https://github.com/gohugoio/hugo/issues/5687
 
 paginate = 10  # Number of items per page in paginated lists.
 enableEmoji = true
 footnotereturnlinkcontents = "<sup>^</sup>"
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
-preserveTaxonomyNames = true
+ignoreFiles = ["\\.ipynb$", ".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [outputs]
   home = [ "HTML", "RSS", "JSON" ]
@@ -55,6 +52,11 @@ preserveTaxonomyNames = true
   extensions = ["backslashLineBreak"]
   #fractions = true  # `false` disables smart fractions (e.g. 5/12 formatted as a fraction).
   #smartypants = true  # `false` disables all smart punctuation substitutions (e.g. smart quotes, dashes, fractions).
+
+[imaging]
+  resampleFilter = "lanczos"
+  quality = 90
+  anchor = "smart"  # Anchor for cropping. Options include Smart and Center.
 
 # Taxonomies.
 [taxonomies]

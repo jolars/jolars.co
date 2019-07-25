@@ -2,13 +2,13 @@
 # Documentation: https://sourcethemes.com/academic/
 
 # Color theme.
-#   Choose from `default`, `ocean`, `forest`, `dark`, `apogee`, `1950s`, `coffee`, `cupcake`.
+#   Choose from `default`, `ocean`, `forest`, `dark`, `apogee`, `1950s`, `coffee`, `rose`, `strawberry`, `mr_robot`.
 color_theme = "ocean"
 # Enable users to switch between day and night mode?
 day_night = true
 
 # Font style.
-#   Choose from `default`, `classic`, or `playfair`.
+#   Choose from `default`, `classic`, `rose`, or `mr_robot`.
 font = "classic"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
@@ -34,10 +34,18 @@ highlight_style = "dracula" # For supported styles, see https://cdnjs.com/librar
 #   If false, you can enable it locally on a per page basis.
 math = false
 
+# Enable diagram rendering? true/false
+#   If false, you can enable diagrams on a per page basis as needed.
+diagram = false
+
 # Privacy pack
 #   Show a cookie consent message to visitors
 #   Anonymize IP in Google Analytics (if enabled)
 privacy_pack = true
+
+# Enable visitors to edit pages?
+# `repo` defines the repository URL. `editable` defines which page types can be edited.
+edit_page = {repo_url = "https://github.com/gcushen/hugo-academic", repo_branch = "master", editable = {docs = true, page = false, post = false}}
 
 # Date and time format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
 #   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
@@ -95,7 +103,7 @@ zoom = 15
 #   E.g. To load `/assets/css/custom.css`, set `plugins_css = ["custom"]`.
 #   E.g. To load `/assets/js/custom.js`, set `plugins_js = ["custom"]`.
 plugins_css = ["custom"]
-# plugins_js  = [""]
+plugins_js  = []
 
 ############################
 ## Advanced options       ##
@@ -110,11 +118,9 @@ menu_align_right = true
 # Show estimated reading time for posts? (true/false)
 reading_time = true
 
-# Display comment count (if commenting enabled in config.toml)? (true/false)
-comment_count = true
-
 # Display next/previous section pager? (true/false)
 section_pager = false
+docs_section_pager = true  # Display pager in Docs layout (e.g. tutorials)?
 
 # Enable in-built social sharing buttons? (true/false)
 sharing = true
@@ -125,27 +131,35 @@ sharing = true
   #   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
   date_format = "January 2006"
 
+  # Citation style ("apa" or "mla")
+  citation_style = "apa"
+
 # Configuration of project pages.
 [projects]
-  # Post list format.
-  #   0 = Simple
-  #   1 = Detailed
-  #   2 = Stream
-  post_format = 2
+  # Views for associated content.
+  #   1: List
+  #   2: Compact
+  #   3: Card
+  #   4: Citation (publications only)
+  post_view = 2
+  publication_view = 4
+  talk_view = 2
 
-  # Publication list format.
-  #   0 = Simple
-  #   1 = Detailed
-  #   2 = APA
-  #   3 = MLA
-  #   4 = Stream
-  publication_format = 4
+# Comments.
+[comments]
+  # Comment provider:
+  #   0: Disabled
+  #   1: Disqus (https://disqus.com)
+  #   2: Commento (https://commento.io)
+  engine = 2
 
-  # Talk list format.
-  #   0 = Simple
-  #   1 = Detailed
-  #   2 = Stream
-  talk_format = 2
+  # Which page types are commentable?
+  commentable = {page = true, post = true, docs = true}
+
+  # Configuration of Disqus.
+  [comments.disqus]
+    shortname = "larssonjohan-com"  # Paste the shortname from your Disqus dashboard.
+    show_count = true  # Show comment count in page header? (true/false)
 
 # Search.
 [search]
