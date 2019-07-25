@@ -126,7 +126,7 @@ plot(fit2)
 
 # Change fill colors, border type (remove) and fontface.
 plot(fit2,
-     fills = list(col = c("dodgerblue4", "darkgoldenrod1", "cornsilk4")),
+     fills = list(fill = c("dodgerblue4", "darkgoldenrod1", "cornsilk4")),
      edges = list(lty = 1:3),
      labels = list(font = 2))
 ```
