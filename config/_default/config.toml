@@ -15,9 +15,6 @@ baseurl = "https://larssonjohan.com/"
 # To display a copyright symbol, type `&copy;`.
 copyright = "&copy; {year} Johan Larsson"
 
-# Enable analytics by entering your Google Analytics tracking ID
-googleAnalytics = "UA-85513662-1"
-
 ############################
 ## Advanced options below ##
 ############################
@@ -40,8 +37,15 @@ footnotereturnlinkcontents = "<sup>^</sup>"
 ignoreFiles = ["\\.ipynb$", ".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [outputs]
-  home = [ "HTML", "RSS", "JSON" ]
+  home = [ "HTML", "RSS", "JSON", "WebAppManifest" ]
   section = [ "HTML", "RSS" ]
+
+[mediaTypes."application/manifest+json"]
+  suffixes = ["webmanifest"]
+
+[outputFormats.WebAppManifest]
+  mediaType = "application/manifest+json"
+  rel = "manifest"
 
 # Configure BlackFriday Markdown rendering.
 #   See: https://gohugo.io/getting-started/configuration/#configure-blackfriday

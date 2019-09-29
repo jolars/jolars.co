@@ -3,26 +3,50 @@
 
 # Color theme.
 #   Choose from `default`, `ocean`, `forest`, `dark`, `apogee`, `1950s`, `coffee`, `rose`, `strawberry`, `mr_robot`.
-color_theme = "ocean"
+theme = "ocean"
+
 # Enable users to switch between day and night mode?
 day_night = true
 
-# Font style.
-#   Choose from `default`, `classic`, `rose`, or `mr_robot`.
+# Override the theme's font set (optional).
+#   Latest font sets (may require updating): https://sourcethemes.com/academic/themes/
+#   Browse built-in font sets in `themes/academic/data/fonts/`
+#   Browse user installed font sets in `data/fonts/`
 font = "classic"
+
+# Choose a font size.
+# Sizes: XS (extra small), S (small), M (medium), L (large - DEFAULT), XL (extra large)
+font_size = "L"
+
+############################
+## Basic Info
+############################
+
+# Website type
+#   Improve how search engines understand your site.
+#   For personal sites, choose "Person".
+#   For organizations and projects, choose from https://schema.org/Organization#subtypes
+#   E.g. Person, Organization, LocalBusiness, Project, EducationalOrganization
+site_type = "Person"
+
+# Local business type (optional)
+# If you entered "LocalBusiness" above, choose the type of business from https://schema.org/LocalBusiness#subtypes
+local_business_type = ""
+
+# Organization name (optional)
+# Enter an organization or project name. Defaults to the site title from `config.toml`.
+org_name = ""
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
 description = ""
 
-# Default image for social sharing and search engines. Place image in `static/img/` folder and specify image name here.
-sharing_image = "sharing.png"
-
-# Twitter username (without @). Used when a vistor shares your site on Twitter.
-twitter = "johanlarsson86"
-
 # Diplay a logo in navigation bar rather than title (optional).
 #   To enable, place an image in `static/img/` and reference its filename below. To disable, set the value to "".
 logo = ""
+
+############################
+## Site Features
+############################
 
 # Enable global source code highlighting? true/false
 # Documentation: https://sourcethemes.com/academic/docs/writing-markdown-latex/#highlighting-options
@@ -47,23 +71,32 @@ privacy_pack = true
 # `repo` defines the repository URL. `editable` defines which page types can be edited.
 edit_page = {repo_url = "https://github.com/gcushen/hugo-academic", repo_branch = "master", editable = {docs = true, page = false, post = false}}
 
-# Date and time format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
-#   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
-date_format = "Jan 2, 2006"
-#   Examples: "3:04 pm" or "15:04"
-time_format = "3:04 PM"
-
 ############################
-## Contact Widget setup   ##
+## Contact details
+##
+## These details power the Contact widget (if enabled).
+## Additionally, for organizations, these details may be used to enrich search engine results.
 ############################
 
 # Enter contact details (optional). To hide a field, clear it to "".
-email = "mail@larssonjohan.com"
+email = "johan.larsson@stat.lu.se"
 phone = "+46 730353836"
-address = "Holger Crafoords Ekonomicentrum, Tycho Brahes väg 1, 223 63 Lund, Sweden, room EC1:338"
 
-# Office hours: use `<br>` to insert a line break, or set to "" to remove office hours
-office_hours = ""
+# Address
+# building = "Holger Crafoords Ekonomicentrum", room = "EC1:338",
+# For country_code, use the 2-letter ISO code (see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 )
+address = {street = "Tycho Brahes väg 1", city = "Lund", postcode = "223 63", country = "Sweden", country_code = "SE"}
+
+# Geographic coordinates
+# To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
+coordinates = {latitude = "55.709842", longitude = "13.213764"}
+
+# Directions for visitors to locate you.
+directions = ""
+
+# Office hours
+# A list of your office hours. To remove, set to an empty list `[]`.
+office_hours = []
 
 # Enter an optional link for booking appointments (e.g. calendly.com).
 appointment_url = "https://doodle.com/johanlarsson"
@@ -74,39 +107,32 @@ contact_links = [
   {icon = "keybase", icon_pack = "fab", name = "Keybase", link = "https://keybase.io/johanlarsson"},
   ]
 
-# Display a map.
-# To show your address on a map in the contact widget, you need to enter your latitude, longitude and choose
-# a map provider below.
-# To use Google Maps, set `map = 1` and enter your API key that can be obtained here:
-#   https://developers.google.com/maps/documentation/javascript/get-api-key
-# To use OpenStreetMap tiles, set `map = 2`.
-# To use OpenStreetMap on a high traffic site, set `map = 3` and enter your API key that can be obtained here:
-#   https://www.mapbox.com/studio/account/tokens
-# To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
-#
-# Map provider:
-#   0: No map
-#   1: Google Maps
-#   2: OpenStreetMap (Mapnik)
-#   3: OpenStreetMap (Mapbox)
-map = 2
-map_api_key = ""
-latitude = "55.709842"
-longitude = "13.213764"
-zoom = 15
-
 ############################
-## Plugins                ##
+## Social
 ############################
 
-# Load CSS and JS plugins
-#   E.g. To load `/assets/css/custom.css`, set `plugins_css = ["custom"]`.
-#   E.g. To load `/assets/js/custom.js`, set `plugins_js = ["custom"]`.
-plugins_css = ["custom"]
-plugins_js  = []
+# Default image for social sharing and search engines. Place image in `static/img/` folder and specify image name here.
+sharing_image = "sharing.png"
+
+# Twitter username (without @). Used when a vistor shares your site on Twitter.
+twitter = "johanlarsson86"
 
 ############################
-## Advanced options       ##
+## Regional Settings
+############################
+
+# Date and time format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
+#   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
+date_format = "Jan 2, 2006"
+#   Examples: "3:04 pm" or "15:04"
+time_format = "3:04 PM"
+
+# List delimiter (separates parts of an address)
+# Popular separators are ", " (comma), "<br>" (new line), " " (space)
+list_delimiter = ", "
+
+############################
+## Advanced
 ############################
 
 # Get user avatars from Gravatar.com? (true/false)
@@ -124,6 +150,15 @@ docs_section_pager = true  # Display pager in Docs layout (e.g. tutorials)?
 
 # Enable in-built social sharing buttons? (true/false)
 sharing = true
+
+# Link authors to their profile page? (true/false)
+link_authors = true
+
+# Load CSS and JS plugins
+#   E.g. To load `/assets/css/custom.css`, set `plugins_css = ["custom"]`.
+#   E.g. To load `/assets/js/custom.js`, set `plugins_js = ["custom"]`.
+plugins_css = ["custom"]
+plugins_js  = []
 
 # Configuration of publication pages.
 [publications]
@@ -145,7 +180,10 @@ sharing = true
   publication_view = 4
   talk_view = 2
 
-# Comments.
+############################
+## Comments
+############################
+
 [comments]
   # Comment provider:
   #   0: Disabled
@@ -154,14 +192,16 @@ sharing = true
   engine = 2
 
   # Which page types are commentable?
-  commentable = {page = true, post = true, docs = true}
+  commentable = {page = true, post = true, docs = true, project = true, publication = true, talk = true}
 
   # Configuration of Disqus.
   [comments.disqus]
     shortname = "larssonjohan-com"  # Paste the shortname from your Disqus dashboard.
     show_count = true  # Show comment count in page header? (true/false)
 
-# Search.
+############################
+## Search
+############################
 [search]
   # Search provider:
   #   0: No search engine
@@ -177,52 +217,31 @@ sharing = true
     index_name = ""
     show_logo = false
 
-[[social]]
-    icon = "envelope"
-    icon_pack = "fas"
-    link = "mailto:mail@larssonjohan.com"
+############################
+## Maps
+############################
+[map]
+  # To show your address on a map in the Contact widget, enter your latitude and longitude (above)
+  # and choose a map provider below.
+  #
+  # To use Google Maps, set `engine` to 1 and enter your API key that can be obtained here:
+  #   https://developers.google.com/maps/documentation/javascript/get-api-key
+  # To use OpenStreetMap tiles, set `engine` to 2.
+  # To use OpenStreetMap on a high traffic site, set `engine` to 3 and enter your API key that can be obtained here:
+  #   https://www.mapbox.com/studio/account/tokens
+  #
+  # Map provider:
+  #   0: No map
+  #   1: Google Maps
+  #   2: OpenStreetMap (Mapnik)
+  #   3: OpenStreetMap (Mapbox)
+  engine = 2
+  api_key = ""
+  zoom = 15
 
-[[social]]
-  icon = "twitter"
-  icon_pack = "fab"
-  link = "https://twitter.com/johanlarsson86"
-
-[[social]]
-  icon = "google-scholar"
-  icon_pack = "ai"
-  link = "https://scholar.google.com/citations?user=Lv6hd_EAAAAJ&hl"
-
-[[social]]
-  icon = "github"
-  icon_pack = "fab"
-  link = "https://github.com/jolars"
-
-[[social]]
-  icon = "orcid"
-  icon_pack = "ai"
-  link = "https://orcid.org/0000-0002-4029-5945"
-
-[[social]]
-  icon = "researchgate"
-  icon_pack = "ai"
-  link = "https://www.researchgate.net/profile/Johan_Larsson7"
-
-[[social]]
-  icon = "publons-square"
-  icon_pack = "ai"
-  link = "https://publons.com/author/1299032"
-
-[[social]]
-  icon = "zotero-square"
-  icon_pack = "ai"
-  link = "https://www.zotero.org/laika86"
-
-[[social]]
-  icon = "linkedin"
-  icon_pack = "fab"
-  link = "https://www.linkedin.com/in/larssonj"
-
-[[social]]
-  icon = "impactstory"
-  icon_pack = "ai"
-  link = "https://profiles.impactstory.org/u/0000-0002-4029-5945"
+############################
+## Marketing
+############################
+[marketing]
+  google_analytics = "UA-85513662-1"
+  google_tag_manager = ""
