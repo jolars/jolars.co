@@ -92,7 +92,7 @@ address = {street = "Tycho Brahes väg 1", city = "Lund", postcode = "223 63", c
 coordinates = {latitude = "55.709842", longitude = "13.213764"}
 
 # Directions for visitors to locate you.
-directions = ""
+directions = "Holger Crafoords Ekonomicentrum, building one, third floor, room EC1:338."
 
 # Office hours
 # A list of your office hours. To remove, set to an empty list `[]`.
