@@ -99,7 +99,7 @@ directions = "Holger Crafoords Ekonomicentrum, building one, third floor, room E
 office_hours = []
 
 # Enter an optional link for booking appointments (e.g. calendly.com).
-appointment_url = "https://doodle.com/johanlarsson"
+appointment_url = "https://calendly.com/larssonjohan"
 
 # Contact links
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
