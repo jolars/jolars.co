@@ -1,0 +1,45 @@
+---
+title: SLOPE 0.2.0
+author: Johan Larsson
+date: '2020-04-14'
+slug: slope-0-2-0
+math: true
+categories:
+  - R
+tags:
+  - regularization
+  - SLOPE
+  - machine-learning
+  - generalized-linear-models
+summary: Some stuff
+lastmod: '2020-04-14T14:55:33+02:00'
+featured: no
+image:
+  caption: 'Directional derivatives of the sorted $\ell_1$ norm.'
+  focal_point: 'right'
+  preview_only: true
+projects: []
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  dev.args = list(pointsize = 8),
+  crop = TRUE,
+  fig.width = 3.5,
+  fig.height = 2.9
+)
+
+options(digits = 3)
+```
+
+SLOPE stands for sorted L1 penalized estimation. As the name suggests, SLOPE
+is a type of $\ell_1$-regularization. More specifically, SLOPE fits 
+generalized linear models regularized with the sorted $\ell_1$ norms.
+But wait:
+$$
+f(x) + h(g)
+$$
+

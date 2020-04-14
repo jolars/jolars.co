@@ -65,7 +65,7 @@ interests = [
 [[social]]
   icon = "envelope"
   icon_pack = "fas"
-  link = "mailto:mail@larssonjohan.com"
+  link = "mailto:johanlarsson@outlook.com"
 
 [[social]]
   icon = "twitter"
@@ -75,7 +75,7 @@ interests = [
 [[social]]
   icon = "google-scholar"
   icon_pack = "ai"
-  link = "https://scholar.google.com/citations?user=Lv6hd_EAAAAJ&hl"
+  link = "https://scholar.google.com/citations?user=DCJvywYAAAAJ"
 
 [[social]]
   icon = "github"
