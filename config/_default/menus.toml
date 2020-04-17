@@ -14,21 +14,26 @@
   weight = 2
 
 [[main]]
-    name = "Software"
-    url = "#software"
-    weight = 4
+  name = "Publications"
+  url = "#featured"
+  weight = 3
 
 [[main]]
-    name = "Publications"
-    url = "#featured"
-    weight = 3
+  name = "Software"
+  url = "#software"
+  weight = 4
 
 [[main]]
-   name = "CV"
-   url = "files/cv/cv.pdf"
-   weight = 6
+  name = "CV"
+  url = "files/cv/cv.pdf"
+  weight = 6
+
+[[main]]
+  name = "Links"
+  url = "#links"
+  weight = 7
 
 [[main]]
   name = "Contact"
   url = "#contact"
-  weight = 7
+  weight = 8
