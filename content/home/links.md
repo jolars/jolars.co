@@ -54,9 +54,15 @@ subtitle = ""
 : R news and tutorials contributed by hundreds of R bloggers, which
   is nice enough to publish my posts regarding R
 
-[machine learning summer scool](http://mlss.cc/)
-: A summer school for students in machine learning
+[Machine Learning Summer School](http://mlss.cc/)
+: Summer schools for students in machine learning
 
 [Google summer of code with the R project](https://www.r-project.org/gsoc.html)
 : The R project is active in GSOC, which I have been a student and
   mentor for.
+  
+[Overleaf](https://www.overleaf.com?r=fd5372c3&rm=d&rs=b)
+: An online LaTeX Editor, which supports Sweave (R-integrated documents
+  for LaTeX), collaboration, github integration, and much more.
+  Joining overleaf by clicking the link above helps me get some additional
+  features too, so please consider giving it a try.
