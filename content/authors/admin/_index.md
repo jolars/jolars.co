@@ -100,7 +100,7 @@ interests = [
 [[social]]
   icon = "zotero-square"
   icon_pack = "ai"
-  link = "https://www.zotero.org/laika86"
+  link = "https://www.zotero.org/jolars"
 
 [[social]]
   icon = "linkedin"
