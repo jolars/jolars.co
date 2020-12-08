@@ -1,0 +1,144 @@
+---
+title: SLOPE 0.2.0
+author: Johan Larsson
+date: '2020-04-14'
+slug: slope-0-2-0
+math: true
+categories:
+  - R
+tags:
+  - regularization
+  - SLOPE
+  - machine-learning
+  - generalized-linear-models
+summary: A new version of the SLOPE package has been released with a great
+  number of improvements and much new functionality.
+lastmod: '2020-04-14T14:55:33+02:00'
+featured: no
+image:
+  caption: 'Directional derivatives of the sorted $\ell_1$ norm.'
+  focal_point: 'left'
+  preview_only: false
+projects: [SLOPE]
+bibliography: [../../../static/library.bib]
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  dev.args = list(pointsize = 8),
+  crop = TRUE,
+  fig.width = 3.5,
+  fig.height = 2.9
+)
+
+options(digits = 3)
+```
+
+## Introduction to SLOPE
+
+SLOPE [@bogdan2015] stands for sorted L1 penalized estimation and
+is a generalization of OSCAR [@bondell2008]. As the name 
+suggests, SLOPE
+is a type of $\ell_1$-regularization. More specifically, SLOPE fits 
+generalized linear models regularized with the sorted $\ell_1$ norm. The
+objective in SLOPE is
+$$
+\operatorname{minimize}\left\{ f(\beta) + J(\beta \mid \lambda)\right\},
+$$
+where $f(\beta)$ is typically the log-likelihood of some model in the 
+family of generalized linear models and 
+$J(\beta\mid \lambda) = \sum_{i=1}^p \lambda_i|\beta|_{(i)}$ is the
+sorted $\ell_1$ norm.
+
+Some people will note that this penalty is a generalization
+of the standard $\ell_1$ norm penalty^[Simply set $\lambda_i = \lambda_j$ for
+all $i,j \in \{1,\dots,p\}$ and you get the lasso penalty.]. As such,
+SLOPE is a type of sparse regression---just like the lasso. Unlike the lasso,
+however, SLOPE gracefully handles correlated features.
+Whereas the lasso often discards all but a few among a set of 
+correlated features [@jia2010], 
+SLOPE instead *clusters* such features together by setting such clusters to
+have the same coefficient in absolut value.
+
+## SLOPE 0.2.0
+
+SLOPE 0.2.0 is a new verison of the R package
+[SLOPE](https://CRAN.R-project.org/package=SLOPE) featuring a range of
+improvements over the previous package. If you are completely new to the 
+package, please start with the [introductory vignette](https://jolars.github.io/SLOPE/articles/introduction.html).
+
+### More model families
+
+Previously, SLOPE only features ordinary least-squares regression. Now the
+package features logistic, Poisson, and multinomial regression on top of that.
+Just as in other similar packages, this is enabled simply by
+setting `family = "binomial"` for logistic regression, for instance.
+
+```{r}
+library(SLOPE)
+fit <- SLOPE(wine$x, wine$y, family = "multinomial")
+```
+
+### Regularization path fitting
+
+By default, SLOPE now fits a full regularization path instead of
+only a single penalty sequence at once. This behavior is now analogous with the 
+default behavior in glmnet.
+
+```{r, fig.cap = "Coefficients from the regularization path for a multinomial model.", fig.width = 8, fig.height = 4}
+plot(fit)
+```
+
+### Predictor screening rules
+
+The package now uses predictor screening rules to vastly improve performance
+in the $p \gg n$ domain. Screening rules are part of what makes
+other related packages such as glmnet so efficient. In SLOPE, we use a
+variant of the strong screening rules for the lasso [@tibshirani2012].
+
+```{r}
+xy <- SLOPE:::randomProblem(100, 1000)
+system.time({SLOPE(xy$x, xy$y, screen = TRUE)})
+system.time({SLOPE(xy$x, xy$y, screen = FALSE)})
+```
+
+### Cross-validation and caret
+
+There is now a function `trainSLOPE()`, which can be used to run
+cross-validation for optimal selection of `sigma` and `q`. Here, we run
+8-fold cross-validation repeated 5 times.
+
+```{r, fig.cap = "Cross-validation with SLOPE.", fig.width = 7}
+# 8-fold cross-validation repeated 5 times
+tune <- trainSLOPE(subset(mtcars, select = c("mpg", "drat", "wt")),
+                   mtcars$hp,
+                   q = c(0.1, 0.2),
+                   number = 8,
+                   repeats = 5)
+plot(tune)
+```
+
+In addition, the package now also features a function `caretSLOPE()` that
+can be used via the excellent caret package, which enables a swath
+of resampling methods and comparisons.
+
+### C++ and ADMM
+
+All of the performance-critical code for SLOPE has been rewritten in 
+C++. In addition, the package now features an ADMM solver for
+`family = "gaussian"`, enabled by setting `solver = "admm"` in the call
+to `SLOPE()`. Preliminary testing shows that this solver is faster for
+many designs, particularly when there is high correlation among predictors.
+
+### Sparse design matrices
+
+SLOPE now also allows sparse design matrcies of classes from the Matrix package.
+
+### And much more...
+
+For a full list of changes, please
+see [the changelog](https://jolars.github.io/SLOPE/news/index.html#slope-0-2-0-unreleased).
+
+## References
