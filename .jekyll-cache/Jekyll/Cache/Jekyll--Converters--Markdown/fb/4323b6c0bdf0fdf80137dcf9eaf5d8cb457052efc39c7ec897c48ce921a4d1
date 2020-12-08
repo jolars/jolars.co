@@ -1,0 +1,115 @@
+I"�5<p>With the advent of <a href="http://colorbrewer2.org/">colorbrewer</a> there now exists good options to generate color palettes for sequential, diverging, and qualitative data. In R, these palettes can be accessed via the popular <a href="https://cran.r-project.org/package=RColorBrewer">RColorBrewer</a> package. Those palettes, however, are limited to a fixed number of colors. This isn’t much of a problem for sequential of diverging data since we can interpolate colors to any range we desire:</p>
+<figure class="highlight">
+<pre><code class="language-r" data-lang="r"><span class="n">pal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">RColorBrewer</span><span class="o">::</span><span class="n">brewer.pal</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"PuBuGn"</span><span class="p">)</span><span class="w">
+</span><span class="n">color_ramp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colorRampPalette</span><span class="p">(</span><span class="n">pal</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Lab"</span><span class="p">)</span></code></pre>
+</figure>
+<p>There is not, however, an analogue for qualitative color palettes that will get you beyond the limits of 8–12 colors of colorbrewer’s qualitative color palettes.</p>
+<p>There is also no customization in colorbrewer. Other R packages, such as <a href="https://cran.r-project.org/package=colorspace">colorspace</a> offer this, but they are primarily adapted to sequential and diverging data – not qualitative data.</p>
+<p>This is where qualpalr comes in. qualpalr provides the user with a convenient way of generating distinct qualitative color palettes, primarily for use in R graphics. Given <code>n</code> (the number of colors to generate), along with a subset in the <a href="https://en.wikipedia.org/wiki/HSL_and_HSV">hsl color space</a> (a cylindrical representation of the RGB color space) <code>qualpalr</code> attempts to find the <code>n</code> colors in the provided color subspace that <em>maximize the smallest pairwise color difference</em>. This is done by projecting the color subset from the HSL color space to the DIN99d space. DIN99d is (approximately) perceptually uniform, that is, the euclidean distance between two colors in the space is proportional to their perceived difference.</p>
+<h2 id="examples">Examples</h2>
+<p><code>qualpalr</code> relies on one basic function, <code>qualpal()</code>, which takes as its input <code>n</code> (the number of colors to generate) and <code>colorspace</code>, which can be either</p>
+<ul>
+<li>a list of numeric vectors <code>h</code> (hue from -360 to 360), <code>s</code> (saturation from 0 to 1), and <code>l</code> (lightness from 0 to 1), all of length 2, specifying a min and max.</li>
+<li>a character vector specifying one of the predefined color subspaces, which at the time of writing are <em>pretty</em>, <em>pretty_dark</em>, <em>rainbow</em>, and <em>pastels</em>.</li>
+</ul>
+<figure class="highlight">
+<pre><code class="language-r" data-lang="r"><span class="n">library</span><span class="p">(</span><span class="n">qualpalr</span><span class="p">)</span><span class="w">
+</span><span class="n">pal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">qualpal</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">360</span><span class="p">),</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="m">0.6</span><span class="p">),</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.85</span><span class="p">)))</span><span class="w">
+
+</span><span class="c1"># Adapt the color space to deuteranopia</span><span class="w">
+</span><span class="n">pal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">qualpal</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">colorspace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pretty"</span><span class="p">,</span><span class="w"> </span><span class="n">cvd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"deutan"</span><span class="p">)</span></code></pre>
+</figure>
+<p>The resulting object, <code>pal</code>, is a list with several color tables and a distance matrix based on the din99d color difference formula.</p>
+<figure class="highlight">
+<pre><code class="language-r" data-lang="r"><span class="n">pal</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text" data-lang="text">## ---------------------------------------- 
+## Colors in the HSL color space 
+## 
+##         Hue Saturation Lightness
+## #73CA6F 117       0.46      0.61
+## #D37DAD 327       0.50      0.66
+## #C6DBE8 203       0.42      0.84
+## #6C7DCC 229       0.48      0.61
+## #D0A373  31       0.50      0.63
+## 
+##  ---------------------------------------- 
+## DIN99d color difference distance matrix 
+## 
+##         #73CA6F #D37DAD #C6DBE8 #6C7DCC
+## #D37DAD      28                        
+## #C6DBE8      19      21                
+## #6C7DCC      27      19      19        
+## #D0A373      19      18      20      25</code></pre>
+</figure>
+<p>Methods for <code>pairs</code> and <code>plot</code> have been written for <code>qualpal</code> objects to help visualize the results.</p>
+<figure class="highlight">
+<pre><code class="language-r" data-lang="r"><span class="c1"># Multidimensional scaling plot</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">pal</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Pairs plot in the din99d color space</span><span class="w">
+</span><span class="n">pairs</span><span class="p">(</span><span class="n">pal</span><span class="p">,</span><span class="w"> </span><span class="n">colorspace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"DIN99d"</span><span class="p">)</span></code></pre>
+</figure>
+<p><img src="/figure/posts/2016-10-15-introducing-qualpalr/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2" /><img src="/figure/posts/2016-10-15-introducing-qualpalr/unnamed-chunk-2-2.png" alt="plot of chunk unnamed-chunk-2" /></p>
+<p>The colors are normally used in R by fetching the <code>hex</code> attribute of the palette.</p>
+<figure class="highlight">
+<pre><code class="language-r" data-lang="r"><span class="n">library</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span><span class="w">
+</span><span class="n">map</span><span class="p">(</span><span class="s2">"france"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pal</span><span class="o">$</span><span class="n">hex</span><span class="p">,</span><span class="w"> </span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span></code></pre>
+</figure>
+<figure>
+<img src="/figure/posts/2016-10-15-introducing-qualpalr/map-1.png" alt="" /><figcaption>plot of chunk map</figcaption>
+</figure>
+<h2 id="details">Details</h2>
+<p><code>qualpal</code> begins by generating a point cloud out of the HSL color subspace provided by the user, using a quasi-random torus sequence from <a href="https://cran.r-project.org/package=randtoolbox">randtoolbox</a>. Here is the color subset in HSL with settings <code>h = c(-200, 120), s = c(0.3, 0.8), l = c(0.4, 0.9)</code>.</p>
+<figure class="highlight">
+<pre><code class="language-text" data-lang="text">## Loading required namespace: rmarkdown</code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text" data-lang="text">## TypeError: Attempting to change the setter of an unconfigurable property.
+## TypeError: Attempting to change the setter of an unconfigurable property.</code></pre>
+</figure>
+<figure>
+<img src="/figure/posts/2016-10-15-introducing-qualpalr/details_input-1.png" alt="" /><figcaption>plot of chunk details_input</figcaption>
+</figure>
+<p>The function then proceeds by projecting these colors into the sRGB space.</p>
+<figure class="highlight">
+<pre><code class="language-text" data-lang="text">## TypeError: Attempting to change the setter of an unconfigurable property.
+## TypeError: Attempting to change the setter of an unconfigurable property.</code></pre>
+</figure>
+<figure>
+<img src="/figure/posts/2016-10-15-introducing-qualpalr/RGB_space-1.png" alt="" /><figcaption>plot of chunk RGB_space</figcaption>
+</figure>
+<p>It then continues by projecting the colors, first into the XYZ space, then CIELab (not shown here), and then finally the DIN99d space.</p>
+<figure class="highlight">
+<pre><code class="language-text" data-lang="text">## TypeError: Attempting to change the setter of an unconfigurable property.
+## TypeError: Attempting to change the setter of an unconfigurable property.</code></pre>
+</figure>
+<figure>
+<img src="/figure/posts/2016-10-15-introducing-qualpalr/DIN_space-1.png" alt="" /><figcaption>plot of chunk DIN_space</figcaption>
+</figure>
+<p>The DIN99d color space <span class="citation" data-cites="cui_uniform_2002">(Cui et al. 2002)</span> is a euclidean, perceptually uniform color space. This means that the difference between two colors is equal to the euclidean distance between them. We take advantage of this by computing a distance matrix on all the colors in the subset, finding their pairwise color differences. We then apply a power transformation <span class="citation" data-cites="huang_power_2015">(Huang et al. 2015)</span> to fine tune these differences.</p>
+<p>To select the <code>n</code> colors that the user wanted, we proceed greedily: first, we find the two most distant points, then we find the third point that maximizes the minimum distance to the previously selected points. This is repeated until <code>n</code> points are selected. These points are then returned to the user; below is an example using <code>n = 5.</code></p>
+<figure class="highlight">
+<pre><code class="language-text" data-lang="text">## TypeError: Attempting to change the setter of an unconfigurable property.
+## TypeError: Attempting to change the setter of an unconfigurable property.</code></pre>
+</figure>
+<figure>
+<img src="/figure/posts/2016-10-15-introducing-qualpalr/selected_points-1.png" alt="" /><figcaption>plot of chunk selected_points</figcaption>
+</figure>
+<h3 id="color-specifications">Color specifications</h3>
+<p>At the time of writing, qualpalr only works in the sRGB color space with the CIE Standard Illuminant D65 reference white.</p>
+<h2 id="future-directions">Future directions</h2>
+<p>The greedy search to find distinct colors is crude. Particularly when searching for few colors, the greedy algorithm will lead to sub-optimal results. Other solutions to finding points that maximize the smallest pairwise distance among them are welcome.</p>
+<h2 id="thanks">Thanks</h2>
+<p><a href="http://www.brucelindbloom.com/">Bruce Lindbloom’s webpage</a> has been instrumental in making qualpalr. Also thanks to <a href="http://tools.medialab.sciences-po.fr/iwanthue/">i want hue</a>, which inspired me to make qualpalr.</p>
+<h2 class="unnumbered" id="references" class="unnumbered">References</h2>
+<div id="refs" class="references hanging-indent" role="doc-bibliography">
+<div id="ref-cui_uniform_2002">
+<p>Cui, G., M. R. Luo, B. Rigg, G. Roesler, and K. Witt. 2002. “Uniform Colour Spaces Based on the DIN99 Colour-Difference Formula.” <em>Color Res. Appl.</em> 27 (4): 282–90. <a href="https://doi.org/10/cz7764">https://doi.org/10/cz7764</a>.</p>
+</div>
+<div id="ref-huang_power_2015">
+<p>Huang, Min, Guihua Cui, Manuel Melgosa, Manuel Sánchez-Marañón, Changjun Li, M. Ronnier Luo, and Haoxue Liu. 2015. “Power Functions Improving the Performance of Color-Difference Formulas.” <em>Optics Express</em> 23 (1): 597. <a href="https://doi.org/10/gcsk6f">https://doi.org/10/gcsk6f</a>.</p>
+</div>
+</div>
+:ET

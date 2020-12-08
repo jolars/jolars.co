@@ -1,0 +1,707 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Finding the farthest points in a point cloud | Johan Larsson</title>
+<meta name="description" content="A better algorithm for finding a subset of points that maximize the minimal distance between them.">
+
+
+  <meta name="author" content="Johan Larsson">
+  
+  <meta property="article:author" content="Johan Larsson">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Johan Larsson">
+<meta property="og:title" content="Finding the farthest points in a point cloud">
+<meta property="og:url" content="http://localhost:4000/posts/r/farthest-points/">
+
+
+  <meta property="og:description" content="A better algorithm for finding a subset of points that maximize the minimal distance between them.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/farthest-points-header.png">
+
+
+
+  <meta name="twitter:site" content="@joh_larsson">
+  <meta name="twitter:title" content="Finding the farthest points in a point cloud">
+  <meta name="twitter:description" content="A better algorithm for finding a subset of points that maximize the minimal distance between them.">
+  <meta name="twitter:url" content="http://localhost:4000/posts/r/farthest-points/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="http://localhost:4000/assets/images/farthest-points-header.png">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2016-10-30T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/posts/r/farthest-points/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Johan Larsson",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Johan Larsson Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<link rel="stylesheet" href="/assets/css/academicons.min.css"/>
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Johan Larsson
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/assets/cv.pdf">CV</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" background-image: url('');"
+>
+  
+    <img src="/assets/images/farthest-points-header.png" alt="Finding the farthest points in a point cloud" class="page__hero-image">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio-photo.jpg" alt="Johan Larsson" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Johan Larsson</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>PhD student in statistics</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Lund, Sweden</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+            <li><a href="https://twitter.com/joh_larsson" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/jolars" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://scholar.google.com/citations?user=DCJvywYAAAAJ" rel="nofollow noopener noreferrer"><i class="ai fa-fw ai-google-scholar" aria-hidden="true"></i><span class="label">Google Scholar</span></a></li>
+          
+        
+          
+            <li><a href="https://orcid.org/0000-0002-4029-5945" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-orcid" aria-hidden="true"></i><span class="label">ORCID</span></a></li>
+          
+        
+          
+            <li><a href="https://www.researchgate.net/profile/Johan_Larsson7" rel="nofollow noopener noreferrer"><i class="ai fa-fw ai-researchgate" aria-hidden="true"></i><span class="label">Research Gate</span></a></li>
+          
+        
+          
+            <li><a href="https://publons.com/author/1299032" rel="nofollow noopener noreferrer"><i class="ai fa-fw ai-publons" aria-hidden="true"></i><span class="label">Publons</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Finding the farthest points in a point cloud">
+    <meta itemprop="description" content="A better algorithm for finding a subset of points that maximize the minimal distance between them.">
+    <meta itemprop="datePublished" content="2016-10-30T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Finding the farthest points in a point cloud
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>My R package <a href="https://github.com/jolars/qualpalr">qualpalr</a> selects qualitative colors by projecting a bunch of colors (as points) to the three-dimensional DIN99d color space wherein the distance between any pair colors approximate their differences in appearance. The package then tries to choose the <code>n</code> colors so that the minimal pairwise distance among them is maximized, that is, we want the most similar pair of colors to be as dissimilar as possible.</p>
+<p>This turns out to be much less trivial that one would suspect, which posts on <a href="http://scicomp.stackexchange.com/questions/20030/selecting-most-scattered-points-from-a-set-of-points">Computational Science</a>, <a href="https://se.mathworks.com/matlabcentral/answers/42622-how-can-i-choose-a-subset-of-k-points-the-farthest-apart">MATLAB Central</a>, <a href="http://stackoverflow.com/questions/27971223/finding-largest-minimum-distance-among-k-objects-in-n-possible-distinct-position">Stack Overflow</a>, and and <a href="http://cs.stackexchange.com/questions/22767/choosing-a-subset-to-maximize-the-minimum-distance-between-points">Computer Science</a> can attest to.</p>
+<p>Up til now, qualpalr solved this problem with a greedy approach. If we, for instance, want to find <code>n</code> points we did the following.</p>
+<pre><code>M &lt;- Compute a distance matrix of all points in the sample
+X &lt;- Select the two most distant points from M
+for i = 3:n
+    X(i) &lt;- Select point in M that maximize the mindistance to all points in X</code></pre>
+<p>In R, this code looked like this (in two dimensions):</p>
+<figure class="highlight">
+<pre><code class="language-r" data-lang="r"><span class="n">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="c1"># find n points</span><span class="w">
+</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="n">mat</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">runif</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">dmat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">stats</span><span class="o">::</span><span class="n">dist</span><span class="p">(</span><span class="n">mat</span><span class="p">))</span><span class="w">
+</span><span class="n">ind</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">integer</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w">
+</span><span class="n">ind</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.vector</span><span class="p">(</span><span class="n">arrayInd</span><span class="p">(</span><span class="n">which.max</span><span class="p">(</span><span class="n">dmat</span><span class="p">),</span><span class="w"> </span><span class="n">.dim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dim</span><span class="p">(</span><span class="n">dmat</span><span class="p">)))</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">mm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dmat</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">ind</span><span class="p">,</span><span class="w"> </span><span class="n">drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">]</span><span class="w">
+  </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">which.max</span><span class="p">(</span><span class="n">mm</span><span class="p">[(</span><span class="m">1</span><span class="o">:</span><span class="n">ncol</span><span class="p">(</span><span class="n">mm</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">mm</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">max.col</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="o">-</span><span class="n">mm</span><span class="p">))])</span><span class="w">
+  </span><span class="n">ind</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">dimnames</span><span class="p">(</span><span class="n">mm</span><span class="p">)[[</span><span class="m">2</span><span class="p">]][</span><span class="n">k</span><span class="p">])</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="w"> </span><span class="n">asp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="w"> </span><span class="n">asp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w">
+</span><span class="n">points</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">)</span><span class="w">
+</span><span class="n">text</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="n">adj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">-1.5</span><span class="p">))</span></code></pre>
+</figure>
+<figure>
+<img src="/figure/posts/2016-10-30-farthest-points/greedy_approach-1.png" alt="" /><figcaption>Numbers note the order the points were picked in.</figcaption>
+</figure>
+<p>While this greedy procedure is fast and works well for large values of <code>n</code> it is quite inefficient in the example above. It is plain to see that there are other subsets of 3 points that would have a larger minimum distance but because we base our selection on the previous 2 points that were selected to be maximally distant, the algorithm has to pick a suboptimal third point. The minimum distance in our example is 0.7641.</p>
+<p>The solution I came up with is based on a solution from Schlomer et al. <span class="citation" data-cites="schlomer_farthest-point_2011">Schlömer, Heck, and Deussen (2011)</span> who devised of an algorithm to partition a sets of points into subsets whilst maximizing the minimal distance. They used <a href="https://en.wikipedia.org/wiki/Delaunay_triangulation">delaunay triangulations</a> but I decided to simply use the distance matrix instead. The algorithm works as follows.</p>
+<pre><code>M &lt;- Compute a distance matrix of all points in the sample
+S &lt;- Sample n points randomly from M
+repeat
+    for i = 1:n
+        M    &lt;- Add S(i) back into M
+        S(i) &lt;- Find point in M\S with max mindistance to any point in S
+until M did not change</code></pre>
+<p>Iteratively, we put one point from our candidate subset (S) back into the original se (M) and check all distances between the points in S to those in M to find the point with the highest minimum distance. Rinse and repeat until we are only putting back the same points we started the loop with, which always happens. Let’s see how this works on the same data set we used above.</p>
+<figure class="highlight">
+<pre><code class="language-r" data-lang="r"><span class="n">r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sample.int</span><span class="p">(</span><span class="n">nrow</span><span class="p">(</span><span class="n">dmat</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w">
+
+</span><span class="k">repeat</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">r_old</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">r</span><span class="w">
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">mm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dmat</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">]</span><span class="w">
+    </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">which.max</span><span class="p">(</span><span class="n">mm</span><span class="p">[(</span><span class="m">1</span><span class="o">:</span><span class="n">ncol</span><span class="p">(</span><span class="n">mm</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">mm</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">max.col</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="o">-</span><span class="n">mm</span><span class="p">))])</span><span class="w">
+    </span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">dimnames</span><span class="p">(</span><span class="n">mm</span><span class="p">)[[</span><span class="m">2</span><span class="p">]][</span><span class="n">k</span><span class="p">])</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">identical</span><span class="p">(</span><span class="n">r_old</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">))</span><span class="w"> </span><span class="k">break</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="w"> </span><span class="n">asp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="w"> </span><span class="n">asp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w">
+</span><span class="n">points</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">)</span><span class="w">
+</span><span class="n">text</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="n">adj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">-1.5</span><span class="p">))</span></code></pre>
+</figure>
+<figure>
+<img src="/figure/posts/2016-10-30-farthest-points/new_approach-1.png" alt="" /><figcaption>The new algorithm for picking points.</figcaption>
+</figure>
+<p>Here, we end up with a minimum distance of 0.862. In qualpalr, this means that we now achieve slightly more distinct colors.</p>
+<h2 id="performance">Performance</h2>
+<p>The new algorithm is slightly slower than the old, greedy approach and slightly more verbose</p>
+<figure class="highlight">
+<pre><code class="language-r" data-lang="r"><span class="n">f_greedy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">dmat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">stats</span><span class="o">::</span><span class="n">dist</span><span class="p">(</span><span class="n">data</span><span class="p">))</span><span class="w">
+  </span><span class="n">ind</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">integer</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w">
+  </span><span class="n">ind</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.vector</span><span class="p">(</span><span class="n">arrayInd</span><span class="p">(</span><span class="n">which.max</span><span class="p">(</span><span class="n">dmat</span><span class="p">),</span><span class="w"> </span><span class="n">.dim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dim</span><span class="p">(</span><span class="n">dmat</span><span class="p">)))</span><span class="w">
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">mm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dmat</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">ind</span><span class="p">,</span><span class="w"> </span><span class="n">drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">]</span><span class="w">
+    </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">which.max</span><span class="p">(</span><span class="n">mm</span><span class="p">[(</span><span class="m">1</span><span class="o">:</span><span class="n">ncol</span><span class="p">(</span><span class="n">mm</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">mm</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">max.col</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="o">-</span><span class="n">mm</span><span class="p">))])</span><span class="w">
+    </span><span class="n">ind</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">dimnames</span><span class="p">(</span><span class="n">mm</span><span class="p">)[[</span><span class="m">2</span><span class="p">]][</span><span class="n">k</span><span class="p">])</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="n">ind</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">f_new</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">dmat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">stats</span><span class="o">::</span><span class="n">dist</span><span class="p">(</span><span class="n">data</span><span class="p">))</span><span class="w">
+  </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sample.int</span><span class="p">(</span><span class="n">nrow</span><span class="p">(</span><span class="n">dmat</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w">
+  </span><span class="k">repeat</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">r_old</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">r</span><span class="w">
+    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="n">mm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dmat</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">]</span><span class="w">
+      </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">which.max</span><span class="p">(</span><span class="n">mm</span><span class="p">[(</span><span class="m">1</span><span class="o">:</span><span class="n">ncol</span><span class="p">(</span><span class="n">mm</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">mm</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">max.col</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="o">-</span><span class="n">mm</span><span class="p">))])</span><span class="w">
+      </span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">dimnames</span><span class="p">(</span><span class="n">mm</span><span class="p">)[[</span><span class="m">2</span><span class="p">]][</span><span class="n">k</span><span class="p">])</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">identical</span><span class="p">(</span><span class="n">r_old</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">))</span><span class="w"> </span><span class="nf">return</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-r" data-lang="r"><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">runif</span><span class="p">(</span><span class="m">900</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span><span class="n">microbenchmark</span><span class="o">::</span><span class="n">microbenchmark</span><span class="p">(</span><span class="n">f_greedy</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">f_new</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000L</span><span class="p">)</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-text" data-lang="text">## Unit: milliseconds
+##               expr   min    lq  mean median    uq    max neval cld
+##  f_greedy(data, n) 1.322 1.591 2.361  1.787 2.319  27.62  1000  a 
+##     f_new(data, n) 1.600 2.343 3.605  2.724 3.675 120.25  1000   b</code></pre>
+</figure>
+<p>The newest development version of qualpalr now uses this updated algorithm which has also been generalized and included as a new function in my R package <a href="https://github.com/jolars/euclidr">euclidr</a> called <code>farthest_points</code>.</p>
+<h2 class="unnumbered" id="references" class="unnumbered">References</h2>
+<div id="refs" class="references hanging-indent" role="doc-bibliography">
+<div id="ref-schlomer_farthest-point_2011">
+<p>Schlömer, Thomas, Daniel Heck, and Oliver Deussen. 2011. “Farthest-Point Optimized Point Sets with Maximized Minimum Distance.” In, 135. ACM Press. <a href="https://doi.org/10/bpmnsh">https://doi.org/10/bpmnsh</a>.</p>
+</div>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#color-science" class="page__taxonomy-item" rel="tag">color-science</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#qualpalr" class="page__taxonomy-item" rel="tag">qualpalr</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#r" class="page__taxonomy-item" rel="tag">r</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-10-30T00:00:00+02:00">October 30, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?via=joh_larsson&text=Finding+the+farthest+points+in+a+point+cloud%20http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fr%2Ffarthest-points%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fr%2Ffarthest-points%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fr%2Ffarthest-points%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/posts/r/introducing-eulerr/" class="pagination--pager" title="Introducing eulerr
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/r/introducing-eulerr/" rel="permalink">Introducing eulerr
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This is an introduction to my new package, eulerr, an R package that computes and plots eulerr diagrams of set relationships.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/r/introducing-qualpalr/" rel="permalink">Introducing qualpalr
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Let me introduce qualpalr: an R package that generates qualitative color palettes with distinct colors using color difference algorithms.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Johan Larsson. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

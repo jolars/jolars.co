@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://localhost:4000/posts/r/introducing-qualpalr/</loc>
+<lastmod>2016-10-15T00:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/posts/r/introducing-eulerr/</loc>
+<lastmod>2016-10-19T00:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/posts/r/farthest-points/</loc>
+<lastmod>2016-10-30T00:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/archive/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/assets/cv.pdf</loc>
+<lastmod>2020-05-25T11:27:27+02:00</lastmod>
+</url>
+</urlset>

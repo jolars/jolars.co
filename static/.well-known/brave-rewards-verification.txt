@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: larssonjohan.com
-Token: 58c8eba20bf837ee511a9d222b6d6c4d4058c4e7923155e0107bbbdd70e7692b
