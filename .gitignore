@@ -1,6 +1,6 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-blogdown
-public
+# IDEs
+.idea/
+
+# Hugo
+/resources/
+public/
