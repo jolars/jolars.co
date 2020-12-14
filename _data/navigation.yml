@@ -1,0 +1,9 @@
+main:
+  - title: "Posts"
+    url: /archive/
+  - title: "Publications"
+    url: /publications-by-year
+  - title: "Software"
+    url: /software/
+  - title: "CV"
+    url: /assets/cv.pdf

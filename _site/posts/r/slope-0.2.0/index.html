@@ -1,0 +1,861 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>SLOPE 0.2.0 | Johan Larsson</title>
+<meta name="description" content="A new version of the SLOPE package has been released with a great number of improvements and much new functionality.">
+
+
+  <meta name="author" content="Johan Larsson">
+  
+  <meta property="article:author" content="Johan Larsson">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Johan Larsson">
+<meta property="og:title" content="SLOPE 0.2.0">
+<meta property="og:url" content="https://larssonjohan.com/posts/r/slope-0.2.0/">
+
+
+  <meta property="og:description" content="A new version of the SLOPE package has been released with a great number of improvements and much new functionality.">
+
+
+
+  <meta property="og:image" content="https://larssonjohan.com/assets/images/og.png">
+
+
+
+  <meta name="twitter:site" content="@joh_larsson">
+  <meta name="twitter:title" content="SLOPE 0.2.0">
+  <meta name="twitter:description" content="A new version of the SLOPE package has been released with a great number of improvements and much new functionality.">
+  <meta name="twitter:url" content="https://larssonjohan.com/posts/r/slope-0.2.0/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="https://larssonjohan.com/assets/images/og.png">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2020-04-14T00:00:00+02:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://larssonjohan.com/posts/r/slope-0.2.0/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Johan Larsson",
+      "url": "https://larssonjohan.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Johan Larsson Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- mathjax -->
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<link rel="stylesheet" href="/assets/css/academicons.min.css"/>
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Johan Larsson
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/publications-by-year">Publications</a>
+            </li><li class="masthead__menu-item">
+              <a href="/software/">Software</a>
+            </li><li class="masthead__menu-item">
+              <a href="/assets/cv.pdf">CV</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/avatar.jpg" alt="Johan Larsson" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Johan Larsson</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>PhD student in statistics</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Lund, Sweden</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+            <li><a href="https://twitter.com/joh_larsson" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/jolars" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://scholar.google.com/citations?user=DCJvywYAAAAJ" rel="nofollow noopener noreferrer"><i class="ai fa-fw ai-google-scholar" aria-hidden="true"></i><span class="label">Google Scholar</span></a></li>
+          
+        
+          
+            <li><a href="https://orcid.org/0000-0002-4029-5945" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-orcid" aria-hidden="true"></i><span class="label">ORCID</span></a></li>
+          
+        
+          
+            <li><a href="https://www.researchgate.net/profile/Johan_Larsson7" rel="nofollow noopener noreferrer"><i class="ai fa-fw ai-researchgate" aria-hidden="true"></i><span class="label">Research Gate</span></a></li>
+          
+        
+          
+            <li><a href="https://publons.com/author/1299032" rel="nofollow noopener noreferrer"><i class="ai fa-fw ai-publons" aria-hidden="true"></i><span class="label">Publons</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="SLOPE 0.2.0">
+    <meta itemprop="description" content="A new version of the SLOPE package has been released with a great number of improvements and much new functionality.">
+    <meta itemprop="datePublished" content="2020-04-14T00:00:00+02:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">SLOPE 0.2.0
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="introduction-to-slope">Introduction to SLOPE</h2>
+
+<p>SLOPE <a class="citation" href="#bogdan2015">(Bogdan et al., 2015)</a> stands for sorted L1 penalized estimation and
+is a generalization of OSCAR <a class="citation" href="#bondell2008">(Bondell &amp; Reich, 2008)</a>. As the name 
+suggests, SLOPE
+is a type of $\ell_1$-regularization. More specifically, SLOPE fits 
+generalized linear models regularized with the sorted $\ell_1$ norm. The
+objective in SLOPE is</p>
+
+\[\operatorname{minimize}\left\{ f(\beta) + J(\beta \mid \lambda)\right\},\]
+
+<p>where $f(\beta)$ is typically the log-likelihood of some model in the 
+family of generalized linear models and</p>
+
+\[J(\beta\mid \lambda) = \sum_{i=1}^p \lambda_i|\beta|_{(i)}\]
+
+<p>is the
+sorted $\ell_1$ norm.</p>
+
+<p>Some people will note that this penalty is a generalization
+of the standard $\ell_1$ norm penalty<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>. As such,
+SLOPE is a type of sparse regression—just like the lasso. Unlike the lasso,
+however, SLOPE gracefully handles correlated features.
+Whereas the lasso often discards all but a few among a set of 
+correlated features <a class="citation" href="#jia2010">(Jia &amp; Yu, 2010)</a>, 
+SLOPE instead <em>clusters</em> such features together by setting such clusters to
+have the same coefficient in absolut value.</p>
+
+<h2 id="slope-020">SLOPE 0.2.0</h2>
+
+<p>SLOPE 0.2.0 is a new verison of the R package
+<a href="https://CRAN.R-project.org/package=SLOPE">SLOPE</a> featuring a range of
+improvements over the previous package. If you are completely new to the 
+package, please start with the <a href="https://jolars.github.io/SLOPE/articles/introduction.html">introductory vignette</a>.</p>
+
+<h3 id="more-model-families">More model families</h3>
+
+<p>Previously, SLOPE only features ordinary least-squares regression. Now the
+package features logistic, Poisson, and multinomial regression on top of that.
+Just as in other similar packages, this is enabled simply by
+setting <code class="language-plaintext highlighter-rouge">family = "binomial"</code> for logistic regression, for instance.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">SLOPE</span><span class="p">)</span><span class="w">
+</span><span class="n">fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">SLOPE</span><span class="p">(</span><span class="n">wine</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">wine</span><span class="o">$</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"multinomial"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="regularization-path-fitting">Regularization path fitting</h3>
+
+<p>By default, SLOPE now fits a full regularization path instead of
+only a single penalty sequence at once. This behavior is now analogous with the 
+default behavior in glmnet.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<figure class="align-center" style="width: 768px">
+<img src="/2020-04-14-slope-0.2.0_files/figure-html/unnamed-chunk-3-1.png" alt="Coefficients from the regularization path for a multinomial model." width="768" />
+<figcaption>Coefficients from the regularization path for a multinomial model.</figcaption>
+</figure>
+
+<h3 id="predictor-screening-rules">Predictor screening rules</h3>
+
+<p>The package now uses predictor screening rules to vastly improve performance
+in the $p \gg n$ domain. Screening rules are part of what makes
+other related packages such as glmnet so efficient. In SLOPE, we use a
+variant of the strong screening rules for the lasso <a class="citation" href="#tibshirani2012">(Tibshirani et al., 2012)</a>.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">xy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">SLOPE</span><span class="o">:::</span><span class="n">randomProblem</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">1000</span><span class="p">)</span><span class="w">
+</span><span class="n">system.time</span><span class="p">({</span><span class="n">SLOPE</span><span class="p">(</span><span class="n">xy</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">xy</span><span class="o">$</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">screen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)})</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##    user  system elapsed 
+##   1.749   0.007   0.237
+</code></pre></div></div>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">system.time</span><span class="p">({</span><span class="n">SLOPE</span><span class="p">(</span><span class="n">xy</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">xy</span><span class="o">$</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">screen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)})</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>##    user  system elapsed 
+##   3.408   0.004   0.447
+</code></pre></div></div>
+
+<h3 id="cross-validation-and-caret">Cross-validation and caret</h3>
+
+<p>There is now a function <code class="language-plaintext highlighter-rouge">trainSLOPE()</code>, which can be used to run
+cross-validation for optimal selection of <code class="language-plaintext highlighter-rouge">sigma</code> and <code class="language-plaintext highlighter-rouge">q</code>. Here, we run
+8-fold cross-validation repeated 5 times.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 8-fold cross-validation repeated 5 times</span><span class="w">
+</span><span class="n">tune</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trainSLOPE</span><span class="p">(</span><span class="n">subset</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span><span class="w"> </span><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"mpg"</span><span class="p">,</span><span class="w"> </span><span class="s2">"drat"</span><span class="p">,</span><span class="w"> </span><span class="s2">"wt"</span><span class="p">)),</span><span class="w">
+                   </span><span class="n">mtcars</span><span class="o">$</span><span class="n">hp</span><span class="p">,</span><span class="w">
+                   </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">),</span><span class="w">
+                   </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w">
+                   </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">tune</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<figure class="align-center" style="width: 672px">
+<img src="/2020-04-14-slope-0.2.0_files/figure-html/unnamed-chunk-5-1.png" alt="Cross-validation with SLOPE." width="672" />
+<figcaption>Cross-validation with SLOPE.</figcaption>
+</figure>
+
+<p>In addition, the package now also features a function <code class="language-plaintext highlighter-rouge">caretSLOPE()</code> that
+can be used via the excellent caret package, which enables a swath
+of resampling methods and comparisons.</p>
+
+<h3 id="c-and-admm">C++ and ADMM</h3>
+
+<p>All of the performance-critical code for SLOPE has been rewritten in 
+C++. In addition, the package now features an ADMM solver for
+<code class="language-plaintext highlighter-rouge">family = "gaussian"</code>, enabled by setting <code class="language-plaintext highlighter-rouge">solver = "admm"</code> in the call
+to <code class="language-plaintext highlighter-rouge">SLOPE()</code>. Preliminary testing shows that this solver is faster for
+many designs, particularly when there is high correlation among predictors.</p>
+
+<h3 id="sparse-design-matrices">Sparse design matrices</h3>
+
+<p>SLOPE now also allows sparse design matrcies of classes from the Matrix package.</p>
+
+<h3 id="and-much-more">And much more…</h3>
+
+<p>For a full list of changes, please
+see <a href="https://jolars.github.io/SLOPE/news/index.html#slope-0-2-0-unreleased">the changelog</a>.</p>
+
+<h2 id="references">References</h2>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Simply set $\lambda_i = \lambda_j$ for all $i,j \in {1,\dots,p}$ and you get the lasso penalty. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#generalized-linear-models" class="page__taxonomy-item" rel="tag">generalized linear models</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#machine-learning" class="page__taxonomy-item" rel="tag">machine-learning</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#regularization" class="page__taxonomy-item" rel="tag">regularization</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#slope" class="page__taxonomy-item" rel="tag">SLOPE</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#statistics" class="page__taxonomy-item" rel="tag">statistics</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#r" class="page__taxonomy-item" rel="tag">R</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-04-14T00:00:00+02:00">April 14, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?via=joh_larsson&text=SLOPE+0.2.0%20https%3A%2F%2Flarssonjohan.com%2Fposts%2Fr%2Fslope-0.2.0%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flarssonjohan.com%2Fposts%2Fr%2Fslope-0.2.0%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Flarssonjohan.com%2Fposts%2Fr%2Fslope-0.2.0%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/posts/r/polygon-labeling-with-polylabelr/" class="pagination--pager" title="Polygon labeling with polylabelr
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/r/polygon-labeling-with-polylabelr/" rel="permalink">Polygon labeling with polylabelr
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Using polylabelr to find visual centers of polygons and label Euler diagrams
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/r/farthest-points/" rel="permalink">Finding the farthest points in a point cloud
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A better algorithm for finding a subset of points that maximize the minimal distance between them.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/r/introducing-eulerr/" rel="permalink">Introducing eulerr
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This is an introduction to my new package, eulerr, an R package that computes and plots  eulerr diagrams of set relationships.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/posts/r/introducing-qualpalr/" rel="permalink">Introducing qualpalr
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Let me introduce qualpalr: an R package that generates qualitative color palettes with distinct colors using color difference algorithms.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- AJax for DropDown Effect of Abstract and BibTex -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	var str =$(this).attr('id');
+
+    $(".btnId").click(function(){
+        var str = $(this).attr('id');
+		var ret = str.split("_");
+		var id = ret[1];
+		$('#' + id).toggle();
+    });
+});
+</script>
+
+<!-- htmlwidgets dependencies --> 
+<!-- 
+
+
+
+ -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/joh_larsson" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/jolars/larssonjohan.com" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Johan Larsson. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
