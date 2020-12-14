@@ -1,6 +1,12 @@
+### R
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 blogdown
 public
+
+### Jekyll ###
+_site
+.jekyll-metadata
+*-cache/

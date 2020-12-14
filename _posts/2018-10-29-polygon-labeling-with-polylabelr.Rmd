@@ -1,7 +1,5 @@
 ---
 title: Polygon labeling with polylabelr
-author: Johan Larsson
-date: '2018-10-29'
 slug: polygon-labeling-with-polylabelr
 categories:
   - R
@@ -13,20 +11,19 @@ tags:
   - eulerr
   - polylabelr
   - geometry
-image:
-  caption: ''
-  focal_point: 'right'
-summary: Using polylabelr to find visual centers of polygons and
+excerpt: Using polylabelr to find visual centers of polygons and
   label Euler diagrams
-bibliography: [library.bib]
 ---
 
 ```{r, include = FALSE}
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+
 knitr::opts_chunk$set(
   echo = TRUE,
   warning = FALSE,
   dev.args = list(pointsize = 8),
   crop = TRUE,
+  fig.align = "center",
   fig.width = 3.5,
   fig.height = 2.9
 )
@@ -90,8 +87,7 @@ It is inefficient and will, according to the authors, find
 a point that is "guaranteed to be a global optimum within the given precision".
 
 Because it appeared to be such a valuable tool for R users, I decided
-to create a wrapper for the c++ header for polylabel and
-bundle it as a package for R users.
+to create a wrapper for the c++ header for polylabel and bundle it as a package for R users.
 
 ```{r, fig.cap = "Locating poles of inaccessibility with polylabel."}
 # install.packages("polylabelr")
