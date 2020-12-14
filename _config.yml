@@ -97,11 +97,11 @@ author:
   avatar           : "/assets/images/avatar.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "PhD student in statistics"
   location         : "Lund, Sweden"
-  email            : "johanlarsson@outlook.com"
+  email            : # "johanlarsson@outlook.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:johanlarsson@outlook.com"
+      #url: "mailto:johanlarsson@outlook.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
