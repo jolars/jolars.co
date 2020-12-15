@@ -1,8 +1,10 @@
 main:
   - title: "Posts"
-    url: /archive/
+    url: /posts/
   - title: "Publications"
-    url: /publications-by-year
+    url: /publications-by-year/
+  - title: "Talks"
+    url: /talks/
   - title: "Software"
     url: /software/
   - title: "CV"
