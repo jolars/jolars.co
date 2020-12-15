@@ -4,7 +4,7 @@ slug: polygon-labeling-with-polylabelr
 categories:
   - R
 tags:
-  - Euler diagrams
+  - euler-diagrams
   - polygon
   - labeling
   - R
