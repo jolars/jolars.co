@@ -1,4 +1,5 @@
 source("R/utils.R")
+source("R/htmlwidgets_deps.R")
 
 build_one <- function(input, to_md = TRUE) {
   options(htmltools.dir.version = FALSE)
@@ -163,8 +164,8 @@ for (i in seq_along(files)) {
 
   out = output_file(f, to_md)  # expected output file
 
-  if (!blogdown:::require_rebuild(out, f))
-    next
+  # if (!blogdown:::require_rebuild(out, f))
+  #   next
 
   message('Rendering ', f, '... ', appendLF = FALSE)
 
@@ -173,6 +174,8 @@ for (i in seq_along(files)) {
     list(f, to_md),
     fail = c('Failed to render ', f)
   )  # actual output file
+
+  meta = attr(res, "knit_meta")
 
   xfun::in_dir(d, {
     x = xfun::read_utf8(res)
@@ -185,8 +188,20 @@ for (i in seq_along(files)) {
   x = encode_paths(x, lib1[2 * i - 1], d, base, to_md, out)
   move_files(lib1[2 * i - 0:1], lib2[2 * i - 0:1])
 
-  if (getOption('blogdown.widgetsID', TRUE))
-    x = blogdown:::clean_widget_html(x)
+  #htmlwidgets_deps(out, meta)
+
+  # if (getOption('blogdown.widgetsID', TRUE))
+  #   x = blogdown:::clean_widget_html(x)
+
+  # split html at \n (newline) markers
+  script_lines = grep('(<script src|<link href)(=")', x)
+
+  for (j in script_lines) {
+    y = strsplit(x[j], "\\n")[[1]]
+    y = y[!duplicated(y)]
+    x[j] = paste(y, collapse = "\n")
+  }
+
   if (to_md) {
     xfun::write_utf8(x, out)
   } else {

@@ -60,13 +60,8 @@ move_files = function(lib1, lib2) {
   dirs_rename(lib1[i], lib2[i])
 }
 
-
-is_rmarkdown = function(x) {
-  grepl('[.][Rr]markdown$', x)
-}
-
 # build .Rmarkdown to .markdown, and .Rmd to .html
-output_file = function(file, md = is_rmarkdown(file)) {
+output_file = function(file, md) {
   with_ext(file, ifelse(md, 'md', 'html'))
 }
 
@@ -87,13 +82,16 @@ encode_uri = function(...) httpuv::encodeURIComponent(...)
 
 # example values of arguments: x = <html> code; deps = '2017-02-14-foo_files';
 # parent = 'content/post'; output = 'content/post/hello.md'
-encode_paths = function(x, deps, parent, base, to_md = FALSE, output) {
+encode_paths = function(x, deps, parent, base, to_md, output) {
   if (!dir_exists(deps))
     return(x)  # no external dependencies such as images
+
   if (!grepl('/$', parent))
     parent = paste0(parent, '/')
+
   deps = basename(deps)
   need_encode = !to_md
+
   if (need_encode) {
     deps2 = encode_uri(deps)  # encode the path and see if it can be found in x
     # on Unix, paths containing multibyte chars are always encoded by Pandoc

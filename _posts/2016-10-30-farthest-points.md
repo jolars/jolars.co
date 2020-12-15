@@ -169,8 +169,8 @@ microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)
 ```
 ## Unit: milliseconds
 ##               expr      min       lq     mean   median       uq      max neval
-##  f_greedy(data, n) 1.282606 1.397137 1.904461 1.502050 1.780678 28.00605  1000
-##     f_new(data, n) 1.533306 2.033017 2.795263 2.310208 2.821035 41.13209  1000
+##  f_greedy(data, n) 1.307745 1.490690 1.821557 1.580586 1.740455 15.39969  1000
+##     f_new(data, n) 1.579161 2.093155 2.651591 2.322275 2.700626 37.54810  1000
 ##  cld
 ##   a 
 ##    b
