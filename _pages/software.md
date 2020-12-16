@@ -16,10 +16,10 @@ feature_row:
     url: "https://jolars.github.io/eulerr/"
     btn_class: "btn--primary"
   - image_path: /assets/images/qualpalr.png
-    #image_caption: "Image courtesy of [Unsplash](https://unsplash.com/)"
+    #image_caption: ""
     alt: "A cloud of colors in a color space."
     title: "qualpalr"
-    excerpt: "This is some sample content that goes here with **Markdown** formatting."
+    excerpt: "An R package for generating distinct colors for categorical data."
     url: "https://jolars.github.io/qualpalr/"
     #btn_label: "Read More"
     btn_class: "btn--primary"
