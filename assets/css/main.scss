@@ -8,46 +8,46 @@
 @import "minimal-mistakes"; // main partials
 
 html {
-  font-size: 14px; // change to whatever
+  font-size: 16px; // change to whatever
 
   @include breakpoint($medium) {
-    font-size: 16px; // change to whatever
-  }
-
-  @include breakpoint($large) {
     font-size: 18px; // change to whatever
   }
 
-  @include breakpoint($x-large) {
+  @include breakpoint($large) {
     font-size: 20px; // change to whatever
+  }
+
+  @include breakpoint($x-large) {
+    font-size: 22px; // change to whatever
   }
 }
 
-$abstract-color                : #009628 !default;  
-$BibTex-color                  : #b201a6 !default;  
-$download-color                : #b51b00 !default;  
-$supplement-color              : #abb500 !default;   
-   
+$abstract-color                : #009628 !default;
+$BibTex-color                  : #b201a6 !default;
+$download-color                : #b51b00 !default;
+$supplement-color              : #abb500 !default;
+
 .center-image
 {
     margin: 0 auto;
     display: block;
-}  
+}
 
 .btnId {
     margin-top: 0.5em;
 }
-   
+
 .dropDownAbstract{
 	font-size: $type-size-8;
-	display: none; 
+	display: none;
 	position: relative;
-	border-left: 3px solid $primary-color; 
+	border-left: 3px solid $primary-color;
 	padding-left: 3px
 }
-   
+
 .dropDownBibtex{
 	font-size: $type-size-8;
-	display:none; 
+	display:none;
 	position:relative;
 }
