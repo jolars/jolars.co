@@ -101,7 +101,7 @@ process_markdown = function(x, res, cit_type = c("pandoc", "jekyll-scholar")) {
                         "class=\"align-\\1\"",
                         x[div_starts])
   # insert figure withds
-  x[div_starts] <- paste0(x[div_starts], " style=\"width: ", figwidths, "px\">")
+  x[div_starts] <- paste0(x[div_starts], " style=\"max-width: ", figwidths, "px\">")
 
   x[div_ends] <- "</figure>"
 

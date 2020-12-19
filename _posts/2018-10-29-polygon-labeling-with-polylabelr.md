@@ -4,7 +4,7 @@ slug: polygon-labeling-with-polylabelr
 categories:
   - R
 tags:
-  - euler-diagrams
+  - Euler diagrams
   - polygon
   - labeling
   - R
@@ -42,7 +42,7 @@ fit_venneuler <- venneuler(s)
 plot(fit_venneuler)
 ```
 
-<figure class="align-center" style="width: 336px">
+<figure class="align-center" style="max-width: 336px">
 <img src="/2018-10-29-polygon-labeling-with-polylabelr_files/figure-html/unnamed-chunk-2-1.png" alt="A plot from venneuler with suboptimal label placements." width="336" />
 <figcaption>A plot from venneuler with suboptimal label placements.</figcaption>
 </figure>
@@ -99,7 +99,7 @@ polypath(x, y, col = "grey90", rule = "evenodd")
 points(p, cex = 2, pch = 16)
 ```
 
-<figure class="align-center" style="width: 336px">
+<figure class="align-center" style="max-width: 336px">
 <img src="/2018-10-29-polygon-labeling-with-polylabelr_files/figure-html/unnamed-chunk-3-1.png" alt="Locating poles of inaccessibility with polylabel." width="336" />
 <figcaption>Locating poles of inaccessibility with polylabel.</figcaption>
 </figure>
@@ -122,7 +122,7 @@ library(eulerr)
 plot(euler(s))
 ```
 
-<figure class="align-center" style="width: 336px">
+<figure class="align-center" style="max-width: 336px">
 <img src="/2018-10-29-polygon-labeling-with-polylabelr_files/figure-html/unnamed-chunk-4-1.png" alt="An Euler diagram with appropriate label placement." width="336" />
 <figcaption>An Euler diagram with appropriate label placement.</figcaption>
 </figure>

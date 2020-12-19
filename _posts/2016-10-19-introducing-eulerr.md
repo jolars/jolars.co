@@ -46,7 +46,7 @@ venn_fit <- venneuler(c(A = 75, B = 50, "A&B" = 0))
 plot(venn_fit)
 ```
 
-<figure class="align-center" style="width: 384px">
+<figure class="align-center" style="max-width: 384px">
 <img src="/2016-10-19-introducing-eulerr_files/figure-html/venneuler_failure-1.png" alt="venneuler plot with unwanted overlap." width="384" />
 <figcaption>venneuler plot with unwanted overlap.</figcaption>
 </figure>
@@ -119,7 +119,7 @@ dotchart(resid(fit2))
 abline(v = 0, lty = 3)
 ```
 
-<figure class="align-center" style="width: 384px">
+<figure class="align-center" style="max-width: 384px">
 <img src="/2016-10-19-introducing-eulerr_files/figure-html/residual_plot-1.png" alt="Residuals for the eulerr fit." width="384" />
 <figcaption>Residuals for the eulerr fit.</figcaption>
 </figure>
@@ -169,7 +169,7 @@ plot(
 )
 ```
 
-<figure class="align-center" style="width: 240px">
+<figure class="align-center" style="max-width: 240px">
 <img src="/2016-10-19-introducing-eulerr_files/figure-html/eulerr_plot-1.png" alt="eulerr plots can be modified in many ways." width="240" /><img src="/2016-10-19-introducing-eulerr_files/figure-html/eulerr_plot-2.png" alt="eulerr plots can be modified in many ways." width="240" />
 <figcaption>eulerr plots can be modified in many ways.</figcaption>
 </figure>

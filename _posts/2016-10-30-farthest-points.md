@@ -60,7 +60,7 @@ points(mat[ind, ], pch = 19)
 text(mat[ind, ], adj = c(0, -1.5))
 ```
 
-<figure class="align-center" style="width: 576px">
+<figure class="align-center" style="max-width: 576px">
 <img src="/2016-10-30-farthest-points_files/figure-html/greedy_approach-1.png" alt="Numbers note the order the points were picked in." width="576" />
 <figcaption>Numbers note the order the points were picked in.</figcaption>
 </figure>
@@ -117,7 +117,7 @@ points(mat[r, ], pch = 19)
 text(mat[r, ], adj = c(0, -1.5))
 ```
 
-<figure class="align-center" style="width: 576px">
+<figure class="align-center" style="max-width: 576px">
 <img src="/2016-10-30-farthest-points_files/figure-html/new_approach-1.png" alt="The new algorithm for picking points." width="576" />
 <figcaption>The new algorithm for picking points.</figcaption>
 </figure>
@@ -169,8 +169,8 @@ microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)
 ```
 ## Unit: milliseconds
 ##               expr      min       lq     mean   median       uq      max neval
-##  f_greedy(data, n) 1.307745 1.490690 1.821557 1.580586 1.740455 15.39969  1000
-##     f_new(data, n) 1.579161 2.093155 2.651591 2.322275 2.700626 37.54810  1000
+##  f_greedy(data, n) 1.459519 1.805470 3.054775 2.166537 3.607253 22.88028  1000
+##     f_new(data, n) 1.813702 2.624422 4.413057 3.310218 4.998364 39.28459  1000
 ##  cld
 ##   a 
 ##    b
