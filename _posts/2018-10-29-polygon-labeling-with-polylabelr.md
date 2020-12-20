@@ -1,6 +1,5 @@
 ---
 title: Polygon labeling with polylabelr
-slug: polygon-labeling-with-polylabelr
 categories:
   - R
 tags:
@@ -20,9 +19,9 @@ excerpt: Using polylabelr to find visual centers of polygons and
 ## Labeling Euler diagram overlaps
 
 The purpose of my R package [eulerr](https://github.com/jolars/eulerr)
-is to fit and *visualize* Euler diagrams. Besides the various intricacies 
+is to fit and *visualize* Euler diagrams. Besides the various intricacies
 involved in fitting the diagrams, there are many interesting
-problems involved in their visualization. One of these is the labeling of the 
+problems involved in their visualization. One of these is the labeling of the
 overlaps.
 
 Naturally, simply positioning the labels at the shapes' centers
@@ -57,10 +56,10 @@ turned out to be quite inefficient.
 
 ## The promise of polygons
 
-R has powerful functionality for plotting in general, but lacks 
-capabilities for drawing ellipses using curves. High-resolution 
+R has powerful functionality for plotting in general, but lacks
+capabilities for drawing ellipses using curves. High-resolution
 polygons are thankfully a readily available remedy for this and have
-since several version back been used also in **eulerr**. 
+since several version back been used also in **eulerr**.
 
 The upside of using polygons, however, are that they are usually
 much easier, even if sometimes inefficient,
@@ -111,8 +110,8 @@ is documented at <https://jolars.github.io/polylabelr/>.
 ## Euler diagrams
 
 To come back around to where we started at, **polylabelr** has now been
-employed in the development branch 
-of **eulerr** where it is used to quickly and appropriately 
+employed in the development branch
+of **eulerr** where it is used to quickly and appropriately
 figure out locations for the labels of the diagram.
 
 
