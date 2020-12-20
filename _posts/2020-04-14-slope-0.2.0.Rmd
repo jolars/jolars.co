@@ -5,7 +5,7 @@ categories:
 tags:
   - regularization
   - SLOPE
-  - machine-learning
+  - machine learning
   - generalized linear models
   - statistics
 excerpt: A new version of the SLOPE package has been released with a great

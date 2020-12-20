@@ -2,7 +2,7 @@
 title: Finding the farthest points in a point cloud
 excerpt: "A better algorithm for finding a subset of points that maximize the minimal distance between them."
 category: "R"
-tags: [qualpalr, color-science]
+tags: [qualpalr, color science]
 header:
   image: assets/images/farthest-points-header.png
 ---
@@ -168,9 +168,9 @@ microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)
 
 ```
 ## Unit: milliseconds
-##               expr      min       lq     mean   median       uq      max neval
-##  f_greedy(data, n) 1.459519 1.805470 3.054775 2.166537 3.607253 22.88028  1000
-##     f_new(data, n) 1.813702 2.624422 4.413057 3.310218 4.998364 39.28459  1000
+##               expr      min       lq     mean   median       uq       max neval
+##  f_greedy(data, n) 1.282608 1.602140 3.041113 1.988751 3.702580  19.61878  1000
+##     f_new(data, n) 1.548970 2.463871 4.552254 3.345820 5.154797 128.79082  1000
 ##  cld
 ##   a 
 ##    b

@@ -3,7 +3,7 @@ title: "Introducing eulerr"
 excerpt: This is an introduction to my new package, eulerr, an R package that computes 
          and plots  eulerr diagrams of set relationships.
 category: "R"
-tags: [eulerr, euler-diagrams]
+tags: [eulerr, euler diagrams]
 ---
 
 

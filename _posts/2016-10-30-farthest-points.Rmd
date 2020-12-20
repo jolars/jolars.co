@@ -2,7 +2,7 @@
 title: Finding the farthest points in a point cloud
 excerpt: "A better algorithm for finding a subset of points that maximize the minimal distance between them."
 category: "R"
-tags: [qualpalr, color-science]
+tags: [qualpalr, color science]
 header:
   image: assets/images/farthest-points-header.png
 ---

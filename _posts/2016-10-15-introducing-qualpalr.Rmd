@@ -2,7 +2,7 @@
 title: Introducing qualpalr
 category: R
 excerpt: "Let me introduce qualpalr: an R package that generates qualitative color palettes with distinct colors using color difference algorithms."
-tags: [qualpalr, color-science]
+tags: [qualpalr, color science]
 ---
 
 ```{r, include = FALSE}
