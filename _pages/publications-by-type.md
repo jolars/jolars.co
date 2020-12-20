@@ -5,7 +5,7 @@ author_profile: true
 title: Publications
 toc: true 
 toc_label: "Type"
-toc_icon: "newspaper"
+toc_icon: "book"
 ---
 
 [By Year](/publications-by-year/){: .btn .btn--inverse}
