@@ -1,16 +1,8 @@
 ---
-layout: archive
+layout: collection
 permalink: /talks/
+collection: talks
+entries_layout: grid
 author_profile: true
 title: Talks
 ---
-
-## The Strong Screening Rule for SLOPE
-
-This was a talk for [Statistical Learning Seminars](statistical-learning-seminars.github.io/), where I talked about the strong screening rule for SLOPE.
-
-{% include video id="oPqaZt0klMg" provider="youtube" %}
-
-[slides](https://statistical-learning-seminars.github.io/slides/
-200508-johanlarsson.pdf){: .btn .btn--primary}
-[paper](http://arxiv.org/abs/2005.03730){: .btn .btn--warning}
