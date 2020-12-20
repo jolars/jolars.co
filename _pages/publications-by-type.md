@@ -4,8 +4,8 @@ permalink: /publications-by-type/
 author_profile: true
 title: Publications
 toc: true 
-toc_label: "Year"
-toc_icon: "calendar"
+toc_label: "Type"
+toc_icon: "newspaper"
 ---
 
 [By Year](/publications-by-year/){: .btn .btn--inverse}
