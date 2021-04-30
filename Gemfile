@@ -9,3 +9,6 @@ group :jekyll_plugins do
   gem "jekyll-archives"
 end
 
+
+gem "webrick", "~> 1.7"
+gem "rexml", ">= 3.2.5"
