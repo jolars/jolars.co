@@ -31,9 +31,9 @@ website:
       - icon: github
         href: https://github.com/jolars
       - icon: mastodon
-        href: https://fediscience.org/@jolars
-      - icon: scholar
-        href: https://fediscience.org/web/@jolars
+        href: "https://fediscience.org/@jolars"
+      - text: <i class="ai ai-google-scholar"></i>
+        href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
 
 date-format: "D MMMM YYYY"
 
