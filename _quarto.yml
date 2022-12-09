@@ -19,9 +19,8 @@ website:
   navbar:
     left:
       - blog.qmd
-      - research.qmd
+      - software.qmd
       - talks.qmd
-      - about.qmd
     right:
       - icon: rss
         href: blog.xml

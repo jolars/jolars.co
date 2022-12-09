@@ -1,0 +1,9 @@
+---
+title: "Software"
+description: Software that I have contributed to
+listing:
+  contents: software
+  type: grid
+  sort: "date desc"
+page-layout: full
+---

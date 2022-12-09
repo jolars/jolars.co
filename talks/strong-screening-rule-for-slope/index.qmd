@@ -1,9 +1,10 @@
 ---
 title: The Strong Screening Rule for SLOPE
+date: 2020-05-08
 image: strong-screening-rule-for-slope.jpg
 ---
 
-This was a talk for [Statistical Learning Seminars](statistical-learning-seminars.github.io/), where I talked about the strong screening rule for SLOPE.
+This was a talk for [Statistical Learning Seminars](https://statistical-learning-seminars.github.io/), where I talked about the strong screening rule for SLOPE.
 
 {{< video https://www.youtube.com/embed/oPqaZt0klMg >}}
 
