@@ -1,0 +1,57 @@
+
+```{=html}
+
+<% for (const item of items) { %>
+
+<h2><%- item.category %></h2>
+
+<p><%- item.description %></p>
+
+<div class="list grid" style="column-gap: 10px;">
+
+<% for (const tile of item.tiles) { %>
+  <div class="quarto-grid-item card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" <%= metadataAttrs(tile) %>>
+    <a href="<%- tile.href %>">
+      <img src="<%- tile.thumbnail %>" alt="<%- tile.description %>" class="thumbnail-image card-img-top" style ="height:150px;"/>
+    </a>
+
+    <div class="card-body post-contents">
+      <h5 class="card-title"><%= tile.title %></h5>
+
+      <% if (tile.description) { %> 
+        <p class="card-text listing-description"><%= tile.description %></p>
+      <% } %>
+    </div>
+
+    <div class="card-footer border-bottom border-1 bg-light justify-content-end d-flex">
+      <% if (tile.href) { %> 
+      <div class="px-2">
+      <a href="<%- tile.href %>" title="View documentation">
+        <i class="bi bi-file-earmark-text"></i>
+      </a>
+      </div>
+      <% } %> 
+      <% if (tile.code) { %> 
+      <div class="px-2">
+      <a href="<%- tile.code %>" title="View source code">
+        <i class="bi bi-code-slash"></i>
+      </a>
+      </div>
+      <% } %> 
+      <% if (tile.cran) { %> 
+      <div class="px-2">
+      <a href="https://CRAN.R-project.org/package=<%- tile.cran %>" title="CRAN package page">
+        CRAN
+      </a>
+      </div>
+      <% } %> 
+    </div>
+    
+  </div>
+<% } %>
+
+</div>
+
+<% } %>
+
+```

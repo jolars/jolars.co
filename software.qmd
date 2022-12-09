@@ -2,8 +2,8 @@
 title: "Software"
 description: Software that I have contributed to
 listing:
-  contents: software
-  type: grid
-  sort: "date desc"
+  id: gallery
+  template: software/software.ejs
+  contents: software/software.yml
 page-layout: full
 ---
