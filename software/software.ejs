@@ -12,7 +12,7 @@
 <% for (const tile of item.tiles) { %>
   <div class="quarto-grid-item card border-2 rounded-3 g-col-12 g-col-sm-6 g-col-md-4 mb-2" <%= metadataAttrs(tile) %>>
     <a href="<%- tile.href %>">
-      <img src="<%- tile.thumbnail %>" alt="<%- tile.description %>" class="thumbnail-image card-img-top" style ="height:150px;"/>
+      <img src="<%- tile.thumbnail %>" alt="<%- tile.description %>" class="thumbnail-image card-img-top" style="height:150px;object-fit:scale-down;"/>
     </a>
 
     <div class="card-body post-contents">
