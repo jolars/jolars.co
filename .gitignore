@@ -3,12 +3,5 @@
 .Rhistory
 .RData
 .Ruserdata
-blogdown
-public
-
-### Jekyll ###
-_site
-.jekyll-metadata
-*-cache/
 
 /.quarto/
