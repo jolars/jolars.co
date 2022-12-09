@@ -1,0 +1,14 @@
+# freeze computational output
+# (see https://quarto.org/docs/projects/code-execution.html#freeze)
+freeze: auto
+comments:
+  giscus: 
+    repo: jolars/larssonjohan.com
+    repo-id: "MDEwOlJlcG9zaXRvcnkxNDgxODc2NjY="
+    category: "Announcements"
+    category-id: "DIC_kwDOCNUqEs4CS_Ma"
+    mapping: "pathname"
+    reactions-enabled: true
+    loading: lazy
+    input-position: "bottom"
+    theme: "light_protanopia"

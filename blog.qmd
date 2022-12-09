@@ -1,0 +1,12 @@
+---
+title: "Blog"
+description: Research and Coding
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  sort-ui: true
+  filter-ui: true
+  feed: true
+page-layout: full
+---

@@ -1,0 +1,23 @@
+---
+title: Research
+image: assets/images/avatar.jpg
+about:
+  template: trestles
+  image-shape: round
+  links:
+    - icon: mastodon
+      text: mastodon
+      href: https://fediscience.org/@jolars
+    - icon: github
+      text: github
+      href: https://github.com/jolars
+    - text: <i class="ai ai-google-scholar"></i> google scholar
+      href: https://github.com/jolars
+    - text: <i class="ai ai-researchgate"></i> research gate
+      href: https://github.com/jolars
+    - icon: envelope
+      text: mail
+      href: mailto:johanlarsson@outlook.com
+header-includes: |
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+---

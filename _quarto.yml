@@ -1,0 +1,49 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+    - "*.md"
+
+toc: true
+bibliography: assets/bibliography.bib
+
+website:
+  title: "Johan Larsson"
+  site-url: "https://larssonjohan.com"
+  favicon: assets/images/favicon.png
+  twitter-card: true
+  open-graph: true
+  google-analytics: 
+    tracking-id: "UA-85513662-1" 
+    anonymize-ip: true
+  navbar:
+    left:
+      - blog.qmd
+      - research.qmd
+      - talks.qmd
+      - about.qmd
+    right:
+      - icon: rss
+        href: blog.xml
+  page-footer:
+    left: "Copyright 2022, Johan Larsson"
+    right:
+      - icon: github
+        href: https://github.com/jolars
+      - icon: mastodon
+        href: https://fediscience.org/@jolars
+      - icon: scholar
+        href: https://fediscience.org/web/@jolars
+
+date-format: "D MMMM YYYY"
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    html-math-method: katex
+    include-in-header:
+      file: header.html
+
+execute:
+  freeze: auto

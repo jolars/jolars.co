@@ -1,0 +1,11 @@
+---
+title: The Strong Screening Rule for SLOPE
+image: strong-screening-rule-for-slope.jpg
+---
+
+This was a talk for [Statistical Learning Seminars](statistical-learning-seminars.github.io/), where I talked about the strong screening rule for SLOPE.
+
+{{< video https://www.youtube.com/embed/oPqaZt0klMg >}}
+
+[{{< fa regular file-pdf >}} Slides](https://statistical-learning-seminars.github.io/slides/200508-johanlarsson.pdf){.badge .badge-large}
+[{{< ai arxiv >}} Paper](http://arxiv.org/abs/2005.03730){.badge .badge-large}

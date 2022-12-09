@@ -1,0 +1,9 @@
+---
+title: "Talks"
+description: Links to recordings of talks that I've held
+listing:
+  contents: talks
+  type: grid
+  sort: "date desc"
+page-layout: full
+---
