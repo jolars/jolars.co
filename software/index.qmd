@@ -3,7 +3,7 @@ title: "Software"
 description: Software that I have contributed to
 listing:
   id: gallery
-  template: software/software.ejs
-  contents: software/software.yml
+  template: software.ejs
+  contents: software.yml
 page-layout: full
 ---

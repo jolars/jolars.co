@@ -20,9 +20,14 @@ website:
     anonymize-ip: true
   navbar:
     left:
-      - blog.qmd
-      - software.qmd
-      - talks.qmd
+      - text: Blog
+        href: blog/index.qmd
+      - text: Software
+        href: software/index.qmd
+      - text: Publications
+        href: publications/index.qmd
+      - text: Talks
+        href: talks/index.qmd
     right:
       - icon: rss
         href: blog.xml

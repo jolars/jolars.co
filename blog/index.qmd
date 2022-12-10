@@ -2,7 +2,7 @@
 title: "Blog"
 description: Research and Coding
 listing:
-  contents: posts
+  contents: .
   sort: "date desc"
   type: default
   sort-ui: true

@@ -19,7 +19,7 @@
     - title: benchopt
       href: https://benchopt.github.io
       code: https://github.com/benchopt/benchopt
-      thumbnail: software/thumbnails/benchopt.svg
+      thumbnail: thumbnails/benchopt.svg
       description: |
         BenchOpt is a benchmarking suite for optimization algorithms.
         It is built for simplicity, transparency, and reproducibility.
