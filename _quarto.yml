@@ -10,6 +10,8 @@ bibliography: assets/bibliography.bib
 website:
   title: "Johan Larsson"
   site-url: "https://larssonjohan.com"
+  repo-url: "https://github.com/jolars/larssonjohan.com"
+  repo-actions: [edit, issue]
   favicon: assets/images/favicon.png
   twitter-card: true
   open-graph: true
