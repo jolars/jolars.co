@@ -4,7 +4,7 @@ listing:
   contents: contents
   template: publications.ejs
   sort: "date desc"
-  categories: false
+  categories: true
   sort-ui: [date, title, author]
   filter-ui: [date, title, author, details]
   date-format: "MMM. YYYY"

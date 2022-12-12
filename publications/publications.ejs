@@ -1,34 +1,33 @@
 ```{=html}
-<ol class="list" reversed>
+<ul class="list publication-list" reversed>
   <% for (const item of items) { %>
     <li <%=metadataAttrs(item) %>>
-      <a href="<%- item.path %>">
-        <span class="listing-author"><%= item.author %></span>.
-        <span class="listing-title"><q><%= item.title %></q></span>.
+      <span class="listing-title fw-bold"><%= item.title %></span></br>
+      <p><span class="listing-author"><%= item.author %></span></br>
       <% if (item.type == 'journal-article') { %>
         <% if (item.publication) { %>
-          <span class="listing-details"><em> item.publication %></em></span>,
+          <span class="listing-publication fst-italic">item.publication %></span>,
         <% } %>
         <% if (item.volume) { %>
-          <span class="listing-publication-volume">vol.&nbsp;<%= item.volume %></span>,
+          <span class="listing-volume">vol.&nbsp;<%= item.volume %></span>,
         <% } %>
         <% if (item.number) { %>
-          <span class="listing-publication-number">no.&nbsp;<%= item.number %></span>,
+          <span class="listing-number">no.&nbsp;<%= item.number %></span>,
         <% } %>
         <% if (item.pages) { %>
-          <span class="listing-publication-pages">pp.&nbsp;<%= item.pages %></span>
+          <span class="listing-pages">pp.&nbsp;<%= item.pages %></span>
         <% } %>
         <span class="listing-date">, <%= item.date %></span>.
       <% } %>
       <% if (item.type == 'preprint') { %>
         <% if (item.publication) { %>
-          In <span class="listing-details"><em><%= item.publication %></em></span>,
+          In <span class="listing-publication fst-italic"><%= item.publication %></span>,
         <% } %>
         <span class="listing-date"><%= item.date %></span>.
       <% } %>
       <% if (item.type == 'conference-paper') { %>
         <% if (item.publication) { %>
-          In <span class="listing-details"><em><%= item.publication %></em></span>,
+          In <span class="listing-publication fst-italic"><%= item.publication %></span>,
         <% } %>
         <% if (item.place) { %>
           <span class="listing-details"><%= item.place %></span>,
@@ -44,32 +43,53 @@
           <span class="listing-publication-pages">pp.&nbsp;<%= item.pages %></span>.
         <% } %>
       <% } %>
+      </br>
+      <a href="<%= item.path %>" class="btn btn-primary btn-sm">
+        Details
       </a>
       <% if (item.doi) { %>
-        <a href="https://doi.org/<%= item.doi %>" class="badge badge-blue">DOI</a>
+        <a href="https://doi.org/<%= item.doi %>" class="btn btn-success btn-sm">
+          <i class="fa-solid fa-link"></i>&nbsp;DOI
+        </a>
       <% } %>
       <% if (item.link) { %>
-        <a href=<%= item.link %> class="badge badge-blue"><i class="fa-solid fa-link"></i>&nbsp;link</a>
-      <% } %>
-      <% if (item.arxiv) { %>
-        <a href="https://arxiv.org/abs/<%= item.arxiv %>" class="badge badge-red"><i class="ai ai-arxiv"></i>&nbsp;arXiv</a>
+        <a href="<%= item.link %>" class="btn btn-success btn-sm">
+          <i class="fa-solid fa-link"></i>&nbsp;URL
+        </a>
       <% } %>
       <% if (item.pdf) { %>
-      <a href=<%= item.pdf %> class="badge badge-red"><i class="fa-solid fa-file-pdf"></i>&nbsp;PDF</a>
+        <a href="<%= item.pdf %>" class="btn btn-warning btn-sm">
+          <i class="fa-solid fa-file-pdf"></i>&nbsp;PDF
+        </a>
       <% } %>
-      <% if (item.cran) { %>
-        <a href="https://CRAN.R-project.org/package=<%= item.cran %>" class="badge badge-green"><i class="fab fa-r-project"></i>&nbsp;CRAN</a>
-      <% } %>
-      <% if (item.pypi) { %>
-        <a href="https://pypi.org/project/<%= item.pypi %>" class="badge badge-green"><i class="fa-brands fa-python"></i>&nbsp;pypi</a>
+      <% if (item.arxiv) { %>
+        <a href="https://arxiv.org/abs/<%= item.arxiv %>" class="btn btn-danger btn-sm">
+          <i class="ai ai-arxiv"></i>&nbsp;arXiv
+        </a>
       <% } %>
       <% if (item.github) { %>
-        <a href="https://github.com/<%= item.github %>" class="badge badge-black"><i class="fa fa-github"></i>&nbsp;code</a>
+        <a href="https://github.com/<%= item.github %>" class="btn btn-dark btn-sm">
+          <i class="fa fa-github"></i>&nbsp;Code
+        </a>
       <% } %>
-      <% if (item.bitbucket) { %><a href="https://bitbucket.org/<%= item.bitbucket %>" class="badge badge-primary"><i class="fa fa-bitbucket"></i>&nbsp;code</a></a>
+      <% if (item.bitbucket) { %>
+        <a href="https://bitbucket.com/<%= item.bitbucket %>" class="btn btn-dark btn-sm">
+          <i class="fa fa-bitbucket"></i>&nbsp;Code
+        </a>
       <% } %>
+      <% if (item.cran) { %>
+        <a href="https://CRAN.R-project.org/package=<%= item.cran %>" class="btn btn-info btn-sm">
+          <i class="fab fa-r-project"></i>&nbsp;CRAN
+        </a>
+      <% } %>
+      <% if (item.pypi) { %>
+        <a href="https://pypi.com/project/<%= item.pypi %>" class="btn btn-info btn-sm">
+          <i class="fa-brands fa-python"></i>&nbsp;pypi
+        </a>
+      <% } %>
+      </p>
     </li>
   <% } %>
-</ol>
+</ul>
 </span>
 ```

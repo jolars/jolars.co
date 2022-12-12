@@ -29,18 +29,13 @@ website:
         href: publications/index.qmd
       - text: Talks
         href: talks/index.qmd
-    right:
-      - icon: rss
-        href: blog.xml
   page-footer:
     left: "Copyright 2022, Johan Larsson"
     right:
-      - icon: github
-        href: https://github.com/jolars
       - icon: mastodon
         href: "https://fediscience.org/@jolars"
-      - text: <i class="ai ai-google-scholar"></i>
-        href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
+      - icon: rss
+        href: blog.xml
 
 date-format: "D MMMM YYYY"
 
