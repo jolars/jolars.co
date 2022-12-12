@@ -1,6 +1,7 @@
 ---
 title: "Posts"
-description: Research and Coding
+subtitle: Infrequent posts about research and programming
+comments: false
 listing:
   contents: .
   sort: "date desc"

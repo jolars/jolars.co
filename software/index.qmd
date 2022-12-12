@@ -1,6 +1,6 @@
 ---
 title: "Software"
-description: Software that I have contributed to
+subtitle: Software that I have contributed to
 listing:
   id: software
   template: software.ejs

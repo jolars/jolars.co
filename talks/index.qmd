@@ -1,6 +1,6 @@
 ---
 title: "Talks"
-description: Links to recordings of talks that I've held
+subtitle: Links to recordings of talks that I've held
 listing:
   contents: .
   type: grid
