@@ -1,5 +1,5 @@
 ---
-title: "Blog"
+title: "Posts"
 description: Research and Coding
 listing:
   contents: .

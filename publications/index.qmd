@@ -1,7 +1,14 @@
 ---
-title: "Publications"
-description: Software that I have contributed to
+title: Publications
+listing:
+  contents: contents
+  template: publications.ejs
+  sort: "date desc"
+  categories: false
+  sort-ui: [date, title, author]
+  filter-ui: [date, title, author, details]
+  date-format: "MMM. YYYY"
+  page-size: 50
+sidebar: false
 page-layout: full
 ---
-
-

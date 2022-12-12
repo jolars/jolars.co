@@ -1,0 +1,21 @@
+---
+author: 
+  - Johan Larsson
+  - Małgorzata Bogdan
+  - Jonas Wallin
+date: 2020-12-06
+title: "The Strong Screening Rule for SLOPE"
+type: conference-paper
+place: Virtual
+publication: Advances in Neural Information Processing Systems
+volume: 33
+pages: 14592-14603
+link: https://proceedings.neurips.cc/paper/2020/hash/a7d8ae4569120b5bec12e7b6e9648b86-Abstract.html
+pdf: https://proceedings.neurips.cc/paper/2020/file/a7d8ae4569120b5bec12e7b6e9648b86-Paper.pdf
+github: jolars/slope-screening-code
+---
+
+## Abstract
+
+Extracting relevant features from data sets where the number of observations (n) is much smaller then the number of predictors (p) is a major challenge in modern statistics. Sorted L-One Penalized Estimation (SLOPE)—a generalization of the lasso—is a promising method within this setting. Current numerical procedures for SLOPE, however, lack the efficiency that respective tools for the lasso enjoy, particularly in the context of estimating a complete regularization path. A key component in the efficiency of the lasso is predictor screening rules: rules that allow predictors to be discarded before estimating the model. This is the first paper to establish such a rule for SLOPE. We develop a screening rule for SLOPE by examining its subdifferential and show that this rule is a generalization of the strong rule for the lasso. Our rule is heuristic, which means that it may discard predictors erroneously. In our paper, however, we show that such situations are rare and easily safeguarded against by a simple check of the optimality conditions. Our numerical experiments show that the rule performs well in practice, leading to improvements by orders of magnitude for data in the (p >> n) domain, as well as incurring no additional computational overhead when (n > p).
+

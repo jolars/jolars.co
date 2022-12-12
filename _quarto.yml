@@ -12,6 +12,7 @@ website:
   site-url: "https://larssonjohan.com"
   repo-url: "https://github.com/jolars/larssonjohan.com"
   repo-actions: [edit, issue]
+  search: true
   favicon: assets/images/favicon.png
   twitter-card: true
   open-graph: true
@@ -20,8 +21,8 @@ website:
     anonymize-ip: true
   navbar:
     left:
-      - text: Blog
-        href: blog/index.qmd
+      - text: Posts
+        href: posts/index.qmd
       - text: Software
         href: software/index.qmd
       - text: Publications
@@ -45,7 +46,7 @@ date-format: "D MMMM YYYY"
 
 format:
   html:
-    theme: flatly
+    theme: litera
     css: styles.css
     html-math-method: katex
     include-in-header:
