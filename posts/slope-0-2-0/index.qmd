@@ -5,11 +5,9 @@ date: "2020-04-14"
 description: A new update to the SLOPE package with many exciting features.
 categories:
   - r
-  - regularization
   - SLOPE
   - statistics
 image: slope.svg
-bibliography: bibliography.bib
 ---
 
 ```{r, include = FALSE}

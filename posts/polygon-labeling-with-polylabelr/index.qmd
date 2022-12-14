@@ -6,12 +6,8 @@ description: A new package polylabelr can be used find visual centers of
   polygons and label Euler diagrams.
 categories:
   - r
-  - euler diagrams
-  - polygon
-  - labeling
-  - eulerr
-  - polylabelr
   - geometry
+  - polylabelr
 image: polylabelr.png
 bibliography: bibliography.bib
 ---

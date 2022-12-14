@@ -2,14 +2,15 @@
 title: Finding the Farthest Points in a Point Cloud
 date: "2016-10-30"
 author: "Johan Larsson"
-description: "An algorithm for finding the most separated points in a cloud of
-points."
+description: |
+  An algorithm for finding the most separated points in a cloud of
+  points.
 categories:
   - r
   - qualpalr
   - data visualization
+  - geometry
 image: farthest-points.png
-bibliography: bibliography.bib
 ---
 
 My R package [qualpalr](https://github.com/jolars/qualpalr) selects qualitative

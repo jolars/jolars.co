@@ -2,14 +2,15 @@
 title: "Introducing eulerr"
 author: "Johan Larsson"
 date: "2016-10-19"
-description: This is an introduction to my new package, eulerr, an R package that computes and plots  eulerr diagrams of set relationships.
+description: |
+  This is an introduction to my new package, eulerr, an R package that computes
+  and plots  eulerr diagrams of set relationships.
 categories:
   - r
   - eulerr
   - euler diagrams
   - data visualization
 image: eulerr.png
-bibliography: bibliography.bib
 ---
 
 ```{r, include = FALSE}
