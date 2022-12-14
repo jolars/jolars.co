@@ -20,8 +20,6 @@ their differences in appearance. The package then tries to choose the `n`
 colors so that the minimal pairwise distance among them is maximized, that is,
 we want the most similar pair of colors to be as dissimilar as possible.
 
-Bla
-
 This turns out to be much less trivial that one would suspect, which posts on
 [Computational Science](http://scicomp.stackexchange.com/questions/20030/selecting-most-scattered-points-from-a-set-of-points),
 [MATLAB Central](https://se.mathworks.com/matlabcentral/answers/42622-how-can-i-choose-a-subset-of-k-points-the-farthest-apart), 
