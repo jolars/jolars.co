@@ -82,7 +82,7 @@ for each overlap a breeze using the polyclip package [@johnson2018].
 And because basically all shapes in digital maps are polygons,
 there happens to exist a multitude of other useful tools to deal with
 a wide variety of tasks related to polygons. One of these turned out
-to be precisely what I needed: polylabel [@mapbox2018a] from the Mapbox suite.
+to be precisely what I needed: polylabel [@mapbox2018] from the Mapbox suite.
 Because the details of the library
 [have already been explained elsewhere](https://blog.mapbox.com/a-new-algorithm-for-finding-a-visual-center-of-a-polygon-7c77e6492fbc)
 I will spare you the details, but briefly put it uses quadtree
