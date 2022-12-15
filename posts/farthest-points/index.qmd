@@ -40,7 +40,16 @@ for i = 3:n
 
 In R, this code looked like this (in two dimensions):
 
-```{r greedy_approach, fig.height=3, fig.width=6,fig.align='center',fig.cap='Numbers note the order the points were picked in.', fig.align = "center"}
+```{r}
+#| fig-lab: greedy-approach
+#| fig-width: 4
+#| fig-height: 4.3
+#| layout-ncol: 2
+#| fig-keep: [1, 4]
+#| fig-cap: 
+#|   - Point cloud
+#|   - Points selected by the greedy algorithm
+
 set.seed(1)
 # find n points
 n <- 3
@@ -56,12 +65,10 @@ for (i in 3:n) {
   ind[i] <- as.numeric(dimnames(mm)[[2]][k])
 }
 
-par(mfrow = c(1, 2), mai= c(0.5, 0.5, 0.1, 0.1))
-plot(mat, asp = 1, xlab = "", ylab = "")
 plot(mat, asp = 1, xlab = "", ylab = "")
 
+plot(mat, asp = 1, xlab = "", ylab = "")
 points(mat[ind, ], pch = 19)
-
 text(mat[ind, ], adj = c(0, -1.5))
 ```
 
@@ -96,7 +103,15 @@ we are only putting back the same points we started the loop with, which
 always happens. Let's see how this works on the same data set we used above.
 
 
-```{r new_approach, fig.height=3, fig.width=6,fig.align='center',fig.cap='The new algorithm for picking points.'}
+```{r}
+#| fig-lab: new-approach
+#| fig-width: 4
+#| fig-height: 4.3
+#| layout-ncol: 2
+#| fig-keep: [1, 4]
+#| fig-cap: 
+#|   - Point cloud
+#|   - Points selected by the new algorithm
 r <- sample.int(nrow(dmat), n)
 
 repeat {
@@ -109,8 +124,8 @@ repeat {
   if (identical(r_old, r)) break
 }
 
-par(mfrow = c(1, 2), mai= c(0.5, 0.5, 0.1, 0.1))
 plot(mat, asp = 1, xlab = "", ylab = "")
+
 plot(mat, asp = 1, xlab = "", ylab = "")
 points(mat[r, ], pch = 19)
 text(mat[r, ], adj = c(0, -1.5))
@@ -155,8 +170,11 @@ f_new <- function(dat, n) {
 ```{r benchmark}
 n <- 5
 data <- matrix(runif(900), ncol = 3)
-microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)
-
+microbenchmark::microbenchmark(
+  f_greedy(data, n),
+  f_new(data, n),
+  times = 1000L
+)
 ```
 
 The newest development version of qualpalr now uses this updated algorithm which
