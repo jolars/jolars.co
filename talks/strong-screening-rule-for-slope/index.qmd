@@ -8,5 +8,5 @@ This was a talk for [Statistical Learning Seminars](https://statistical-learning
 
 {{< video https://www.youtube.com/embed/oPqaZt0klMg >}}
 
-[{{< fa regular file-pdf >}} Slides](https://statistical-learning-seminars.github.io/slides/200508-johanlarsson.pdf){.badge .badge-large}
-[{{< ai arxiv >}} Paper](http://arxiv.org/abs/2005.03730){.badge .badge-large}
+[<i class="fa-solid fa-file-pdf"></i> Slides](https://statistical-learning-seminars.github.io/slides/200508-johanlarsson.pdf){.btn .btn-primary}
+[<i class="ai ai-arxiv"></i> Preprint](http://arxiv.org/abs/2005.03730){.btn .btn-dark}

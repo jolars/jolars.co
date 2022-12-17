@@ -2,14 +2,14 @@
   tiles:
     - title: eulerr
       href: https://jolars.github.io/eulerr
-      code: https://github.com/jolars/eulerr
+      github: jolars/eulerr
       cran: eulerr
       thumbnail: /assets/images/eulerr.png
       description: |
         Area-proportional Euler diagrams with ellipses.
     - title: qualpalr
       href: https://jolars.github.io/qualpalr
-      code: https://github.com/jolars/qualpalr
+      github: jolars/qualpalr
       cran: qualpalr
       thumbnail: /assets/images/qualpalr.png
       description: |
@@ -18,7 +18,8 @@
   tiles:
     - title: benchopt
       href: https://benchopt.github.io
-      code: https://github.com/benchopt/benchopt
+      github: benchopt/benchopt
+      pypi: benchopt
       thumbnail: thumbnails/benchopt.svg
       description: |
         BenchOpt is a benchmarking suite for optimization algorithms.
