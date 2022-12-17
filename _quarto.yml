@@ -3,6 +3,8 @@ project:
   render:
     - "*.qmd"
     - "*.md"
+  resources:
+    - "/assets/favicons/*"
 
 toc: true
 bibliography: assets/bibliography.bib
@@ -35,8 +37,6 @@ website:
         href: "https://fediscience.org/@jolars"
       - icon: rss
         href: blog.xml
-  resources:
-    - "/assets/favicons/*"
 
 date-format: "D MMMM YYYY"
 
