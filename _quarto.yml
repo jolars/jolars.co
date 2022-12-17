@@ -13,7 +13,6 @@ website:
   repo-url: "https://github.com/jolars/larssonjohan.com"
   repo-actions: [edit, issue]
   search: true
-  favicon: assets/images/favicon.png
   twitter-card: true
   open-graph: true
   google-analytics: 
@@ -36,6 +35,8 @@ website:
         href: "https://fediscience.org/@jolars"
       - icon: rss
         href: blog.xml
+  resources:
+    - "/assets/favicons/*"
 
 date-format: "D MMMM YYYY"
 
