@@ -33,7 +33,6 @@ github: jolars/slopecd
 categories:
   - SLOPE
   - Optimization
-bibliography: citation.bib
 ---
 
 
