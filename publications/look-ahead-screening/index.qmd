@@ -2,40 +2,43 @@
 title: "Look-Ahead Screening Rules for the Lasso"
 author: Johan Larsson
 date: 2021-06-29
+abstract: |
+  The lasso is a popular method to induce shrinkage and sparsity in the
+  solution vector (coefficients) of regression problems, particularly when
+  there are many predictors relative to the number of observations. Solving
+  the lasso in this high-dimensional setting can, however, be computationally
+  demanding. Fortunately, this demand can be alleviated via the use of
+  screening rules that discard predictors prior to fitting the model, leading
+  to a reduced problem to be solved. In this paper, we present a new screening
+  strategy: look-ahead screening. Our method uses safe screening rules to find
+  a range of penalty values for which a given predictor cannot enter the
+  model, thereby screening predictors along the remainder of the path. In
+  experiments we show that these look-ahead screening rules outperform the
+  active warm-start version of the Gap Safe rules.
 citation:
-  abstract: >-
-    The lasso is a popular method to induce shrinkage and sparsity in the
-    solution vector (coefficients) of regression problems, particularly when
-    there are many predictors relative to the number of observations. Solving
-    the lasso in this high-dimensional setting can, however, be computationally
-    demanding. Fortunately, this demand can be alleviated via the use of
-    screening rules that discard predictors prior to fitting the model, leading
-    to a reduced problem to be solved. In this paper, we present a new screening
-    strategy: look-ahead screening. Our method uses safe screening rules to find
-    a range of penalty values for which a given predictor cannot enter the
-    model, thereby screening predictors along the remainder of the path. In
-    experiments we show that these look-ahead screening rules outperform the
-    active warm-start version of the Gap Safe rules.
-  container-title: 22nd European Young Statisticians Meeting - Proceedings
+  author:
+    - Johan Larsson
+  container-title: 22nd European Young Statisticians Meeting -
+    Proceedings
   editor:
-    - literal: Andreas Makridis
-    - literal: Fotios S. Milienos
-    - literal: Panagiotis Papastamoulis
-    - literal: Christina Parpoula
-    - literal: Athanasios Rakitzis
-  event-place: Athens, Greece
-  event-title: 22nd European Young Statisticians Meeting
-  ISBN: 978-960-7943-23-1
-  language: English
-  license: All rights reserved
+    - Andreas Makridis
+    - Fotios S. Milienos
+    - Panagiotis Papastamoulis
+    - Christina Parpoula
+    - Athanasios Rakitzis
+  event: 22nd European Young Statisticians Meeting
+  issued: 2021-09-06
+  language: en-US
   page: 61-65
   publisher: Panteion University of Social and Political Sciences
   publisher-place: Athens, Greece
+  event-place: Athens, Greece
   title: Look-ahead screening rules for the lasso
   type: paper-conference
-  URL: https://www.eysm2021.panteion.gr/files/Proceedings_EYSM_2021.pdf
+  url: "https://www.eysm2021.panteion.gr/files/Proceedings_EYSM_2021.pdf"
 pdf: https://www.eysm2021.panteion.gr/files/Proceedings_EYSM_2021.pdf
 github: jolars/LookAheadScreening
+arxiv: 2105.05648
 categories:
   - Lasso
   - Screening Rules

@@ -30,6 +30,7 @@ citation:
     real data, we show that our method outperforms a long list of competing
     algorithms.
 github: jolars/slopecd
+arxiv: 2210.14780
 categories:
   - SLOPE
   - Optimization
