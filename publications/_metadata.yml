@@ -1,5 +1,6 @@
 format:
   html:
+    template: publication.html
     template-partials: title-metadata.html
 
 sidebar: false

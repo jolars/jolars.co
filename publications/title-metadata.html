@@ -54,58 +54,63 @@ $endif$
   </div>
   $endif$
 
-  $if(type)$
+  $if(citation)$
   <div>
-    <div class="quarto-title-meta-heading">Publication details</div>
+    <div class="quarto-title-meta-heading">Publication Details</div>
     <div class="quarto-title-meta-contents">
       <p>
-        $details$
+        $if(citation.event-place)$
+          In <span class="fst-italic">$citation.container-title$</span>, $citation.event-place$
+        $elseif(citation.volume)$
+        <span class="fst-italic">$citation.container-title$</span>, vol.&nbsp;$citation.volume$$if(citation.number)$no.&nbsp;$citation.number$$endif$$if(citation.page)$, pp.&nbsp;$citation.page$$endif$
+        $else$
+          <span class="fst-italic">$citation.publisher$</span>
+        $endif$
       </p>
     </div>
   </div>
-  $endif$
-
-  $if(type)$
   <div>
     <div class="quarto-title-meta-heading">Links</div>
     <div class="quarto-title-meta-contents">
       <p class="quarto-title-meta-buttons">
-      $if(doi)$
-        <a href="https://doi.org/$doi$" class="btn btn-success btn-sm">
-          <i class="fa-solid fa-link"></i>&nbsp;DOI
-        </a>
-      $endif$
-      $if(link)$
-        <a href="$link$" class="btn btn-success btn-sm">
-          <i class="fa-solid fa-link"></i>&nbsp;URL
-        </a>
-      $endif$
-      $if(pdf)$
-        <a href="$pdf$" class="badge badge-blue"><i class="fa-solid fa-file-pdf"></i>&nbsp;PDF</a>
-      $endif$
-      $if(arxiv)$
-        <a href="https://arxiv.org/abs/$arxiv$" class="btn btn-primary btn-sm">
-          <i class="ai ai-arxiv"></i>&nbsp;arXiv
-        </a>
-      $endif$
-      $if(github)$
-        <a href="http://github.com/$github$" class="btn btn-dark btn-sm">
-          <i class="fa fa-github"></i>&nbsp;Code
-        </a>
-      $endif$
-      $if(bitbucket)$
-        <a href="http://bitbucket.org/$bitbucket$" class="btn btn-dark btn-sm">
-          <i class="fa fa-bitbucket"></i>&nbsp;Code
-        </a>
-      $endif$
-      $if(cran)$
-        <a href="https://CRAN.R-project.org/package=$cran$" class="btn btn-info btn-sm">
-          <i class="fab fa-r-project"></i>&nbsp;CRAN
-        </a>
-      $endif$
-      $if(pypi)$
-        <a href="https://pypi.org/project/$pypi$" class="btn btn-info btn-sm"><i class="fa-brands fa-python"></i>&nbsp;pypi</a>
-      $endif$
+        $if(doi)$
+          <a href="https://doi.org/$doi$" class="btn btn-success btn-sm">
+            <i class="fa-solid fa-link"></i>&nbsp;DOI
+          </a>
+        $endif$
+        $if(url)$
+          <a href="$url$" class="btn btn-success btn-sm">
+            <i class="fa-solid fa-link"></i>&nbsp;URL
+          </a>
+        $endif$
+        $if(pdf)$
+          <a href="$pdf$" class="btn btn-warning btn-sm">
+            <i class="fa-solid fa-file-pdf"></i>&nbsp;PDF
+          </a>
+        $endif$
+        $if(arxiv)$
+          <a href="https://arxiv.org/abs/$arxiv$" class="btn btn-danger btn-sm">
+            <i class="ai ai-arxiv"></i>&nbsp;arXiv
+          </a>
+        $endif$
+        $if(github)$
+          <a href="http://github.com/$github$" class="btn btn-dark btn-sm">
+            <i class="fa fa-github"></i>&nbsp;Code
+          </a>
+        $endif$
+        $if(bitbucket)$
+          <a href="http://bitbucket.org/$bitbucket$" class="btn btn-dark btn-sm">
+            <i class="fa fa-bitbucket"></i>&nbsp;Code
+          </a>
+        $endif$
+        $if(cran)$
+          <a href="https://CRAN.R-project.org/package=$cran$" class="btn btn-info btn-sm">
+            <i class="fab fa-r-project"></i>&nbsp;CRAN
+          </a>
+        $endif$
+        $if(pypi)$
+          <a href="https://pypi.org/project/$pypi$" class="btn btn-info btn-sm"><i class="fa-brands fa-python"></i>&nbsp;pypi</a>
+        $endif$
       </p>
     </div>
 
