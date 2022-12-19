@@ -4,48 +4,48 @@
     <li <%=metadataAttrs(item) %>>
       <span class="listing-title fw-bold"><%= item.title %></span></br>
       <p><span class="listing-author"><%= item.author %></span></br>
-      <% if (item.type == 'journal-article') { %>
-        <% if (item.publication) { %>
-          <span class="listing-publication fst-italic">item.publication %></span>,
+      <% if (item.citation.type == 'journal-article') { %>
+        <% if (item.citation["container-title"]) { %>
+          <span class="listing-publication fst-italic">item.citation["container-title"] %></span>,
         <% } %>
-        <% if (item.volume) { %>
-          <span class="listing-volume">vol.&nbsp;<%= item.volume %></span>,
+        <% if (item.citation.volume) { %>
+          <span class="listing-volume">vol.&nbsp;<%= item.citation.volume %></span>,
         <% } %>
-        <% if (item.number) { %>
-          <span class="listing-number">no.&nbsp;<%= item.number %></span>,
+        <% if (item.citation.number) { %>
+          <span class="listing-number">no.&nbsp;<%= item.citation.number %></span>,
         <% } %>
-        <% if (item.pages) { %>
-          <span class="listing-pages">pp.&nbsp;<%= item.pages %></span>
+        <% if (item.citation.page) { %>
+          <span class="listing-pages">pp.&nbsp;<%= item.citation.page %></span>
         <% } %>
-        <span class="listing-date">, <%= item.date %></span>.
+        <span class="listing-date">, <%= item.citation.date %></span>.
       <% } %>
-      <% if (item.type == 'preprint') { %>
-        <% if (item.publication) { %>
-          In <span class="listing-publication fst-italic"><%= item.publication %></span>,
+      <% if (item.citation.type == 'article') { %>
+        <% if (item.citation.publisher) { %>
+          <span class="listing-archive fst-italic"><%= item.citation.publisher %></span>,
         <% } %>
         <span class="listing-date"><%= item.date %></span>.
       <% } %>
-      <% if (item.type == 'conference-paper') { %>
-        <% if (item.publication) { %>
-          In <span class="listing-publication fst-italic"><%= item.publication %></span>,
+      <% if (item.citation.type == 'paper-conference') { %>
+        <% if (item.citation["container-title"]) { %>
+          In <span class="listing-publication fst-italic"><%= item.citation["container-title"] %></span>,
         <% } %>
-        <% if (item.place) { %>
-          <span class="listing-details"><%= item.place %></span>,
+        <% if (item.citation["event-place"]) { %>
+          <span class="listing-details"><%= item.citation["event-place"] %></span>,
         <% } %>
         <span class="listing-date"><%= item.date %></span>,
-        <% if (item.volume) { %>
-          <span class="listing-publication-volume">vol.&nbsp;<%= item.volume %></span>,
+        <% if (item.citation.volume) { %>
+          <span class="listing-publication-volume">vol.&nbsp;<%= item.citation.volume %></span>,
         <% } %>
-        <% if (item.number) { %>
-          <span class="listing-publication-number">no.&nbsp;<%= item.number %></span>,
+        <% if (item.citation.number) { %>
+          <span class="listing-publication-number">no.&nbsp;<%= item.citation.number %></span>,
         <% } %>
-        <% if (item.pages) { %>
-          <span class="listing-publication-pages">pp.&nbsp;<%= item.pages %></span>.
+        <% if (item.citation.page) { %>
+          <span class="listing-publication-pages">pp.&nbsp;<%= item.citation.page %></span>.
         <% } %>
       <% } %>
       </br>
       <a href="<%= item.path %>" class="btn btn-primary btn-sm">
-        Details
+        <i class="bi bi-file-earmark-text"></i>&nbsp;Details
       </a>
       <% if (item.doi) { %>
         <a href="https://doi.org/<%= item.doi %>" class="btn btn-success btn-sm">
