@@ -1,0 +1,41 @@
+---
+title: SLOPE
+author:
+  - Johan Larsson
+  - Jonas Wallin
+  - Małgorzata Bogdan
+  - Ewout van den Berg
+  - Chiara Sabatti
+  - Emmanuel Candés
+  - Evan Patterson
+  - Weijie Su
+  - Jakub Kała
+  - Krystyna Grzesiak
+  - Michal Burdukiewicz
+  - Akarsh Goyal
+url: https://jolars.github.io/eulerr
+date: 2022-06-09
+categories: R
+github: jolars/slope
+cran: SLOPE
+image: slope.svg
+description: |
+  SLOPE is a package for Sorted L-One Penalized Estimation
+citation:
+  abstract: >-
+    Efficient implementations for Sorted L-One Penalized Estimation (SLOPE):
+    generalized linear models regularized with the sorted L1-norm (Bogdan et al.
+    (2015) <doi:10/gfgwzt>). Supported models include ordinary least-squares
+    regression, binomial regression, multinomial regression, and Poisson
+    regression. Both dense and sparse predictor matrices are supported. In
+    addition, the package features predictor screening rules that enable fast
+    and efficient solutions to high-dimensional problems.
+  genre: R
+  version: 0.5.0
+  issued: 2022-06-09
+  url: https://jolars.github.io/qualpalr
+  license: GPL-3
+  source: R-Packages
+  title: SLOPE
+  type: software
+---

@@ -1,49 +1,41 @@
-
 ```{=html}
-
-<% for (const item of items) { %>
-  <h2><%- item.category %></h2>
-
-  <p><%- item.description %></p>
-
-  <div class="list grid quarto-listing-cols-3" style="column-gap: 10px;">
-
-  <% for (const tile of item.tiles) { %>
-    <div class="quarto-grid-item card h-100 card-left" <%= metadataAttrs(tile) %>>
+<div class="list grid quarto-listing-cols-3" style="column-gap: 10px;">
+  <% for (const item of items) { %>
+    <div class="quarto-grid-item card h-100 card-left" <%= metadataAttrs(item) %>>
       <p class="card-img-top">
-        <img src="<%- tile.thumbnail %>" alt="<%- tile.description %>" class="thumbnail-image card-img" style="height:150px;object-fit:scale-down;"/>
+        <img src="<%- item.image %>" alt="<%- item.description %>" class="thumbnail-image card-img" style="height:150px;object-fit:scale-down;"/>
       </p>
 
       <div class="card-body">
         <h5 class="no-anchor card-title listing-title">
-          <%= tile.title %>
+          <%= item.title %>
         </h5>
-        <% if (tile.description) { %> 
+        <% if (item.description) { %> 
           <p class="card-text listing-description">
-            <%= tile.description %>
+            <%= item.description %>
           </p>
         <% } %>
-        <div class="text-end">
-        <a href="<%= tile.href %>" class="btn btn-primary btn-sm">
+        <div class="text-begin align-bottom">
+        <a href="<%= item.url %>" class="btn btn-primary btn-sm">
           <i class="bi bi-file-earmark-text"></i>&nbsp;Docs
         </a>
-        <% if (tile.cran) { %>
-          <a href="https://CRAN.R-project.org/package=<%= tile.cran %>" class="btn btn-info btn-sm">
+        <% if (item.cran) { %>
+          <a href="https://CRAN.R-project.org/package=<%= item.cran %>" class="btn btn-info btn-sm">
             <i class="fab fa-r-project"></i>&nbsp;CRAN
           </a>
         <% } %>
-        <% if (tile.pypi) { %>
-          <a href="https://pypi.org/project/<%= tile.pypi %>" class="btn btn-info btn-sm">
+        <% if (item.pypi) { %>
+          <a href="https://pypi.org/project/<%= item.pypi %>" class="btn btn-info btn-sm">
             <i class="fa-brands fa-python"></i>&nbsp;pypi
           </a>
         <% } %>
-        <% if (tile.github) { %>
-          <a href="https://github.com/<%= tile.github %>" class="btn btn-dark btn-sm">
+        <% if (item.github) { %>
+          <a href="https://github.com/<%= item.github %>" class="btn btn-dark btn-sm">
             <i class="fa fa-github"></i>&nbsp;Code
           </a>
         <% } %>
-        <% if (tile.bitbucket) { %>
-          <a href="https://bitbucket.com/<%= tile.bitbucket %>" class="btn btn-dark btn-sm">
+        <% if (item.bitbucket) { %>
+          <a href="https://bitbucket.com/<%= item.bitbucket %>" class="btn btn-dark btn-sm">
             <i class="fa fa-bitbucket"></i>&nbsp;Code
           </a>
         <% } %>
@@ -51,9 +43,6 @@
       </div>
     </div>
   <% } %>
-
-  </div>
-
-<% } %>
+</div>
 
 ```

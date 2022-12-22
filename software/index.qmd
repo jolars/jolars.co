@@ -1,9 +1,16 @@
 ---
 title: "Software"
 subtitle: Software that I have contributed to
+description: |
+  If, by any chance, you happen to find yourself using any of this software
+  in your work, please consider citing it. You can find a reference and
+  bibtex entry by clicking on details.
 listing:
+  contents: .
   id: software
   template: software.ejs
-  contents: software.yml
+  categories: true
+  page-size: 50
 page-layout: full
+title-block-banner: false
 ---

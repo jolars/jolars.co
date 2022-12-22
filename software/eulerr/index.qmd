@@ -1,0 +1,36 @@
+---
+title: eulerr
+url: https://jolars.github.io/eulerr
+categories: R
+github: jolars/eulerr
+cran: eulerr
+image: eulerr.png
+description: |
+  Area-proportional Euler diagrams with ellipses.
+citation:
+  abstract: |
+    Euler diagrams are common and user-friendly visualizations for set
+    relationships. Most Euler diagrams use circles, but circles do not always
+    yield accurate diagrams. A promising alternative is ellipses, which, in
+    theory, enable accurate diagrams for a wider range of input. Elliptical
+    diagrams, however, have not yet been implemented for more than three sets or
+    three-set diagrams where there are disjoint or subset relationships. The aim
+    of this paper is to present eulerr: a software package for elliptical Euler
+    diagrams for, in theory, any number of sets. It fits Euler diagrams using
+    numerical optimization and exact-area algorithms through a two-step
+    procedure, first generating an initial layout using pairwise relationships
+    and then finalizing this layout using all set relationships.
+    container-title: Proceedings of International Workshop on Set Visualization and Reasoning
+  event-place: Edinburgh, United Kingdom
+  event-title: Set Visualization and Reasoning 2018
+  license: All rights reserved
+  page: 84-91
+  publisher: CEUR Workshop Proceedings
+  publisher-place: Edinburgh, United Kingdom
+  type: paper-conference
+  URL: http://ceur-ws.org/Vol-2116/paper7.pdf
+  volume: '2116'
+  title: >-
+    A case study in fitting area-proportional Euler diagrams with ellipses using
+    eulerr
+---

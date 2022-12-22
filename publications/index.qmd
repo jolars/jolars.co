@@ -3,7 +3,7 @@ title: Publications
 subtitle: A selection of academic publications that I have co-authored
 description: |
   Please see my [Google Scholar page](https://scholar.google.com/citations?user=DCJvywYAAAAJ)
-  and my [CV](https://github.com/jolars/cv/raw/main/cv.pdf) for more
+  and [CV](https://github.com/jolars/cv/raw/main/cv.pdf) for more
   information.
 listing:
   contents: .

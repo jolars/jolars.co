@@ -1,0 +1,7 @@
+format:
+  html:
+    template: software.html
+    template-partials: title-metadata.html
+
+sidebar: false
+author-title: Authors
