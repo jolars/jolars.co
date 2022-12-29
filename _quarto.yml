@@ -28,8 +28,10 @@ website:
   repo-url: "https://github.com/jolars/larssonjohan.com"
   repo-actions: [edit, issue]
   search: true
-  twitter-card: true
-  open-graph: true
+  twitter-card: 
+    creator: "@joh_larsson"
+  open-graph: 
+    locale: en_US
   google-analytics: 
     tracking-id: "UA-85513662-1" 
     anonymize-ip: true
