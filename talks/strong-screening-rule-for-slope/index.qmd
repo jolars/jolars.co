@@ -1,6 +1,9 @@
 ---
 title: The Strong Screening Rule for SLOPE
 author: Johan Larsson
+description: |
+  A talk for the Statistical Learning Seminar about me and Jonas Wallin's work
+  on screening rules for SLOPE.
 abstract: |
   Extracting relevant features from data sets where the number of observations
   ($n$) is much smaller then the number of predictors ($p$) is a major
