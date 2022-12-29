@@ -1,6 +1,10 @@
 ---
 title: eulerr
+author:
+  - Johan Larsson
+  - Peter Gustafsson
 url: https://jolars.github.io/eulerr
+date: 2018-06-18
 categories: R
 github: jolars/eulerr
 cran: eulerr
@@ -21,8 +25,10 @@ citation:
     procedure, first generating an initial layout using pairwise relationships
     and then finalizing this layout using all set relationships.
     container-title: Proceedings of International Workshop on Set Visualization and Reasoning
+  issued: 2018-06-18
   event-place: Edinburgh, United Kingdom
   event-title: Set Visualization and Reasoning 2018
+  container-title: Set Visualization and Reasoning 2018
   license: All rights reserved
   page: 84-91
   publisher: CEUR Workshop Proceedings
