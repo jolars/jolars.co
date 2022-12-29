@@ -46,10 +46,12 @@ website:
   page-footer:
     left: "Copyright 2022, Johan Larsson"
     right:
-      - icon: mastodon
-        href: "https://fediscience.org/@jolars"
+      - icon: github
+        href: "https://github.com/jolars/larssonjohan.com"
+        aria-label: "Source for this webpage"
       - icon: rss
         href: blog.xml
+        aria-label: RSS blog feed
 
 date-format: "D MMMM YYYY"
 
