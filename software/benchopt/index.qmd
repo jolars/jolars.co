@@ -1,5 +1,27 @@
 ---
 title: benchopt
+author:
+  - Thomas Moreau
+  - Mathurin Massias
+  - Alexandre Gramfort
+  - Pierre Ablin
+  - Pierre-Antoine Bannier
+  - Benjamin Charlier
+  - Mathieu Dagréou
+  - Tom Dupré la Tour
+  - Ghislain Durif
+  - Cassio F. Dantas
+  - Quentin Klopfenstein
+  - Johan Larsson
+  - En Lai
+  - Tanguy Lefort
+  - Benoit Malézieux
+  - Badr Moufad
+  - Binh T. Nguyen
+  - Alain Rakotomamonjy
+  - Zaccharie Ramzi
+  - Joseph Salmon
+  - Samuel Vaiter
 url: https://benchopt.github.io
 categories: Python
 github: benchopt/benchopt

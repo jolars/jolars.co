@@ -45,30 +45,33 @@ $endif$
   </div>
   $endif$
 
-  $if(date)$
+  $if(citation.issued)$
   <div>
     <div class="quarto-title-meta-heading">$labels.published$</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">$date$</p>
+      <p class="date">$citation.issued$</p>
     </div>
   </div>
   $endif$
 
   $if(citation)$
+  $if(citation.version)$
+  $else$
   <div>
-    <div class="quarto-title-meta-heading">Publication Details</div>
+    <div class="quarto-title-meta-heading">Publication</div>
     <div class="quarto-title-meta-contents">
       <p>
         $if(citation.event-place)$
-          In <span class="fst-italic">$citation.container-title$</span>, $citation.event-place$
+          $citation.container-title$$if(citation.event-place)$, $citation.event-place$$endif$
         $elseif(citation.volume)$
-        <span class="fst-italic">$citation.container-title$</span>, vol.&nbsp;$citation.volume$$if(citation.number)$no.&nbsp;$citation.number$$endif$$if(citation.page)$, pp.&nbsp;$citation.page$$endif$
+          $citation.container-title$, vol.&nbsp;$citation.volume$$if(citation.number)$no.&nbsp;$citation.number$$endif$$if(citation.page)$, pp.&nbsp;$citation.page$$endif$
         $else$
-          <span class="fst-italic">$citation.publisher$</span>
+          $citation.publisher$$if(citation.number)$, $citation.number$$endif$
         $endif$
       </p>
     </div>
   </div>
+  $endif$
   <div>
     <div class="quarto-title-meta-heading">Links</div>
     <div class="quarto-title-meta-contents">

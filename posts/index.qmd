@@ -1,6 +1,6 @@
 ---
 title: "Posts"
-subtitle: Infrequent posts about research and programming
+subtitle: Posts about research and programming
 comments: false
 listing:
   contents: .
