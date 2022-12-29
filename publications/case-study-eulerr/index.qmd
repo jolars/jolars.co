@@ -21,6 +21,7 @@ citation:
   event-place: Edinburgh, United Kingdom
   event-title: Set Visualization and Reasoning 2018
   license: All rights reserved
+  issued: 2018-06-18
   page: 84-91
   publisher: CEUR Workshop Proceedings
   publisher-place: Edinburgh, United Kingdom
