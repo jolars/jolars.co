@@ -19,21 +19,18 @@ project:
     - "safari-pinned-tab.svg"
     - "site.webmanifest"
 
-toc: true
-bibliography: assets/bibliography.bib
-
 website:
   title: "Johan Larsson"
   site-url: "https://larssonjohan.com"
   repo-url: "https://github.com/jolars/larssonjohan.com"
   repo-actions: [edit, issue]
   search: true
-  twitter-card: 
+  twitter-card:
     creator: "@joh_larsson"
-  open-graph: 
+  open-graph:
     locale: en_US
-  google-analytics: 
-    tracking-id: "UA-85513662-1" 
+  google-analytics:
+    tracking-id: "UA-85513662-1"
     anonymize-ip: true
   navbar:
     left:
@@ -55,8 +52,6 @@ website:
         href: blog.xml
         aria-label: RSS blog feed
 
-date-format: "D MMMM YYYY"
-
 format:
   html:
     theme: litera
@@ -67,3 +62,7 @@ format:
 
 execute:
   freeze: auto
+
+toc: true
+bibliography: assets/bibliography.bib
+date-format: "D MMMM YYYY"
