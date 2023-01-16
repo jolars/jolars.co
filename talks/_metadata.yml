@@ -1,7 +1,2 @@
-format:
-  html:
-    template: talk.html
-    template-partials: title-metadata.html
-
 sidebar: false
 author-title: Presenter

@@ -52,17 +52,24 @@ $endif$
       <p class="date">$date$</p>
     </div>
   </div>
+  $elseif(citation.issued)$
+  <div>
+    <div class="quarto-title-meta-heading">$labels.published$</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">$citation.issued$</p>
+    </div>
+  </div>
   $endif$
 
   $if(citation)$
+  $if(citation.version)$
+  $else$
   <div>
-    $if(citation.version)$
-    $else$
-    <div class="quarto-title-meta-heading">Publication</div>
+    <div class="quarto-title-meta-heading">Details</div>
     <div class="quarto-title-meta-contents">
       <p>
         $if(citation.event-place)$
-          $citation.container-title$$if(citation.event-place)$, $citation.event-place$$endif$
+          $if(citation.container-title)$$citation.container-title$$elseif(citation.event-title)$$citation.event-title$$endif$$if(citation.event-place)$, $citation.event-place$$endif$
         $elseif(citation.volume)$
           $citation.container-title$, vol.&nbsp;$citation.volume$$if(citation.number)$no.&nbsp;$citation.number$$endif$$if(citation.page)$, pp.&nbsp;$citation.page$$endif$
         $else$
@@ -70,8 +77,8 @@ $endif$
         $endif$
       </p>
     </div>
-    $endif$
   </div>
+  $endif$
   <div>
     <div class="quarto-title-meta-heading">Links</div>
     <div class="quarto-title-meta-contents">
@@ -84,6 +91,11 @@ $endif$
         $if(url)$
           <a href="$url$" class="btn btn-success btn-sm">
             <i class="fa-solid fa-link"></i>&nbsp;URL
+          </a>
+        $endif$
+        $if(slides)$
+          <a href="$slides$" class="btn btn-warning btn-sm">
+            <i class="fa-solid fa-file-pdf"></i>&nbsp;Slides
           </a>
         $endif$
         $if(pdf)$
@@ -129,7 +141,5 @@ $if(abstract)$
   </div>
 </div>
 $endif$
-
-
 
 <p>&nbsp;</p>
