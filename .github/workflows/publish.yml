@@ -1,9 +1,6 @@
 on:
-  workflow_dispatch:
   push:
     branches: [master, main]
-  schedule:
-    - cron: "0 0 * * MON"
 
 name: Quarto Publish
 
@@ -14,7 +11,7 @@ jobs:
       contents: write
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -25,3 +22,5 @@ jobs:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check links with linkcheck
+        uses: filiph/linkcheck@2.0.23
