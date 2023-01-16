@@ -1,5 +1,4 @@
 on:
-  workflow_dispatch:
   push:
     branches: [master, main]
   schedule:
@@ -10,10 +9,11 @@ name: Check Links
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+
       - name: Check links with linkcheck
         uses: filiph/linkcheck@2.0.23
+        with:
+          args: www.larssonjohan.com -e
