@@ -10,7 +10,7 @@ categories:
   - eulerr
   - euler diagrams
   - data visualization
-image: eulerr.png
+image: eulerr.svg
 ---
 
 ```{r, include = FALSE}

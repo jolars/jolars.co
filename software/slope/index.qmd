@@ -18,7 +18,7 @@ date: 2022-06-09
 categories: R
 github: jolars/slope
 cran: SLOPE
-image: slope.svg
+image: slope-alt-title.svg
 description: |
   SLOPE is a package for Sorted L-One Penalized Estimation
 citation:
