@@ -82,7 +82,7 @@ pairs(pal, colorspace = "DIN99d", asp = 1)
 
 The colors are normally used in R by fetching the `hex` attribute of the palette.
 And so it is straightforward to use the output to, say, color the 
-provinces of France (@fig-france
+provinces of France (@fig-france).
 
 ```{r}
 #| label: fig-france
