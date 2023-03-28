@@ -30,7 +30,7 @@ image: benchopt-padded.svg
 description: |
   BenchOpt is a benchmarking suite for optimization algorithms.
   It is built for simplicity, transparency, and reproducibility.
-date: 2022-11-29
+date: 2022-12-6
 citation:
   abstract: |
     Numerical validation is at the core of machine learning research as it
