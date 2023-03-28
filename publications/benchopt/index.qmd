@@ -43,7 +43,7 @@ abstract: |
   that for practical evaluation, the devil is in the details. We hope that
   Benchopt will foster collaborative work in the community hence improving the
   reproducibility of research findings.
-date: 2022-11-29
+date: 2022-12-6
 citation:
   editor:
     - S. Koyejo
