@@ -57,11 +57,11 @@ citation:
   title: 'Benchopt: reproducible, efficient and collaborative optimization benchmarks'
   title-short: Benchopt
   type: paper-conference
-  url: https://papers.nips.cc/paper_files/paper/2022/hash/65a925049647eab0aa06a9faf1cd470b-Abstract-Conference.html
+  url: https://papers.nips.cc/paper_files/paper/2022/hash/a30769d9b62c9b94b72e21e0ca73f338-Abstract-Conference.html
   volume: 35
   page: 25404-25421
-url: https://papers.nips.cc/paper_files/paper/2022/hash/65a925049647eab0aa06a9faf1cd470b-Abstract-Conference.html
-pdf: https://papers.nips.cc/paper_files/paper/2022/file/65a925049647eab0aa06a9faf1cd470b-Paper-Conference.pdf
+url: https://papers.nips.cc/paper_files/paper/2022/hash/a30769d9b62c9b94b72e21e0ca73f338-Abstract-Conference.html
+pdf: https://papers.nips.cc/paper_files/paper/2022/file/a30769d9b62c9b94b72e21e0ca73f338-Paper-Conference.pdf
 arxiv: "2206.13424"
 pypi: benchopt
 categories:
