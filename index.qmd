@@ -8,6 +8,7 @@ about:
     - icon: mastodon
       text: mastodon
       href: "https://fediscience.org/@jolars"
+      rel: me
     - icon: github
       text: github
       href: https://github.com/jolars
