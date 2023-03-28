@@ -6,17 +6,15 @@ author:
   - Jonas Wallin
 date: 2020-12-06
 citation:
-  container-title: Advances in Neural Information Processing Systems 33
+  container-title: Advances in Neural Information Processing Systems
   editor:
     - Hugo Larochelle
     - Marc'Aurelio Ranzato
     - Raia Hadsell
     - Maria-Florina Balcan
     - Hsuan-Tien Lin
-  event-place: Virtual
-  event-title: Neural Information Processing Systems 2020
   language: English
-  page: 14592–14603
+  page: 14592-14603
   publisher: Curran Associates, Inc.
   publisher-place: Red Hook, NY, USA
   type: paper-conference

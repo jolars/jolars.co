@@ -45,16 +45,23 @@ abstract: |
   reproducibility of research findings.
 date: 2022-11-29
 citation:
-  license: All rights reserved
-  issued: 2022-6-28
-  number: arXiv:2206.13424
-  publisher: arXiv
-  source: arXiv.org
+  editor:
+    - S. Koyejo
+    - S. Mohamed
+    - A. Agarwal
+    - D. Belgrave
+    - K. Cho
+    - A. Oh
+  container-title: Advances in Neural Information Processing Systems
+  issued: 2022-12-6
   title: 'Benchopt: reproducible, efficient and collaborative optimization benchmarks'
   title-short: Benchopt
-  type: article
-  doi: 10.48550/arXiv.2206.13424
-  url: http://arxiv.org/abs/2206.13424
+  type: paper-conference
+  url: https://papers.nips.cc/paper_files/paper/2022/hash/65a925049647eab0aa06a9faf1cd470b-Abstract-Conference.html
+  volume: 35
+  page: 25404-25421
+url: https://papers.nips.cc/paper_files/paper/2022/hash/65a925049647eab0aa06a9faf1cd470b-Abstract-Conference.html
+pdf: https://papers.nips.cc/paper_files/paper/2022/hash/65a925049647eab0aa06a9faf1cd470b-Paper-Conference.pdf
 arxiv: "2206.13424"
 pypi: benchopt
 categories:

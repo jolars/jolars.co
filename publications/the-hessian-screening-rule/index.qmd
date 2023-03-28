@@ -2,7 +2,7 @@
 author: 
   - Johan Larsson
   - Jonas Wallin
-date: 2022-10-4
+date: 2022-12-06
 title: "The Hessian Screening Rule"
 abstract: |
   Predictor screening rules, which discard predictors from the design matrix
@@ -18,18 +18,29 @@ abstract: |
   logistic regression. It also performs best overall on the real data sets
   that we examine.
 citation:
-  doi: 10.48550/arXiv.2104.13026
-  issued: 2022-10-4
-  number: arXiv:2104.13026
-  publisher: arXiv
-  source: arXiv.org
+  editor:
+    - S. Koyejo
+    - S. Mohamed
+    - A. Agarwal
+    - D. Belgrave
+    - K. Cho
+    - A. Oh
+  container-title: Advances in Neural Information Processing Systems
+  issued: 2022-12-6
+  page: 15823-15835
+  publisher: Curran Associates, Inc.
+  publisher-place: Red Hook, NY, USA
   title: The Hessian screening rule
-  type: article
-  url: http://arxiv.org/abs/2104.13026
+  type: paper-conference
+  url: https://papers.nips.cc/paper_files/paper/2022/hash/65a925049647eab0aa06a9faf1cd470b-Abstract-Conference.html
+  volume: '35'
+url: https://papers.nips.cc/paper_files/paper/2022/hash/65a925049647eab0aa06a9faf1cd470b-Abstract-Conference.html
+pdf: https://papers.nips.cc/paper_files/paper/2022/file/65a925049647eab0aa06a9faf1cd470b-Paper-Conference.pdf
 arxiv: "2104.13026"
 github: jolars/HessianScreening
 categories:
   - Lasso
   - Screening Rules
 ---
+
 
