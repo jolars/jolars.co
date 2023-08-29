@@ -44,7 +44,7 @@ citation:
 github: jolars/slopecd
 url: https://proceedings.mlr.press/v206/larsson23a.html
 pdf: https://proceedings.mlr.press/v206/larsson23a/larsson23a.pdf
-arxiv: 2210.14780
+arxiv: '2210.14780'
 categories:
   - SLOPE
   - Optimization
