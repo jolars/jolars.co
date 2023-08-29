@@ -1,39 +1,52 @@
 ---
 title: "Coordinate Descent for SLOPE"
-author: 
+author:
   - Johan Larsson
   - Quentin Klopfenstein
   - Mathurin Massias
   - Jonas Wallin
-date: 2022-10-26
+abstract: |
+  The lasso is the most famous sparse regression and feature selection method.
+  One reason for its popularity is the speed at which the underlying
+  optimization problem can be solved. Sorted L-One Penalized Estimation (SLOPE)
+  is a generalization of the lasso with appealing statistical properties. In
+  spite of this, the method has not yet reached widespread interest. A major
+  reason for this is that current software packages that fit SLOPE rely on
+  algorithms that perform poorly in high dimensions. To tackle this issue, we
+  propose a new fast algorithm to solve the SLOPE optimization problem, which
+  combines proximal gradient descent and proximal coordinate descent steps. We
+  provide new results on the directional derivative of the SLOPE penalty and
+  its related SLOPE thresholding operator, as well as provide convergence
+  guarantees for our proposed solver. In extensive benchmarks on simulated and
+  real data, we show that our method outperforms a long list of competing
+  algorithms.
+date: 2023-04-25
 citation:
-  DOI: 10.48550/arXiv.2210.14780
-  number: "arXiv:2210.14780"
-  publisher: arXiv
   source: arXiv.org
   title: Coordinate descent for SLOPE
-  type: article
-  URL: http://arxiv.org/abs/2210.14780
-  abstract: |
-    The lasso is the most famous sparse regression and feature selection method.
-    One reason for its popularity is the speed at which the underlying
-    optimization problem can be solved. Sorted L-One Penalized Estimation (SLOPE)
-    is a generalization of the lasso with appealing statistical properties. In
-    spite of this, the method has not yet reached widespread interest. A major
-    reason for this is that current software packages that fit SLOPE rely on
-    algorithms that perform poorly in high dimensions. To tackle this issue, we
-    propose a new fast algorithm to solve the SLOPE optimization problem, which
-    combines proximal gradient descent and proximal coordinate descent steps. We
-    provide new results on the directional derivative of the SLOPE penalty and
-    its related SLOPE thresholding operator, as well as provide convergence
-    guarantees for our proposed solver. In extensive benchmarks on simulated and
-    real data, we show that our method outperforms a long list of competing
-    algorithms.
+  editor:
+    - Ruiz Francisco
+    - Jennifer Dy
+    - Jan-Willem van de Meent
+  collection-title: Proceedings of machine learning research
+  container-title: >-
+    Proceedings of the 26th international conference on artificial intelligence
+    and statistics
+  event-place: Valencia, Spain
+  event-title: AISTATS 2023
+  issued: 2023-04-25
+  page: 4802–4821
+  publisher: PMLR
+  publisher-place: Valencia, Spain
+  type: paper-conference
+  url: https://proceedings.mlr.press/v206/larsson23a.html
+  volume: '206'
 github: jolars/slopecd
+url: https://proceedings.mlr.press/v206/larsson23a.html
+pdf: https://proceedings.mlr.press/v206/larsson23a/larsson23a.pdf
 arxiv: 2210.14780
 categories:
   - SLOPE
   - Optimization
 ---
-
 
