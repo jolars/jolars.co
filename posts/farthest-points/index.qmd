@@ -102,7 +102,6 @@ M to find the point with the highest minimum distance. Rinse and repeat until
 we are only putting back the same points we started the loop with, which
 always happens. Let's see how this works on the same data set we used above.
 
-
 ```{r}
 #| fig-lab: new-approach
 #| fig-width: 4
