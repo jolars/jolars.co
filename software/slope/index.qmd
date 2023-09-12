@@ -13,7 +13,7 @@ author:
   - Krystyna Grzesiak
   - Michal Burdukiewicz
   - Akarsh Goyal
-url: https://jolars.github.io/eulerr
+url: https://jolars.github.io/slope
 date: 2022-06-09
 categories: R
 github: jolars/slope
