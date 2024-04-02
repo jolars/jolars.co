@@ -14,8 +14,6 @@ about:
       href: https://github.com/jolars
     - text: <i class="ai ai-google-scholar"></i> google scholar
       href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
-    - text: <i class="ai ai-researchgate"></i> research gate
-      href: https://www.researchgate.net/profile/Johan-Larsson-8
     - icon: envelope
       text: mail
       href: mailto:johanlarsson@outlook.com
