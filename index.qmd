@@ -6,17 +6,17 @@ about:
   image-shape: round
   links:
     - icon: mastodon
-      text: mastodon
-      aria-label: mastodon
+      text: Mastodon
+      aria-label: Mastodon
       href: "https://fediscience.org/@jolars"
       rel: "me"
     - icon: github
-      text: github
+      text: GitHub
       href: https://github.com/jolars
-    - text: <i class="ai ai-google-scholar"></i> google scholar
+    - text: <i class="ai ai-google-scholar"></i> Google Scholar
       href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
     - icon: envelope
-      text: mail
+      text: Mail
       href: mailto:johanlarsson@outlook.com
 ---
 
