@@ -8,7 +8,7 @@ about:
     - icon: mastodon
       text: Mastodon
       aria-label: Mastodon
-      href: "https://fediscience.org/@jolars"
+      href: "https://mastodon.social/@jolars"
       rel: "me"
     - icon: github
       text: GitHub
