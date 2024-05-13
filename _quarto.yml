@@ -47,6 +47,7 @@ website:
     right:
       - icon: rss
         href: index.xml
+        aria-label: RSS blog feed
   page-footer:
     left: "Copyright 2022, Johan Larsson"
     right:
