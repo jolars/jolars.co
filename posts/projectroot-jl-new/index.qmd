@@ -1,0 +1,92 @@
+---
+title: "New Julia Package: ProjectRoot"
+author: Johan Larsson
+date: "2024-05-13"
+description: I have created a new Julia package for easy file referencing within project workflows.
+categories:
+  - julia
+  - software
+image: projectroot-logo.svg
+draft: true
+---
+
+I have created my first [Julia](https://julialang.org) package! It is called
+[ProjectRoot](https://github.com/jolars/ProjectRoot.jl) and is
+a small utility package that helps with file referencing withing a
+project-oriented workflow. 
+
+I've stolen the idea of the package from the R and Python 
+packages [here](https://here.r-lib.org/) and [pyprojroot](https://github.com/chendaniely/pyprojroot), 
+which are package that I have used frequently in the past
+to simplify file referencing for research projects, particularly when referencing data files or creating plot files in a project.
+
+## Installation
+
+The package is on the general Julia registry, so it can be installed in Julia
+by calling
+
+```julia
+]add ProjectRoot
+```
+
+## Usage
+
+The package is designed to be light on dependencies and
+carries only a single exported macro, `@projectroot`.
+And its usage is simple. Consider the following simple directory structure.
+
+```
+MyProject
+├── scripts
+│   └── A.jl
+├── src
+│   └── B.jl
+└── Project.toml
+```
+
+If you want to refer to a file, say `src/B.jl`, you simply
+need to use
+
+```julia
+@projectroot("src", "B.jl")
+```
+
+anywhere in your project, for instance in `scripts/A.jl`.
+
+## How it Works
+
+The `@projectroot` macro fetches the file from where it is called and then recursively searches upwards in the file hierarchy until it finds one of the following:
+
+1. A `.projectroot` file
+2. A `Project.toml` file
+3. A `JuliaProject.toml` file
+4. A `Manifest.toml` file
+5. A `.git` folder
+6. An `.svn` folder
+
+The search terminates when it finds one of these files or when you reach the root of the file system. And this is what `@projectroot` returns.
+
+String interpolation is also supported, so you can use
+
+```julia
+file = "B.jl"
+@projectroot("src") * "/$(file)"
+```
+
+and so on.
+
+## REPL
+
+Calling `@projectroot` from the REPL uses the same logic as above, but the search starts from the current working directory instead.
+
+## Alternatives
+
+There is already similar functionality in the excellent [DrWatson](https://github.com/JuliaDynamics/DrWatson.jl) package. But I generally prescribe to the Unix philosophy (Doug McIlroy):
+
+> Make each program do one thing well. To do a new job, build afresh rather than complicate old programs by adding new "features".
+
+So if you just need a lightweight package in the same spirit as `here` and `pyprojroot`, then `ProjectRoot` might just be the right tool for you.
+
+## Contributing
+
+As always, I am happy for any kind of contribution. This is my first Julia package and I still haven't wrapped my head around all the intricacies of Julia and its package ecosystem. So if you have any suggestions, please let me know. The source code is stored in the GitHub repository at [jolars/ProjectRoot.jl](https://github.com/jolars/ProjectRoot.jl) and you can find the documentation for the latest stable version [here](https://jolars.github.io/ProjectRoot.jl/stable/).
