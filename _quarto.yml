@@ -49,7 +49,7 @@ website:
         href: index.xml
         aria-label: RSS blog feed
   page-footer:
-    left: "Copyright 2022, Johan Larsson"
+    left: "Copyright 2024, Johan Larsson"
     right:
       - icon: github
         href: "https://github.com/jolars/larssonjohan.com"
