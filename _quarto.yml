@@ -59,6 +59,7 @@ format:
     theme: litera
     css: styles.css
     html-math-method: katex
+    pagetitle: "{{< meta title >}}"
     include-in-header:
       file: header.html
     template-partials:
