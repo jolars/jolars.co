@@ -22,6 +22,8 @@ project:
 website:
   title: "Johan Larsson"
   site-url: "https://larssonjohan.com"
+  description: |
+    My personal website, where I write about my work as a researcher in statistics as well as software that I am developing.
   repo-url: "https://github.com/jolars/larssonjohan.com"
   repo-actions: [edit, issue]
   search: true
@@ -42,15 +44,15 @@ website:
         href: publications/index.qmd
       - text: Talks
         href: talks/index.qmd
+    right:
+      - icon: rss
+        href: index.xml
   page-footer:
     left: "Copyright 2022, Johan Larsson"
     right:
       - icon: github
         href: "https://github.com/jolars/larssonjohan.com"
         aria-label: "Source for this webpage"
-      - icon: rss
-        href: blog.xml
-        aria-label: RSS blog feed
 
 format:
   html:
