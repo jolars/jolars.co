@@ -44,16 +44,15 @@ website:
         href: publications/index.qmd
       - text: Talks
         href: talks/index.qmd
-    right:
-      - icon: rss
-        href: index.xml
-        aria-label: RSS blog feed
   page-footer:
     left: "Copyright 2024, Johan Larsson"
     right:
       - icon: github
         href: "https://github.com/jolars/larssonjohan.com"
         aria-label: "Source for this webpage"
+      - icon: rss
+        href: posts/index.xml
+        aria-label: RSS blog feed
 
 format:
   html:
