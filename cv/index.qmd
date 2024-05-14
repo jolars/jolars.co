@@ -8,7 +8,6 @@ format:
     toc: false
     papersize: a4
     documentclass: article
-    fontfamily: libertinus
     number-sections: true
     linkcolor: CadetBlue
     citecolor: CadetBlue
