@@ -1,17 +1,19 @@
 ---
 title: CV
+pdf-engine: lualatex
 format:
   html:
     css:
       - styles.css
   pdf: 
     toc: false
-    fontfamily: libertinus-otf
+    fontfamily: libertinus
     papersize: a4
     documentclass: article
     number-sections: true
-    linkcolor: CadetBlue
-    citecolor: CadetBlue
+    linkcolor: SteelBlue4
+    urlcolor: SteelBlue4
+    citecolor: SteelBlue4
     geometry:
       - textwidth=15cm
       - nomarginpar
