@@ -23,9 +23,13 @@ jobs:
           packages: |
             scheme-basic
             libertinus
+            libertinus-otf
             academicons
             fontawesome5
             hyperref
+            unicode-math
+            lualatex-math
+            xkeyval
 
       - name: Render and publish
         uses: quarto-dev/quarto-actions/publish@v2
