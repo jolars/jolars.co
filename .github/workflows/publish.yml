@@ -16,10 +16,12 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Install TeX Live
+        uses: zauguin/install-texlive@v3
         with:
-          tinytex: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          packages: >
+            scheme-basic academicons fontawesome5 libertinus
 
       - name: Render and publish
         uses: quarto-dev/quarto-actions/publish@v2
