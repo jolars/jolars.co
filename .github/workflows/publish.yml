@@ -16,12 +16,14 @@ jobs:
 
       - name: Check Markdown Links
         uses: gaurav-nelson/github-action-markdown-link-check@v1
-        with: 
+        with:
           file-extension: ".qmd"
           config-file: .github/workflows/mlc_config.json
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
 
       - name: Render and publish
         uses: quarto-dev/quarto-actions/publish@v2
