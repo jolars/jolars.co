@@ -1,7 +1,14 @@
 {
+  "projectBaseUrl": "https://larssonjohan.com",
   "ignorePatterns": [
     {
       "pattern": "^.*researchgate.net.*$"
+    }
+  ],
+  "replacementPatterns": [
+    {
+      "pattern": "^/",
+      "replacement": "{{BASEURL}}/"
     }
   ]
 }
