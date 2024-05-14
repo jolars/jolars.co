@@ -2,7 +2,7 @@
 title: Publications
 subtitle: A selection of academic publications that I have co-authored
 description: |
-  To receive updates on ongoing research, please follow me on my [Google Scholar page](https://scholar.google.com/citations?user=DCJvywYAAAAJ) or subscribe to the [RSS feed](https://larssonjohan.com/posts/index.xml).
+  To receive updates on ongoing research, please follow me on my [Google Scholar page](https://scholar.google.com/citations?user=DCJvywYAAAAJ) or subscribe to the [RSS feed](/posts/index.xml).
 listing:
   contents: .
   template: publications.ejs
