@@ -2,9 +2,7 @@
 title: Publications
 subtitle: A selection of academic publications that I have co-authored
 description: |
-  Please see my [Google Scholar page](https://scholar.google.com/citations?user=DCJvywYAAAAJ)
-  and [CV](https://github.com/jolars/cv/raw/main/cv.pdf) for more
-  information.
+  To receive updates on ongoing research, please follow me on my [Google Scholar page](https://scholar.google.com/citations?user=DCJvywYAAAAJ) or subscribe to the [RSS feed](/posts/index.xml).
 listing:
   contents: .
   template: publications.ejs
