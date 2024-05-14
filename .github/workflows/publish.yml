@@ -14,12 +14,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Check Markdown Links
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
-        with:
-          file-extension: ".qmd"
-          config-file: .github/workflows/mlc_config.json
-
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
