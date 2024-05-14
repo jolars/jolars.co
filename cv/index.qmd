@@ -7,7 +7,7 @@ format:
       - styles.css
   pdf: 
     toc: false
-    fontfamily: libertinus
+    fontfamily: libertine
     papersize: a4
     documentclass: article
     number-sections: true
