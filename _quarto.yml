@@ -44,6 +44,8 @@ website:
         href: publications/index.qmd
       - text: Talks
         href: talks/index.qmd
+      - text: CV
+        href: cv/index.qmd
   page-footer:
     left: "Copyright 2024, Johan Larsson"
     right:

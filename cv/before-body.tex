@@ -1,0 +1,79 @@
+$if(has-frontmatter)$
+\frontmatter
+$endif$
+
+\fancyhead{}
+$if(author)$
+\fancyhead[L]{$author$}
+$endif$
+$if(title)$
+\fancyhead[R]{$title$}
+$endif$
+
+\pagestyle{fancy}
+\thispagestyle{plain}
+
+$if(title)$
+{\large\textcolor{darkgray}{$title$}}\smallskip
+$endif$
+
+$if(author)$
+\noindent {\huge \bfseries $author$}\smallskip
+$endif$
+
+\noindent {\large \today}
+
+\vskip 1\baselineskip
+
+\begin{minipage}[t]{0.5\textwidth}
+  $if(address)$
+  \small\noindent $address$
+  $endif$
+
+  $if(email)$
+  \href{mailto:$email$}{\nolinkurl{$email$}}
+  $endif$
+
+  $if(phone)$
+  \href{tel:$phone$}{$phone$}
+  $endif$
+\end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+  \raggedleft\small
+
+  $if(homepage)$
+  {\faHome}\, 
+  \href{$homepage$}{\nolinkurl{$homepage$}}
+  $endif$
+
+  $if(publons)$
+  {\aiPublons}\, 
+  \href{https://publons.com/a/$publons$}{\nolinkurl{publons.com/a/$publons$}}
+  $endif$
+
+  $if(github)$
+  {\faGithub}\, 
+  \href{https://github.com/$github$}{\nolinkurl{github.com/$github$}}
+  $endif$
+
+  $if(orcid)$
+  {\aiOrcid}\, 
+  \href{https://orcid.org/$orcid$}{$orcid$}
+  $endif$
+
+  $if(researchgate)$
+  {\aiResearchGate}\, 
+  \href{https://www.researchgate.net/profile/$researchgate$}{Research Gate}
+  $endif$
+
+  $if(google-scholar)$
+  {\aiGoogleScholar}\, \href{https://scholar.google.com/citations?user=$google-scholar$}{Google Scholar}
+  $endif$
+
+  $if(mastodon-id)$
+  $if(mastodon-server)$
+  {\faMastodon}\, 
+  \href{https://$mastodon-server$/@$mastodon-id$}{\nolinkurl{@$mastodon-id$@$mastodon-server$}}
+  $endif$
+  $endif$
+\end{minipage}

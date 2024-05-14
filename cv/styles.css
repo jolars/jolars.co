@@ -1,0 +1,24 @@
+dl {
+  display: grid;
+  align-items: baseline;
+  grid-template-columns: auto 1fr;
+  gap: 10px 20px;
+}
+
+dt {
+  grid-column: 1;
+  font-size: 0.8em;
+}
+
+dd {
+  grid-column: 2;
+  margin: 0;
+}
+
+dd p {
+  margin-bottom: 0.2ex;
+}
+
+hanging-indent {
+  margin-left: 0;
+}

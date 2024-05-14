@@ -1,0 +1,211 @@
+---
+title: CV
+format:
+  html:
+    css:
+      - styles.css
+  pdf: 
+    toc: false
+    papersize: a4
+    documentclass: article
+    fontfamily: libertinus
+    number-sections: true
+    linkcolor: CadetBlue
+    geometry:
+      - textwidth=15cm
+      - nomarginpar
+    template-partials:
+      - before-title.tex
+      - before-body.tex
+      - title.tex
+author: Johan Larsson
+phone: "+46730353836"
+address: "Lund, Sweden"
+email: johanlarsson@outlook.com
+homepage: https://larssonjohan.com
+orcid: 0000-0002-1825-0097
+github: jolars
+google-scholar: DCJvywYAAAAJ
+mastodon-id: jolars
+mastodon-server: mastodon.social
+nocite: '@*'
+bibliography:
+  articles: articles.bib
+  theses: theses.bib
+csl: apa-cv.csl
+filters:
+  - multibib
+date: last-modified
+validate-yaml: false
+citeproc: false
+---
+
+## Education
+
+2018--2024
+
+:   **PhD in statistics**, *Department of Statistics, Lund University*
+
+    Title: "Optimization and Algorithms in Sparse Regression"
+
+    Supervisors: Jonas Wallin and Malgorzata Bogdan
+
+2016--2018
+
+:   **Bachelor's degree in statistics**, *Department of Statistics, Lund University*
+
+    Title: "eulerr: Area-Propotional Euler Diagrams with Ellipses"
+
+    Supervisor: Peter Gustafsson
+
+## Professional Experience
+
+2018--2024
+
+:   **PhD Student**, *Department of Statistics, Lund University*
+
+## Publications
+
+### Conference and Journal Articles
+
+::: {#refs-articles}
+:::
+
+### Theses
+
+::: {#refs-theses}
+:::
+
+## Teaching
+
+### Course Development
+
+2020--2023
+
+:   Data Visualization, *Department of Statistics, Lund University*
+
+### Instructor
+
+2020--2023
+
+:   Data Visualization, *Department of Statistics, Lund University*
+
+2019--2021
+
+:   Statistics: Basic Course, *Department of Statistics, Lund University*
+
+### Teaching Assistant
+
+2021
+
+:   Introduction to R Programming, *Department of Statistics, Lund University*. 
+
+2019--2021
+
+:   Statistics for Fire Engineers, *Department of Statistics, Lund University*. 
+
+2019--2020
+
+:   Data Mining and Visualization, *Department of Statistics, Lund University*. 
+
+2019
+
+:   Artificial Intelligence and Deep Learning, *Department of Statistics, Lund University*.
+
+
+## Supervision
+
+2023
+
+:   Bachelor's Thesis, *Department of Statistics, Lund University*. 
+
+    Student: Elias Gullberg
+
+    Title: Weather Factors and E. coli Concentration in Barnviken, Malmö -- A Linear Mixed Model Approach
+
+2023
+
+:   Bachelor's Thesis, *Department of Statistics, Lund University*. 
+
+    Students: Marcus Stolz, Jonathan Christopher
+
+    Title: Exploring the Impact of Pseudo and Quasi Random Number Generators on Monte Carlo Integration of the Multivariate Normal Distribution
+
+2022
+
+:   Master's Thesis, *Data Analysis and Business Analytics, Lund University*
+
+    Students: Gustavo Lemos Borba, Stella Sofia Sologaistoa Betancourt
+
+    Title: Interactive Network Visualization of Insurance Portfolios
+
+2019--2020
+
+:   Google Summer of Code
+
+    Students: Qincheng Liu (2019), Akarsh Goyal (2020)
+
+
+## Referee Service
+
+2024
+
+:   ICML, Computo
+
+2023
+
+:   Journal of Computational and Graphical Statistics
+
+2022
+
+:   NeurIPS, ICML
+
+2021
+
+:   NeurIPS
+
+## Comittee Service
+
+
+2020--2022
+
+:   Statistical Learning Seminar Series, *Main Organizer*
+
+    <https://statistical-learning-seminars.github.io/>
+
+## Software
+
+SLOPE
+
+:   Generalized linear models penalized with the sorted L1 norm
+
+    Author and maintainer
+
+    R package (<https://CRAN.R-project.org/package=SLOPE>)
+
+benchopt
+
+:   Reproducible, efficient and collaborative optimization benchmarks
+
+    Contributor
+
+    Python package (<https://benchopt.github.io>)
+
+eulerr
+
+:   Area-propotional Euler diagrams with ellipses
+
+    Author and maintainer
+
+    R package (<https://CRAN.R-project.org/package=eulerr>)
+
+
+## Contracted Work
+
+2021
+
+:   **WHO Antimicrobial Resistance Dashboard**
+
+    Contracted work to develop and deploy a visualization dashboard for
+    WHO's Antimicrobial Resistance team in Europe.
+
