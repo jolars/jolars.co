@@ -6,7 +6,7 @@ format:
       - styles.css
   pdf: 
     toc: false
-    mainfont: LibertinusSerif-Regular
+    fontfamily: libertinus-otf
     papersize: a4
     documentclass: article
     number-sections: true
@@ -19,9 +19,6 @@ format:
       - before-title.tex
       - before-body.tex
       - title.tex
-    include-in-header:
-      - text: |
-          \usepackage{libertinus}
 author: Johan Larsson
 phone: "+46730353836"
 address: "Lund, Sweden"
