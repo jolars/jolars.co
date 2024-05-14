@@ -17,11 +17,15 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install TeX Live
-        uses: zauguin/install-texlive@v3
+      - name: Setup TeX Live
+        uses: teatimeguest/setup-texlive-action@v3
         with:
-          packages: >
-            scheme-basic academicons fontawesome5 libertinus
+          packages: |
+            scheme-basic
+            libertinus
+            academicons
+            fontawesome5
+            hyperref
 
       - name: Render and publish
         uses: quarto-dev/quarto-actions/publish@v2
