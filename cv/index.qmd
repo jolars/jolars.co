@@ -24,6 +24,8 @@ format:
       - title.tex
 author: Johan Larsson
 address: "Lund, Sweden"
+fontawesome: true
+academicons: true
 email: johanlarsson@outlook.com
 homepage: https://larssonjohan.com
 orcid: 0000-0002-4029-5945
