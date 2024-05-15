@@ -13,7 +13,7 @@ about:
     - icon: github
       text: GitHub
       href: https://github.com/jolars
-    - text: <i class="ai ai-google-scholar"></i> Google Scholar
+    - text: <i class="fa-brands fa-google-scholar"></i> Google Scholar
       href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
     - icon: envelope
       text: Mail
