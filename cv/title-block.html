@@ -5,9 +5,9 @@ $if(date)$
 <p class="date">$date$</p>
 $endif$
 
-<div class="grid">
-    <div class="g-col-12 g-col-sm-6">
-      <p>
+<p>
+  <div class="grid">
+      <div class="g-col-12 g-col-sm-6">
         <small>
         $if(address)$
           <div><i class="bi bi-pin-map-fill"></i>&ensp;$address$</div>
@@ -19,10 +19,8 @@ $endif$
           <div><i class="fa-solid fa-envelope"></i>&ensp;<a href="mailto:$email$">$email$</a></div>
         $endif$
         </small>
-      </p>
-    </div>
-    <div class="g-col-12 g-col-sm-6">
-      <p>
+      </div>
+      <div class="g-col-12 g-col-sm-6">
         <small>
           $if(github)$
           <div><i class="bi bi-github"></i>&ensp;<a href="https://github.com/$github$">$github$</a></div>
@@ -39,7 +37,7 @@ $endif$
           $endif$
           $endif$
         </small>
-      </p>
-    </div>
-</div>
+      </div>
+  </div>
+</p>
 </header>
