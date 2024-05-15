@@ -4,6 +4,8 @@ format:
   html:
     css:
       - styles.css
+    template-partials:
+      title-block.html
   pdf: 
     toc: false
     fontfamily: libertine
@@ -21,7 +23,6 @@ format:
       - before-body.tex
       - title.tex
 author: Johan Larsson
-phone: "+46730353836"
 address: "Lund, Sweden"
 email: johanlarsson@outlook.com
 homepage: https://larssonjohan.com
@@ -48,9 +49,9 @@ citeproc: false
 
 :   **PhD in statistics**, *Department of Statistics, Lund University*
 
-    Title: "Optimization and Algorithms in Sparse Regression"
+    Title: "Optimization and Algorithms in Sparse Regression "
 
-    Supervisors: Jonas Wallin and Malgorzata Bogdan
+    Supervisors: Jonas Wallin and Malgorzata Bogdan 
 
 2016--2018
 
