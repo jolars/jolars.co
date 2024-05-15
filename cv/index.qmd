@@ -51,7 +51,7 @@ citeproc: false
 
 :   **PhD in statistics**, *Department of Statistics, Lund University*
 
-    Title: "Optimization and Algorithms in Sparse Regression "
+    Title: "Optimization and Algorithms in Sparse Regression"
 
     Supervisors: Jonas Wallin and Malgorzata Bogdan 
 
