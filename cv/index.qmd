@@ -26,7 +26,7 @@ author: Johan Larsson
 address: "Lund, Sweden"
 email: johanlarsson@outlook.com
 homepage: https://larssonjohan.com
-orcid: 0000-0002-1825-0097
+orcid: 0000-0002-4029-5945
 github: jolars
 google-scholar: DCJvywYAAAAJ
 mastodon-id: jolars
