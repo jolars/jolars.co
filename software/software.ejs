@@ -15,31 +15,31 @@
           </p>
         <% } %>
         <div class="text-begin">
-        <a href="<%= item.path %>" class="btn btn-primary btn-sm">
+        <a href="<%= item.path %>" class="btn btn-primary btn-sm mb-1">
           <i class="bi bi-file-earmark-text"></i>&nbsp;Details
         </a>
         <% if (item.url) { %> 
-          <a href="<%= item.url %>" class="btn btn-success btn-sm">
+          <a href="<%= item.url %>" class="btn btn-success btn-sm mb-1">
             <i class="bi bi-file-earmark-text"></i>&nbsp;Docs
           </a>
         <% } %>
         <% if (item.cran) { %>
-          <a href="https://CRAN.R-project.org/package=<%= item.cran %>" class="btn btn-info btn-sm">
+          <a href="https://CRAN.R-project.org/package=<%= item.cran %>" class="btn btn-info btn-sm mb-1">
             <i class="fab fa-r-project"></i>&nbsp;CRAN
           </a>
         <% } %>
         <% if (item.pypi) { %>
-          <a href="https://pypi.org/project/<%= item.pypi %>" class="btn btn-info btn-sm">
+          <a href="https://pypi.org/project/<%= item.pypi %>" class="btn btn-info btn-sm mb-1">
             <i class="fa-brands fa-python"></i>&nbsp;pypi
           </a>
         <% } %>
         <% if (item.github) { %>
-          <a href="https://github.com/<%= item.github %>" class="btn btn-dark btn-sm">
+          <a href="https://github.com/<%= item.github %>" class="btn btn-dark btn-sm mb-1">
             <i class="fa fa-github"></i>&nbsp;Code
           </a>
         <% } %>
         <% if (item.bitbucket) { %>
-          <a href="https://bitbucket.com/<%= item.bitbucket %>" class="btn btn-dark btn-sm">
+          <a href="https://bitbucket.com/<%= item.bitbucket %>" class="btn btn-dark btn-sm mb-1">
             <i class="fa fa-bitbucket"></i>&nbsp;Code
           </a>
         <% } %>
