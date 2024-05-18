@@ -58,7 +58,9 @@ website:
 
 format:
   html:
-    theme: litera
+    theme:
+      light: flatly
+      dark: darkly
     css: styles.css
     html-math-method: katex
     pagetitle: "{{< meta title >}}"
