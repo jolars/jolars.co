@@ -56,49 +56,51 @@
           <% } %>
         <% } %>
         </br>
-        <a href="<%= item.path %>" class="btn btn-primary btn-sm">
-          <i class="bi bi-file-earmark-text"></i>&nbsp;Details
-        </a>
-        <% if (item.doi) { %>
-          <a href="https://doi.org/<%= item.doi %>" class="btn btn-success btn-sm">
-            <i class="fa-solid fa-link"></i>&nbsp;DOI
+        <span class="citation-buttons">
+          <a href="<%= item.path %>" class="btn btn-primary btn-sm mt-1">
+            <i class="bi bi-file-earmark-text"></i>&nbsp;Details
           </a>
-        <% } %>
-        <% if (item.url) { %>
-          <a href="<%= item.url %>" class="btn btn-success btn-sm">
-            <i class="fa-solid fa-link"></i>&nbsp;URL
-          </a>
-        <% } %>
-        <% if (item.pdf) { %>
-          <a href="<%= item.pdf %>" class="btn btn-warning btn-sm">
-            <i class="fa-solid fa-file-pdf"></i>&nbsp;PDF
-          </a>
-        <% } %>
-        <% if (item.arxiv) { %>
-          <a href="https://arxiv.org/abs/<%= item.arxiv %>" class="btn btn-danger btn-sm">
-            <i class="ai ai-arxiv"></i>&nbsp;arXiv
-          </a>
-        <% } %>
-        <% if (item.github) { %>
-          <a href="https://github.com/<%= item.github %>" class="btn btn-dark btn-sm">
-            <i class="fa fa-github"></i>&nbsp;Code
-          </a>
-        <% } %>
-        <% if (item.bitbucket) { %>
-          <a href="https://bitbucket.com/<%= item.bitbucket %>" class="btn btn-dark btn-sm">
-            <i class="fa fa-bitbucket"></i>&nbsp;Code
-          </a>
-        <% } %>
-        <% if (item.cran) { %>
-          <a href="https://CRAN.R-project.org/package=<%= item.cran %>" class="btn btn-info btn-sm">
-            <i class="fab fa-r-project"></i>&nbsp;CRAN
-          </a>
-        <% } %>
-        <% if (item.pypi) { %>
-          <a href="https://pypi.org/project/<%= item.pypi %>" class="btn btn-info btn-sm">
-            <i class="fa-brands fa-python"></i>&nbsp;pypi
-          </a>
-        <% } %>
+          <% if (item.doi) { %>
+            <a href="https://doi.org/<%= item.doi %>" class="btn btn-success btn-sm mt-1">
+              <i class="fa-solid fa-link"></i>&nbsp;DOI
+            </a>
+          <% } %>
+          <% if (item.url) { %>
+            <a href="<%= item.url %>" class="btn btn-success btn-sm mt-1">
+              <i class="fa-solid fa-link"></i>&nbsp;URL
+            </a>
+          <% } %>
+          <% if (item.pdf) { %>
+            <a href="<%= item.pdf %>" class="btn btn-warning btn-sm mt-1">
+              <i class="fa-solid fa-file-pdf"></i>&nbsp;PDF
+            </a>
+          <% } %>
+          <% if (item.arxiv) { %>
+            <a href="https://arxiv.org/abs/<%= item.arxiv %>" class="btn btn-danger btn-sm mt-1">
+              <i class="ai ai-arxiv"></i>&nbsp;arXiv
+            </a>
+          <% } %>
+          <% if (item.github) { %>
+            <a href="https://github.com/<%= item.github %>" class="btn btn-dark btn-sm mt-1">
+              <i class="fa fa-github"></i>&nbsp;Code
+            </a>
+          <% } %>
+          <% if (item.bitbucket) { %>
+            <a href="https://bitbucket.com/<%= item.bitbucket %>" class="btn btn-dark btn-sm mt-1">
+              <i class="fa fa-bitbucket"></i>&nbsp;Code
+            </a>
+          <% } %>
+          <% if (item.cran) { %>
+            <a href="https://CRAN.R-project.org/package=<%= item.cran %>" class="btn btn-info btn-sm mt-1">
+              <i class="fab fa-r-project"></i>&nbsp;CRAN
+            </a>
+          <% } %>
+          <% if (item.pypi) { %>
+            <a href="https://pypi.org/project/<%= item.pypi %>" class="btn btn-info btn-sm mt-1">
+              <i class="fa-brands fa-python"></i>&nbsp;pypi
+            </a>
+          <% } %>
+        </span>
       </p>
     </li>
   <% } %>
