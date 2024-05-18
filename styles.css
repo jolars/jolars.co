@@ -1,4 +1,6 @@
-.katex { font-size: 1em; }
+.katex {
+  font-size: 1em;
+}
 
 /* Badges */
 
@@ -6,13 +8,36 @@ a {
   text-decoration: none;
 }
 
-.quarto-title-meta-contents
-.quarto-title-meta-buttons
-a {
+.quarto-title-meta-contents .quarto-title-meta-buttons a {
   color: white !important;
-} 
-
-ul, .publication-list {
-  padding-left: 1rem;
 }
 
+ul,
+.publication-list {
+  /* padding-left: 1rem; */
+  /* list-style-type: none; /* Remove bullets */
+  /* padding: 0; /* Remove padding */
+  /* margin: 0; /* Remove margins */
+  list-style: none;
+  padding-left: 0;
+  display: table;
+}
+
+ul,
+.publication-list li::before {
+  content: "•";
+  display: table-cell;
+  padding-right: 0.4em;
+}
+
+ul,
+.publication-list li::after {
+  content: "";
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+ul,
+.publication-list li {
+  display: table-row;
+}
