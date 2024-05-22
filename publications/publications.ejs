@@ -55,6 +55,18 @@
             <span class="listing-publication-pages">pp.&nbsp;<%= item.citation.page %></span>.
           <% } %>
         <% } %>
+        <% if (item.citation.type == 'thesis') { %>
+          <% if (item.citation["container-title"]) { %>
+            In <span class="listing-publication fst-italic"><%= item.citation["container-title"] %></span>,
+          <% } %>
+          <% if (item.citation.genre) { %>
+            <span class="listing-publication-genre"><%= item.citation.genre %></span>,
+          <% } %>
+          <% if (item.citation["publisher"]) { %>
+            <span class="listing-details"><%= item.citation.publisher %></span>,
+          <% } %>
+          <span class="listing-date"><%= item.date %></span>,
+        <% } %>
         </br>
         <span class="citation-buttons">
           <a href="<%= item.path %>" class="btn btn-primary btn-sm mt-1">

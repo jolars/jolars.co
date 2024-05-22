@@ -1,0 +1,38 @@
+---
+title: "Optimization and Algorithms in Sparse Regression"
+author:
+  - Johan Larsson
+abstract: |
+  Datasets are growing in size and complexity, especially with respect to the number of features of the problems that we study, which now often number in the millions. This has lead to a surge in interest for sparse regression models, which help make sense of these datasets by modeling them efficiently whilst still retaining a notion of explainability. Because these datasets are so large, however, they have prompted a need for effective methods with which to apply them—in this thesis, we present several contributions to this area of research.
+
+  In papers I-III, we focus on screening rules for the lasso and sorted l1 penalized regression (SLOPE)—two sparse regression methods. Screening rules are algorithms that discard a portion of the features in the model before solving it, which means that we effectively get to tackle a smaller problem than the original ones, yet still recover the same solutions. For the lasso, there has been a large body of work on screening rules since they were first introduced in 2010. In the case of SLOPE, however, there did not exist any screening rule until our work in paper I, in which we introduce the first such rule: the strong screening rule for SLOPE.
+
+  In paper II, we continue our work on screening rules by introducing look-ahead screening rules for the lasso, which enable screening of features for a stretch of the lasso path, rather than just for the following step. In essence, this allows us save computation time by screening features only when it is necessary. In paper III, we then tackle the case of using screening rules with highly correlated features, which is a setting in which previous screening rules have struggled. We propose the Hessian screening rule, which uses second-order information about the problem in order to provide less conservative screening along the lasso path. In empirical studies we show that our screening rule leads to large improvements in performance.
+
+  In paper IV, we introduce benchopt: a framework for benchmarking optimization methods in a transparent, reproducible, and collaborative manner. The current field of research in optimization is overflowing with new algorithms, each time proclaimed by its authors to improve upon its predecessors. It is easy to find benchmarks that directly contradict one another, which often stems for varied use of parameters, different software implementations, and hardware setups. Benchopt makes it easy to construct benchmarks that transparently and objectively compare these methods to one another.
+
+  One particularly effective optimization method for the lasso is coordinate descent. Unfortunately, we cannot directly use coordinate descent for SLOPE since the problem is not separable. In paper V, however, we present a hybrid method which circumvents this issue by incorporating proximal gradient descent steps to tackle the separability issue, whilst still enjoying the effectiveness of coordinate descent.
+
+  In the final paper, paper VI, we study the use of normalization for the lasso and ridge regression when the data is made up of binary features. Normalization is necessary in regularized regression to put features on the same scale, but its effects are generally not well-understood. In our paper we show that the solutions in the lasso and ridge regression depend strongly on the class balance of the binary features and that this effect depends on the type of normalization used.
+date: 2024-05-20
+citation:
+  publisher: Department of Statistics, Lund University
+  publisher-place: Lund, Sweden
+  issued: 2024-05-20
+  title: "Optimization and Algorithms in Sparse Regression: Screening Rules, Coordinate Descent, and Normalization"
+  title-short: Optimization and Algorithms in Sparse Regression
+  type: thesis
+  event-place: Lund, Sweden
+  genre: PhD Thesis
+  url: https://lup.lub.lu.se/record/0b9c97e8-5f65-43eb-9f7a-c4f237568370
+url: https://lup.lub.lu.se/record/0b9c97e8-5f65-43eb-9f7a-c4f237568370
+pdf: https://lup.lub.lu.se/search/files/183797946/jlarsson-pdfthesis.pdf
+github: jolars/phd-thesis
+categories:
+  - thesis
+  - statistics
+  - optimization
+  - benchmarking
+  - machine learning
+  - sparse regression
+---
