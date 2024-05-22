@@ -69,9 +69,7 @@ website:
 
 format:
   html:
-    theme:
-      light: flatly
-      dark: darkly
+    theme: flatly
     css: styles.css
     html-math-method: mathjax
     pagetitle: "{{< meta title >}}"
