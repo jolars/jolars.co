@@ -46,6 +46,17 @@ website:
         href: talks/index.qmd
       - text: CV
         href: cv/index.qmd
+    right:
+      - icon: mastodon
+        href: "https://mastodon.social/@jolars"
+        aria-label: Mastodon
+        rel: "me"
+      - icon: github
+        href: "https://github.com/jolars/"
+        aria-label: "Github profile"
+      - text: "<i class='fa-brands fa-google-scholar'></i>"
+        href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
+        aria-label: "Google scholar profile"
   page-footer:
     left: "Copyright 2024, Johan Larsson"
     right:
@@ -62,7 +73,7 @@ format:
       light: flatly
       dark: darkly
     css: styles.css
-    html-math-method: katex
+    html-math-method: mathjax
     pagetitle: "{{< meta title >}}"
     include-in-header:
       file: header.html
