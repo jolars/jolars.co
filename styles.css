@@ -1,6 +1,6 @@
-.katex {
-  font-size: 1em;
-}
+/* .katex { */
+/*   font-size: 1rem; */
+/* } */
 
 /* Badges */
 
@@ -40,4 +40,12 @@ ul,
 ul,
 .publication-list li {
   display: table-row;
+}
+
+.gslide-media {
+  background-color: white;
+}
+
+.gslide-image img {
+  padding: 20px 20px 0px 20px;
 }
