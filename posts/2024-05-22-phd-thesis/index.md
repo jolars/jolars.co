@@ -11,7 +11,7 @@ categories:
   - thesis
   - statistics
   - optimization
-image: cover-image.svg
+image: cover-image.png
 cap-location: margin
 ---
 
