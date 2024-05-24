@@ -27,7 +27,7 @@ address: "Lund, Sweden"
 fontawesome: true
 academicons: true
 email: johanlarsson@outlook.com
-homepage: https://larssonjohan.com
+homepage: https://jolars.co
 orcid: 0000-0002-4029-5945
 github: jolars
 google-scholar: DCJvywYAAAAJ

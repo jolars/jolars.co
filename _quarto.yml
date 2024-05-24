@@ -21,7 +21,7 @@ project:
 
 website:
   title: "Johan Larsson"
-  site-url: "https://larssonjohan.com"
+  site-url: "https://jolars.co"
   description: |
     My personal website, where I write about my work as a researcher in statistics as well as software that I am developing.
   repo-url: "https://github.com/jolars/larssonjohan.com"
