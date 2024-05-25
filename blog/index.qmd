@@ -1,5 +1,5 @@
 ---
-title: "Posts"
+title: "Blog"
 subtitle: Posts about research and programming
 comments: false
 listing:

@@ -36,8 +36,8 @@ website:
     anonymize-ip: true
   navbar:
     left:
-      - text: Posts
-        href: posts/index.qmd
+      - text: Blog
+        href: blog/index.qmd
       - text: Software
         href: software/index.qmd
       - text: Publications
@@ -64,7 +64,7 @@ website:
         href: "https://github.com/jolars/jolars.co"
         aria-label: "Source for this webpage"
       - icon: rss
-        href: posts/index.xml
+        href: blog/index.xml
         aria-label: RSS blog feed
 
 format:
