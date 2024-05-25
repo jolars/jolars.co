@@ -1,11 +1,14 @@
 ---
-title: "PhD Thesis"
+title: PhD Thesis
 author: Johan Larsson
-date: "2024-05-22"
+date: '2024-05-22'
 date-modified: last-modified
-description: |
+description: >
   My PhD thesis about optimization and other algorithms for sparse regression
-  has been published! In this post I give a brief summary of the papers that are included
+
+  has been published! In this post I give a brief summary of the papers that are
+  included
+
   in it.
 categories:
   - thesis
@@ -14,14 +17,13 @@ categories:
 image: cover-image.png
 cap-location: margin
 ---
-
 My PhD thesis is now published and available for download [@larsson2024]! It is
 the culmination of five years of research on optimization other related
 numerical algoritms for sparse regression, in particular the lasso and sorted
 l-one penalized estimation (SLOPE).
 
 ![The cover of my thesis. The image features a subset of the elastic net path for the famous diabetes data set.](front-cover.png){#fig-cover
-width=300px .lightbox}
+width=300px .lightbox .border}
 
 In the following sections I will give an overview over the papers that are
 included in the thesis. This a somewhat abridged version of the paper summary
@@ -109,7 +111,7 @@ As I show in the paper, the results are quite promising (@fig-paper2),
 especially since you get this kind of screening essentially for free (if you're
 screening anyway).
 
-![Look-ahead screening for 20 randomly selected features from the *leukemia* data set. Blue squares indicate that the respective feature can be discarded from the problem for that step of the regularization path.](paper2-highlight.png){#fig-paper2
+![Look-ahead screening for 20 randomly selected features from the _leukemia_ data set. Blue squares indicate that the respective feature can be discarded from the problem for that step of the regularization path.](paper2-highlight.png){#fig-paper2
 .lightbox}
 
 ## Paper 3
@@ -163,29 +165,67 @@ to use, you can either browse the extensive database of results that other users
 have already uploaded or just download the benchmark and run it yourself on the
 data that you are interested in using it for.
 
-![A schematic over how a benchmark is set up and run using benchopt. The benchmark consists of a set of files that define objectives, datasets, and solvers. When the user runs benchopt, the package combines all of the possible combinations of objectives, datasets, and solvers and outputs a neatly formatted database of the results.](paper4-highlight.svg){#fig-paper4 .lightbox .fig-cap-location-bottom}
+![A schematic over how a benchmark is set up and run using benchopt. The benchmark consists of a set of files that define objectives, datasets, and solvers. When the user runs benchopt, the package combines all of the possible combinations of objectives, datasets, and solvers and outputs a neatly formatted database of the results.](paper4-highlight.svg){#fig-paper4
+.lightbox .fig-cap-location-bottom}
 
 ## Paper 5
 
-Proximal coordinate descent is a very efficient optimization algorithm for fitting the lasso, but it cannot handle the case when the penalty term is non-separable, which is the case in SLOPE. In practice, this has reduced the applicability of SLOPE to large data, which is unfortunate given the many appealing properties of the model.
+Proximal coordinate descent is a very efficient optimization algorithm for
+fitting the lasso, but it cannot handle the case when the penalty term is
+non-separable, which is the case in SLOPE. In practice, this has reduced the
+applicability of SLOPE to large data, which is unfortunate given the many
+appealing properties of the model.
 
-In paper 5 [@larsson2023], however, we present a way to circumvent this issue by using a hybrid of proximal coordinate and proximal gradient descent. Our main discovery is that if we fix the clusters and optimize over each cluster in turn, rather than each feature, the problem becomes separable, which means that coordinate descent can be used. And if we combine this with proximal gradient descent steps, which allow us to discover the clusters, then we can guarantee convergence and at the same time benefit from the efficiency of coordinate descent.
+In paper 5 [@larsson2023], however, we present a way to circumvent this issue by
+using a hybrid of proximal coordinate and proximal gradient descent. Our main
+discovery is that if we fix the clusters and optimize over each cluster in turn,
+rather than each feature, the problem becomes separable, which means that
+coordinate descent can be used. And if we combine this with proximal gradient
+descent steps, which allow us to discover the clusters, then we can guarantee
+convergence and at the same time benefit from the efficiency of coordinate
+descent.
 
-The solver is illustrated for a two-dimensional SLOPE problem in @fig-paper5. The orange cross marks the optimum. Dashed lines indicate PGD steps and solid lines CD steps. Each dot marks a complete epoch, which may correspond to only a single coefficient update for the CD and hybrid solvers if the coefficients flip order. The CD algorithm converges quickly but is stuck after the third epoch. The hybrid and PGD algorithms, meanwhile, reach convergence after 67 and 156 epochs respectively.
+The solver is illustrated for a two-dimensional SLOPE problem in @fig-paper5.
+The orange cross marks the optimum. Dashed lines indicate PGD steps and solid
+lines CD steps. Each dot marks a complete epoch, which may correspond to only a
+single coefficient update for the CD and hybrid solvers if the coefficients flip
+order. The CD algorithm converges quickly but is stuck after the third epoch.
+The hybrid and PGD algorithms, meanwhile, reach convergence after 67 and 156
+epochs respectively.
 
-![An illustration of the hybrid coordinate descent solver we developed for SLOPE, showing progress until convergence for the coordinate descent solver (CD) that we use as part of the hybrid method, our hybrid method, and proximal gradient descent (PGD). ](paper5-highlight.svg){#fig-paper5 width=700px .lightbox}
-
+![An illustration of the hybrid coordinate descent solver we developed for SLOPE, showing progress until convergence for the coordinate descent solver (CD) that we use as part of the hybrid method, our hybrid method, and proximal gradient descent (PGD).](paper5-highlight.svg){#fig-paper5
+width=700px .lightbox}
 
 ## Paper 6
 
-The final paper of the thesis is a working paper in which we tackle the issue of normalization of binary features. Normalization is necessary in order to put the features on the same scale when dealing with regularized methods. What "same scale" means, however, however, is not clear, yet has been met mostly with neglect in the literature. We think that this is both surprising and problematic given the almost universal use of normalization in regularized methods and the apparent and large effects it has on the solution paths.
+The final paper of the thesis is a working paper in which we tackle the issue of
+normalization of binary features. Normalization is necessary in order to put the
+features on the same scale when dealing with regularized methods. What "same
+scale" means, however, however, is not clear, yet has been met mostly with
+neglect in the literature. We think that this is both surprising and problematic
+given the almost universal use of normalization in regularized methods and the
+apparent and large effects it has on the solution paths.
 
-In our paper, we begin to bridge this knowledge gap by studying normalization for the lasso and ridge regression when they are used on binary features (features that only contain values 0 or 1) or mix of binary and normally distributed features. What we find is that there is a large effect of normalization with respect to the class balance of the features: the proportion of ones to zeros (or vice versa). Both the lasso and the ridge estimators turn out to be sensitive to this class balance and, depending on the type of normalization used, have trouble recovering effects that are associated with binary features as long as their class balance is severe enough [@fig-paper5].
+In our paper, we begin to bridge this knowledge gap by studying normalization
+for the lasso and ridge regression when they are used on binary features
+(features that only contain values 0 or 1) or mix of binary and normally
+distributed features. What we find is that there is a large effect of
+normalization with respect to the class balance of the features: the proportion
+of ones to zeros (or vice versa). Both the lasso and the ridge estimators turn
+out to be sensitive to this class balance and, depending on the type of
+normalization used, have trouble recovering effects that are associated with
+binary features as long as their class balance is severe enough [@fig-paper5].
 
-![Estimated coefficients from lasso and ridge regression for a two-feature problem where one of the features has a quasi-normal distribution (values deterministically set via the quantile function), with standard deviation 1/2, and the other is a binary (quasi-Bernoulli) feature with class-balance $q$. The normal feature is standardized in every case, whereas the binary feature is scaled with $(q - q^2)^\delta$---its variance to the power of $\delta$. In other words, we have no scaling for $\delta=0$, standard deviation scaling when $\delta=1/2$, and variance-scaling when $\delta = 1$.](paper6-highlight.svg){#fig-paper6 width=700px .lightbox}
+![Estimated coefficients from lasso and ridge regression for a two-feature problem where one of the features has a quasi-normal distribution (values deterministically set via the quantile function), with standard deviation 1/2, and the other is a binary (quasi-Bernoulli) feature with class-balance $q$. The normal feature is standardized in every case, whereas the binary feature is scaled with $(q - q^2)^\delta$---its variance to the power of $\delta$. In other words, we have no scaling for $\delta=0$, standard deviation scaling when $\delta=1/2$, and variance-scaling when $\delta = 1$.](paper6-highlight.svg){#fig-paper6
+width=700px .lightbox}
 
-I will offer more details on this paper once work on it has been completed, but I think the results are interesting and that this field is ripe for further exploration.
+I will offer more details on this paper once work on it has been completed, but
+I think the results are interesting and that this field is ripe for further
+exploration.
 
 ## Defense
 
-My defense will take place at 10:15 on June 28 at Lund Univeristy, School of Economics and Management, Karlssonsalen. If you happen to be in the area, you are more than welcome to attend!
+My defense will take place at 10:15 on June 28 at Lund Univeristy, School of
+Economics and Management, Karlssonsalen. If you happen to be in the area, you
+are more than welcome to attend!
+
