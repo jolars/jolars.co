@@ -12,8 +12,7 @@ a {
   color: white !important;
 }
 
-ul,
-.publication-list {
+ul.publication-list {
   /* padding-left: 1rem; */
   /* list-style-type: none; /* Remove bullets */
   /* padding: 0; /* Remove padding */
@@ -23,22 +22,19 @@ ul,
   display: table;
 }
 
-ul,
-.publication-list li::before {
+ul.publication-list li::before {
   content: "•";
   display: table-cell;
   padding-right: 0.4em;
 }
 
-ul,
-.publication-list li::after {
+ul.publication-list li::after {
   content: "";
   display: block;
   margin-bottom: 0.5em;
 }
 
-ul,
-.publication-list li {
+ul.publication-list li {
   display: table-row;
 }
 
