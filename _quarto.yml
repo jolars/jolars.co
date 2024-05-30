@@ -77,8 +77,6 @@ format:
     pagetitle: "{{< meta title >}}"
     include-in-header:
       file: header.html
-    template-partials:
-      - assets/templates/title-metadata.html
 
 execute:
   freeze: auto

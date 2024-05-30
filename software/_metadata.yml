@@ -1,2 +1,6 @@
 sidebar: false
 author-title: Authors
+format:
+  html:
+    template-partials:
+      - /assets/templates/title-metadata.html
