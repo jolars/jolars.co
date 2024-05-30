@@ -78,7 +78,8 @@ Using the theme is as simple as using any other beamer theme. Here is a simple e
 \begin{document}
   \maketitle
   \section{First Section}
-  \begin{frame}{First Frame}
+  \begin{frame}
+    \frametitle{First Frame}
     Hello, world!
   \end{frame}
 \end{document}
