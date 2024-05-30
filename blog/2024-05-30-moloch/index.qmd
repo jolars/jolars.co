@@ -205,7 +205,7 @@ use XeTeX or LuaTeX and set your font options according to the following example
 
 If you want to have `\operatorname`, `\mathrm`, and company in the Fira font as well, then you'll need to set `\setmainfont` as well.
 
-Note that there is only a beta version of the Fira Math Light font available and that it is not at all complete, so unfortunately there is no good way to get a matching math font for Fira Sans Light at the moment. (Otherwise we could use **unicode-maths** and `Fira Math Light`). This I think is another good argument for why Fira should not be set as the default font for the theme.
+Note that there is only a beta version of the Fira Math Light font available and that it is not at all complete, so unfortunately there is no good way to get a matching math font for Fira Sans Light at the moment. (Otherwise we could use **unicode-math** and `Fira Math Light`). This I think is another good argument for why Fira should not be set as the default font for the theme.
 
 ### No More Automatic Paragraph Spacing
 
