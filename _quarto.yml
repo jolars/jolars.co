@@ -67,6 +67,8 @@ website:
         href: blog/index.xml
         aria-label: RSS blog feed
 
+highlight-style: breeze
+
 format:
   html:
     theme: flatly
