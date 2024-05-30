@@ -61,7 +61,6 @@ tlmgr install moloch
 ```
 
 If you have TeXLive 2024 (or later), then Moloch is already included in the distribution and you don't have to do anything to install it.
-If you have a recent LaTeX distrib
 
 Using the theme is as simple as using any other beamer theme. Here is a simple example:
 
