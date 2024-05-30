@@ -1,0 +1,258 @@
+---
+title: "Moloch: A Revival of the Metropolis LaTeX Beamer Theme"
+author: Johan Larsson
+date: "2024-05-30"
+description: |
+  Metropolis is a popular and modern beamer theme for LaTeX, but it is
+  unfortunately no longer actively maintained. As a result, its list of issues is
+  growing increasingly large. Moloch is a fork of Metropolis that aims 
+  to fix these issues as well add a few new features.
+categories:
+  - latex
+  - software
+  - presentations
+  - beamer
+image: moloch-logo.png
+fig-cap-location: margin
+---
+
+My beamer configuration for LaTeX presentations has been in a state of flux for as long as I can remember. 
+I have tried many different themes and configurations, and have typically tried to keep the theme minimalisic
+but at the same time functional and visually appealing. Nevertheless, I have frequently found
+myself scrapping my custom modifications and returning to the [Metropolis theme](https://github.com/matze/mtheme),
+which I think is the most well-designed theme that I have so far encountered for beamer.
+
+The only problem is that Metropolis is no longer actively maintained. The latest update (at the time of writing)
+was six years ago and since then a number of issues have cropped up. Most of them are not major and can
+be circumvented through various hacks and workarounds, but I have grown increasingly frustrated with the
+separate file of Metropolis patches that I've had to keep around to fix these issues.
+Beamer tself in fact even includes several patches now in order to stop the theme from breaking (see 
+[here](https://github.com/josephwright/beamer/blob/c0d91f15165421646b5383546e6195187b7f97c9/base/beamerbasecompatibility.sty#L253),
+[here](https://github.com/josephwright/beamer/blob/c0d91f15165421646b5383546e6195187b7f97c9/base/beamerbasesection.sty#L209), and 
+[here](https://github.com/josephwright/beamer/blob/c0d91f15165421646b5383546e6195187b7f97c9/base/beamerbaselocalstructure.sty#L29).)
+
+## Moloch
+
+This has now (since some months back actually) led me to fork Metropolis to try to fix these outstanding issues.
+I call the new theme *Moloch* (which is likely familiar to you if you know your Metropolis).
+The original design is still pretty much intact save for a few tweaks that I will summarize in @sec-changes, which overall bring the theme closer to normal beamer behavior. The code for the theme has also been simplified and made more robust.
+Metropolis, for instance, made much use of `\patchcmd` from the etoolbox package to patch beamer 
+theme internals in order to support modifications to, for instance, frame titles. This was what
+lead the theme to break in the first place as beamer introduced changes in these commands and I 
+have thus opted to remove all this kind of patching in favor of relying on standard functionality
+from the beamer theme instead.
+
+This comes at the price of sacrificing some features, such as toggling title formatting between uppercase,
+small caps, and regular text. But, as the Metropolis documentation itself noted,^[And see [this issue](https://github.com/matze/mtheme/issues/371) for instance.] these
+modifications were problematic in the first place and I therefore think that their removal is on the whole a good thing.
+
+I've also removed the pgfplots theme that was included in Metropolis. I don't mind the theme per se, but I don't think it belongs in a general-purpose beamer theme.
+
+## Getting Started
+
+The design of the theme does not stray far from the original Metropolis design (and will not do so in the future either). Below is a simple example of a few slides of the theme.
+
+![The first four slides of a presentation using Moloch.](https://raw.githubusercontent.com/jolars/moloch/main/assets/screenshot.svg){.lightbox}
+
+Moloch is now [on CTAN](https://ctan.org/pkg/moloch), so you can install it with the TeXLive package manager by calling the following line of code:
+
+```bash
+tlmgr install moloch
+```
+
+If you have TeXLive 2024 (or later), then Moloch is already included in the distribution and you don't have to do anything to install it.
+If you have a recent LaTeX distrib
+
+Using the theme is as simple as using any other beamer theme. Here is a simple example:
+
+```latex
+\documentclass{beamer}
+
+\usetheme{moloch}
+
+\title{Your Title}
+\author{Your Name}
+\institute{Your Institute}
+\date{\today}
+
+\begin{document}
+  \maketitle
+  \section{First Section}
+  \begin{frame}{First Frame}
+    Hello, world!
+  \end{frame}
+\end{document}
+```
+
+See [the package documentation](http://mirrors.ctan.org/macros/latex/contrib/beamer-contrib/themes/moloch/moloch.pdf) to learn more about the theme and its various options. If you're used to Metropolis, then you mostly need to know that `\metroset` has been replaced by `\molochset` and that some things are no longer supported, which is precisely what we'll dig into in the next section!
+
+## Changes {#sec-changes}
+
+I've tried to outline the main changes that I can think of in the following sections.
+
+### New Secondary Color
+
+I always though the green color in Metropolis was lurid and not exactly color-blind friendly.
+I therefore changed it to a teal color that I think is a little more subdued and easier on the eyes. You can see the difference in the figure below. I hope you agree that the
+new color is an improvement!
+
+![The old versus the new secondary color.](new-secondary-color.svg){width=100% .border}
+
+### Subtitles
+
+Subtitles are now supported in Moloch. They were were not in Metropolis
+because the author [thought subtitles were a bad idea i general](https://github.com/matze/mtheme/issues/135).
+On the whole I agree that subtitles are usually best avoided, but I didn't see any reason
+to impose this opinion on others. Subtitles are therefore supported in Moloch.
+
+![Subtitles are supported in Moloch.](subtitles.png)
+
+### Frame Numbering
+
+Metropolis sported its own frame numbering system. There was nothing wrong with this 
+system except it necessitated a separate package (appendixframenumber) to get frame/page numbers 
+to restart (and not count towards the total number) for appendix slides.
+Beamer has, however, improved its own system in recent years and there is no longer
+any need for a custom solution (or separate package) to support this functionality.
+As a result, Moloch just relies on beamer templates for the frame numbering.
+The design is *slightly* different, with smaller font size and somewhat different margins,
+but I only think this is for the better anyway.
+
+Now, you can just change it via the standard beamer commands for frame numbering, like so:
+
+```latex
+\setbeamertemplate{page number in head/foot}[appendixframenumber]
+```
+
+### Title Page Redesign
+
+The title page has been redesigned. The primary changes are the following.
+
+1. The institute is now positioned below the author (rather than the date), which I think makes more sense
+   since the author and institute are closer related (in my mind at least).
+   This was suggested in [an issue on the Metropolis repo](https://github.com/matze/mtheme/issues/180),
+   but never adopted.
+2. The titlegraphic now has margins added above and below. It was previously put in a zero-height
+   `vbox`, which meant that it basically didn't affect the page layout.
+   Now it does and will push the titles and other content down.
+   The new layout gives equal margins between top and bottom of the frame and the content,
+   and adapts to the size of the title graphic.
+   This may or may not be what you want, but in this case you can just wrap the graphic in a
+   `vbox` of zero height yourself, so I see this as a less invasive default.
+3. The margins around the elements on the title page were changed everywhere. Please see the screenshots
+   below to see what I mean, but the main change is that there is less spacing between the title and the
+   subtitle and even spacing above and below the orange line.
+
+![The old title page from Metropolis](metropolis-titlepage.svg){width=100% .border}
+
+![The new title page in Moloch](moloch-titlepage.svg){width=100% .border}
+
+For reference, the code for generating the slides is given below.
+
+<details>
+<summary>Code</summary>
+
+```latex
+\documentclass[10pt]{beamer}
+
+\usetheme{moloch}
+
+\title{Title}
+\subtitle{Subtitle}
+\author{Author}
+\institute{Institute}
+\date{\today}
+\titlegraphic{\hfill\includegraphics[height=2cm]{logo.pdf}}
+
+\begin{document}
+  \maketitle
+\end{document}
+```
+
+</details>
+
+I am open for suggestions and discussions on how to further improve the title page layout, or 
+make customizing it easier.
+
+### Font Settings
+
+Metropolis includes special handling of font settings. If you use LuaTeX or XeTeX, then Metropolis
+automatically checks if the Fira Sans font is available and sets it up for you. I like the Fira fonts
+myself and think that they are a nice choice for presentations, but I do not think that they should
+be set as part of the theme, especially since this means that you get different output by default
+if you run your document through pdfTeX instead, which I think is undesireable. 
+
+I've therefore disabled these font settings, but if you want to replicate the look
+of Metropolis when it comes to the fonts as well, then all you need is you
+use XeTeX or LuaTeX and set your font options according to the following example
+(or something similar).
+
+
+```latex
+\usepackage{mathspec}
+\setsansfont[
+  ItalicFont={Fira Sans Light Italic},
+  BoldFont={Fira Sans},
+  BoldItalicFont={Fira Sans Italic}
+]{Fira Sans Light}
+\setmonofont[BoldFont={Fira Mono Medium}]{Fira Mono}
+\setmathfont{Fira Math Light}
+\AtBeginEnvironment{tabular}{%
+  \addfontfeature{Numbers={Monospaced}}
+}
+```
+
+### No More Automatic Paragraph Spacing
+
+Unlike standard Beamer, in which `\parskip` (paragraph spacing, roughly speaking) is set to zero, Metropolis instead sets it to 0.5 em units. This means that in Metropolis, you don't need to sprinkle `\medskip` (or whatever you use for paragraph spacing) in your slides to have them neatly separated.
+
+As I noted in [this issue](https://github.com/jolars/moloch/issues/8) and also [this one](https://github.com/jolars/moloch/issues/9), however, this has some undesireable side-effects,^[Also see [this issue](https://github.com/josephwright/beamer/issues/512) on the Beamer repo for more background.] such as introducing additional spacing between taple captions and the table, for instance. As a consequence, I've therefore removed this setting from Moloch. 
+
+As with many other changes, this puts Moloch more in line with the standard Beamer behavior, which I think is generally speaking a good thing and simplifies switching between themes.
+
+### Block Environments
+
+Metropolis introduced a bit of custom logic to handle block environments. In particular, filled blocks environments were modified such that the main body text (for the frame) aligns with the boundaries of the box and not the text inside the box (which is the default behavior in beamer). See below for a comparison
+
+![Block environment alignments in Beamer Image credit: [samcarter](https://github.com/samcarter).](blocks-beamer.png)
+
+![Block environment alignments in Metropolis Image credit: [samcarter](https://github.com/samcarter).](blocks-metro.png)
+
+I think the proper choice is the default beamer behavior, especially since this otherwise means that the content inside the blocks look different if you switch to filled blocks. In addition, the spacing for the normal block environments in Metropolis [does not work properly](https://github.com/matze/mtheme/issues/307), so switching to the default behavior also solves this issue.
+
+### Build System
+
+Moloch is part of CTAN and included in TeXLive 2024, so you typically do not need to concern yourself with installing the theme from source. But if you want to do so nonetheless, for instance to enable some new feature or fix from the development version, then Moloch now uses [l3build](https://ctan.org/pkg/l3build) instead of a custom Makefile to handle the build process, which should make life easier for most people, and you simply just need to call these lines:
+
+```bash
+git clone https://github.com/jolars/moloch.git
+cd moloch
+l3build install
+```
+
+In addition, it also means that the package now includes unit tests to make sure that nothing in the theme breaks unexpectedly. 
+
+### Other Miscellaneous Changes
+
+There are several other small changes. I've tried to list some of them here below.
+
+- [Progress bars work better for wide presentation](https://github.com/matze/mtheme/pull/384)
+- [Removed custom appendix section modifications](https://github.com/matze/mtheme/pull/342)
+- [No longer hardcode bibliography styling](https://github.com/jolars/moloch/issues/5)
+
+## Roadmap
+
+I currently don't foresee any major changes to the theme and will likely upgrade it to a stable state in the near future. So you can count on the theme not to introduce any breaking changes. I think the original Metropolis design is great and I don't want to stray too far from it. 
+
+That being said, one thing that I want to do is to make the colors in the theme easier to customize and perhaps introduce alternative color schemes. That also means bringing back the hi-contrast theme that was in Metropolis but that I removed from Moloch (for reasons that I can't quite recall now..). In any case, I don't intend to modify the default choices. 
+
+### Contributing
+
+If you feel that you can contribute, then please do! The project [is on github](https://github.com/jolars/moloch) and you are welcome to [raise an issue](https://github.com/jolars/moloch/issues) or [start a new discussion](https://github.com/jolars/moloch/discussions) if there's anything you think could be improved.
+
+### Acknowledgements
+
+[samcarter](https://github.com/samcarter) helped out a lot with discussions and testing of the theme and also helped make transitioning from Metropolis to Moloch smoother. She will actually give a talk on the [TUG 2024 meeting](https://www.tug.org/tug2024/) in Prague July 19-21 about the theme, so please check it out if you have the chance!
+
+Finally: credit where credit is due. I want to stress that the vast majority of the code in Moloch was written by [Matthias Vogelsang](https://github.com/matze), who created the Metropolis package, and that my job has mostly been to patch up its rough spots.
+
