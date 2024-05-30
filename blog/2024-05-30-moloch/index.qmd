@@ -101,7 +101,7 @@ new color is an improvement!
 ### Subtitles
 
 Subtitles are now supported in Moloch. They were were not in Metropolis
-because the author [thought subtitles were a bad idea i general](https://github.com/matze/mtheme/issues/135).
+because the author [thought subtitles were a bad idea in general](https://github.com/matze/mtheme/issues/135).
 On the whole I agree that subtitles are usually best avoided, but I didn't see any reason
 to impose this opinion on others. Subtitles are therefore supported in Moloch.
 
