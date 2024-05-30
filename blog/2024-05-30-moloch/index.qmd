@@ -26,7 +26,7 @@ The only problem is that Metropolis is no longer actively maintained. The latest
 was six years ago and since then a number of issues have cropped up. Most of them are not major and can
 be circumvented through various hacks and workarounds, but I have grown increasingly frustrated with the
 separate file of Metropolis patches that I've had to keep around to fix these issues.
-Beamer tself in fact even includes several patches now in order to stop the theme from breaking (see 
+Beamer itself in fact even includes several patches now in order to stop the theme from breaking (see 
 [here](https://github.com/josephwright/beamer/blob/c0d91f15165421646b5383546e6195187b7f97c9/base/beamerbasecompatibility.sty#L253),
 [here](https://github.com/josephwright/beamer/blob/c0d91f15165421646b5383546e6195187b7f97c9/base/beamerbasesection.sty#L209), and 
 [here](https://github.com/josephwright/beamer/blob/c0d91f15165421646b5383546e6195187b7f97c9/base/beamerbaselocalstructure.sty#L29).)
