@@ -218,7 +218,7 @@ As with many other changes, this puts Moloch more in line with the standard Beam
 
 ### Block Environments
 
-Metropolis introduced a bit of custom logic to handle block environments. In particular, filled blocks environments were modified such that the main body text (for the frame) aligns with the boundaries of the box and not the text inside the box (which is the default behavior in beamer). See below for a comparison
+Metropolis introduced a bit of custom logic to handle block environments. In particular, filled blocks environments were modified such that the main body text (for the frame) aligns with the boundaries of the box and not the text inside the box (which is the default behavior in beamer). See below for a comparison.
 
 ![Block environment alignments in Beamer Image credit: [samcarter](https://github.com/samcarter).](blocks-beamer.png)
 
