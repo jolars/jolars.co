@@ -11,4 +11,5 @@ listing:
   feed: true
   categories: true
 page-layout: full
+title-block-banner: false
 ---
