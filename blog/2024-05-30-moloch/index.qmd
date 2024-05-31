@@ -212,7 +212,7 @@ Note that there is only a beta version of the Fira Math Light font available and
 
 Unlike standard Beamer, in which `\parskip` (paragraph spacing, roughly speaking) is set to zero, Metropolis instead sets it to 0.5 em units. This means that in Metropolis, you don't need to sprinkle `\medskip` (or whatever you use for paragraph spacing) in your slides to have them neatly separated.
 
-As I noted in [this issue](https://github.com/jolars/moloch/issues/8) and also [this one](https://github.com/jolars/moloch/issues/9), however, this has some undesireable side-effects,^[Also see [this issue](https://github.com/josephwright/beamer/issues/512) on the Beamer repo for more background.] such as introducing additional spacing between taple captions and the table, for instance. As a consequence, I've therefore removed this setting from Moloch. 
+As I noted in [this issue](https://github.com/jolars/moloch/issues/8) and also [this one](https://github.com/jolars/moloch/issues/9), however, this has some undesireable side-effects,^[Also see [this issue](https://github.com/josephwright/beamer/issues/512) on the Beamer repo for more background.] such as introducing additional spacing between table captions and the table, for instance. As a consequence, I've therefore removed this setting from Moloch. 
 
 As with many other changes, this puts Moloch more in line with the standard Beamer behavior, which I think is generally speaking a good thing and simplifies switching between themes.
 
