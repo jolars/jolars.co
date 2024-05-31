@@ -21,6 +21,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Fix last modified time of files
+        run: bash .github/scripts/fix-mtime
+
       - name: Render and publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
