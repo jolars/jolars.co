@@ -93,7 +93,7 @@ I've tried to outline the main changes that I can think of in the following sect
 
 ### New Secondary Color
 
-I always though the green color in Metropolis was lurid and not exactly color-blind friendly.
+I always thought the green color in Metropolis was lurid and not exactly color-blind friendly.
 I therefore changed it to a teal color that I think is a little more subdued and easier on the eyes. You can see the difference in the figure below. I hope you agree that the
 new color is an improvement!
 
