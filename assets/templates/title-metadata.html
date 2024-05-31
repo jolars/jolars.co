@@ -61,7 +61,9 @@ $endif$
     <div class="quarto-title-meta-heading">Details</div>
     <div class="quarto-title-meta-contents">
       <p>
-        $if(citation.event-place)$
+        $if(citation.genre)$
+          $citation.genre$$if(publisher)$, $publisher$$endif$$if(citation.publisher-place)$, $citation.publisher-place$$endif$
+        $elseif(citation.event-place)$
           $if(citation.container-title)$$citation.container-title$$elseif(citation.event-title)$$citation.event-title$$endif$$if(citation.event-place)$, $citation.event-place$$endif$
         $elseif(citation.volume)$
           $citation.container-title$, vol.&nbsp;$citation.volume$$if(citation.number)$no.&nbsp;$citation.number$$endif$$if(citation.page)$, pp.&nbsp;$citation.page$$endif$
