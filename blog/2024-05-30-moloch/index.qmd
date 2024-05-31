@@ -1,7 +1,8 @@
 ---
 title: "Moloch: A Revival of the Metropolis LaTeX Beamer Theme"
 author: Johan Larsson
-date: "2024-05-30"
+date: 2024-05-30
+date-modified: 2024-05-31
 description: |
   Metropolis is a popular and modern beamer theme for LaTeX, but it is
   unfortunately no longer actively maintained. As a result, its list of issues is
