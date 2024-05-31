@@ -1,7 +1,8 @@
 ---
 title: "SLOPE 0.2.0"
 author: Johan Larsson
-date: "2020-04-14"
+date: 2020-04-14
+date-modified: 2023-04-08
 description: A new update to the SLOPE package with many exciting features.
 categories:
   - r

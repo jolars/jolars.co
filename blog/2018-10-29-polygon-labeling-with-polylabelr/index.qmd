@@ -2,6 +2,7 @@
 title: Polygon Labeling with polylabelr
 author: Johan Larsson
 date: "2018-10-29"
+date-modified: "2024-05-25"
 description: A new package polylabelr can be used find visual centers of
   polygons and label Euler diagrams.
 categories:

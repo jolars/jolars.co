@@ -2,6 +2,7 @@
 title: "New Julia Package: ProjectRoot"
 author: Johan Larsson
 date: "2024-05-13"
+date-modified: "2024-05-18"
 description: I have created a new Julia package for easy file referencing within project workflows.
 categories:
   - julia

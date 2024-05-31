@@ -2,6 +2,7 @@
 title: "Introducing qualpalr"
 author: "Johan Larsson"
 date: "2016-10-15"
+date-modified: "2023-01-19"
 description: |
   Let me introduce qualpalr: an R package that generates qualitative color
   palettes with distinct colors using color difference algorithms.
