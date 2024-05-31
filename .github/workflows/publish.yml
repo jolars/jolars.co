@@ -21,8 +21,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Fix last modified time of files
-        run: sh .github/scripts/fix-mtime
+      - name: Restore timestamps
+        uses: chetan/git-restore-mtime-action@v2
 
       - name: Render and publish
         uses: quarto-dev/quarto-actions/publish@v2
