@@ -1,9 +1,3 @@
-/* .katex { */
-/*   font-size: 1rem; */
-/* } */
-
-/* Badges */
-
 a {
   text-decoration: none;
 }
@@ -44,4 +38,9 @@ ul.publication-list li {
 
 .gslide-image img {
   padding: 20px 20px 0px 20px;
+}
+
+/* TODO: remove once quarto 1.5 is out */
+#title-block-header.quarto-title-block.default .quarto-title-meta {
+  grid-template-columns: repeat(2, 1fr);
 }
