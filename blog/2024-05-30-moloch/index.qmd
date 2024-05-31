@@ -220,9 +220,9 @@ As with many other changes, this puts Moloch more in line with the standard Beam
 
 Metropolis introduced a bit of custom logic to handle block environments. In particular, filled blocks environments were modified such that the main body text (for the frame) aligns with the boundaries of the box and not the text inside the box (which is the default behavior in beamer). See below for a comparison.
 
-![Block environment alignments in Beamer Image credit: [samcarter](https://github.com/samcarter).](blocks-beamer.png)
+![Block environment alignments in Beamer. Image credit: [samcarter](https://github.com/samcarter).](blocks-beamer.png)
 
-![Block environment alignments in Metropolis Image credit: [samcarter](https://github.com/samcarter).](blocks-metro.png)
+![Block environment alignments in Metropolis. Image credit: [samcarter](https://github.com/samcarter).](blocks-metro.png)
 
 I think the proper choice is the default beamer behavior, especially since this otherwise means that the content inside the blocks look different if you switch to filled blocks. In addition, the spacing for the normal block environments in Metropolis [does not work properly](https://github.com/matze/mtheme/issues/307), so switching to the default behavior also solves this issue.
 
