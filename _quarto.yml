@@ -18,6 +18,7 @@ project:
     - "mstile-310x310.png"
     - "safari-pinned-tab.svg"
     - "site.webmanifest"
+    - "keybase.txt"
 
 website:
   title: "Johan Larsson"
