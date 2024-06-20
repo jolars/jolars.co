@@ -25,7 +25,7 @@ abstract: |
   when ($n > p$).
 date: 2020-05-08
 image: strong-screening-rule-for-slope.jpg
-slides: https://statistical-learning-seminars.github.io/slides/200508-johanlarsson.pdf
+slides: https://github.com/jolars/talks/raw/main/2020-05-08-statlearn/statlearn_slope_presentation.pdf
 arxiv: "2005.03730"
 citation:
   type: speech

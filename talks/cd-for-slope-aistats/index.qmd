@@ -20,7 +20,7 @@ abstract: |
   algorithms.
 date: 2022-03-31
 image: preview.png
-slides: https://github.com/jolars/talks/raw/main/2023/aistats-slopecd/aistats-slopecd.pdf
+slides: https://github.com/jolars/talks/raw/main/2023-03-31-aistats-slopecd/aistats-slopecd.pdf
 arxiv: "2210.14780"
 citation:
   type: speech
