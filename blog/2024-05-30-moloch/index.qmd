@@ -43,6 +43,8 @@ lead the theme to break in the first place as beamer introduced changes in these
 have thus opted to remove all this kind of patching in favor of relying on standard functionality
 from the beamer theme instead.
 
+In fact, it is now possible to change the title format directly through beamer, for instance by calling  `\setbeamertemplate{frametitle}{\MakeUppercase{\insertframetitle}}` to make titles upper-case.^[Thanks [samcarter](https://github.com/samcarter) for informing me of this!]
+
 This comes at the price of sacrificing some features, such as toggling title formatting between uppercase,
 small caps, and regular text. But, as the Metropolis documentation itself noted,^[And see [this issue](https://github.com/matze/mtheme/issues/371) for instance.] these
 modifications were problematic in the first place and I therefore think that their removal is on the whole a good thing.
