@@ -1,8 +1,8 @@
 ---
 title: PhD Thesis
 author: Johan Larsson
-date: '2024-05-22'
-date-modified: 2024-05-29T00:00:00.000Z
+date: "2024-05-22"
+date-modified: 2024-07-01
 description: >
   My PhD thesis about optimization and other algorithms for sparse regression
 
@@ -17,6 +17,9 @@ categories:
 image: cover-image.png
 cap-location: margin
 ---
+
+**Spoiler alert:** I passed my defense! 🎉
+
 My PhD thesis is now published and available for download [@larsson2024]! It is
 the culmination of five years of research on optimization other related
 numerical algoritms for sparse regression, in particular the lasso and sorted
@@ -222,10 +225,3 @@ width=700px .lightbox}
 I will offer more details on this paper once work on it has been completed, but
 I think the results are interesting and that this field is ripe for further
 exploration.
-
-## Defense
-
-My defense will take place at 10:15 on June 28 at Lund Univeristy, School of
-Economics and Management, Karlssonsalen. If you happen to be in the area, you
-are more than welcome to attend!
-
