@@ -20,5 +20,5 @@ about:
       href: mailto:johanlarsson@outlook.com
 ---
 
-PhD Student in Statistics at the [Department of Statistics](https://stat.lu.se)
-at [Lund University](https://lu.se), Sweden.
+Postdoctoral researcher in statistics at the [Department of Mathematical Sciences](https://www.math.ku.dk/english)
+at [Copenhagen University](https://ku.dk/english).

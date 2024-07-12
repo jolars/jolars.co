@@ -45,6 +45,16 @@ validate-yaml: false
 citeproc: false
 ---
 
+## Professional Experience
+
+2024--present
+
+:  **Postdoctoral Researcher**, *Department of Mathematical Sciences, Copenhagen University*
+
+2018--2024
+
+:   **PhD Student**, *Department of Statistics, Lund University*
+
 ## Education
 
 2018--2024
@@ -62,12 +72,6 @@ citeproc: false
     Title: "eulerr: Area-Propotional Euler Diagrams with Ellipses"
 
     Supervisor: Peter Gustafsson
-
-## Professional Experience
-
-2018--2024
-
-:   **PhD Student**, *Department of Statistics, Lund University*
 
 ## Publications
 
