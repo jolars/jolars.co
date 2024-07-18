@@ -47,10 +47,6 @@ citeproc: false
 
 ## Professional Experience
 
-2024--present
-
-:  **Postdoctoral Researcher**, *Department of Mathematical Sciences, Copenhagen University*
-
 2018--2024
 
 :   **PhD Student**, *Department of Statistics, Lund University*
