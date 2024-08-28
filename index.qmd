@@ -20,5 +20,4 @@ about:
       href: mailto:johanlarsson@outlook.com
 ---
 
-Postdoctoral researcher in statistics at the [Department of Mathematical Sciences](https://www.math.ku.dk/english)
-at [Copenhagen University](https://ku.dk/english) (as of September)
+Thiele Postdoctoral Researcher in statistics at the [Department of Mathematical Sciences](https://www.math.ku.dk/english), [Copenhagen University](https://ku.dk/english)
