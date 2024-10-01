@@ -159,7 +159,7 @@ citeproc: false
 
 2024
 
-:   ICML, Computo
+:   ICML, Computo, AISTATS
 
 2023
 
