@@ -6,7 +6,7 @@ format:
       - styles.css
     template-partials:
       title-block.html
-  pdf: 
+  pdf:
     toc: false
     fontfamily: libertine
     papersize: a4
@@ -63,7 +63,7 @@ citeproc: false
 
     Title: "Optimization and Algorithms in Sparse Regression"
 
-    Supervisors: Jonas Wallin and Malgorzata Bogdan 
+    Supervisors: Jonas Wallin and Malgorzata Bogdan
 
 2016--2018
 
@@ -84,6 +84,48 @@ citeproc: false
 
 ::: {#refs-theses}
 :::
+
+## Invited Talks
+
+Nov 13, 2024
+:   **The Choice of Normalization Directly Affects Feature Selection in Regularized Regression**
+
+    Danish Statistical Society (DSTS) Fall Meeting
+
+Apr 10, 2024
+:   **Normalization for class-imbalanced binary features in regularized regression**
+
+    Uppsala Statistics Seminar Series
+
+Oct 27, 2021
+:   **Designing a Distance-Based Course in Data Visualization: Lessons Learned**
+
+    Cramér Society Fall Meeting
+
+Nov 16, 2021
+:   **The Hessian Screening Rule**
+
+    Seminar at the Faculty of Pure and Applied Mathematics, Wrocław University of Science and Technology
+
+Sep 21, 2021
+:   **The Hessian Screening Rule and Adaptive Lasso Paths**
+
+    Statistics Seminar at the Department of Mathematical Statistics, Chalmers/Gothenburg University
+
+Sep 9, 2021
+:   **Look-Ahead Screening Rules for the Lasso**
+
+    EYSM 2021
+
+May 8, 2020
+:   **The Strong Screening Rule for SLOPE**
+
+    Statistical Learning Seminar
+
+Jun 18, 2018
+:   **A Case Study in Fitting Area-Proportional Euler Diagrams with Ellipses Using eulerr**
+
+    SetVR 2018
 
 ## Teaching
 
@@ -107,26 +149,25 @@ citeproc: false
 
 2021
 
-:   Introduction to R Programming, *Department of Statistics, Lund University*. 
+:   Introduction to R Programming, *Department of Statistics, Lund University*.
 
 2019--2021
 
-:   Statistics for Fire Engineers, *Department of Statistics, Lund University*. 
+:   Statistics for Fire Engineers, *Department of Statistics, Lund University*.
 
 2019--2020
 
-:   Data Mining and Visualization, *Department of Statistics, Lund University*. 
+:   Data Mining and Visualization, *Department of Statistics, Lund University*.
 
 2019
 
 :   Artificial Intelligence and Deep Learning, *Department of Statistics, Lund University*.
 
-
 ## Supervision
 
 2023
 
-:   Bachelor's Thesis, *Department of Statistics, Lund University*. 
+:   Bachelor's Thesis, *Department of Statistics, Lund University*.
 
     Student: Elias Gullberg
 
@@ -134,7 +175,7 @@ citeproc: false
 
 2023
 
-:   Bachelor's Thesis, *Department of Statistics, Lund University*. 
+:   Bachelor's Thesis, *Department of Statistics, Lund University*.
 
     Students: Marcus Stolz, Jonathan Christopher
 
@@ -154,12 +195,11 @@ citeproc: false
 
     Students: Qincheng Liu (2019), Akarsh Goyal (2020)
 
-
 ## Referee Service
 
 2024
 
-:   ICML, Computo, AISTATS
+:   ICML, Computo, AISTATS, Annals of Statistics
 
 2023
 
@@ -174,7 +214,6 @@ citeproc: false
 :   NeurIPS
 
 ## Comittee Service
-
 
 2020--2022
 
@@ -208,7 +247,6 @@ eulerr
 
     R package (<https://CRAN.R-project.org/package=eulerr>)
 
-
 ## Contracted Work
 
 2021
@@ -217,4 +255,3 @@ eulerr
 
     Contracted work to develop and deploy a visualization dashboard for
     WHO's Antimicrobial Resistance team in Europe.
-
