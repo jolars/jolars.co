@@ -28,8 +28,6 @@ website:
   repo-url: "https://github.com/jolars/jolars.co"
   repo-actions: [edit, issue]
   search: true
-  twitter-card:
-    creator: "@joh_larsson"
   open-graph:
     locale: en_US
   google-analytics:
