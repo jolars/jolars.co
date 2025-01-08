@@ -1,0 +1,50 @@
+---
+title: "Class-Balance Bias in Regularized Regression"
+author:
+  - Johan Larsson
+  - Jonas Wallin
+abstract: |
+  Regularized models are often sensitive to the scales of the features in the
+  data and it has therefore become standard practice to normalize (center and
+  scale) the features before fitting the model. But there are many different
+  ways to normalize the features and the choice may have dramatic effects on
+  the resulting model. In spite of this, there has so far been no research on
+  this topic. In this paper, we begin to bridge this knowledge gap by studying
+  normalization in the context of lasso, ridge, and elastic net regression. We
+  focus on normal and binary features and show that the class balances of
+  binary features directly influences the regression coefficients and that this
+  effect depends on the combination of normalization and regularization methods
+  used. We demonstrate that this effect can be mitigated by scaling binary
+  features with their variance in the case of the lasso and standard deviation
+  in the case of ridge regression, but that this comes at the cost of increased
+  variance. For the elastic net, we show that scaling the penalty weights,
+  rather than the features, can achieve the same effect. Finally, we also
+  tackle mixes of binary and normal features as well as interactions and
+  provide some initial results on how to normalize features in these cases.
+date: 2025-01-08
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+    - family: Wallin
+      given: Jonas
+  citation-key: larsson2025
+  DOI: 10.48550/arXiv.2501.03821
+  issued: 2025-01-08
+  license: All rights reserved
+  number: arXiv:2501.03821
+  publisher: arXiv
+  source: arXiv.org
+  title: Class-balance bias in regularized regression
+  type: article
+  URL: http://arxiv.org/abs/2501.03821
+github: jolars/normreg
+arxiv: '2501.03821'
+categories:
+  - lasso
+  - ridge regression
+  - normalization
+  - standardization
+  - regression
+  - regularization
+---
