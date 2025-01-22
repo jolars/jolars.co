@@ -44,3 +44,11 @@ ul.publication-list li {
 #title-block-header.quarto-title-block.default .quarto-title-meta {
   grid-template-columns: repeat(2, 1fr);
 }
+
+.MathJax {
+  font-size: 1em;
+}
+
+.katex {
+  font-size: 1em;
+}
