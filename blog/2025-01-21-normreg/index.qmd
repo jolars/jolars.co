@@ -14,7 +14,7 @@ categories:
   - lasso
   - ridge regression
   - research
-image: image.svg
+image: image.png
 title-block-banner: banner.svg
 fig-cap-location: margin
 reference-location: margin
