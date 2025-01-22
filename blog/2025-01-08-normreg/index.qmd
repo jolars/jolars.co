@@ -1,0 +1,344 @@
+---
+title: "New Paper: Class-Balance Bias in Regularized Regression"
+author: Johan Larsson
+draft: true
+draft-mode: unlinked
+date: 2025-01-08
+description: |
+  We have a new paper out on arXiv about normalization for
+  regularized regression (lasso, ridge, and elastic net
+  regression). There is remarkably little research on
+  how to standardize non-normal features in regularized
+  regression and in this paper we try to bridge
+  this knowledge gap by considering binary features.
+categories:
+  - papers
+  - lasso
+  - ridge regression
+  - research
+image: image.svg
+title-block-banner: banner.svg
+fig-cap-location: margin
+reference-location: margin
+---
+
+## The Lasso, Elastic Net, and Ridge Regression
+
+The lasso is probably the most well-known regularization method and the first
+one I encountered when I first learned about regularized regression methods.
+The model can be written as a special case of the elastic net,
+which is an optimization problem that takes the following form:
+$$
+  \operatorname*{minimize}_{\beta_0 \in \mathbb{R},\bm{\beta} \in \mathbb{R}^p}
+  \frac{1}{2} \lVert \bm y - \beta_0 - \bm{X}\bm{\beta} \rVert^2_2  +
+  \lambda_1 \lVert \bm\beta \rVert_1 + \frac{\lambda_2}{2}\lVert \bm \beta \rVert_2^2,
+$$
+where $\bm{X}$ is the matrix of features, $\bm{y}$ is the response, and
+$\beta_0$ and $\bm{\beta}$ are the intercept and coefficients, respectively.
+Setting $\lambda_2 = 0$ gives us the lasso, whereas $\lambda_1 = 0$
+gives us ridge regression: another special case of the elastic net.
+
+In the equation above, 
+$$
+\lambda_1 \lVert \bm\beta \rVert_1 + \frac{\lambda_2}{2}\lVert \bm \beta \rVert_2^2
+$$
+is a *regularization term* that penalizes coefficients by their magnitudes,
+and $\lambda_1$ and $\lambda_2$ control the strength of this penalization.
+The higher these are set, the more the coefficients are shrunk towards zero.
+A high enough value of $\lambda_1$ will make some or all the coefficients zero, which
+gives us a *sparse* model. This is the primary reason why the lasso has been
+so popular, since this sparsity leads to a model that is easier to interpret.
+
+## Normalization
+
+Like most people who have been introduced to the lasso, I quickly learned that
+you need to normalize the features ($\bm{X}$) before fitting the model since 
+their scales affect the resulting coefficients. The larger the scale
+(as measured in variance or, equivalently, standard deviation), the smaller the
+effect of regularization becomes. The reason for this is that the coefficient
+can be smaller for an equivalent effect on the predicted response.
+
+Many sources, including one of the first papers on the lasso by
+@tibshiraniRegressionShrinkageSelection1996, recommend that you *standardize*
+your data, which means centering and scaling each feature by its mean and
+standard deviation. If your features are normally distributed, this practice
+speaks to intuition: each feature's distribution can be described fully by its
+mean and standard deviation, so standardizing it will create a standard normal
+distribution, ensuring that the effects of regularization will be fair across
+the full set of features. After having standardized, most people
+will eventually want to return the coefficients to the original scales of the
+features, but doing so is simple.
+
+The problem with the procedure, however, is that not all features are normally
+distributed. What, for instance, should we do about binary features?^[Features
+that values in $\{0,1\}$ only as, for instance, whether or not you have a
+specific gene present in your DNA.] At this point you may wonder if this
+matters in practice, and the answer is that it does. Consider
+@fig-realdata-paths, which shows the lasso paths for four different data sets
+and under two types of normalization schemes: standardization and max--abs
+normalization. The latter of these scales the data to lie in $[-1, 1],$ which
+preserves sparsity for binary data but makes it sensitive to outliers.
+
+![Lasso paths for some real data sets. Notice that 
+the paths differ heavily depending on which normalization type
+(standardization or max--abs) is used. The first five 
+features to be selected in either normalization scheme
+are colored in the plots.](images/realdata-paths.svg){#fig-realdata-paths width="500px"}
+
+The point of this figure is to illustrate that the choice of normalization
+matters in a critical way, leading to different models and 
+affecting the conclusions you draw from it. 
+
+## The (Non-Existent) Literature
+
+Remarkably, this (strong) relationship between normalization
+and regularization has not been studied at all. When
+searching for motivation for whatever normalization approach
+a given paper used, I typically found that papers either just
+stated their method of normalization as a matter of fact or
+motivated it by being "standard". 
+
+To me, this seems fine if you're just researching simulated data that you've
+sampled from some normal distribution. But that's rarely the case when dealing
+with real data, and never so when the data is binary. There are some more
+informal discussions on normalization, however, so I'd like to take some time
+to briefly review these here. For instance, the [current documentation for
+scikit-learn](https://scikit-learn.org/stable/modules/preprocessing.html#scaling-sparse-data)
+recommends users to use `MaxAbsScaler` (max--abs normalization) to deal with
+sparse data (in order to preserve sparsity), but there is no discussion on the
+fact that this will affect the model (as we saw in @fig-realdata-paths). My
+feeling about this is that I would be very careful before I based my choice of
+normalization (and, implicitly, the choice of model) on the way the data is
+stored on my hard drive (sparse or dense), particularly since it is often
+simple to normalize the data during optimization without having to ever store
+the full matrix in a dense format. This is for instance what
+[glmnet](https://glmnet.stanford.edu) does, which, on the other hand, only
+supports a single type of normalization (standardization).
+
+[In a comment to an issue for the **ncvreg**
+package](https://github.com/pbreheny/ncvreg/issues/18#issuecomment-689496385),
+Patrick Breheny, the author of said package, writes that you should definitely
+standardize dummy features. Finally, [there is also a question on stack
+exchange about
+this](https://stats.stackexchange.com/questions/69568/whether-to-rescale-indicator-binary-dummy-predictors-for-lasso),
+but no real conclusions to be drawn from it.
+
+In spite of all this, lasso, ridge, and elastic net regression have been used
+frequently on binary data in spite of there being very little understanding of
+how these methods actually work in this situation.
+
+## The Paper
+
+The paper that we have written about this is titled *The Choice of
+Normalization Influences Shrinkage in Regularized Regression* [@larsson2025] and is
+now [out on arXiv](https://arxiv.org/abs/2501.03821)^[You can see 
+an abstract and citation info [here](/publications/normreg/) as well]. In it, we begin to address this
+apparent knowledge gap by studying this interplay between normalization and
+regularization in lasso, ridge, and elastic net regression. Our focus is on the
+case of binary features and mixes of binary and normally distributed
+features.
+
+Our first result is that the class balance (proportion of ones versus zeros^[Or
+equivalently, its mean.]) of the binary feature directly influences
+shrinkage. For both ridge and the lasso, the effect is basically that the more
+imbalanced the feature is, the more the coefficient will be shrunk by the
+estimator. Note that this effect is a by-product of regularization and does not, for instance,
+occur with standard linear regression. 
+
+Interestingly, this effect from a given normalization scheme depends directly
+on which regularization method is used, which means that to mitigate this
+effect you will need different normalization strategies depending on which type
+of penalty we use in our model. 
+
+To study this more formally, we introduce a parameterization for scaling
+a feature, given by
+$$
+  s_j = (q_j - q_j^2)^\delta,
+$$
+where $q_j$ is the class balance of the $j$th feature. When
+$\delta = 0$, there would for instance be no scaling for the binary feature (as
+in max--abs normalization). If $\delta = 1/2$, we would scale by the
+*standard deviation* of the feature---as in standardization. If $\delta = 1$,
+then we would instead scale by its variance.
+
+Throughout the paper we assume that our data comes from a linear model
+$$ 
+\bm{y} = \bm{X\beta} + \bm{\varepsilon},
+$$
+where $\bm{y}$ is the response, $\bm{X}$ is the matrix of features,
+and $\bm{\varepsilon}$ is the vector of errors, which we 
+assume to be identically and independently distributed and,
+for many of our results, normally distributed.
+
+These are classical and mostly non-controversial assumptions in this field. But
+we also make a strong^[Although the assumption is strong, our empirical
+experiments suggest that our results likely extend to more general cases.]
+assumption, assuming that the features are orthogonal to one another, so that
+$\bm{X}^\intercal \bm{X}$ is some diagonal matrix. In this case, the elastic
+net estimator admits a closed-form expression, which means that we can study
+the effect of varying the scaling parameter $\delta$.
+
+## Bias--Variance Trade-Offs
+
+What we show in our paper is that there is a bias--variance trade-off with
+respect to this normalization parameter, $\delta$. See @fig-mixed-data for
+a simple example of this, where we consider a two-dimensional
+problem with one binary feature and one normally distributed feature.
+We have kept the true coefficients fixed at one for each of the
+features, and only vary $q$: the class balance (proportion of ones and zeros in the 
+binary feature). We consider the cases $\delta=0$ (no scaling), $\delta=1$ (standard
+deviation scaling), and $\delta=1$ (variance scaling) and we see that there
+are only two settings that seem to mitigate this class-balance bias:
+in ridge and lasso regression, respectively, these are $\delta = 1/2$ and $1$.
+
+![
+Lasso and ridge estimates for a two-dimensional problem where one feature is a binary
+feature with class balance $q_j$ ($\operatorname{Bernoulli}(q_j)$) and the other is quasi-normal
+with standard deviation 1/2, ($\operatorname{Normal}(0, 0.5)$).
+](images/mixed-data.svg){#fig-mixed-data width="500px"}
+
+This figure also shows that this type of variance scaling,
+while *reducing* bias, *increases* variance in the estimates. This
+is not particularly surprising, however, since an unbalanced feature
+necessarily provides less information than a balanced one.
+
+@fig-mixed-data is purely an empirical result from a simulation,
+but under our particular assumptions we can work out this
+bias--variance trade-off exactly. In @fig-biasvar-lasso, we
+have done exactly that for the lasso. (The paper includes results for
+ridge regression and the elastic net as well.) In this figure, $\sigma_\varepsilon$
+represents the standard deviation of the error term in our
+data---the measurement noise. And what we can deduce from this
+figure is that this bias--variance trade-off very much depends on the 
+noise level. If the signal is strong, then we can reduce the
+mean-squared error (MSE) by employing this variance scaling,
+but if the problem is noisier, we do better (in a prediction error
+sense) by using standardization instead.
+
+![
+Bias and variance
+](images/biasvar-lasso.svg){#fig-biasvar-lasso width="500px"}
+
+
+To study if and how this choice of the normalization parameter $\delta$ might
+impact predictive performance in a real-data setting, we've also conducted
+experiments where we have varied both $\delta$ as well as the regularization
+strength ($\lambda$) for lasso and ridge models, recording hold-out error for
+each fit. The results are shown in @fig-hyperopt, from which it is evident that
+the optimal value for $\delta$ is data-dependent, although standardization
+might make for a good default since it mitigates some of the class-balance
+bias without imposing too much variance.
+
+![
+Normalized mean-squared error (NMSE) for  the hold-out set for 
+lasso and ridge regression on three different
+real datasets (a1a, w1a, and rhee2006). The dotted line
+marks the best value for $\delta$ as a function of 
+$\lambda/\lambda_\text{max}$ (where $\lambda_\text{max}$ is the
+value at which all the coefficients are zero).
+The circle marks the optimal combination of $\delta$ and $\lambda$.
+](images/hyperopt.svg){#fig-hyperopt width="500px"}
+
+
+## Mixed Data
+
+We spend a substantial amount of time in the paper to also discuss the problem
+of mixed data: data sets that include both binary and continuous features,
+although in the paper we restrict ourselves to study the case of normal
+features.
+
+When dealing with regularized methods, this scenario imposes a tricky question,
+namely: how do we put binary and continuous features on the same scale? This
+question is critical because, as we have already seen, shrinkage from the lasso
+and company will depend directly on how we choose to normalize the features to
+deal with this.
+
+To put this problem into perspective, let's say that we standardize *all* our
+features and also assume that our binary features are *perfectly balanced* (so
+that $q_j = 1/2$ for all $j$ corresponding to a binary features). If all of
+this holds, then it actually turns out that the coefficients of the binary and
+normal features will be regularized by the same amount if flipping the binary
+feature from 0 to 1 corresponds to a change of one standard deviation in the
+normal feature. In other words, our choice of normalization imposes this
+particular choice of what a one-unit change in terms of a binary feature should
+be equivalent to in terms of a normal feature (or vice versa).
+
+You may or may not think this is a reasonable approach to scale binary and
+normal features relative to one another, but I would be surprised if you
+thought that this was reasonable for *all* binary features, given that they
+often represent entirely different things. Some features are indeed truly
+binary in nature, but many are just too distant points on the same continuum.
+It is true that some binary features come from dichotomization of continuous
+variables, in which case you should be able to base your choice of scaling on
+the original continuous feature's scale, but even in this case it is not the
+case that there is one single way to dichotomize a variable that ensures that
+they are put on the same scale.^[In any case, you should always be careful
+about dichotomizing your features since you are in effect throwing away
+information about your data.]
+
+The particular relative scaling imposed by standardization was actually the
+subject of a paper by @gelman2008, although tackled from the perspective of
+presenting standardized coefficients in standard regression model settings. In
+this paper, he argues that the default of equating a one-unit change in a
+binary feature to a one-standard deviation change in the normal feature is
+typically *not* a good default and advocated for instead using
+*two* standard deviations. In our paper, we adopt this setting, but
+here I want to stress that there is nothing critical in our results that
+depend on this. But we want to stress that this choice should if
+possible be done actively.
+
+Another interesting part about this is that if we switch normalization method
+to, say, maximum--absolute value normalization, then this relationship
+changes.^[Even if the binary features are perfectly balanced.] With another
+normalization method comes another relative scaling of binary and normal
+features. So, the choice of normalization does not just lead to a different
+behavior with respect to class balance, it also leads to an implicit
+weighting of binary and normal features relative to one another.
+
+## The Weighted Elastic Net
+
+We have so far discussed the normalization in the context of the lasso and
+ridge regression. Careful readers might, however, have noticed that we have not
+yet said anything about the elastic net (save for a few words in the
+introduction). The reason is that it turns out to me impossible to 
+fully mitigate the class-balance
+bias in the case of the elastic net through modifications
+to the normalization procedure, which you can almost guess from @fig-mixed-data,
+since the modifications for ridge and lasso are different.
+
+Thankfully there turns out to be a solution to this problem, which is to use
+the *weighted elastic net*, in which we modify the weights of each
+penalty factor instead of normalizing. The problem
+then becomes
+$$
+  \frac{1}{2} \lVert \bm{y} - \beta_0 - \bm{X}\bm{\beta}\rVert_2^2 + \lambda_1 \sum_{j=1}^p u_j |\beta_j| + \frac{\lambda_2}{2} \sum_{j=1}^p v_j \beta_j^2.
+$$
+I won't cover any details here, but please see the paper for more information.
+
+## Summary
+
+The main takeaway from this paper is that the choice of normalization
+matters greatly in the case of regularized regression, at least in
+the case of lasso, ridge, and elastic net regression. In spite of this
+fact, there is scant research on this topic, and the little information
+that is available through non-formal channels is typically anecdotal
+and not motivated by any theoretical or even empirical considerations.
+
+We have focused on binary features in this paper and have shown that standard
+approaches such as standardization and max--abs normalization lead to biased
+estimates in terms of class balance (the proportion of ones) of these binary
+features, depending on whether a lasso or ridge penalty is used. I think this
+may come as a surprise to some and have real implications for data sets in
+which a given feature is rare but has a strong effect on the response.
+Consider, for instance, gene expression data where the presence of a rare gene
+might be crucial for predicting a disease. If you would apply the lasso this
+data set after having standardized it, then chances are that your model might
+not pick up on this effect at all.
+
+I have covered a few highlights in this blog post, but there is
+much more in the paper itself, including a section on normalization
+in the case of interactions between the features as well as
+many more experiments (and of course much more theory).
+I think you'll find the paper interesting and hope that it might
+be able to spur some future research on this topic, which is surprisingly
+understudied.
