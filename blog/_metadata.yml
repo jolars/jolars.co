@@ -13,3 +13,4 @@ comments:
     input-position: "bottom"
     theme: "light_protanopia"
 title-block-banner: true
+draft-mode: unlinked
