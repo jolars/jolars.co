@@ -1,8 +1,6 @@
 ---
 title: "New Paper: Class-Balance Bias in Regularized Regression"
 author: Johan Larsson
-draft: true
-draft-mode: unlinked
 date: 2025-01-08
 description: |
   We have a new paper out on arXiv about normalization for
