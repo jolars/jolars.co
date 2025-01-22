@@ -72,7 +72,7 @@ format:
   html:
     theme: flatly
     css: styles.css
-    html-math-method: mathjax
+    html-math-method: katex
     pagetitle: "{{< meta title >}}"
     include-in-header:
       file: header.html
