@@ -1,7 +1,7 @@
 ---
 title: "New Paper: Class-Balance Bias in Regularized Regression"
 author: Johan Larsson
-date: 2025-01-08
+date: 2025-01-21
 description: |
   We have a new paper out on arXiv about normalization for
   regularized regression (lasso, ridge, and elastic net
