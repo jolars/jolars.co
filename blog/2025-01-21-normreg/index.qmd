@@ -1,5 +1,5 @@
 ---
-title: "New Paper: Class-Balance Bias in Regularized Regression"
+title: "New Paper on Feature Normalization and Regularized Regression"
 author: Johan Larsson
 date: 2025-01-21
 description: |
