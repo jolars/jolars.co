@@ -1,0 +1,61 @@
+---
+title: "Cramér Prize for Best PhD Thesis"
+author: Johan Larsson
+date: 2025-02-05
+description: |
+  I received the Cramér Prize for my PhD thesis about optimization and 
+  algorithms for sparse regression! 🥳
+categories:
+  - thesis
+  - lasso
+  - ridge regression
+  - research
+  - optimization
+  - statistics
+image: cramer-logo.png
+---
+
+I am very happy to have just heard that my thesis was selected for the 2025
+Cramér Prize for best thesis in statistics defended in 2024! The thesis is
+about optimization and algorithms for sparse regression and I have previously
+written about it in a [blog post here](/blog/2024-05-22-phd-thesis/) so I will
+not delve into details. But I am tremendously happy to have received this
+prize and want to thank my supervisors and committee for the prize.
+
+The [Cramér Society](https://statistikframjandet.se/cramersallskapet/start/) is
+a branch of the Swedish statistical society^[Statistikfrämjandet]. Each year
+they award a prize for the best PhD thesis in statistics (or mathematical
+statistics) defended in Sweden. The prize is named after Harald Cramér, a
+Swedish mathematician and statistician who made fundamental contributions to
+probability theory and statistics. He was a professor at Stockholm University
+from 1929 to 1958 and is particularly known for his work on mathematical
+statistics and probability theory.
+
+The announcement can be found [here](https://statistikframjandet.se/cramersallskapet/cramerpriset-2025-gar-till-johan-larsson/)
+but it is in Swedish, but I have translated it here:
+
+> The Cramér Prize is awarded annually for the best doctoral thesis to a person
+> who defended their PhD in statistics/mathematical statistics during the past
+> calendar year. This year, the prize goes to Johan Larsson, who defended his
+> thesis at the Department of Statistics at Lund University. The motivation for
+> the decision reads as follows:
+> 
+> In his thesis "Optimization and algorithms in sparse regression", Johan Larsson
+> tackles challenges that typically arise in the analysis of datasets with a
+> large number of predictors and relatively few observations. The thesis thereby
+> addresses problems that are central to contemporary statistical learning.
+> Through the development of prescreening methods and optimization algorithms,
+> Johan improves regression modeling using established regularization methods,
+> such as LASSO and SLOPE, in high-dimensional contexts. The thesis, which
+> contains both theoretical and applied parts, is very well written and, in
+> addition to the developed statistical methods, also contributes software
+> intended for objective comparison of different optimization methods.
+> 
+> Information about previous years' prize winners can be found at:
+> <https://statistikframjandet.se/cramersallskapet/cramerpriset/>
+
+
+The thesis itself can be found
+[here](https://lup.lub.lu.se/search/publication/0b9c97e8-5f65-43eb-9f7a-c4f237568370).
+
+
