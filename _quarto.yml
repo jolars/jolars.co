@@ -50,6 +50,9 @@ website:
         href: "https://mastodon.social/@jolars"
         aria-label: Mastodon
         rel: "me"
+      - text: "<i class='fa-brands fa-bluesky'></i>"
+        href: "https://bsky.app/profile/jolars.co"
+        aria-label: Bluesky
       - icon: github
         href: "https://github.com/jolars/"
         aria-label: "Github profile"

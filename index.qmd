@@ -10,6 +10,9 @@ about:
       aria-label: Mastodon
       href: "https://mastodon.social/@jolars"
       rel: "me"
+    - text: "<i class='fa-brands fa-bluesky'></i> Bluesky"
+      href: "https://bsky.app/profile/jolars.co"
+      aria-label: Bluesky
     - icon: github
       text: GitHub
       href: https://github.com/jolars
