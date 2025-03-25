@@ -87,6 +87,11 @@ citeproc: false
 
 ## Invited Talks
 
+Mar 24, 2025
+:   **Optimization and Algorithms in Sparse Regression: A Summary of My Thesis**
+
+    Cramér Society Mini-Conference
+
 Nov 13, 2024
 :   **The Choice of Normalization Directly Affects Feature Selection in Regularized Regression**
 
