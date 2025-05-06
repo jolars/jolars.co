@@ -1,0 +1,43 @@
+---
+title: "LUSEM's Best Thesis Award 2024"
+author: Johan Larsson
+date: 2025-05-06
+description: |
+  I received the LUSEM Prize for my PhD thesis! 🚀
+categories:
+  - thesis
+  - awards
+  - research
+  - statistics
+  - lusem
+image: lusem.png
+reference-location: margin
+---
+
+It seems that I am on a lucky streak! I was also just^[Used to be correct
+when I started drafting this post, but now it's been a little more than a month actually.] awarded
+Lund School of Economics's award for best thesis in 2024.
+
+You can read the news post
+[here](https://www.lusem.lu.se/article/lusems-best-thesis-award-2024-goes-johan-larsson),
+in which I answer some questions regarding the thesis.
+
+Here is the nomination:
+
+> In his dissertation, Johan Larsson develops new algorithms and optimization
+> methods for sparse regression—a methodology used when the number of
+> predictors is large relative to the number of observations. Special emphasis
+> is placed on regularization methods, which introduce a penalty on model
+> complexity to reduce the risk of overfitting. This is crucial in statistics
+> and machine learning, where models with many variables often risk capturing
+> random noise rather than meaningful signals. Regularization helps identify
+> the most important variables, much like finding a needle in a haystack,
+> making theoretical models more applicable to real-world data. The
+> dissertation introduces new algorithms for sparse regression, where many
+> predictors can be excluded without losing essential relationships, with a
+> particular focus on regularization methods such as LASSO and SLOPE.
+
+The thesis itself can be found
+[here](https://lup.lub.lu.se/search/publication/0b9c97e8-5f65-43eb-9f7a-c4f237568370).
+
+Again, I want to thank LUSEM and all of the people who helped me on the way.
