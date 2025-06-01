@@ -65,6 +65,9 @@ citeproc: false
 
     Supervisors: Jonas Wallin and Malgorzata Bogdan
 
+    Awarded best PhD thesis in statistics in Sweden in 2024 by the Cramér
+    Society and best PhD thesis at Lund School of Economics and Management in 2024
+
 2016--2018
 
 :   **Bachelor's degree in statistics**, *Department of Statistics, Lund University*
@@ -142,6 +145,10 @@ Jun 18, 2018
 
 ### Instructor
 
+2024--now
+
+:   Computational Statistics, *Department of Mathematical Sciences, University of Copenhagen*
+
 2020--2023
 
 :   Data Visualization, *Department of Statistics, Lund University*
@@ -152,21 +159,25 @@ Jun 18, 2018
 
 ### Teaching Assistant
 
+2025--now
+
+:   Project in Statistics, *Department of Mathematical Sciences, University of Copenhagen*
+
 2021
 
-:   Introduction to R Programming, *Department of Statistics, Lund University*.
+:   Introduction to R Programming, *Department of Statistics, Lund University*
 
 2019--2021
 
-:   Statistics for Fire Engineers, *Department of Statistics, Lund University*.
+:   Statistics for Fire Engineers, *Department of Statistics, Lund University*
 
 2019--2020
 
-:   Data Mining and Visualization, *Department of Statistics, Lund University*.
+:   Data Mining and Visualization, *Department of Statistics, Lund University*
 
 2019
 
-:   Artificial Intelligence and Deep Learning, *Department of Statistics, Lund University*.
+:   Artificial Intelligence and Deep Learning, *Department of Statistics, Lund University*
 
 ## Supervision
 
@@ -243,6 +254,9 @@ SLOPE
     Author and maintainer
 
     R package (<https://CRAN.R-project.org/package=SLOPE>)
+    Python package (<https://pypi.org/projects/sortedl1>)
+    Julia package (<https://github.com/jolars/SLOPE.jl>)
+    C++ library (<https://github.com/jolars/libslope>)
 
 benchopt
 
