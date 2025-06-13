@@ -40,11 +40,6 @@ ul.publication-list li {
   padding: 20px 20px 0px 20px;
 }
 
-/* TODO: remove once quarto 1.5 is out */
-#title-block-header.quarto-title-block.default .quarto-title-meta {
-  grid-template-columns: repeat(2, 1fr);
-}
-
 .MathJax {
   font-size: 1em;
 }
