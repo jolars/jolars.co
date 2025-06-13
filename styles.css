@@ -55,3 +55,7 @@ div.quarto-post .thumbnail img {
 h3.no-anchor.listing-title {
   padding-bottom: 0.3em;
 }
+
+.quarto-grid-item p.card-img-top > img {
+  padding: 1ex;
+}
