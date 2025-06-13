@@ -221,6 +221,10 @@ Jun 18, 2018
 
 ## Referee Service
 
+2025
+
+:   ICML
+
 2024
 
 :   ICML, Computo, AISTATS, Annals of Statistics
