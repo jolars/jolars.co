@@ -52,3 +52,7 @@ ul.publication-list li {
 .katex {
   font-size: 1em;
 }
+
+div.quarto-post .thumbnail img {
+  margin-bottom: 0.8em;
+}
