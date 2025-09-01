@@ -20,7 +20,7 @@ about:
       href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
     - icon: envelope
       text: Mail
-      href: mailto:jolars@posteo.com
+      href: mailto:jolars@jolars.co
 ---
 
 Thiele Postdoctoral Researcher in statistics at the [Department of Mathematical Sciences](https://www.math.ku.dk/english), [Copenhagen University](https://ku.dk/english)
