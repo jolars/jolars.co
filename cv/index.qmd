@@ -4,8 +4,7 @@ format:
   html:
     css:
       - styles.css
-    template-partials:
-      title-block.html
+    template-partials: title-block.html
   pdf:
     toc: false
     fontfamily: libertine
@@ -33,7 +32,7 @@ github: jolars
 google-scholar: DCJvywYAAAAJ
 mastodon-id: jolars
 mastodon-server: mastodon.social
-nocite: '@*'
+nocite: "@*"
 bibliography:
   articles: articles.bib
   theses: theses.bib
