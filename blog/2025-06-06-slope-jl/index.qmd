@@ -1,0 +1,121 @@
+---
+title: "SLOPE for Python and Julia"
+author: Johan Larsson
+date: 2025-06-06
+description: |
+  The SLOPE package universe expands to Python and Julia
+categories:
+  - Software
+  - Julia
+  - R
+  - Python
+  - SLOPE
+  - C++
+image: logo.png
+reference-location: margin
+engine: knitr
+---
+
+I am excited to announce that SLOPE is now also available to users of Julia and
+Python! The Python package, [sortedl1]() has in fact been available for over a
+year now, but the Julia package
+([SLOPE.jl](https://github.com/jolars/SLOPE.jl)) was just added to the general
+registry.
+
+This is the culmnination of a several months long effort to rewrite the C++
+backend of SLOPE from scratch and refactor into into a separate library,
+[slope](https://github.com/jolars/libslope).
+Compared to the previous backend, which was entirely designed as a
+driver for the R package [SLOPE](https://) and based on the RcppArmadillo package,
+this new version is built as a standalone library that could, in principle, be used
+on its own. All of the unit tests (and several more) are now part of this library
+instead of the R package, which mitigates some of the awkward practicies of
+having to export C++ functions to R just to be able to unit test them.
+
+The purpose of all of this is to make it easier to use SLOPE in other languages,
+in particular Julia and Python. The idea is that all of these packages will be able
+to use the new backend by simply using the source code directly as part of the
+respective build system. I originally experimented with a direct
+approach wherein the bindings for each language would be generated
+directly from the C++ repository, which is what [mlpack](https://github.com/mlpack/mlpack)
+does, but this makes developing the bindings cumbersome and unfriendly
+to new contributors. Instead, I have opted for a more traditional
+approach where each package lives in its own repository.
+Nevertheless, the idea is for each of these bindings to be able
+to easily update to the latest versio nof the C++ library by simply
+pulling the latest release of the C++ library.
+
+The particular details of how this is done in
+each language is something that I will leave to another post as it is
+interesting in itself and highlights some of the differences between
+the languages and their package ecosystems, which I have learned a lot
+about during this process.
+
+For now, however, we will just focus on the package suite.
+
+```{r, include = FALSE}
+library(reticulate)
+py_require("sortedl1")
+```
+
+::: {.panel-tabset}
+## Python
+
+```{python}
+from sortedl1 import Slope
+
+import numpy as np
+
+n = 100
+p = 10
+k = 2
+x = np.random.randn(n, p)
+beta = np.zeros(p)
+beta[:k] = 1
+y = x @ beta + np.random.randn(n)
+model = Slope()
+
+fit = model.fit(x, y)
+```
+
+## R
+
+```{r}
+library(SLOPE)
+
+n <- 100
+p <- 10
+k <- 2
+
+x <- matrix(rnorm(n * p), n)
+beta <- double(p)
+beta[1:k] <- 1
+
+y <- x %*% beta + rnorm(n)
+
+fit <- SLOPE(x, y)
+
+plot(fit)
+```
+
+## Julia
+
+```{julia}
+using SLOPE
+using Plots
+
+n = 100;
+p = 10;
+k = 2;
+
+x = randn(n, p);
+beta = zeros(p);
+beta[1:k] .= 1;
+y = x * beta + randn(n);
+
+fit = slope(x, y);
+
+plot(fit)
+```
+
+:::
