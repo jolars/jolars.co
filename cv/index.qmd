@@ -180,6 +180,15 @@ Jun 18, 2018
 
 ## Supervision
 
+2025
+
+:   Project Outside the Course Scope, *Department of Mathematical Sciences,
+    University of Copenhagen*.
+
+    Student: Frederik Fabricius Bjerre
+
+    Title: caugi: Causal Graph Interface (for R) 
+
 2023
 
 :   Bachelor's Thesis, *Department of Statistics, Lund University*.
