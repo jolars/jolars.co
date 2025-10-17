@@ -31,7 +31,25 @@
           <% } %>
           <span class="listing-date">, <%= item.citation.date %></span>.
         <% } %>
+        <% if (item.citation.type == 'article-journal') { %>
+          <% if (item.citation["container-title"]) { %>
+            <span class="listing-publication fst-italic"><%= item.citation["container-title"] %></span>,
+          <% } %>
+          <% if (item.citation["volume"]) { %>
+            <span class="listing-volume"><%= item.citation["volume"] %></span><% } %><% if (item.citation["issue"]) { %><span class="listing-issue">(<%= item.citation["issue"] %>)</span>,
+          <% } %>
+          <% if (item.citation["page"]) { %>
+            <span class="listing-page"><%= item.citation["page"] %></span>,
+          <% } %>
+          <% if (item.citation.publisher) { %>
+            <span class="listing-archive fst-italic"><%= item.citation.publisher %></span>,
+          <% } %>
+          <span class="listing-date"><%= item.date %></span>.
+        <% } %>
         <% if (item.citation.type == 'article') { %>
+          <% if (item.citation["container-title"]) { %>
+            <span class="listing-publication fst-italic"><%= item.citation["container-title"] %></span>,
+          <% } %>
           <% if (item.citation.publisher) { %>
             <span class="listing-archive fst-italic"><%= item.citation.publisher %></span>,
           <% } %>
