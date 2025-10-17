@@ -233,7 +233,7 @@ Jun 18, 2018
 
 2025
 
-:   ICML, Journal of Open Source Software
+:   ICML, Journal of Open Source Software, TMLR
 
 2024
 
