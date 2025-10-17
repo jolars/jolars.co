@@ -35,4 +35,3 @@ categories:
   - color vision deficiency
 ---
 
-Larsson, J. (2025). Qualpal: Qualitative color palettes for everyone. Journal of Open Source Software, 10(114), 8847. https://doi.org/10.21105/joss.08936
