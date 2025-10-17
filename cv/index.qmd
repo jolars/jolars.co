@@ -58,7 +58,7 @@ citeproc: false
 
 2018--2024
 
-:   **PhD in statistics**, *Department of Statistics, Lund University*
+:   **PhD in Statistics**, *Department of Statistics, Lund University*
 
     Title: "Optimization and Algorithms in Sparse Regression"
 
@@ -69,7 +69,7 @@ citeproc: false
 
 2016--2018
 
-:   **Bachelor's degree in statistics**, *Department of Statistics, Lund University*
+:   **Bachelor's Degree in Statistics**, *Department of Statistics, Lund University*
 
     Title: "eulerr: Area-Propotional Euler Diagrams with Ellipses"
 
