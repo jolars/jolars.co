@@ -224,7 +224,13 @@ metric](https://en.wikipedia.org/wiki/Color_difference#CIEDE2000)
 computing differences between colors. Qualpal previously used the DIN99d metric
 [@cui2002], which is computationally appealing since, once the colors are
 converted into the DIN99d space, the color metric formula is simply Euclidean
-distance. 
+distance. But the tradeoff is that DIN99d is not as perceptually accurate,
+and I therefore decided o switch the default to CIEDE2000.
+
+The result is that the palettes are now more distinct than before,
+at the cost of an increase in computation time. For most practical
+purposes, however, the difference in speed is negligible and
+Qualpal is still fast enough for this not to be even noticeable.
 
 ## Roadmap
 
