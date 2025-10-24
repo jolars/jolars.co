@@ -205,6 +205,7 @@ Finally, I am happy to announce that Qualpal was just published in the Journal
 of Open Source Software (JOSS)! [@larsson2025c]
 I have for a long time been interested in submitting something to JOSS,
 which to me seems to have a great model for papers about software.
+
 First, I think the reviewer system, which is entirely based around GitHub
 issues, is natural for a journal about software, since much software
 anyway is located in a public repository, and issues can be cross-referenced
