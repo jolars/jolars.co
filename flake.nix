@@ -88,6 +88,8 @@
               ps.pandas
               ps.jupyter
               ps.openai
+              ps.pillow
+              ps.requests
               sortedl1
             ]))
           ];
