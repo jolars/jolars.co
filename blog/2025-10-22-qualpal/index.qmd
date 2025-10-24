@@ -1,0 +1,243 @@
+---
+title: "Qualpal"
+author: Johan Larsson
+date: 2025-10-22
+description: |
+  My pet project Qualpal is now a stand-alone C++
+  library as well as web app and was just published
+  in the Journal of Open Source Software!
+categories:
+  - r
+  - c++
+  - color
+  - research
+  - data visualization
+reference-location: margin
+image: images/image.png
+title-block-banner: images/banner.png
+title-block-banner-color: white
+---
+
+## Qualpal(r)
+
+It is now *nine* years [since I first
+blogged](/blog/2016-10-15-introducing-qualpalr/index.qmd) about my pet project
+Qualpal (at that point called *qualpalr*), which is an R package for generating
+qualitative color palettes for data visualization in R. It was motivated by the
+fact that almost all color palettes were designed for a fixed number of
+categories and therefore must be suboptimal for other numbers of categories.
+
+At the time, there were only a couple of other alternatives
+available and out of these I only knew about
+[iWantHue](http://tools.medialab.sciences-po.fr/iwanthue/),
+which is a web app that generates these kinds of color palettes.
+And while iWantHue is great and I think has raised the issue
+of generating these palettes to more prominence, I felt
+that there were opportunities to improve upon it, which
+is why Qualpal was born.
+
+The major innovations of Qualpal were 
+
+1. a new algorithm for selecting colors,
+2. an improved metric for computing the distances between colors, 
+3. adaptation to color vision deficiencies, and
+4. a C++ backend that made it fast enough to be used interactively and
+   generate palettes from a large input set of colors.
+
+Another, but perhaps obvious, addition was that Qualpal
+was accessible directly from R, which is where I (at least at the time)
+did most of my work. At the time, it was the first package in R 
+to provide this type of automatic qualitative palette generation.
+
+I have made little progress on the package until the start of this year when I
+decided that it was time to make the investment to turn Qualpal into a more
+widely accessible tool. I had the following ideas in mind.
+
+1. Transform the entire codebase into C++, not just the core algorithm,
+   in order to make it easier to create bindings in other languages, such
+   as Python and Julia.
+2. Improve the feature set of the package. 
+3. Create a CLI application.
+4. Create a web app, without having to rely on Shiny.
+5. Support supplying a known palette name as input to Qualpal,
+   so that users could pick a subset of colors from a given palette.
+6. Allow adaptation to any kind of color vision deficiency,
+   not just a single dichromacy type.
+7. Allow users to _extend_ a fixed color palette with additional colors,
+   in order to, for instance, extend Tableau's 10-color palette to a size
+   of 12 colors.
+
+## The New C++ Library
+
+All of the above has now been implemented. I've decoupled the C++ parts of
+qualpalr into a separate library called Qualpal, which lives [in its own
+repository on GitHub](https://github.com/jolars/qualpal).
+
+The new C++ library is designed to be lean and carries no other dependencies
+than the C++ standard library, although there is support for multi-threading
+via OpenMP (if available). 
+
+The functionality of the package is mostly concentrated in the `Qualpal` class,
+which uses a builder-type interface to customize palette generation. Here's an
+example, where we construct a five-color palette from part of the
+hue-saturation-lightness (HSL) color space as input.
+
+```cpp
+#include <qualpal.h>
+
+using namespace qualpal;
+
+Qualpal qp;
+qp.setInputColorspace({ -170, 60 }, { 0, 0.7 }, { 0.2, 0.8 });
+auto colorspace_pal = qp.generate(5);
+```
+
+![Five colors from the HSL color space](images/cpp-hsl.png)
+
+In the next example, we change to using one of the
+built-in color palettes, in this case *Set2* from 
+*ColorBrewer* [@harrower2003] as input, and
+adapting the color palette to the color vision deficiency
+type deuteranomaly of severity 0.7 (70%).
+
+```cpp
+qp.setInputPalette("ColorBrewer:Set2").setCvd({ { "deutan", 0.7 } });
+auto cvd_pal = qp.generate(4);
+```
+
+![Four colors from the ColorBrewer Set2 palette with
+deuteranomaly adaptation](images/cpp-deutan.png)
+
+Extensive documentation, including a complete API reference, is available at
+[jolars.github.io/qualpal](https://jolars.github.io/qualpal/).
+
+## The R Package (qualpalr)
+
+The R package, qualpalr, now uses the C++ library as a backend, and new
+releases of the C++ library are semi-automatically integrated into the R
+package. Only the R-specific parts remain in the qualpalr package,
+which means that development is now focused on the C++ library directly.
+
+The main major change of the package is a switch in the
+character method of the main function of the package, `qualpal()`,
+which now assumes that the second argument is the name of a
+built-in palette. But backwards compatibility with the old
+behavior^[Where the argument defined a subspace of the 
+HSL color space.] is maintained by selectively handling the 
+previous set of allowed input.
+
+In the following example, we generate a 4-color palette
+by picking colors from Vermeer's *Girl with a Pearl Earring*.
+This example also showcases a new feature that allows users
+to optimize the palette against a given background color
+(in this case white).
+
+```{r}
+#| warning: false
+library(qualpalr)
+pal <- qualpal(4, "Vermeer:PearlEarring", bg = "white")
+pal$hex
+```
+
+The default plot method shows a multi-dimensional scaling (MDS)
+plot of the colors in the color difference metric space,
+which gives an idea of how well-separated the colors are.
+
+```{r}
+#| fig-cap: "A multi-dimensional scaling (MDS) plot of colors in the color difference metric space."
+plot(pal)
+```
+
+### New Vignette
+
+Another addition to the qualpalr package, which is relevant
+irrespective of how you choose to use Qualpal, is a new
+[vignette on comparisons to alternatives](https://jolars.github.io/qualpalr/articles/comparisons).
+So, in case you are interested in knowing how Qualpal compares to
+other alternatives, such as [palettailor](https://www.yunhaiwang.net/infoVis2020/palettailor/color-palette-generation.html) [@lu2021],
+[Colorgorical](https://gramaz.io/colorgorical/) [@gramazio2016],
+the aforementioned [iWantHue](https://medialab.github.io/iwanthue/),
+or glasbey [@mcinnes2025], please check it out. As you might guess,
+Qualpal performs very well in these comparisons.
+
+## The CLI Tool
+
+As a result of refactoring the package into a pure C++ library, it was also
+straightforward to create a command-line interface (CLI) tool for Qualpal,
+relying on the excellent [CLI11 library](https://github.com/CLIUtils/CLI11).
+This CLI tool is only available from source as of now, but I hope it will
+be packaged for various Linux distributions in the future.
+
+Here's an example of generating a 5-color palette from the HSL colorspace:
+
+```sh
+qualpal -n 5 -i colorspace "0:360" "0.4:0.8" "0.3:0.7"
+```
+
+![A palette of five colors generated from input colors as a subspace of the HSL
+colorspace.](images/cli-example.png)
+
+Please see the instructions in the
+[README](https://github.com/jolars/qualpal/blob/main/README.md) for how to
+build and use the CLI tool.
+
+## The Web App
+
+One of the major motivations for refactoring Qualpal into a C++ library
+was to make it possible to serve it as a static web app by compiling
+the C++ code to WebAssembly (WASM). Although I love
+how easy it is to turn R code into web apps using Shiny,
+I have always been bothered by the hoops you have to jump through
+to deploy and manage Shiny apps, whereas the new Qualpal web app
+is hosted on GitHub pages as a static site and is served
+directly upon successful builds from GitHub Actions.
+
+Running a server instance is also not free, so hosting
+this as a static web app means significant cost savings and
+automatically scales to any number of users.
+
+
+![A screenshot of the Qualpal web app](images/web-app.png)
+
+## JOSS Publication
+
+Finally, I am happy to announce that Qualpal was just published in the Journal
+of Open Source Software (JOSS)! [@larsson2025c]
+I have for a long time been interested in submitting something to JOSS,
+which to me seems to have a great model for papers about software.
+First, I think the reviewer system, which is entirely based around GitHub
+issues, is natural for a journal about software, since much software
+anyway is located in a public repository, and issues can be cross-referenced
+seamlessly. It is also completely transparent.
+Finally, I like the fact that papers are short, motivated by the fact that
+the software's documentation should serve as the source of information
+about the software, rather than an academic paper (which is fixed).
+
+## New Color Difference Metric
+
+Another change that was made as part of the recent work on Qualpal was the
+introduction of other color difference metric. In particular, Qualpal now
+supports the [CIEDE2000
+metric](https://en.wikipedia.org/wiki/Color_difference#CIEDE2000)
+[@sharma2005], which is the current standard set by the CIE organization for
+computing differences between colors. Qualpal previously used the DIN99d metric
+[@cui2002], which is computationally appealing since, once the colors are
+converted into the DIN99d space, the color metric formula is simply Euclidean
+distance. 
+
+## Roadmap
+
+Coming back to the start of this post and the motivation for refactoring
+Qualpal as a stand-alone C++ library, this change means that it is now
+easier to create new bindings for Qualpal. The most obvious next step
+is therefore to create a Python package that wraps around Qualpal.
+Doing so should be quite straightforward and I will eventually do this myself,
+unless someone gets there first!
+
+I am also happy for any kind of feedback regarding Qualpal, so
+please check out the [GitHub repository](https://github.com/jolars/qualpal) for
+the project, where you can [file issues](https://github.com/jolars/qualpal/issues)
+or [open up discussions](https://github.com/jolars/qualpal/discussions) should
+you have any ideas on how the project could be improved or if you
+would like to contribute directly, which would be
+very much appreciated.
