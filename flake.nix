@@ -76,6 +76,7 @@
             with pkgs;
             [
               quartoMinimal
+              bashInteractive
               cmake
               julia-bin
               (rWrapper.override {

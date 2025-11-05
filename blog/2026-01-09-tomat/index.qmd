@@ -1,0 +1,399 @@
+---
+title: "Introducing Tomat: A Pomodoro Timer for Status Bars"
+author: Johan Larsson
+date: 2026-01-09
+description: |
+  I've decided that the world needs yet another pomodoro timer.
+  yapm was unfortunately already taken, so I named it
+  after the Swedish tomato.
+categories:
+  - tomat
+  - productivity
+  - pomodoro
+  - linux
+reference-location: margin
+image: tomato.jpg
+title-block-banner: banner.jpg
+---
+
+## Introduction
+
+I have on-and-off been a user of the Pomodoro technique, which
+is based on splitting your work day into increments of, typically,
+25-minute work sessions followed by 5-minute breaks, repeated
+say, four times, and then followed by a longer, 15-minute break.
+In @fig-basic-pomodoro, you can see a simple illustration
+of how the Pomodoro technique works.
+
+```{mermaid}
+%%| fig-cap: An illustration of the Pomodoro technique.
+%%| fig-align: center
+%%| label: fig-basic-pomodoro
+graph TD
+    A[25 min work] -->|Sessions 1-4| B[5 min break]
+    B --> A
+    A -->|Session 5| C[15 min long break]
+    C --> A
+```
+
+
+Every time I have used the technique, I have always found it
+to be helpful for maintaining focus. But perhaps more 
+importantly (at least for me), the
+short breaks have helped me to avoid burnout and the physical
+discomfort from sitting in front of a computer for
+too long.
+
+Before I switched to tiling window managers like i3 and sway^[Which is
+what I am currently using.], I used the [GNOME Pomodoro
+Timer](https://gnomepomodoro.org/), which I was happy with. But ever
+since I switched from GNOME, I've been struggling to find a good
+replacement. Unfortunately, there is a jungle of Pomodoro timers out
+there, and grasping the scope and limitations of each has been
+difficult. What I have been looking for is a Pomodoro timer that
+integrates with my status bar (currently waybar) and that I can control
+using either keyboard shortcuts or mouse clicks. I want it to be
+lightweight and easy to configure.
+
+The alternatives I have considered include
+
+- [waybar-pomodoro-timer](https://github.com/Andeskjerf/waybar-module-pomodoro),
+- [Tomato.C](https://github.com/gabrielzschmitz/Tomato.C),
+- [potato-c](https://github.com/nimaaskarian/potato-c),
+- [waybar-timer](https://github.com/jbirnick/waybar-timer), and
+- [uair](https://github.com/metent/uair).
+
+Each of these are good in their own way, and yet none of them ever quite
+fit my use case. So, eventually, I decided to write my own Pomodoro
+timer, which I named **Tomat** (Swedish 🇸🇪 for tomato).
+
+The main goal was to create a Pomodoro timer that's easy to use and
+configure and that easily integrates with status bars like waybar. It
+roughly follows the GNU Philosophy of "Do One Thing Well", and does not
+try to be a full-fledged time management application. It also tries to
+be as lightweight as possible, without unnecessary dependencies, and is
+written in Rust (which helps).
+
+Tomat is designed as a client--server application. The server
+runs in the background and keeps track of the timer state, while
+the client is used to interact with the server, e.g., to start
+or stop the timer or to query the current status. This design
+makes it easy to integrate Tomat with status bars, because
+the timer state isn't tied to the lifetime of the
+status bar process, which may be restarted every
+now and then.
+
+This comes at the cost of having to 
+start and manage a background daemon process, but
+in return you get a more robust and flexible
+application. The architecture is illustrated
+in @fig-tomat-architecture.
+
+
+```{mermaid}
+%%| fig-cap: A high-level overview of the Tomat architecture.
+%%| fig-align: center
+%%| label: fig-tomat-architecture
+graph TD
+    A[Client] -->|Commands| B(Server)
+    B -->|Status| A
+    B -->|Notifications| C[Notification System] 
+    B -->|Sound| D[Sound System]    
+```
+
+## Quick Start
+
+Tomat is available on [crates.io](https://crates.io/crates/tomat),
+so if you have Rust and Cargo installed, installing it is
+as simple as running:
+
+```bash
+cargo install tomat
+```
+
+To then get going, just start the daemon:
+
+```bash
+tomat daemon start
+# Started daemon in background (PID: 2171200)
+# Daemon started successfully
+```
+
+By default, Tomat starts in a paused state, so to start
+your first Pomodoro session, just run:
+
+```bash
+tomat start
+# Pomodoro started: 25min work, 5min break, 15min long break every 4 sessions
+```
+
+You can then check the status of the timer by running:
+
+```bash
+tomat status
+#{"text":"🍅 24:27 ▶","tooltip":"Work (1/4) - 25.0min","class":"work","percentage":2.1999999999999997}
+```
+
+The default output is the JSON format that Waybar expects, but
+Tomat supports multiple formats, including a plain text format:
+
+```bash
+tomat status -o plain
+🍅 22:29 ▶
+```
+
+## Systemd Integration
+
+Most users will want to start the Tomat daemon automatically
+when they log in, so that it's always running in the background
+and ready to be interacted with. 
+
+For this reason, Tomat comes bundled with a systemd service file 
+that can be installed through the following command:
+
+```bash
+tomat daemon install
+```
+
+Then, you just need to enable and start the service:
+
+```bash
+systemctl --user enable --now tomat
+```
+
+## Configuration
+
+Tomat is configured via a TOML configuration file, which
+is located at `~/.config/tomat/config.toml` by default.
+
+Below is an example configuration file with
+the defaults:
+
+```toml
+[timer]
+work = 25.0          # Work duration in minutes
+break = 5.0          # Break duration in minutes
+long_break = 15.0    # Long break duration in minutes
+sessions = 4         # Sessions until long break
+
+[sound]
+enabled = true       # Enable sound notifications
+volume = 0.5         # Volume level (0.0-1.0)
+
+[notification]
+enabled = true        # Enable desktop notifications
+icon = "auto"         # Icon mode: "auto", "theme", or custom path
+timeout = 4000        # Notification timeout in milliseconds
+
+[display]
+text_format = "{icon} {time} {state}"  # Text display format
+```
+
+## Command-Line Interface
+
+Tomat is controlled through a command-line interface (CLI),
+which communicates with the background daemon. Below
+is a summary of the available commands.^[Tomat comes
+with man pages as well, which are installed directly
+if using nix.]
+
+### Control Timer
+
+`tomat status`
+: Get current status (JSON for Waybar)
+
+`tomat watch`
+: Continuously output status updates
+
+`tomat toggle`
+: Pause/resume timer
+
+`tomat skip`
+: Skip to next phase
+
+`tomat stop`
+: Stop timer and return to idle
+
+### Daemon Management
+
+For managing the background daemon, the following commands are available:
+
+`tomat daemon <subcommand>`
+
+Where `<subcommand>` is one of:
+
+`start`
+: Start background daemon
+
+`stop`
+: Stop daemon
+
+`status`
+: Check daemon status
+
+`install`
+: Install systemd user service
+
+`uninstall`
+: Remove systemd user service
+
+## Packaging
+
+At the moment, Tomat is only packaged as a crate, but 
+I plan to bundle it as deb and rpm packages in the near future,
+which will make installation and setup even easier.
+
+If you happen to be using [NixOS](https://nixos.org/), however,
+Tomat is already packaged and available in the nixpkgs repository.
+In addition, it is also available as a [home manager](https://github.com/nix-community/home-manager),
+which means that it is extremely easy to set up and configure if you are using
+home manager to manage your user environment. For instance:
+
+```nix
+{
+  services.tomat = {
+    enable = true;
+
+    settings = {
+      timer = {
+        work = 25;
+        break = 5;
+      };
+    };
+  };
+}
+```
+
+And that's it!
+
+## Notifications and Sound Alerts
+
+Tomat comes with built-in support for desktop notifications (using
+`notify-rust`), which means that it will integrate nicely with your desktop
+environment's notification system as long as you have a notification daemon
+running, such as `dunst` or `mako`. 
+
+![The standard notification that Tomat shows when a (short) break ends.](notification.jpg){width="300px"}
+
+Sound alerts are also supported and compiled directly into the binary,
+which means that you don't need to install any additional dependencies
+to get sound alerts working. By default, Tomat uses simple beep sounds:
+
+![Audio alert for the start of a work session](break-to-work.wav)
+
+![Audio alert for the start of a break](work-to-break.wav)
+
+![Audio alert for the end of a long break](work-to-long-break.wav)
+
+## Integrations
+
+All of the above just gets you set up with the daemon and CLI client,
+but the goal of Tomat, as I mentioned, is to use it with status bars.
+Configuring that is the final piece of the puzzle.
+A full integration guide is available [in the repo](https://github.com/jolars/tomat/blob/main/docs/integration.md),
+but here I summarize the steps needed for Waybar.
+
+### Waybar
+
+[Waybar](https://github.com/Alexays/Waybar) is a highly configurable status bar
+for Wayland window managers, and it is my current status bar of choice. Tomat
+was built with waybar integration in mind, so setting it up is quite
+straightforward.
+
+In your waybar configuration file (typically `~/.config/waybar/config`),
+you can add a custom module for Tomat like this:
+
+```json
+{
+  "modules-right": ["custom/tomat"],
+  "custom/tomat": {
+    "exec": "tomat status",
+    "interval": 1,
+    "return-type": "json",
+    "format": "{text}",
+    "tooltip": true,
+    "on-click": "tomat toggle",
+    "on-click-right": "tomat skip"
+  }
+}
+```
+
+This configuration will add a Tomat module to the right side of your Waybar,
+which will display the current status of the Pomodoro timer. Clicking
+on the module will toggle the timer (start/pause), and right-clicking
+will skip to the next session (work/break).
+
+In my own setup, it looks like @fig-waybar-tomat.
+
+![A screenshot of Waybar with the Tomat module showing an active Pomodoro session.](statusbar.png){#fig-waybar-tomat}
+
+#### CSS Styling
+
+You can also style the module based on the timer state using CSS classes. For example, you can add the following to your Waybar CSS file
+(typically `~/.config/waybar/style.css`):
+
+```css
+#custom-tomat {
+  padding: 0 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+#custom-tomat.work {
+  background-color: #ff6b6b;
+  color: #ffffff;
+}
+
+#custom-tomat.work-paused {
+  background-color: #ff9999;
+  color: #ffffff;
+}
+```
+
+## Hooks
+
+A recent addition to Tomat^[As of version 2.6.0.] is the support for
+event hooks, which allow users to run commands on state changes (e.g.,
+when a Pomodoro session starts or ends). This means that you can
+integrate Tomat into more complex workflows, such as
+
+- locking your screen when a break starts,
+- pausing or even changing your music when a work session starts, 
+- dimming your screen during breaks, or
+- opening up a task management application (e.g. [taskwarrior](https://taskwarrior.org/))
+  when a work session starts.
+
+Hooks can only be configured through a configuration file
+(at `~/.config/tomat/config.toml` by default), and
+an example configuration with hooks looks like this:
+
+```toml
+# Example: Dim screen when timer is paused
+[hooks.on_pause]
+cmd = "/home/user/scripts/dim-screen.sh"
+cwd = "/home/user"
+timeout = 3
+
+# Example: Pause music during work sessions
+[hooks.on_work_start]
+cmd = "playerctl"
+args = ["pause"]
+timeout = 2
+```
+
+## Conclusion
+
+Tomat is a lightweight and easy-to-use Pomodoro timer
+designed for integration with status bars like waybar. It is
+highly configurable and comes with features like desktop
+notifications, sound alerts, and event hooks. If you're looking for a
+simple Pomodoro timer that fits well into your tiling window manager
+setup, give Tomat a try!
+
+And if you have any feedback or want to contribute,
+feel free to check out the [GitHub repository](https://github.com/jolars/tomat),
+which provides a [contributing guide](https://github.com/jolars/tomat/blob/main/CONTRIBUTING.md),
+a [discussion forum](https://github.com/jolars/tomat/discussions), and a
+[bug tracker](https://github.com/jolars/tomat/issues).
+
+
