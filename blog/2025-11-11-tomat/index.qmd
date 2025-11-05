@@ -1,0 +1,48 @@
+---
+title: "Introducing Tomat: A Pomodoro Timer for Status Bars"
+author: Johan Larsson
+date: 2025-11-10
+description: |
+  I've decided that the world needs yet another pomodoro timer.
+  yapm was unfortunately already taken, so I named it
+  after the Swedish tomato.
+categories:
+  - tomat
+  - productivity
+  - pomodoro
+reference-location: margin
+image: image.png
+title-block-banner: banner.png
+---
+
+## Introduction
+
+I have on-and-off been a user of the Pomodoro technique, which
+is based on splitting your work day into increments of, typically,
+25-minute work sessions followed by 5-minute breaks, repeated
+say, four times, and then followed by a longer, 15-minute break.
+
+Since I spend most of my workday in front of my computer, using a 
+computer application has seemed to be the most suitable approach.
+Unfortunately, there is a jungle of Pomodoro timers out there, and
+finding a good one has proven hard. Before I turned to window
+managers like i3 and sway,^[Which is what I am currently using.]
+I used the [GNOME Pomodoro Timer](https://gnomepomodoro.org/),
+which worked out great. Ever since I switched from GNOME, however,
+I've yet to find a good replacement.
+
+What I have been looking for, specifically, is a Pomodoro timer
+that integrates with my status bar (currently waybar) and that
+I can control using either keyboard shortcuts or mouse clicks.
+
+There are alternatives that can be used for this problem,
+such as the following:
+
+- [waybar-pomodoro-timer](https://github.com/Andeskjerf/waybar-module-pomodoro)
+- [Tomato.C](https://github.com/gabrielzschmitz/Tomato.C)
+- [potato-c](https://github.com/nimaaskarian/potato-c)
+- [waybar-timer](https://github.com/jbirnick/waybar-timer)
+- [uair](https://github.com/metent/uair)
+
+Even though all of these have their own merits, they also
+came with problems or s
