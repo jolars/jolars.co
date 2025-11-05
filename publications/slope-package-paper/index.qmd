@@ -1,0 +1,49 @@
+---
+title: "Efficient Solvers for SLOPE in R, Python, Julia, and C++"
+author:
+  - family: Larsson
+    given: Johan
+  - family: Bogdan
+    given: Malgorzata
+  - family: Grzesiak
+    given: Krystyna
+  - family: Massias
+    given: Mathurin
+  - family: Wallin
+    given: Jonas
+abstract: |
+  We present a suite of packages in R, Python, Julia, and C++ that efficiently
+  solve the Sorted L-One Penalized Estimation (SLOPE) problem. The packages
+  feature a highly efficient hybrid coordinate descent algorithm that fits
+  generalized linear models (GLMs) and supports a variety of loss functions,
+  including Gaussian, binomial, Poisson, and multinomial logistic regression.
+  Our implementation is designed to be fast, memory-efficient, and flexible.
+  The packages support a variety of data structures (dense, sparse, and
+  out-of-memory matrices) and are designed to efficiently fit the full SLOPE
+  path as well as handle cross-validation of SLOPE models, including the
+  relaxed SLOPE. We present examples of how to use the packages and benchmarks
+  that demonstrate the performance of the packages on both real and simulated
+  data and show that our packages outperform existing implementations of SLOPE
+  in terms of speed.
+date: 2025-11-05
+citation:
+  number: arXiv:2511.02430
+  publisher: arXiv
+  type: article
+  source: arXiv.org
+  license: All rights reserved
+url: http://arxiv.org/abs/2511.02430
+pdf: http://arxiv.org/pdf/2511.02430
+doi: 10.48550/arXiv.2511.02430
+github: jolars/slope-package-paper
+cran: SLOPE
+pypi: sortedl1
+categories:
+  - SLOPE
+  - optimization
+  - R
+  - C++
+  - Julia
+  - Python
+---
+
