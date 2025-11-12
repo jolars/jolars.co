@@ -15,7 +15,7 @@ categories:
 reference-location: margin
 image: images/image.png
 title-block-banner: images/banner.png
-title-block-banner-color: white
+title-block-banner-color: black
 ---
 
 ## Qualpal(r)
