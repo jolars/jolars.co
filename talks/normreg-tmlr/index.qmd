@@ -1,0 +1,25 @@
+---
+title:
+  The Choice of Normalization Influences Shrinkage in Regularized Regression
+author: Johan Larsson
+description: |
+  A talk about our new paper on normalization
+  and its effects on shrinkage and feature selection
+  in regularized regresion (elastic net, lasso, ridge),
+  prepared for TMLR.
+abstract: |
+date: 2025-11-17
+image: image.png
+slides: https://github.com/jolars/normreg/raw/main/talks/tmlr/main.pdf
+arxiv: "2501.03821"
+citation:
+  type: speech
+  issued: 2025-11-17
+  genre: Online
+  event-title: TMLR 2025
+  event-place: Online
+  url: https://www.youtube.com/GYqYAy3-B1k
+---
+
+{{< video https://www.youtube.com/embed/GYqYAy3-B1k >}}
+
