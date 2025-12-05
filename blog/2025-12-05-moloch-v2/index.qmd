@@ -330,7 +330,7 @@ backward compatibility, but it is recommended to switch to the new method.
 
 ## Getting Started
 
-Moloch 2.0 is available on [CTAN](https://ctan.org/pkg/moloch) and will be
+Moloch 2.0.0 is available on [CTAN](https://ctan.org/pkg/moloch) and will be
 included in the next TeX Live and MikTeX updates. You can also install it
 manually from the [GitHub repository](https://github.com/jolars/moloch).
 
