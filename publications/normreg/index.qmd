@@ -1,5 +1,6 @@
 ---
-title: "The Choice of Normalization Influences Shrinkage in Regularized Regression"
+title:
+  "The Choice of Normalization Influences Shrinkage in Regularized Regression"
 author:
   - Johan Larsson
   - Jonas Wallin
@@ -21,7 +22,7 @@ abstract: |
   rather than the features, can achieve the same effect. Finally, we also
   tackle mixes of binary and normal features as well as interactions and
   provide some initial results on how to normalize features in these cases.
-date: 2025-01-08
+date: 2025-11-26
 citation:
   author:
     - family: Larsson
@@ -29,17 +30,14 @@ citation:
     - family: Wallin
       given: Jonas
   citation-key: larsson2025
-  DOI: 10.48550/arXiv.2501.03821
-  issued: 2025-01-21
-  license: All rights reserved
-  number: arXiv:2501.03821
-  publisher: arXiv
-  source: arXiv.org
-  title: The Choice of Normalization Influences Shrinkage in Regularized Regression
-  type: article
-  URL: http://arxiv.org/abs/2501.03821
+  issued: 2025-11-26
+  publisher: Transactions on Machine Learning Research
+  title:
+    The Choice of Normalization Influences Shrinkage in Regularized Regression
+  type: article-journal
+  URL: https://openreview.net/forum?id=6xKyDBIwQ5
 github: jolars/normreg
-arxiv: '2501.03821'
+arxiv: "2501.03821"
 categories:
   - lasso
   - ridge regression
