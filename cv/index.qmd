@@ -229,7 +229,17 @@ Jun 18, 2018
 :   Oscar II's scholarship for best PhD thesis at Lund School of Economics and
     Management in 2024
 
+## Editorial Service
+
+2025--present
+
+:   Topic Editor, *Journal of Open Source Software*
+
 ## Referee Service
+
+2026
+
+:   ICML
 
 2025
 
