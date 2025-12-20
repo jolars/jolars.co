@@ -9,7 +9,7 @@
         <h5 class="no-anchor card-title listing-title">
           <%= item.title %>
         </h5>
-        <% if (item.description) { %> 
+        <% if (item.description) { %>
           <p class="card-text listing-description">
             <%= item.description %>
           </p>
@@ -18,7 +18,7 @@
         <a href="<%= item.path %>" class="btn btn-primary btn-sm mb-1">
           <i class="bi bi-file-earmark-text"></i>&nbsp;Details
         </a>
-        <% if (item.url) { %> 
+        <% if (item.url) { %>
           <a href="<%= item.url %>" class="btn btn-success btn-sm mb-1">
             <i class="bi bi-file-earmark-text"></i>&nbsp;Docs
           </a>
@@ -30,7 +30,21 @@
         <% } %>
         <% if (item.pypi) { %>
           <a href="https://pypi.org/project/<%= item.pypi %>" class="btn btn-info btn-sm mb-1">
-            <i class="fa-brands fa-python"></i>&nbsp;pypi
+            <i class="fa-brands fa-python"></i>&nbsp;PyPi
+          </a>
+        <% } %>
+        <% if (item.jlpkg) { %>
+          <a href="https://juliahub.com/ui/Packages/<%= item.jlpkg %>" class="btn btn-info btn-sm mb-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 325 300" style="vertical-align: -0.125em;">
+              <circle cx="162.5" cy="100" r="45" fill="currentColor"/>
+              <circle cx="245" cy="225" r="45" fill="currentColor"/>
+              <circle cx="80" cy="225" r="45" fill="currentColor"/>
+            </svg>&nbsp;Julia
+          </a>
+        <% } %>
+        <% if (item.ctan) { %>
+          <a href="https://ctan.org/pkg/<%= item.ctan %>" class="btn btn-info btn-sm mb-1">
+            <i class="fa-brands fa-tex"></i>&nbsp;CTAN
           </a>
         <% } %>
         <% if (item.github) { %>
@@ -41,6 +55,11 @@
         <% if (item.bitbucket) { %>
           <a href="https://bitbucket.com/<%= item.bitbucket %>" class="btn btn-dark btn-sm mb-1">
             <i class="fa fa-bitbucket"></i>&nbsp;Code
+          </a>
+        <% } %>
+        <% if (item.webapp) { %>
+          <a href="<%= item.webapp %>" class="btn btn-warning btn-sm mb-1">
+            <i class="fa fa-solid fa-globe"></i>&nbsp;Web&nbsp;App
           </a>
         <% } %>
         </div>

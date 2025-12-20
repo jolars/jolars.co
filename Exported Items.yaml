@@ -1,22 +1,10 @@
 ---
-title: SLOPE
-author:
-  - Johan Larsson
-  - Małgorzata Bogdan
-  - Krystyna Grzesiak
-  - Mathurin Massias
-  - Jonas Wallin
-url: https://jolars.github.io/libslope
-date: 2025-12-18
-categories: R
-github: jolars/libslope
-cran: SLOPE
-pypi: sortedl1
-jlpkg: SLOPE
-image: logo.png
-description: |
-  An efficient and fully-featured package for Sorted L-One Penalized Estimation
-citation:
+references:
+- id: larsson2025d
+  accessed:
+    - year: 2025
+      month: 11
+      day: 5
   author:
     - family: Larsson
       given: Johan
@@ -28,8 +16,12 @@ citation:
       given: Mathurin
     - family: Wallin
       given: Jonas
+  citation-key: larsson2025d
   DOI: 10.48550/arXiv.2511.02430
-  issued: 2025-11-4
+  issued:
+    - year: 2025
+      month: 11
+      day: 4
   license: All rights reserved
   number: arXiv:2511.02430
   publisher: arXiv
@@ -37,4 +29,4 @@ citation:
   title: Efficient solvers for SLOPE in R, Python, Julia, and C++
   type: article
   URL: http://arxiv.org/abs/2511.02430
----
+...

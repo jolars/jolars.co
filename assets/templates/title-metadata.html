@@ -1,140 +1,159 @@
 $if(by-affiliation/first)$
 <div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">$labels.authors$</div>
-  <div class="quarto-title-meta-heading">$labels.affiliations$</div>
-  
-  $for(by-author)$
-  <div class="quarto-title-meta-contents">
-    <p class="author">$_title-meta-author.html()$</p>
-  </div>
-  <div class="quarto-title-meta-contents">
-    $for(by-author.affiliations)$
-    <p class="affiliation">
-      $if(it.url)$
-      <a href="$it.url$">
-      $endif$
-      $it.name$
-      $if(it.url)$
-      </a>
-      $endif$
-    </p>
+    <div class="quarto-title-meta-heading">$labels.authors$</div>
+    <div class="quarto-title-meta-heading">$labels.affiliations$</div>
+    $for(by-author)$
+    <div class="quarto-title-meta-contents">
+        <p class="author">$_title-meta-author.html()$</p>
+    </div>
+    <div class="quarto-title-meta-contents">
+        $for(by-author.affiliations)$
+        <p class="affiliation">
+            $if(it.url)$
+            <a href="$it.url$">
+                $endif$
+                $it.name$
+                $if(it.url)$
+            </a>
+            $endif$
+        </p>
+        $endfor$
+    </div>
     $endfor$
-  </div>
-  $endfor$
 </div>
 $endif$
-
 <div class="quarto-title-meta">
-
-  $if(by-affiliation)$
-  $elseif(by-author)$
-  <div>
-    <div class="quarto-title-meta-heading">$labels.authors$</div>
-    <div class="quarto-title-meta-contents">
-      $for(by-author)$
-       <p>$_title-meta-author.html()$</p>
-      $endfor$
+    $if(by-affiliation)$
+    $elseif(by-author)$
+    <div>
+        <div class="quarto-title-meta-heading">$labels.authors$</div>
+        <div class="quarto-title-meta-contents">
+            $for(by-author)$
+            <p>$_title-meta-author.html()$</p>
+            $endfor$
+        </div>
     </div>
-  </div>
-  $endif$
-
-  $if(date)$
-  <div>
-    <div class="quarto-title-meta-heading">$labels.published$</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">$date$</p>
+    $endif$
+    $if(date)$
+    <div>
+        <div class="quarto-title-meta-heading">$labels.published$</div>
+        <div class="quarto-title-meta-contents">
+            <p class="date">$date$</p>
+        </div>
     </div>
-  </div>
-  $elseif(citation.issued)$
-  <div>
-    <div class="quarto-title-meta-heading">$labels.published$</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">$citation.issued$</p>
+    $elseif(citation.issued)$
+    <div>
+        <div class="quarto-title-meta-heading">$labels.published$</div>
+        <div class="quarto-title-meta-contents">
+            <p class="date">$citation.issued$</p>
+        </div>
     </div>
-  </div>
-  $endif$
-
-  $if(citation)$
-  $if(citation.version)$
-  $else$
-  <div>
-    <div class="quarto-title-meta-heading">Details</div>
-    <div class="quarto-title-meta-contents">
-      <p>
-        $if(citation.genre)$
-          $citation.genre$$if(publisher)$, $publisher$$endif$$if(citation.publisher-place)$, $citation.publisher-place$$endif$
-        $elseif(citation.event-place)$
-          $if(citation.container-title)$$citation.container-title$$elseif(citation.event-title)$$citation.event-title$$endif$$if(citation.event-place)$, $citation.event-place$$endif$
-        $elseif(citation.volume)$
-          $citation.container-title$, vol.&nbsp;$citation.volume$$if(citation.number)$no.&nbsp;$citation.number$$endif$$if(citation.page)$, pp.&nbsp;$citation.page$$endif$
-        $else$
-          $citation.publisher$$if(citation.number)$, $citation.number$$endif$
-        $endif$
-      </p>
+    $endif$
+    $if(citation)$
+    $if(citation.version)$
+    $else$
+    <div>
+        <div class="quarto-title-meta-heading">Details</div>
+        <div class="quarto-title-meta-contents">
+            <p>
+                $if(citation.genre)$
+                $citation.genre$$if(publisher)$, $publisher$$endif$$if(citation.publisher-place)$, $citation.publisher-place$$endif$
+                $elseif(citation.event-place)$
+                $if(citation.container-title)$$citation.container-title$$elseif(citation.event-title)$$citation.event-title$$endif$$if(citation.event-place)$, $citation.event-place$$endif$
+                $elseif(citation.volume)$
+                $citation.container-title$, vol.&nbsp;$citation.volume$$if(citation.number)$no.&nbsp;$citation.number$$endif$$if(citation.page)$, pp.&nbsp;$citation.page$$endif$
+                $else$
+                $citation.publisher$$if(citation.number)$, $citation.number$$endif$
+                $endif$
+            </p>
+        </div>
     </div>
-  </div>
-  $endif$
-  <div>
-    <div class="quarto-title-meta-heading">Links</div>
-    <div class="quarto-title-meta-contents">
-      <p class="quarto-title-meta-buttons">
-        $if(doi)$
-          <a href="https://doi.org/$doi$" class="btn btn-success btn-sm">
-            <i class="fa-solid fa-link"></i>&nbsp;DOI
-          </a>
-        $endif$
-        $if(url)$
-          <a href="$url$" class="btn btn-success btn-sm">
-            <i class="fa-solid fa-link"></i>&nbsp;URL
-          </a>
-        $endif$
-        $if(slides)$
-          <a href="$slides$" class="btn btn-warning btn-sm">
-            <i class="fa-solid fa-file-pdf"></i>&nbsp;Slides
-          </a>
-        $endif$
-        $if(pdf)$
-          <a href="$pdf$" class="btn btn-warning btn-sm">
-            <i class="fa-solid fa-file-pdf"></i>&nbsp;PDF
-          </a>
-        $endif$
-        $if(arxiv)$
-          <a href="https://arxiv.org/abs/$arxiv$" class="btn btn-danger btn-sm">
-            <i class="ai ai-arxiv"></i>&nbsp;arXiv
-          </a>
-        $endif$
-        $if(github)$
-          <a href="http://github.com/$github$" class="btn btn-dark btn-sm">
-            <i class="fa fa-github"></i>&nbsp;Code
-          </a>
-        $endif$
-        $if(bitbucket)$
-          <a href="http://bitbucket.org/$bitbucket$" class="btn btn-dark btn-sm">
-            <i class="fa fa-bitbucket"></i>&nbsp;Code
-          </a>
-        $endif$
-        $if(cran)$
-          <a href="https://CRAN.R-project.org/package=$cran$" class="btn btn-info btn-sm">
-            <i class="fab fa-r-project"></i>&nbsp;CRAN
-          </a>
-        $endif$
-        $if(pypi)$
-          <a href="https://pypi.org/project/$pypi$" class="btn btn-info btn-sm"><i class="fa-brands fa-python"></i>&nbsp;pypi</a>
-        $endif$
-      </p>
+    $endif$
+    <div>
+        <div class="quarto-title-meta-heading">Links</div>
+        <div class="quarto-title-meta-contents">
+            <p class="quarto-title-meta-buttons">
+                $if(doi)$
+                <a href="https://doi.org/$doi$" class="btn btn-success btn-sm">
+                    <i class="fa-solid fa-link"></i>&nbsp;DOI
+                </a>
+                $endif$
+                $if(url)$
+                <a href="$url$" class="btn btn-success btn-sm">
+                    <i class="fa-solid fa-link"></i>&nbsp;Docs
+                </a>
+                $endif$
+                $if(slides)$
+                <a href="$slides$" class="btn btn-warning btn-sm">
+                    <i class="fa-solid fa-file-pdf"></i>&nbsp;Slides
+                </a>
+                $endif$
+                $if(pdf)$
+                <a href="$pdf$" class="btn btn-warning btn-sm">
+                    <i class="fa-solid fa-file-pdf"></i>&nbsp;PDF
+                </a>
+                $endif$
+                $if(arxiv)$
+                <a href="https://arxiv.org/abs/$arxiv$" class="btn btn-danger btn-sm">
+                    <i class="ai ai-arxiv"></i>&nbsp;arXiv
+                </a>
+                $endif$
+                $if(github)$
+                <a href="http://github.com/$github$" class="btn btn-dark btn-sm">
+                    <i class="fa fa-github"></i>&nbsp;Code
+                </a>
+                $endif$
+                $if(bitbucket)$
+                <a href="http://bitbucket.org/$bitbucket$" class="btn btn-dark btn-sm">
+                    <i class="fa fa-bitbucket"></i>&nbsp;Code
+                </a>
+                $endif$
+                $if(cran)$
+                <a href="https://CRAN.R-project.org/package=$cran$"
+                   class="btn btn-info btn-sm">
+                    <i class="fab fa-r-project"></i>&nbsp;CRAN
+                </a>
+                $endif$
+                $if(jlpkg)$
+                <a href="https://juliahub.com/ui/Packages/$jlpkg$"
+                   class="btn btn-info btn-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="16"
+                         height="16"
+                         fill="currentColor"
+                         viewBox="0 0 325 300"
+                         style="vertical-align: -0.125em">
+                        <circle cx="162.5" cy="100" r="45" fill="currentColor" />
+                        <circle cx="245" cy="225" r="45" fill="currentColor" />
+                        <circle cx="80" cy="225" r="45" fill="currentColor" />
+                    </svg>
+                    &nbsp;Julia
+                </a>
+                $endif$
+                $if(ctan)$
+                <a href="https://ctan.org/pkg/$ctan$" class="btn btn-info btn-sm">
+                    <i class="fa-brands fa-tex"></i>&nbsp;CTAN
+                </a>
+                $endif$
+                $if(pypi)$
+                <a href="https://pypi.org/project/$pypi$" class="btn btn-info btn-sm"><i class="fa-brands fa-python"></i>&nbsp;PyPi</a>
+                $endif$
+                $if(webapp)$
+                <a href="$webapp$" class="btn btn-warning btn-sm">
+                    <i class="fa fa-solid fa-globe"></i>&nbsp;Web&nbsp;App
+                </a>
+                $endif$
+            </p>
+        </div>
     </div>
-
-  </div>
-  $endif$
+    $endif$
 </div>
-
 $if(abstract)$
 <div>
-  <div class="abstract">
-    <div class="abstract-title">$labels.abstract$</div>
-    $abstract$
-  </div>
+    <div class="abstract">
+        <div class="abstract-title">$labels.abstract$</div>
+        $abstract$
+    </div>
 </div>
 $endif$
-
 <p>&nbsp;</p>

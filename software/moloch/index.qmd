@@ -1,0 +1,30 @@
+---
+title: Moloch
+url: https://moloch.ink
+author: Johan Larsson
+date: 2026-01-05
+github: jolars/moloch
+ctan: moloch
+image: logo.svg
+categories:
+  - LaTeX
+  - Presentations
+description: |
+  A minimalist, feature-rich Beamer theme for LaTeX presentations with a clean design and extensive customization options.
+citation:
+  title: "Moloch v2.1.0"
+  author:
+    - family: Larsson
+      given: Johan
+  genre: LaTeX
+  version: 2.1.0
+  issued: 2025-12-18
+  DOI: 10.5281/zenodo.17980615
+  url: https://moloch.ink
+  publisher: Zenodo
+  source: Zenodo
+  type: software
+  license: GPL-3
+---
+
+

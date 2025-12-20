@@ -1,0 +1,34 @@
+---
+title: Qualpal
+url: https://jolars.github.io/qualpal
+author: Johan Larsson
+date: 2018-10-29
+github: jolars/qualpal
+cran: qualpalr
+webapp: https://qualpal.cc
+image: logo.svg
+categories:
+  - R
+  - C++
+  - Web App
+description: |
+  Automatic generation of color palettes for qualitative data
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+  issued: 2025-10-16
+  container-title: Journal of Open Source Software
+  DOI: 10.21105/joss.08936
+  ISSN: 2475-9066
+  issue: "114"
+  language: en
+  page: "8936"
+  source: joss.theoj.org
+  title: "Qualpal: qualitative color palettes for everyone"
+  title-short: Qualpal
+  type: article-journal
+  URL: https://joss.theoj.org/papers/10.21105/joss.08936
+  volume: "10"
+---
+
