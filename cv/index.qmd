@@ -298,6 +298,35 @@ eulerr
 
     R package (<https://CRAN.R-project.org/package=eulerr>)
 
+caugi
+
+:   A high-performance graph package for working with
+    causal relationships
+
+    Co-author
+
+    R package (<https://caugi.org>)
+
+
+Qualpal
+
+:   Automatic generation of color palettes for 
+    data visualization
+
+    Author and maintainer
+
+    C++ library (<https://github.com/jolars/qualpal>),
+    R package (<https://cran.r-project.org/package=qualpalr>),
+    Web app (<https://qualpal.cc>)
+
+Moloch
+
+:   A minimalist, feature-rich Beamer theme for LaTeX presentations 
+
+    Author and maintainer
+
+    LaTeX package (<https://moloch.ink>)
+
 ## Contracted Work
 
 2021
