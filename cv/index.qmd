@@ -292,7 +292,7 @@ benchopt
 
 eulerr
 
-:   Area-propotional Euler diagrams with ellipses
+:   Area-proportional Euler diagrams with ellipses
 
     Author and maintainer
 
