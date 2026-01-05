@@ -36,10 +36,10 @@ website:
     left:
       - text: Blog
         href: blog/index.qmd
-      - text: Software
-        href: software/index.qmd
       - text: Publications
         href: publications/index.qmd
+      - text: Software
+        href: software/index.qmd
       - text: Talks
         href: talks/index.qmd
       - text: CV
