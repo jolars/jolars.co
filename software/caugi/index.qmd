@@ -1,0 +1,42 @@
+---
+title: caugi
+url: https://caugi.org
+author:
+  - Frederik Fabricius-Bjerre
+  - Johan Larsson
+  - Michael Sachs
+date: 2025-12-18
+github: frederikfabriciusbjerre/caugi
+cran: caugi
+image: logo.svg
+categories:
+  - R
+  - Graphs
+  - Causal Inference
+  - Causal Discovery
+description: |
+  A causality-first, high-performance graph package that provides a simple
+  interface for building, creating, and examining causal relationships.
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+    - family: Fabricius-Bjerre
+      given: Frederik
+    - family: Sachs
+      given: Michael
+  genre: R
+  issued: 2025-12-04
+  license: MIT
+  source: CRAN
+  title: "caugi: Causal Graph Interface"
+  type: software
+  URL: https://caugi.org
+  doi: 10.32614/CRAN.package.caugi
+  version: v0.3.1
+---
+
+caugi is a performant R package for building and working with graphs in
+causal inference and discovery. It is powered by a Rust-backend, which
+enables fast and memory-efficient queries and features a full-fledged
+plotting system.
