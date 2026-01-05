@@ -35,8 +35,20 @@ citation:
   publisher-place: Edinburgh, United Kingdom
   type: paper-conference
   URL: http://ceur-ws.org/Vol-2116/paper7.pdf
-  volume: '2116'
+  volume: "2116"
   title: >-
     A case study in fitting area-proportional Euler diagrams with ellipses using
     eulerr
 ---
+
+eulerr creates area-proportional Euler diagrams using ellipses instead of just
+circles. While most Euler diagram software is limited to circles (which often
+can't accurately represent set relationships), eulerr uses numerical
+optimization to fit ellipses that can represent a wider range of set
+intersections accurately.
+
+The package handles any number of sets and automatically finds the best layout
+using a two-step procedure: first generating an initial layout from pairwise
+relationships, then optimizing using all set relationships simultaneously. It's
+ideal for visualizing overlapping categories in genomics, survey data, or any
+domain where set relationships need clear visual representation.

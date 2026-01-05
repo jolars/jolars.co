@@ -69,3 +69,15 @@ citation:
   volume: 35
   page: 25404-25421
 ---
+
+Benchopt is a collaborative framework for creating reproducible benchmarks of
+optimization algorithms in machine learning. It automates the tedious work of
+implementing, running, and comparing different solvers across programming
+languages and hardware, ensuring that benchmarks are transparent and can be
+easily extended by the community.
+
+The framework handles the complexity of fair comparison—managing dependencies,
+standardizing interfaces, and collecting performance metrics—so researchers can
+focus on understanding which methods work best for their problems. Benchmarks
+cover standard ML tasks like logistic regression, LASSO, and neural network
+training, providing practical insights beyond theoretical comparisons.

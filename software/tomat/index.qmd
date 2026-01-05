@@ -25,4 +25,14 @@ citation:
   version: v2.5.0
 ---
 
+Tomat is a lightweight Pomodoro timer for the command line, designed
+specifically for integration with status bars like
+[waybar](https://github.com/Alexays/Waybar) and
+[polybar](https://github.com/polybar/polybar) Written in Rust for minimal
+resource usage and fast startup, it runs as a daemon that can be controlled
+through simple commands.
+
+The tool provides configurable work/break intervals, desktop notifications,
+sound alerts, and outputs formatted status information that can be piped
+directly into status bars. 
 

@@ -27,4 +27,14 @@ citation:
   license: GPL-3
 ---
 
+Moloch is a modern, minimalist Beamer theme for LaTeX presentations that
+emphasizes clean typography and readability. Inspired by the metropolis theme,
+it offers extensive customization options while maintaining a professional,
+uncluttered aesthetic suitable for academic and technical presentations.
+
+The theme includes built-in support for progress bars, section slides, and
+multiple color schemes, with careful attention to typographic details and
+spacing. It's designed to work seamlessly with modern LaTeX distributions and
+integrates well with common presentation workflows. Visit
+[moloch.ink](https://moloch.ink) for examples and documentation.
 

@@ -38,3 +38,15 @@ citation:
   type: article
   URL: http://arxiv.org/abs/2511.02430
 ---
+
+SLOPE (Sorted L-One Penalized Estimation) is a regularization method for
+high-dimensional regression that controls the false discovery rate while
+performing variable selection. Unlike LASSO which uses a single penalty
+parameter, SLOPE uses a sequence of sorted penalties that provide better
+statistical properties for multiple testing scenarios.
+
+This package provides efficient, production-ready implementations across R,
+Python, and Julia, with a unified C++ core for performance. It includes support
+for generalized linear models, sparse matrices, and modern optimization
+algorithms, making it suitable for large-scale statistical learning problems in
+genomics, econometrics, and machine learning.
