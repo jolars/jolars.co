@@ -1,0 +1,28 @@
+---
+title: Tomat
+url: https://github.com/jolars/tomat
+author: Johan Larsson
+date: 2025-12-18
+github: jolars/tomat
+crate: tomat
+image: logo.svg
+categories:
+  - Rust
+  - Pomodoro
+description: |
+  A Pomodoro timer CLI tool for status bars and terminals, written in Rust.
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+  genre: Rust
+  issued: 2025-12-18
+  license: MIT
+  source: GitHub
+  title: tomat
+  type: software
+  URL: https://github.com/jolars/tomat
+  version: v2.5.0
+---
+
+

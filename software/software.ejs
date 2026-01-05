@@ -47,6 +47,11 @@
             <i class="fa-brands fa-tex"></i>&nbsp;CTAN
           </a>
         <% } %>
+        <% if (item.crate) { %>
+          <a href="https://crates.io/crates/<%= item.crate %>" class="btn btn-info btn-sm mb-1">
+            <i class="fa-brands fa-rust"></i>&nbsp;crates.io
+          </a>
+        <% } %>
         <% if (item.github) { %>
           <a href="https://github.com/<%= item.github %>" class="btn btn-dark btn-sm mb-1">
             <i class="fa fa-github"></i>&nbsp;Code
