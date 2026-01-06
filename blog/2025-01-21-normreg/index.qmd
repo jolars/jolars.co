@@ -26,7 +26,7 @@ reference-location: margin
 ::: {.callout-tip}
 
 The paper has now been published in [Transactions on Machine Learning
-Research (TMLR)](https://openreview.net/forum?id=6xKyDBIwQ5)! You can find the
+Research (TMLR)](https://openreview.net/forum?id=6xKyDBIwQ5)! [@larsson2025] You can find the
 final version [on the TMLR website](https://openreview.net/forum?id=6xKyDBIwQ5).
 The content of this blog post is mostly unchanged from the arXiv version, but
 please refer to the published version for the final and authoritative

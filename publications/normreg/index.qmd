@@ -29,7 +29,6 @@ citation:
       given: Johan
     - family: Wallin
       given: Jonas
-  citation-key: larsson2025
   issued: 2025-11-26
   publisher: Transactions on Machine Learning Research
   title:
