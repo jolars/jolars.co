@@ -14,3 +14,6 @@ comments:
     theme: "light_protanopia"
 title-block-banner: true
 draft-mode: unlinked
+cap-location: margin
+author: Johan Larsson
+reference-location: margin
