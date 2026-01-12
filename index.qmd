@@ -29,6 +29,7 @@ listing:
       - news
       - "!news/index.qmd"
     sort: [date desc, title]
+    fields: [date, description]
     max-items: 3
     template: _templates/news.ejs
     date-format: medium

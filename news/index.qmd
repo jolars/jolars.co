@@ -3,7 +3,8 @@ title: "News"
 listing:
   contents: "."
   sort: [date, title, desc]
-  type: default
+  type: custom
+  template: ../_templates/news.ejs
   categories: true
   sort-ui: true
   filter-ui: true

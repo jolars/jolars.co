@@ -87,5 +87,12 @@ div.quarto-about-solana .about-entity .about-image {
 
 .quarto-listing-custom .quarto-post .body .listing-description p a {
   color: rgb(24, 188, 156);
-  text-decoration: underline;
+}
+
+.quarto-listing-custom .quarto-post {
+  margin-bottom: 0;
+  border-bottom: none;
+  display: flex;
+  justify-content: space-evenly !important;
+  align-items: flex-start !important;
 }

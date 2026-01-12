@@ -4,25 +4,6 @@
 
 ::: {.quarto-post <%= metadataAttrs(item) %>}
 
-::: {.body}
-
-<% if (item.description) { %>
-
-```{=html}
-<div class="listing-description">
-```
-
-<%= item.description %>
-
-```{=html}
-</div>
-```
-
-<% } %>
-
-:::
-
-
 ::: {.metadata}
 
 ```{=html}
@@ -36,6 +17,25 @@
 ```{=html}
 </a>
 ```
+
+:::
+
+::: {.body}
+
+
+<% if (item.description) { %>
+
+```{=html}
+<div class="delink listing-description">
+```
+
+<%= item.description %>
+
+```{=html}
+</div>
+```
+
+<% } %>
 
 :::
 
