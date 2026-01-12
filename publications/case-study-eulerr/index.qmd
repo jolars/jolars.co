@@ -1,5 +1,7 @@
 ---
-title: "A Case Study in Fitting Area-Proportional Euler Diagrams with Ellipses Using eulerr"
+title:
+  "A Case Study in Fitting Area-Proportional Euler Diagrams with Ellipses Using
+  eulerr"
 author:
   - Johan Larsson
   - Peter Gustafsson
@@ -17,7 +19,8 @@ abstract: |
   procedure, first generating an initial layout using pairwise relationships
   and then finalizing this layout using all set relationships.
 citation:
-  container-title: Proceedings of International Workshop on Set Visualization and Reasoning
+  container-title:
+    Proceedings of International Workshop on Set Visualization and Reasoning
   event-place: Edinburgh, United Kingdom
   event-title: Set Visualization and Reasoning 2018
   license: All rights reserved
@@ -27,7 +30,7 @@ citation:
   publisher-place: Edinburgh, United Kingdom
   type: paper-conference
   URL: http://ceur-ws.org/Vol-2116/paper7.pdf
-  volume: '2116'
+  volume: "2116"
   title: >-
     A case study in fitting area-proportional Euler diagrams with ellipses using
     eulerr
@@ -36,7 +39,7 @@ github: jolars/LookAheadScreening
 cran: eulerr
 categories:
   - R
-  - Data Visualization
-  - Euler Diagrams
+  - Data visualization
+  - Euler diagrams
 ---
 

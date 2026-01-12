@@ -1,5 +1,5 @@
 ---
-author: 
+author:
   - Johan Larsson
   - Jonas Wallin
 date: 2022-12-06
@@ -33,12 +33,12 @@ citation:
   title: The Hessian screening rule
   type: paper-conference
   url: https://papers.nips.cc/paper_files/paper/2022/hash/65a925049647eab0aa06a9faf1cd470b-Abstract-Conference.html
-  volume: '35'
+  volume: "35"
 url: https://papers.nips.cc/paper_files/paper/2022/hash/65a925049647eab0aa06a9faf1cd470b-Abstract-Conference.html
 pdf: https://papers.nips.cc/paper_files/paper/2022/file/65a925049647eab0aa06a9faf1cd470b-Paper-Conference.pdf
 arxiv: "2104.13026"
 github: jolars/HessianScreening
 categories:
   - Lasso
-  - Screening Rules
+  - Screening rules
 ---

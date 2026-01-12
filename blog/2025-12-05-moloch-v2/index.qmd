@@ -7,9 +7,9 @@ description: |
   system, new themes, improved documentation, redesigned itemize lists, and
   various other refinements.
 categories:
-  - latex
-  - presentations
-  - moloch
+  - LaTeX
+  - Presentations
+  - Moloch
 reference-location: margin
 image: images/image.jpg
 title-block-banner: images/banner.jpg

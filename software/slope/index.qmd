@@ -8,7 +8,11 @@ author:
   - Jonas Wallin
 url: https://jolars.github.io/libslope
 date: 2025-12-18
-categories: R
+categories:
+  - R
+  - Python
+  - Julia
+  - C++
 github: jolars/libslope
 cran: SLOPE
 pypi: sortedl1

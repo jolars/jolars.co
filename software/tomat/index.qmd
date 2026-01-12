@@ -6,9 +6,7 @@ date: 2025-12-18
 github: jolars/tomat
 crate: tomat
 image: logo.svg
-categories:
-  - Rust
-  - Pomodoro
+categories: Rust
 description: |
   A Pomodoro timer CLI tool for status bars and terminals, written in Rust.
 citation:

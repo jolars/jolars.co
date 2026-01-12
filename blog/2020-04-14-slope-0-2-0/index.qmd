@@ -5,10 +5,12 @@ date: 2020-04-14
 date-modified: 2023-04-08
 description: A new update to the SLOPE package with many exciting features.
 categories:
-  - r
+  - R
   - SLOPE
-  - statistics
+  - Statistics
+  - Software
 image: slope.svg
+freeze: true
 ---
 
 ```{r, include = FALSE}
@@ -97,8 +99,12 @@ variant of the strong screening rules for the lasso [@tibshirani2012].
 
 ```{r}
 xy <- SLOPE:::randomProblem(100, 1000)
-system.time({SLOPE(xy$x, xy$y, screen = TRUE)})
-system.time({SLOPE(xy$x, xy$y, screen = FALSE)})
+system.time({
+  SLOPE(xy$x, xy$y, screen = TRUE)
+})
+system.time({
+  SLOPE(xy$x, xy$y, screen = FALSE)
+})
 ```
 
 ### Cross-validation and caret

@@ -1,6 +1,6 @@
 ---
-title: "Benchopt: Reproducible, Efficient and Collaborative Optimization 
-  Benchmarks"
+title:
+  "Benchopt: Reproducible, Efficient and Collaborative Optimization Benchmarks"
 author:
   - Thomas Moreau
   - Mathurin Massias
@@ -54,7 +54,8 @@ citation:
     - A. Oh
   container-title: Advances in Neural Information Processing Systems
   issued: 2022-12-6
-  title: 'Benchopt: reproducible, efficient and collaborative optimization benchmarks'
+  title:
+    "Benchopt: reproducible, efficient and collaborative optimization benchmarks"
   title-short: Benchopt
   type: paper-conference
   url: https://papers.nips.cc/paper_files/paper/2022/hash/a30769d9b62c9b94b72e21e0ca73f338-Abstract-Conference.html

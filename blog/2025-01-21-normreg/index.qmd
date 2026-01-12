@@ -11,10 +11,10 @@ description: |
   regression and in this paper we try to bridge
   this knowledge gap by considering binary features.
 categories:
-  - papers
-  - lasso
-  - ridge regression
-  - research
+  - Research
+  - Lasso
+  - Ridge regression
+  - Research
 image: image.png
 title-block-banner: banner.svg
 fig-cap-location: margin

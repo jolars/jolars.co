@@ -40,7 +40,7 @@ cran: SLOPE
 pypi: sortedl1
 categories:
   - SLOPE
-  - optimization
+  - Optimization
   - R
   - C++
   - Julia

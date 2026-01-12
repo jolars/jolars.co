@@ -4,13 +4,15 @@ url: https://jolars.github.io/qualpal
 author: Johan Larsson
 date: 2018-10-29
 github: jolars/qualpal
+pypi: qualpal
 cran: qualpalr
 webapp: https://qualpal.cc
 image: logo.svg
 categories:
   - R
+  - Python
   - C++
-  - Web App
+  - Web
 description: |
   Automatic generation of color palettes for qualitative data
 citation:

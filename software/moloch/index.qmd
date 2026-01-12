@@ -6,9 +6,7 @@ date: 2026-01-05
 github: jolars/moloch
 ctan: moloch
 image: logo.svg
-categories:
-  - LaTeX
-  - Presentations
+categories: LaTeX
 description: |
   A minimalist, feature-rich Beamer theme for LaTeX presentations with a clean design and extensive customization options.
 citation:

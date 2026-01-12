@@ -5,11 +5,11 @@ date: 2025-05-06
 description: |
   I received the LUSEM Prize for my PhD thesis! 🚀
 categories:
-  - thesis
-  - awards
-  - research
-  - statistics
-  - lusem
+  - Thesis
+  - Awards
+  - Research
+  - Statistics
+  - LUSEM
 image: lusem.png
 reference-location: margin
 ---

@@ -9,11 +9,7 @@ date: 2025-12-18
 github: frederikfabriciusbjerre/caugi
 cran: caugi
 image: logo.svg
-categories:
-  - R
-  - Graphs
-  - Causal Inference
-  - Causal Discovery
+categories: R
 description: |
   A causality-first, high-performance graph package that provides a simple
   interface for building, creating, and examining causal relationships.

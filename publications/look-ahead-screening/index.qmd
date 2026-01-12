@@ -18,8 +18,7 @@ abstract: |
 citation:
   author:
     - Johan Larsson
-  container-title: 22nd European Young Statisticians Meeting -
-    Proceedings
+  container-title: 22nd European Young Statisticians Meeting - Proceedings
   editor:
     - Andreas Makridis
     - Fotios S. Milienos
@@ -41,6 +40,6 @@ github: jolars/LookAheadScreening
 arxiv: 2105.05648
 categories:
   - Lasso
-  - Screening Rules
+  - Screening rules
 ---
 

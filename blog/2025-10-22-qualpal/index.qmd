@@ -7,11 +7,11 @@ description: |
   library as well as web app and was just published
   in the Journal of Open Source Software!
 categories:
-  - r
-  - c++
-  - color
-  - research
-  - data visualization
+  - R
+  - C++
+  - Color
+  - Research
+  - Data visualization
 reference-location: margin
 image: images/image.jpg
 title-block-banner: images/banner.png

@@ -7,10 +7,10 @@ description: |
   yapm was unfortunately already taken, so I named it
   after the Swedish tomato.
 categories:
-  - tomat
-  - productivity
-  - pomodoro
-  - linux
+  - Tomat
+  - Productivity
+  - Pomodoro
+  - Linux
 reference-location: margin
 image: tomato.jpg
 title-block-banner: banner.jpg

@@ -7,10 +7,11 @@ description: |
   Let me introduce qualpalr: an R package that generates qualitative color
   palettes with distinct colors using color difference algorithms.
 categories:
-  - r
-  - data visualization
-  - qualpalr
+  - R
+  - Data visualization
+  - Qualpalr
 image: qualpalr.png
+freeze: true
 execute:
   echo: true
   warning: false
@@ -26,7 +27,7 @@ With the advent of [colorbrewer](http://colorbrewer2.org/) there now exists good
 
 ```{r}
 pal <- RColorBrewer::brewer.pal(4, "PuBuGn")
-color_ramp <- colorRampPalette(pal, space = "Lab") 
+color_ramp <- colorRampPalette(pal, space = "Lab")
 ```
 
 There is not, however, an analogue for qualitative color palettes that will get you beyond the limits of 8--12 colors of colorbrewer's qualitative color palettes. There is also no customization in colorbrewer. Other R packages, such as [colorspace](https://cran.r-project.org/package=colorspace) offer this, but they are primarily adapted to sequential and diverging data -- not qualitative data.
@@ -110,9 +111,9 @@ options(rgl.useNULL = TRUE)
 library(rgl)
 
 # Set up color subspace as in qualpal()
-h = c(-200, 120)
-s = c(0.3, 0.8)
-l = c(0.4, 0.9)
+h <- c(-200, 120)
+s <- c(0.3, 0.8)
+l <- c(0.4, 0.9)
 
 # Generate a quasi-random tour sequence
 rnd <- randtoolbox::sobol(n = 1000, dim = 3, scrambling = 2)
@@ -160,7 +161,7 @@ CIELab (not shown here), and then finally the DIN99d space (@fig-din99d-space).
 #| label: fig-din99d-space
 #| fig-cap: Colors in DIN99d space
 
-XYZ    <- qualpalr:::sRGB_XYZ(RGB)
+XYZ <- qualpalr:::sRGB_XYZ(RGB)
 DIN99d <- qualpalr:::XYZ_DIN99d(XYZ)
 
 plot3d(DIN99d, col = rgb(RGB), main = "DIN99d")

@@ -6,11 +6,12 @@ date-modified: "2023-01-17"
 description: |
   This is an introduction to my new package, eulerr, an R package that computes
   and plots  eulerr diagrams of set relationships.
+freeze: true
 categories:
-  - r
-  - eulerr
-  - euler diagrams
-  - data visualization
+  - R
+  - Eulerr
+  - Euler diagrams
+  - Data visualization
 image: eulerr.svg
 ---
 
@@ -87,9 +88,15 @@ relationships for each observation.
 library(eulerr)
 
 # Input in the form of a named numeric vector
-fit1 <- euler(c("A" = 25, "B" = 5, "C" = 5,
-                "A&B" = 5, "A&C" = 5, "B&C" = 3,
-                "A&B&C" = 3))
+fit1 <- euler(c(
+  "A" = 25,
+  "B" = 5,
+  "C" = 5,
+  "A&B" = 5,
+  "A&C" = 5,
+  "B&C" = 3,
+  "A&B&C" = 3
+))
 
 # Input as a matrix of logicals
 set.seed(1)

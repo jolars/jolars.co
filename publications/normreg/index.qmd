@@ -38,10 +38,10 @@ citation:
 github: jolars/normreg
 arxiv: "2501.03821"
 categories:
-  - lasso
-  - ridge regression
-  - normalization
-  - standardization
-  - regression
-  - regularization
+  - Lasso
+  - Ridge regression
+  - Normalization
+  - Standardization
+  - Regression
+  - Regularization
 ---

@@ -6,11 +6,12 @@ author: "Johan Larsson"
 description: |
   An algorithm for finding the most separated points in a cloud of
   points.
+freeze: true
 categories:
-  - r
-  - qualpalr
-  - data visualization
-  - geometry
+  - R
+  - Qualpalr
+  - Data visualization
+  - Geometry
 image: farthest-points.png
 ---
 
@@ -47,14 +48,14 @@ In R, this code looked like this (in two dimensions):
 #| fig-height: 4.3
 #| layout-ncol: 2
 #| fig-keep: [1, 4]
-#| fig-cap: 
+#| fig-cap:
 #|   - Point cloud
 #|   - Points selected by the greedy algorithm
 
 set.seed(1)
 # find n points
 n <- 3
-mat  <- matrix(runif(100), ncol = 2)
+mat <- matrix(runif(100), ncol = 2)
 
 dmat <- as.matrix(stats::dist(mat))
 ind <- integer(n)
@@ -109,7 +110,7 @@ always happens. Let's see how this works on the same data set we used above.
 #| fig-height: 4.3
 #| layout-ncol: 2
 #| fig-keep: [1, 4]
-#| fig-cap: 
+#| fig-cap:
 #|   - Point cloud
 #|   - Points selected by the new algorithm
 r <- sample.int(nrow(dmat), n)

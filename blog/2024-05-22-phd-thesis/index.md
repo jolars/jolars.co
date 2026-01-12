@@ -11,9 +11,9 @@ description: >
 
   in it.
 categories:
-  - thesis
-  - statistics
-  - optimization
+  - Rhesis
+  - Statistics
+  - Optimization
 image: cover-image.png
 cap-location: margin
 ---

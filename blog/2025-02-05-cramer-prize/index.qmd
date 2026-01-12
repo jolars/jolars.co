@@ -6,12 +6,12 @@ description: |
   I received the Cramér Prize for my PhD thesis about optimization and 
   algorithms for sparse regression! 🥳
 categories:
-  - thesis
-  - lasso
-  - ridge regression
-  - research
-  - optimization
-  - statistics
+  - Thesis
+  - Lasso
+  - Ridge regression
+  - Research
+  - Optimization
+  - Statistics
 image: cramer-logo.png
 ---
 

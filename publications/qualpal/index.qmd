@@ -28,10 +28,10 @@ doi: 10.21105/joss.08936
 github: jolars/qualpal
 cran: qualpalr
 categories:
-  - qualpal
-  - color science
-  - data visualization
-  - optimization
-  - color vision deficiency
+  - Qualpal
+  - Color science
+  - Data visualization
+  - Optimization
+  - Color vision deficiency
 ---
 

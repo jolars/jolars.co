@@ -19,7 +19,9 @@ citation:
   publisher: Department of Statistics, Lund University
   publisher-place: Lund, Sweden
   issued: 2024-05-20
-  title: "Optimization and Algorithms in Sparse Regression: Screening Rules, Coordinate Descent, and Normalization"
+  title:
+    "Optimization and Algorithms in Sparse Regression: Screening Rules,
+    Coordinate Descent, and Normalization"
   title-short: Optimization and Algorithms in Sparse Regression
   type: thesis
   event-place: Lund, Sweden
@@ -29,10 +31,10 @@ url: https://lup.lub.lu.se/record/0b9c97e8-5f65-43eb-9f7a-c4f237568370
 pdf: https://lup.lub.lu.se/search/files/183797946/jlarsson-pdfthesis.pdf
 github: jolars/phd-thesis
 categories:
-  - thesis
-  - statistics
-  - optimization
-  - benchmarking
-  - machine learning
-  - sparse regression
+  - Thesis
+  - Statistics
+  - Optimization
+  - Benchmarking
+  - Machine learning
+  - Sparse regression
 ---

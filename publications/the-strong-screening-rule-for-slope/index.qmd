@@ -1,6 +1,6 @@
 ---
 title: "The Strong Screening Rule for SLOPE"
-author: 
+author:
   - Johan Larsson
   - Małgorzata Bogdan
   - Jonas Wallin
@@ -20,14 +20,14 @@ citation:
   type: paper-conference
   URL: >-
     https://proceedings.neurips.cc/paper/2020/hash/a7d8ae4569120b5bec12e7b6e9648b86-Abstract.html
-  volume: '33'
+  volume: "33"
 url: https://proceedings.neurips.cc/paper/2020/hash/a7d8ae4569120b5bec12e7b6e9648b86-Abstract.html
 pdf: https://proceedings.neurips.cc/paper/2020/file/a7d8ae4569120b5bec12e7b6e9648b86-Paper.pdf
 github: jolars/slope-screening-code
 arxiv: "2005.03730"
-categories: 
+categories:
   - SLOPE
-  - Screening Rules
+  - Screening rules
 abstract: |
   Extracting relevant features from data sets where the number of observations
   ($n$) is much smaller then the number of predictors ($p$) is a major

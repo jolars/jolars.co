@@ -9,10 +9,10 @@ description: |
   growing increasingly large. Moloch is a fork of Metropolis that aims
   to fix these issues as well add a few new features.
 categories:
-  - latex
-  - software
-  - presentations
-  - beamer
+  - LaTeX
+  - Software
+  - Presentations
+  - Beamer
 image: moloch-logo.png
 fig-cap-location: margin
 ---
