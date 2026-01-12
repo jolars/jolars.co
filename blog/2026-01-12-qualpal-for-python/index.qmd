@@ -1,0 +1,11 @@
+---
+title: "Qualpal for Python"
+description: ""
+author: "Johan Larsson"
+date: "2026-01-12"
+categories: []
+image: ""
+---
+
+## Introduction
+

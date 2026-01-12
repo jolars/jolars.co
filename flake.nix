@@ -25,10 +25,50 @@
             echo "  quarto render     - Build the entire site"
             echo ""
           '';
-          
+
           packages =
             let
               pkgs = nixpkgs.legacyPackages.${system};
+
+              qualpalpy = (
+                pkgs.python3.pkgs.buildPythonPackage rec {
+                  pname = "qualpal";
+                  version = "1.1.0";
+                  pyproject = true;
+
+                  src = pkgs.fetchPypi {
+                    inherit pname version;
+                    hash = "";
+                  };
+
+                  dontUseCmakeConfigure = true;
+
+                  build-system = [
+                    pkgs.python3.pkgs.scikit-build-core
+                    pkgs.python3.pkgs.pybind11
+                    pkgs.cmake
+                    pkgs.ninja
+                  ];
+
+                  dependencies = with pkgs.python3.pkgs; [
+                    numpy
+                    scikit-learn
+                    scipy
+                    furo
+                    sphinx-copybutton
+                    myst-parser
+                    pytest
+                  ];
+
+                  disabledTests = [
+                    "test_cdist"
+                  ];
+
+                  pythonImportsCheck = [
+                    "qualpal"
+                  ];
+                }
+              );
 
               sortedl1 = (
                 pkgs.python3.pkgs.buildPythonPackage rec {
@@ -115,6 +155,7 @@
                 ps.pillow
                 ps.requests
                 sortedl1
+                qualpalpy
               ]))
             ];
         };

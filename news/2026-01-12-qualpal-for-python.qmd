@@ -1,0 +1,6 @@
+---
+title: "New Blog Post: Qualpal for Python"
+date: 2026-01-12
+description: |
+  I have published a new blog post about...
+---
