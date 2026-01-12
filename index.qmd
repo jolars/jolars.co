@@ -2,7 +2,8 @@
 title: Johan Larsson
 toc: false
 about:
-  template: jolla
+  id: hero-heading
+  template: solana
   image: assets/images/avatar.jpg
   image-shape: round
   links:
@@ -22,6 +23,32 @@ about:
     - icon: envelope
       text: Mail
       href: mailto:johan@jolars.co
+listing:
+  - id: recent-news
+    contents:
+      - news
+      - "!news/index.qmd"
+    sort: [date desc, title]
+    max-items: 3
+    template: _templates/news.ejs
+    date-format: medium
 ---
 
-Thiele Postdoctoral Researcher in statistics at the [Department of Mathematical Sciences](https://www.math.ku.dk/english), [Copenhagen University](https://ku.dk/english)
+:::{#hero-heading}
+
+👋 I am a postdoctoral researcher in statistics at the [Department of Mathematical Sciences](https://www.math.ku.dk/english), [Copenhagen University](https://ku.dk/english).
+
+
+On this website, I blog about my research and other side projects that I am engaged in. You can
+also find links to my talks and publications, a CV, as well as software that I contribute to.
+
+:::
+
+## News
+
+::: {#recent-news}
+:::
+
+::: {.text-end}
+[News archive →](news/)
+:::

@@ -63,3 +63,29 @@ h3.no-anchor.listing-title {
 .quarto-title-meta-contents .quarto-title-meta-buttons a {
   margin-bottom: 0.5ex;
 }
+
+/* About page listings */
+#listing-recent-news .quarto-post {
+  align-items: baseline;
+}
+
+/* Adjust solana about template */
+div.quarto-about-solana .about-entity .about-image {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.list.quarto-listing-custom div:last-of-type {
+  border-bottom: none;
+}
+
+.quarto-listing-container-custom {
+  @include media-breakpoint-up(lg) {
+    margin-right: 2em;
+  }
+}
+
+.quarto-listing-custom .quarto-post .body .listing-description p a {
+  color: rgb(24, 188, 156);
+  text-decoration: underline;
+}

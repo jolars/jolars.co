@@ -1,0 +1,16 @@
+---
+title: "News"
+listing:
+  contents: "."
+  sort: [date, title, desc]
+  type: default
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  fields: [date, title, description]
+  date-format: "YYYY-MM-DD"
+---
+
+This page contains news and updates related to my research and
+activities.
+

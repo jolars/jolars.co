@@ -1,0 +1,47 @@
+::: {.list .quarto-listing-custom}
+
+<% for (const item of items) { %>
+
+::: {.quarto-post <%= metadataAttrs(item) %>}
+
+::: {.body}
+
+<% if (item.description) { %>
+
+```{=html}
+<div class="listing-description">
+```
+
+<%= item.description %>
+
+```{=html}
+</div>
+```
+
+<% } %>
+
+:::
+
+
+::: {.metadata}
+
+```{=html}
+<a href="<%- item.path %>" class="no-external">
+```
+
+<% if (item.date) { %>
+<div class="listing-date"><%= item.date %></div>
+<% } %>
+
+```{=html}
+</a>
+```
+
+:::
+
+:::
+
+
+<% } %>
+
+:::

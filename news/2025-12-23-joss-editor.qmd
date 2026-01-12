@@ -1,0 +1,7 @@
+---
+title: "JOSS Editor"
+date: 2025-12-23
+description: |
+  I am glad to announce that I have joined the team of editors for the
+  [Journal of Open Source Software (JOSS)](https://joss.theoj.org/).
+---

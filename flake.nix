@@ -16,6 +16,16 @@
       in
       {
         devShells.default = pkgs.mkShell {
+          shellHook = ''
+            echo "📝 Quarto blog development environment"
+            echo ""
+            echo "Available commands:"
+            echo "  new-post [title]  - Create a new blog post"
+            echo "  quarto preview    - Preview the site locally"
+            echo "  quarto render     - Build the entire site"
+            echo ""
+          '';
+          
           packages =
             let
               pkgs = nixpkgs.legacyPackages.${system};
@@ -72,9 +82,13 @@
                   Rcpp
                 ];
               };
+              new-post = pkgs.writeShellScriptBin "new-post" ''
+                ${builtins.readFile ./scripts/new-post.sh}
+              '';
             in
             with pkgs;
             [
+              new-post
               quartoMinimal
               bashInteractive
               cmake
