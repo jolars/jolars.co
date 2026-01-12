@@ -1,5 +1,6 @@
 ---
 title: Johan Larsson
+toc: false
 about:
   template: jolla
   image: assets/images/avatar.jpg
