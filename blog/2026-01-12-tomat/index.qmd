@@ -1,7 +1,7 @@
 ---
 title: "Introducing Tomat: A Pomodoro Timer for Status Bars"
 author: Johan Larsson
-date: 2026-01-09
+date: 2026-01-12
 description: |
   I've decided that the world needs yet another pomodoro timer.
   yapm was unfortunately already taken, so I named it
