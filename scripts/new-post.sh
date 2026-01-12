@@ -8,8 +8,7 @@ else
   title="$*"
 fi
 
-# Generate slug from title (lowercase, replace spaces with hyphens)
-slug=$(echo "$title" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
+slug=$(echo "$title" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9 ]/-/g' | tr -s ' ' | cut -d' ' -f1-6 | tr ' ' '-' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
 
 # Get today's date
 date=$(date +%Y-%m-%d)
@@ -42,7 +41,8 @@ cat > "$news_file" << EOF
 title: "New Blog Post: $title"
 date: $date
 description: |
-  I have published a new blog post about...
+  I have published [a new blog post](/blog/${date}-${slug}) titled "$title".
+  Check it out!
 ---
 EOF
 
