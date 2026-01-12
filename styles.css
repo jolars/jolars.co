@@ -75,6 +75,11 @@ div.quarto-about-solana .about-entity .about-image {
   margin-left: auto;
 }
 
+.quarto-about-solana .about-entity .title {
+  padding-bottom: 0.5em;
+}
+
+
 .list.quarto-listing-custom div:last-of-type {
   border-bottom: none;
 }
@@ -92,7 +97,20 @@ div.quarto-about-solana .about-entity .about-image {
 .quarto-listing-custom .quarto-post {
   margin-bottom: 0;
   border-bottom: none;
-  display: flex;
-  justify-content: space-evenly !important;
-  align-items: flex-start !important;
 }
+
+.quarto-listing-custom .quarto-post .body {
+  order: 2;
+  flex-shrink: 3;
+  flex-basis: 80%;
+}
+
+
+.quarto-listing-custom .quarto-post .metadata {
+  order: 1;
+  flex-basis: 20%;
+  align-self: flex-start;
+  flex-shrink: 1;
+}
+
+
