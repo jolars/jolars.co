@@ -13,6 +13,7 @@ categories:
   - Research
   - Data visualization
 reference-location: margin
+freeze: true
 image: images/image.jpg
 title-block-banner: images/banner.png
 title-block-banner-color: black
