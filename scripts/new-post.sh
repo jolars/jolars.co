@@ -47,15 +47,3 @@ description: |
 EOF
 
 echo "Created news entry at: $news_file"
-echo "Opening blog post in editor..."
-
-# Open in editor if available
-if command -v \$EDITOR &> /dev/null; then
-  \$EDITOR "$post_dir/index.qmd" "$news_file"
-elif command -v code &> /dev/null; then
-  code "$post_dir/index.qmd" "$news_file"
-elif command -v vim &> /dev/null; then
-  vim "$post_dir/index.qmd" "$news_file"
-else
-  echo "No editor found. Please edit files manually."
-fi
