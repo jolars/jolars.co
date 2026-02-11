@@ -25,7 +25,7 @@
             echo "  quarto render     - Build the entire site"
             echo ""
           '';
-          
+
           packages =
             let
               pkgs = nixpkgs.legacyPackages.${system};
@@ -104,6 +104,7 @@
                   venneuler
                   languageserver
                   JuliaCall
+                  magick
                 ];
               })
               (python3.withPackages (ps: [
