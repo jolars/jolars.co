@@ -35,16 +35,17 @@ listing:
     date-format: medium
 ---
 
-:::{#hero-heading}
+::: {#hero-heading}
 
-👋 I am a postdoctoral researcher in statistics at the [Department of Mathematical Sciences](https://www.math.ku.dk/english), [Copenhagen University](https://ku.dk/english).
+👋 I am a postdoctoral researcher in statistics at the
+[Department of Mathematical Sciences](https://www.math.ku.dk/english),
+[Copenhagen University](https://ku.dk/english).
 
-
-On this website, I blog about my research and other side projects that I am engaged in. You can
-also find links to my talks and publications, a CV, as well as software that I contribute to.
+On this website, I blog about my research and other side projects that I am
+engaged in. You can also find links to my talks and publications, a CV, as well
+as software that I contribute to.
 
 :::
-
 ## News
 
 ::: {#recent-news}
@@ -53,3 +54,4 @@ also find links to my talks and publications, a CV, as well as software that I c
 ::: {.text-end}
 [News archive →](news/)
 :::
+
