@@ -1,0 +1,4 @@
+[formatters.r]
+cmd = "air"
+args = ["format"]
+stdin = false
