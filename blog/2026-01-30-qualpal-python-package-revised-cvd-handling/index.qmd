@@ -1,0 +1,11 @@
+---
+title: "Qualpal: Python Package, Revised CVD Handling, and White Point References"
+description: ""
+author: "Johan Larsson"
+date: "2026-01-30"
+categories: []
+image: ""
+---
+
+## Introduction
+

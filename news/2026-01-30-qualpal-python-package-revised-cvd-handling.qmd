@@ -1,0 +1,7 @@
+---
+title: "New Blog Post: Qualpal: Python Package, Revised CVD Handling, and White Point References"
+date: 2026-01-30
+description: |
+  I have published [a new blog post](/blog/2026-01-30-qualpal-python-package-revised-cvd-handling) titled "Qualpal: Python Package, Revised CVD Handling, and White Point References".
+  Check it out!
+---
