@@ -47,7 +47,8 @@ citeproc: false
 ## Professional Experience
 
 2024--present
-:   **Thiele Postdoctoral Researcher**, *Department of Mathematical Sciences, Copenhagen University*
+:   **Thiele Postdoctoral Researcher**, *Department of Mathematical Sciences,
+    Copenhagen University*
 
 2018--2024
 :   **PhD Student**, *Department of Statistics, Lund University*
@@ -61,9 +62,8 @@ citeproc: false
 
     Supervisors: Jonas Wallin and Malgorzata Bogdan
 
-    Awarded best PhD thesis in statistics in Sweden in 2024 by the Cramér
-    Society and best PhD thesis at Lund School of Economics and Management in
-    2024
+    Awarded best PhD thesis in statistics in Sweden in 2024 by the Cramér Society
+    and best PhD thesis at Lund School of Economics and Management in 2024
 
 2016--2018
 :   **Bachelor's Degree in Statistics**, *Department of Statistics, Lund University*
@@ -92,7 +92,8 @@ Mar 24, 2025
     Cramér Society Mini-Conference
 
 Nov 13, 2024
-:   **The Choice of Normalization Directly Affects Feature Selection in Regularized Regression**
+:   **The Choice of Normalization Directly Affects Feature Selection in Regularized
+    Regression**
 
     Danish Statistical Society (DSTS) Fall Meeting
 
@@ -109,8 +110,8 @@ Oct 27, 2021
 Nov 16, 2021
 :   **The Hessian Screening Rule**
 
-    Seminar at the Faculty of Pure and Applied Mathematics, Wrocław University
-    of Science and Technology
+    Seminar at the Faculty of Pure and Applied Mathematics, Wrocław University of
+    Science and Technology
 
 Sep 21, 2021
 :   **The Hessian Screening Rule and Adaptive Lasso Paths**
@@ -129,7 +130,8 @@ May 8, 2020
     Statistical Learning Seminar
 
 Jun 18, 2018
-:   **A Case Study in Fitting Area-Proportional Euler Diagrams with Ellipses Using eulerr**
+:   **A Case Study in Fitting Area-Proportional Euler Diagrams with Ellipses Using
+    eulerr**
 
     SetVR 2018
 
@@ -143,7 +145,8 @@ Jun 18, 2018
 ### Instructor
 
 2024--now
-:   Computational Statistics, *Department of Mathematical Sciences, University of Copenhagen*
+:   Computational Statistics, *Department of Mathematical Sciences, University of
+    Copenhagen*
 
 2020--2023
 :   Data Visualization, *Department of Statistics, Lund University*
@@ -154,7 +157,8 @@ Jun 18, 2018
 ### Teaching Assistant
 
 2025--now
-:   Project in Statistics, *Department of Mathematical Sciences, University of Copenhagen*
+:   Project in Statistics, *Department of Mathematical Sciences, University of
+    Copenhagen*
 
 2021
 :   Introduction to R Programming, *Department of Statistics, Lund University*
@@ -166,15 +170,18 @@ Jun 18, 2018
 :   Data Mining and Visualization, *Department of Statistics, Lund University*
 
 2019
-:   Artificial Intelligence and Deep Learning, *Department of Statistics, Lund University*
+:   Artificial Intelligence and Deep Learning, *Department of Statistics, Lund
+    University*
 
 ## Supervision
 
 2025
-:   Project Outside the Course Scope, *Department of Mathematical Sciences, University of Copenhagen*.
+:   Project Outside the Course Scope, *Department of Mathematical Sciences,
+    University of Copenhagen*.
 
 2025
-:   Project Outside the Course Scope, *Department of Mathematical Sciences, University of Copenhagen*.
+:   Project Outside the Course Scope, *Department of Mathematical Sciences,
+    University of Copenhagen*.
 
     Student: Frederik Fabricius Bjerre
 
@@ -185,8 +192,8 @@ Jun 18, 2018
 
     Student: Elias Gullberg
 
-    Title: Weather Factors and E. coli Concentration in Barnviken, Malmö -- A
-    Linear Mixed Model Approach
+    Title: Weather Factors and E. coli Concentration in Barnviken, Malmö -- A Linear
+    Mixed Model Approach
 
 2023
 :   Bachelor's Thesis, *Department of Statistics, Lund University*.
@@ -212,9 +219,12 @@ Jun 18, 2018
 
 2025
 :   Lund School of Economics and Management award for best PhD thesis in 2024
+
 :   The Cramér Society award for best PhD thesis in statistics or mathematical
-statistics in 2024
-:   Oscar II's scholarship for best PhD thesis at Lund School of Economics and Management in 2024
+    statistics in 2024
+
+:   Oscar II's scholarship for best PhD thesis at Lund School of Economics and
+    Management in 2024
 
 ## Editorial Service
 
@@ -287,8 +297,7 @@ Qualpal
     Author and maintainer
 
     C++ library (<https://github.com/jolars/qualpal>), R package
-    (<https://cran.r-project.org/package=qualpalr>), Web app
-    (<https://qualpal.cc>)
+    (<https://cran.r-project.org/package=qualpalr>), Web app (<https://qualpal.cc>)
 
 Moloch
 :   A minimalist, feature-rich Beamer theme for LaTeX presentations
@@ -304,4 +313,3 @@ Moloch
 
     Contracted work to develop and deploy a visualization dashboard for WHO's
     Antimicrobial Resistance team in Europe.
-
