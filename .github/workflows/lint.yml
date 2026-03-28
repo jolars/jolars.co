@@ -18,8 +18,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            ruff \
             shfmt \
             clang-format
+
+      - name: Install ruff
+        run: |
+          pip install ruff
 
       - uses: jolars/panache-action@v1
