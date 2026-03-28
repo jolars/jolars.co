@@ -70,18 +70,6 @@
                 }
               );
 
-              qualpalr = pkgs.rPackages.buildRPackage {
-                name = "qualpalr";
-                src = pkgs.fetchFromGitHub {
-                  owner = "jolars";
-                  repo = "qualpalr";
-                  rev = "fe1e4201e11f68c8b8d97a89d6f1426c88a53295";
-                  hash = "sha256-yiqRJl+mtfrjblzLflV28plQGRoMF+LPlg8nKibXyxw=";
-                };
-                propagatedBuildInputs = with pkgs.rPackages; [
-                  Rcpp
-                ];
-              };
               new-post = pkgs.writeShellScriptBin "new-post" ''
                 ${builtins.readFile ./scripts/new-post.sh}
               '';
