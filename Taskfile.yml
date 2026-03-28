@@ -1,0 +1,7 @@
+version: "3"
+
+tasks:
+  preview:
+    desc: Preview documentation site locally
+    cmds:
+      - quarto preview

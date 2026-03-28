@@ -80,6 +80,7 @@
               quartoMinimal
               bashInteractive
               cmake
+              go-task
               julia-bin
               (rWrapper.override {
                 packages = with rPackages; [
