@@ -35,9 +35,9 @@ citation:
 ---
 
 Qualpal generates optimally distinct color palettes for qualitative data
-visualization. It uses color theory and perceptual models
-to create palettes where colors are maximally distinguishable to the human eye,
-while allowing precise control over hue, lightness, and chroma ranges.
+visualization. It uses color theory and perceptual models to create palettes
+where colors are maximally distinguishable to the human eye, while allowing
+precise control over hue, lightness, and chroma ranges.
 
 The package is particularly useful when you need more than the 8-12 colors that
 standard palettes provide, or when you want to ensure colors work well for

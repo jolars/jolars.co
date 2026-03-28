@@ -56,6 +56,7 @@ citeproc: false
 ## Education
 
 2018--2024
+
 :   **PhD in Statistics**, *Department of Statistics, Lund University*
 
     Title: "Optimization and Algorithms in Sparse Regression"
@@ -66,7 +67,9 @@ citeproc: false
     and best PhD thesis at Lund School of Economics and Management in 2024
 
 2016--2018
-:   **Bachelor's Degree in Statistics**, *Department of Statistics, Lund University*
+
+:   **Bachelor's Degree in Statistics**, *Department of Statistics, Lund
+    University*
 
     Title: "eulerr: Area-Propotional Euler Diagrams with Ellipses"
 
@@ -87,51 +90,61 @@ citeproc: false
 ## Invited Talks
 
 Mar 24, 2025
+
 :   **Optimization and Algorithms in Sparse Regression: A Summary of My Thesis**
 
     Cramér Society Mini-Conference
 
 Nov 13, 2024
-:   **The Choice of Normalization Directly Affects Feature Selection in Regularized
-    Regression**
+
+:   **The Choice of Normalization Directly Affects Feature Selection in
+    Regularized Regression**
 
     Danish Statistical Society (DSTS) Fall Meeting
 
 Apr 10, 2024
-:   **Normalization for class-imbalanced binary features in regularized regression**
+
+:   **Normalization for class-imbalanced binary features in regularized
+    regression**
 
     Uppsala Statistics Seminar Series
 
 Oct 27, 2021
+
 :   **Designing a Distance-Based Course in Data Visualization: Lessons Learned**
 
     Cramér Society Fall Meeting
 
 Nov 16, 2021
+
 :   **The Hessian Screening Rule**
 
     Seminar at the Faculty of Pure and Applied Mathematics, Wrocław University of
     Science and Technology
 
 Sep 21, 2021
+
 :   **The Hessian Screening Rule and Adaptive Lasso Paths**
 
     Statistics Seminar at the Department of Mathematical Statistics,
     Chalmers/Gothenburg University
 
 Sep 9, 2021
+
 :   **Look-Ahead Screening Rules for the Lasso**
 
     EYSM 2021
 
 May 8, 2020
+
 :   **The Strong Screening Rule for SLOPE**
 
     Statistical Learning Seminar
 
 Jun 18, 2018
-:   **A Case Study in Fitting Area-Proportional Euler Diagrams with Ellipses Using
-    eulerr**
+
+:   **A Case Study in Fitting Area-Proportional Euler Diagrams with Ellipses
+    Using eulerr**
 
     SetVR 2018
 
@@ -145,8 +158,8 @@ Jun 18, 2018
 ### Instructor
 
 2024--now
-:   Computational Statistics, *Department of Mathematical Sciences, University of
-    Copenhagen*
+:   Computational Statistics, *Department of Mathematical Sciences, University
+    of Copenhagen*
 
 2020--2023
 :   Data Visualization, *Department of Statistics, Lund University*
@@ -180,6 +193,7 @@ Jun 18, 2018
     University of Copenhagen*.
 
 2025
+
 :   Project Outside the Course Scope, *Department of Mathematical Sciences,
     University of Copenhagen*.
 
@@ -188,6 +202,7 @@ Jun 18, 2018
     Title: caugi: Causal Graph Interface (for R)
 
 2023
+
 :   Bachelor's Thesis, *Department of Statistics, Lund University*.
 
     Student: Elias Gullberg
@@ -196,6 +211,7 @@ Jun 18, 2018
     Mixed Model Approach
 
 2023
+
 :   Bachelor's Thesis, *Department of Statistics, Lund University*.
 
     Students: Marcus Stolz, Jonathan Christopher
@@ -204,6 +220,7 @@ Jun 18, 2018
     Monte Carlo Integration of the Multivariate Normal Distribution
 
 2022
+
 :   Master's Thesis, *Data Analysis and Business Analytics, Lund University*
 
     Students: Gustavo Lemos Borba, Stella Sofia Sologaistoa Betancourt
@@ -211,6 +228,7 @@ Jun 18, 2018
     Title: Interactive Network Visualization of Insurance Portfolios
 
 2019--2020
+
 :   Google Summer of Code
 
     Students: Qincheng Liu (2019), Akarsh Goyal (2020)
@@ -219,10 +237,8 @@ Jun 18, 2018
 
 2025
 :   Lund School of Economics and Management award for best PhD thesis in 2024
-
 :   The Cramér Society award for best PhD thesis in statistics or mathematical
     statistics in 2024
-
 :   Oscar II's scholarship for best PhD thesis at Lund School of Economics and
     Management in 2024
 
@@ -254,6 +270,7 @@ Jun 18, 2018
 ## Comittee Service
 
 2020--2022
+
 :   Statistical Learning Seminar Series, *Main Organizer*
 
     <https://statistical-learning-seminars.github.io/>
@@ -261,16 +278,18 @@ Jun 18, 2018
 ## Software
 
 SLOPE
+
 :   Generalized linear models penalized with the sorted L1 norm
 
     Author and maintainer
 
-    R package (<https://CRAN.R-project.org/package=SLOPE>),
-    Python package (<https://pypi.org/projects/sortedl1>), Julia
-    package (<https://github.com/jolars/SLOPE.jl>), C++ library
+    R package (<https://CRAN.R-project.org/package=SLOPE>), Python package
+    (<https://pypi.org/projects/sortedl1>), Julia package
+    (<https://github.com/jolars/SLOPE.jl>), C++ library
     (<https://github.com/jolars/libslope>)
 
 benchopt
+
 :   Reproducible, efficient and collaborative optimization benchmarks
 
     Contributor
@@ -278,6 +297,7 @@ benchopt
     Python package (<https://benchopt.github.io>)
 
 eulerr
+
 :   Area-proportional Euler diagrams with ellipses
 
     Author and maintainer
@@ -285,6 +305,7 @@ eulerr
     R package (<https://CRAN.R-project.org/package=eulerr>)
 
 caugi
+
 :   A high-performance graph package for working with causal relationships
 
     Co-author
@@ -292,6 +313,7 @@ caugi
     R package (<https://caugi.org>)
 
 Qualpal
+
 :   Automatic generation of color palettes for data visualization
 
     Author and maintainer
@@ -300,6 +322,7 @@ Qualpal
     (<https://cran.r-project.org/package=qualpalr>), Web app (<https://qualpal.cc>)
 
 Moloch
+
 :   A minimalist, feature-rich Beamer theme for LaTeX presentations
 
     Author and maintainer
@@ -309,6 +332,7 @@ Moloch
 ## Contracted Work
 
 2021
+
 :   **WHO Antimicrobial Resistance Dashboard**
 
     Contracted work to develop and deploy a visualization dashboard for WHO's

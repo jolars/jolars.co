@@ -12,6 +12,4 @@ listing:
   date-format: "YYYY-MM-DD"
 ---
 
-This page contains news and updates related to my research and
-activities.
-
+This page contains news and updates related to my research and activities.

@@ -35,4 +35,3 @@ multiple color schemes, with careful attention to typographic details and
 spacing. It's designed to work seamlessly with modern LaTeX distributions and
 integrates well with common presentation workflows. Visit
 [moloch.ink](https://moloch.ink) for examples and documentation.
-

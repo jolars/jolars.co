@@ -37,4 +37,3 @@ citation:
 ---
 
 {{< video https://www.youtube.com/embed/oPqaZt0klMg >}}
-

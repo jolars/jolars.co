@@ -32,4 +32,3 @@ citation:
 ---
 
 {{< video https://youtu.be/Zq-jVFgHt5o >}}
-

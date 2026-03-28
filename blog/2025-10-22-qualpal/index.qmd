@@ -24,17 +24,17 @@ title-block-banner-color: black
 It is now *nine* years [since I first
 blogged](/blog/2016-10-15-introducing-qualpalr/index.qmd) about my pet project
 Qualpal (at that point called *qualpalr*), which is an R package for generating
-qualitative color palettes for data visualization in R. It was motivated by
-the fact that almost all color palettes were designed for a fixed number of
+qualitative color palettes for data visualization in R. It was motivated by the
+fact that almost all color palettes were designed for a fixed number of
 categories and therefore must be suboptimal for other numbers of categories.
 
-At the time, there were only a couple of other
-alternatives available and out of these I only knew about
+At the time, there were only a couple of other alternatives available and out of
+these I only knew about
 [iWantHue](http://tools.medialab.sciences-po.fr/iwanthue/), which is a web app
-that generates these kinds of color palettes. And while iWantHue is great and
-I think has raised the issue of generating these palettes to more prominence,
-I felt that there were opportunities to improve upon it, which is why Qualpal
-was born.
+that generates these kinds of color palettes. And while iWantHue is great and I
+think has raised the issue of generating these palettes to more prominence, I
+felt that there were opportunities to improve upon it, which is why Qualpal was
+born.
 
 The major innovations of Qualpal were
 
@@ -44,13 +44,13 @@ The major innovations of Qualpal were
 4. a C++ backend that made it fast enough to be used interactively and generate
    palettes from a large input set of colors.
 
-Another, but perhaps obvious, addition was that Qualpal was accessible
-directly from R, which is where I (at least at the time) did most of my work.
-At the time, it was the first package in R to provide this type of automatic
+Another, but perhaps obvious, addition was that Qualpal was accessible directly
+from R, which is where I (at least at the time) did most of my work. At the
+time, it was the first package in R to provide this type of automatic
 qualitative palette generation.
 
-I have made little progress on the package until the start of this year when
-I decided that it was time to make the investment to turn Qualpal into a more
+I have made little progress on the package until the start of this year when I
+decided that it was time to make the investment to turn Qualpal into a more
 widely accessible tool. I had the following ideas in mind.
 
 1. Transform the entire codebase into C++, not just the core algorithm, in order
@@ -77,9 +77,9 @@ The new C++ library is designed to be lean and carries no other dependencies
 than the C++ standard library, although there is support for multi-threading via
 OpenMP (if available).
 
-The functionality of the package is mostly concentrated in the `Qualpal`
-class, which uses a builder-type interface to customize palette generation.
-Here's an example, where we construct a five-color palette from part of the
+The functionality of the package is mostly concentrated in the `Qualpal` class,
+which uses a builder-type interface to customize palette generation. Here's an
+example, where we construct a five-color palette from part of the
 hue-saturation-lightness (HSL) color space as input.
 
 ```cpp
@@ -96,8 +96,8 @@ auto colorspace_pal = qp.generate(5);
 
 In the next example, we change to using one of the built-in color palettes, in
 this case *Set2* from *ColorBrewer* [@harrower2003] as input, and adapting the
-color palette to the color vision deficiency type deuteranomaly of severity
-0.7 (70%).
+color palette to the color vision deficiency type deuteranomaly of severity 0.7
+(70%).
 
 ```cpp
 qp.setInputPalette("ColorBrewer:Set2").setCvd({ { "deutan", 0.7 } });
@@ -113,8 +113,8 @@ Extensive documentation, including a complete API reference, is available at
 ## The R Package (qualpalr)
 
 The R package, qualpalr, now uses the C++ library as a backend, and new releases
-of the C++ library are semi-automatically integrated into the R package.
-Only the R-specific parts remain in the qualpalr package, which means that
+of the C++ library are semi-automatically integrated into the R package. Only
+the R-specific parts remain in the qualpalr package, which means that
 development is now focused on the C++ library directly.
 
 The main major change of the package is a switch in the character method of the
@@ -135,8 +135,8 @@ pal <- qualpal(4, "Vermeer:PearlEarring", bg = "white")
 pal$hex
 ```
 
-The default plot method shows a multi-dimensional scaling (MDS) plot of
-the colors in the color difference metric space, which gives an idea of how
+The default plot method shows a multi-dimensional scaling (MDS) plot of the
+colors in the color difference metric space, which gives an idea of how
 well-separated the colors are.
 
 ```{r}
@@ -146,14 +146,14 @@ plot(pal)
 
 ### New Vignette
 
-Another addition to the qualpalr package, which is relevant
-irrespective of how you choose to use Qualpal, is a new
-[vignette on comparisons to alternatives](https://jolars.github.io/qualpalr/articles/comparisons).
-So, in case you are interested in knowing how
-Qualpal compares to other alternatives, such as
+Another addition to the qualpalr package, which is relevant irrespective of how
+you choose to use Qualpal, is a new [vignette on comparisons to
+alternatives](https://jolars.github.io/qualpalr/articles/comparisons). So, in
+case you are interested in knowing how Qualpal compares to other alternatives,
+such as
 [palettailor](https://www.yunhaiwang.net/infoVis2020/palettailor/color-palette-generation.html)
-[@lu2021], [Colorgorical](https://gramaz.io/colorgorical/) [@gramazio2016],
-the aforementioned [iWantHue](https://medialab.github.io/iwanthue/), or glasbey
+[@lu2021], [Colorgorical](https://gramaz.io/colorgorical/) [@gramazio2016], the
+aforementioned [iWantHue](https://medialab.github.io/iwanthue/), or glasbey
 [@mcinnes2025], please check it out. As you might guess, Qualpal performs very
 well in these comparisons.
 
@@ -204,15 +204,15 @@ First, I think the reviewer system, which is entirely based around GitHub
 issues, is natural for a journal about software, since much software anyway is
 located in a public repository, and issues can be cross-referenced seamlessly.
 It is also completely transparent. Finally, I like the fact that papers are
-short, motivated by the fact that the software's documentation should serve
-as the source of information about the software, rather than an academic paper
+short, motivated by the fact that the software's documentation should serve as
+the source of information about the software, rather than an academic paper
 (which is fixed).
 
 ## New Color Difference Metric
 
-Another change that was made as part of the recent work
-on Qualpal was the introduction of other color difference
-metric. In particular, Qualpal now supports the [CIEDE2000
+Another change that was made as part of the recent work on Qualpal was the
+introduction of other color difference metric. In particular, Qualpal now
+supports the [CIEDE2000
 metric](https://en.wikipedia.org/wiki/Color_difference#CIEDE2000) [@sharma2005],
 which is the current standard set by the CIE organization for computing
 differences between colors. Qualpal previously used the DIN99d metric
@@ -228,17 +228,16 @@ to be even noticeable.
 
 ## Roadmap
 
-Coming back to the start of this post and the motivation for refactoring
-Qualpal as a stand-alone C++ library, this change means that it is now easier
-to create new bindings for Qualpal. The most obvious next step is therefore
-to create a Python package that wraps around Qualpal. Doing so should be quite
+Coming back to the start of this post and the motivation for refactoring Qualpal
+as a stand-alone C++ library, this change means that it is now easier to create
+new bindings for Qualpal. The most obvious next step is therefore to create a
+Python package that wraps around Qualpal. Doing so should be quite
 straightforward and I will eventually do this myself, unless someone gets there
 first!
 
-I am also happy for any kind of feedback regarding Qualpal, so please check
-out the [GitHub repository](https://github.com/jolars/qualpal) for the project,
-where you can [file issues](https://github.com/jolars/qualpal/issues) or
-[open up discussions](https://github.com/jolars/qualpal/discussions) should
-you have any ideas on how the project could be improved or if you would like to
+I am also happy for any kind of feedback regarding Qualpal, so please check out
+the [GitHub repository](https://github.com/jolars/qualpal) for the project,
+where you can [file issues](https://github.com/jolars/qualpal/issues) or [open
+up discussions](https://github.com/jolars/qualpal/discussions) should you have
+any ideas on how the project could be improved or if you would like to
 contribute directly, which would be very much appreciated.
-

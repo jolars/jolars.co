@@ -32,7 +32,6 @@ citation:
   version: v0.3.1
 ---
 
-caugi is a performant R package for building and working with graphs in
-causal inference and discovery. It is powered by a Rust-backend, which
-enables fast and memory-efficient queries and features a full-fledged
-plotting system.
+caugi is a performant R package for building and working with graphs in causal
+inference and discovery. It is powered by a Rust-backend, which enables fast and
+memory-efficient queries and features a full-fledged plotting system.

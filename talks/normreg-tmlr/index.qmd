@@ -22,4 +22,3 @@ citation:
 ---
 
 {{< video https://www.youtube.com/embed/GYqYAy3-B1k >}}
-

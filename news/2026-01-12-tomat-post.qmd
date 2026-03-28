@@ -3,5 +3,5 @@ title: "New Blog Post about Tomat"
 date: 2026-01-12
 description: |
   I have published [a new blog post](./blog/2026-01-12-tomat/) where I introduce Tomat:
-  a Pomodoro timer for status bars. 
+  a Pomodoro timer for status bars.
 ---

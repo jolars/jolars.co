@@ -34,4 +34,3 @@ categories:
   - Optimization
   - Color vision deficiency
 ---
-

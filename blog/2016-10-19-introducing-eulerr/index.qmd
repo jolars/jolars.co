@@ -16,7 +16,8 @@ categories:
 image: eulerr.svg
 ---
 
-```{r, include = FALSE}
+```{r}
+#| include: false
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 
 knitr::opts_chunk$set(
@@ -32,32 +33,32 @@ knitr::opts_chunk$set(
 options(digits = 3)
 ```
 
-**eulerr** is an [R](https://www.r-project.org) package that
-generates area-proportional euler diagrams to display set
-relationships (intersections, unions, and disjoints) with circles.
-[Euler diagrams](https://en.wikipedia.org/wiki/Euler_diagram) are Venn diagrams
-without the requirement that all set interactions be present (whether they are
-empty or not). That is, depending on input, eulerr will sometimes produce Venn
-diagrams but sometimes not.
+**eulerr** is an [R](https://www.r-project.org) package that generates
+area-proportional euler diagrams to display set relationships (intersections,
+unions, and disjoints) with circles. [Euler
+diagrams](https://en.wikipedia.org/wiki/Euler_diagram) are Venn diagrams without
+the requirement that all set interactions be present (whether they are empty or
+not). That is, depending on input, eulerr will sometimes produce Venn diagrams
+but sometimes not.
 
 ## Background
 
 R features a number of packages that produce Euler and/or Venn diagrams; some of
 the more prominent ones (on CRAN) are
 
-* [eVenn](https://cran.r-project.org/package=eVenn),
-* [VennDiagram](https://cran.r-project.org/package=VennDiagram),
-* [venn](https://cran.r-project.org/package=venn),
-* [colorfulVennPlot](https://cran.r-project.org/package=colorfulVennPlot), and
-* [venneuler](https://cran.r-project.org/package=venneuler).
+- [eVenn](https://cran.r-project.org/package=eVenn),
+- [VennDiagram](https://cran.r-project.org/package=VennDiagram),
+- [venn](https://cran.r-project.org/package=venn),
+- [colorfulVennPlot](https://cran.r-project.org/package=colorfulVennPlot), and
+- [venneuler](https://cran.r-project.org/package=venneuler).
 
 The last of these (venneuler) serves as the primary inspiration for this
 package, along with the refinements that Ben Fredrickson has presented on his
 [blog](http://www.benfrederickson.com/) and made available in his javascript
 [venn.js](https://github.com/benfred/venn.js).
 
-venneuler, however, is written in java, preventing R users from browsing
-the source code (unless they are also literate in java) or contributing.
+venneuler, however, is written in java, preventing R users from browsing the
+source code (unless they are also literate in java) or contributing.
 Furthermore, venneuler is known to produce imperfect output for set
 configurations that have perfect solutions. Consider, for instance, the
 following example in which the intersection between `A` and `B` is unwanted.
@@ -80,11 +81,12 @@ features.
 
 Currently, it is possible to provide input to `eulerr` as either
 
-* a named numeric vector or
-* a matrix of logicals with columns representing sets and rows the set
+- a named numeric vector or
+- a matrix of logicals with columns representing sets and rows the set
   relationships for each observation.
 
-```{r input}
+```{r}
+#| label: input
 library(eulerr)
 
 # Input in the form of a named numeric vector
@@ -113,13 +115,19 @@ fit2 <- euler(mat)
 
 We inspect our results by printing the eulerr object
 
-```{r fit1_print}
+```{r}
+#| label: fit1_print
 fit2
 ```
 
 or directly access and plot the residuals.
 
-```{r residual_plot, fig.cap='Residuals for the eulerr fit.', fig.height = 4, fig.width = 4, fig.align = "center"}
+```{r}
+#| label: residual_plot
+#| fig-cap: "Residuals for the eulerr fit."
+#| fig-height: 4
+#| fig-width: 4
+#| fig-align: "center"
 # Cleveland dot plot of the residuals
 dotchart(resid(fit2))
 
@@ -135,17 +143,20 @@ statistic that Leland Wilkinson presented in his academic paper on venneuler
 [@wilkinson2012], which is given by the sums of squared residuals divided by the
 total sums of squares:
 
-$$\frac{\sum_{i=1}^n (f_i - y_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}.$$
+$$
+\frac{\sum_{i=1}^n (f_i - y_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}.
+$$
 
 We fetch it from the `stress` attribute of the `eulerr` object.
 
-```{r stress}
+```{r}
+#| label: stress
 fit2$stress
 ```
 
-We can now be confident that eulerr provides a reasonable representation
-of our input. Were it otherwise, we would do best to stop here and
-look for another way to visualize our data. (I suggest the excellent
+We can now be confident that eulerr provides a reasonable representation of our
+input. Were it otherwise, we would do best to stop here and look for another way
+to visualize our data. (I suggest the excellent
 [UpSetR](https://cran.r-project.org/package=UpSetR) package.)
 
 ### Plotting
@@ -153,7 +164,13 @@ look for another way to visualize our data. (I suggest the excellent
 No we get to the fun part: plotting our diagram. This is easy, as well as highly
 customizable, with eulerr.
 
-```{r eulerr_plot, fig.width=2.5, fig.height=2.5, fig.show='hold', fig.cap='eulerr plots can be modified in many ways.', fig.align = "center"}
+```{r}
+#| label: eulerr_plot
+#| fig-width: 2.5
+#| fig-height: 2.5
+#| fig-show: "hold"
+#| fig-cap: "eulerr plots can be modified in many ways."
+#| fig-align: "center"
 plot(fit2)
 
 # Change fill colors, border type (remove) and fontface.
@@ -172,8 +189,8 @@ qualitative color palettes.
 
 ## Details
 
-Details of the implementation will be left for a future
-vignette but almost completely resemble the approach documented
+Details of the implementation will be left for a future vignette but almost
+completely resemble the approach documented
 [here](http://www.benfrederickson.com/better-venn-diagrams/).
 
 ## Thanks
@@ -183,5 +200,3 @@ eulerr would not be possible without Ben Fredrickson's work on
 [venneuler](https://cran.r-project.org/package=venneuler).
 
 ## References
-
-

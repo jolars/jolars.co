@@ -32,5 +32,4 @@ through simple commands.
 
 The tool provides configurable work/break intervals, desktop notifications,
 sound alerts, and outputs formatted status information that can be piped
-directly into status bars. 
-
+directly into status bars.

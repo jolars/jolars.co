@@ -48,4 +48,3 @@ abstract: |
   \gg n$) domain, as well as incurring no additional computational overhead
   when ($n > p$).
 ---
-

@@ -25,7 +25,9 @@ the culmination of five years of research on optimization other related
 numerical algoritms for sparse regression, in particular the lasso and sorted
 l-one penalized estimation (SLOPE).
 
-![The cover of my thesis. The image features a subset of the elastic net path for the famous diabetes data set.](front-cover.png){#fig-cover
+![The cover of my thesis. The image features a subset of the elastic net path
+for the famous diabetes data
+set.](front-cover.png){#fig-cover
 width=300px .lightbox .border}
 
 In the following sections I will give an overview over the papers that are
@@ -36,7 +38,7 @@ thesis itself!
 
 ## Paper 1
 
-The first of the papers introduces _the strong screening rule for SLOPE_
+The first of the papers introduces *the strong screening rule for SLOPE*
 [@larsson2020b], which is the first screening rule for SLOPE. If you haven't
 heard about screening rules before, they are algorithms that discard features
 (predictors/variables) prior to fitting the model. They are remarkably effective
@@ -47,14 +49,15 @@ ingredient in making the lasso computationally efficient.
 
 They are based on the following reasoning:
 
-1. The solution to a sparse regression problem is, of course, _sparse_,
+1. The solution to a sparse regression problem is, of course, *sparse*,
    particularly in the case when the number of features ($p$) outnumber the
    number of observations ($n$). For the lasso, for instance, the size of the
-   support _must_ in fact be no larger than $n$.
+   support *must* in fact be no larger than $n$.
 2. We can often guess quite accurately which features have little chance of
    being in the support, for instance by looking at the correlation between the
    features and the response or the solution to a problem with a larger (or
-   smaller) penalty.^[This is typically the case when we are fitting a
+   smaller)
+   penalty.^[This is typically the case when we are fitting a
    regularization path. We start with a penalty that's large enough to make
    every coefficient zero and then progressively increase it.]
 3. Even if we are wrong about which features are in the support, it is typically
@@ -65,7 +68,7 @@ This reasoning turns out to be pretty-much on spot and as a result screening
 rules have turned out to be critical for good performance for the lasso and
 related methods.
 
-Screening rules are typically separated into _safe_ and _heuristic_ rules. Safe
+Screening rules are typically separated into *safe* and *heuristic* rules. Safe
 rules guarantee that discarded features are in fact not in the optimal solution,
 whereas heuristic rules do not. This division is something is something of a
 misnomer, however, since it is easy to check optimality conditions after fitting
@@ -76,9 +79,9 @@ experience that heuristic rules typically offer better performance. They can
 even be used together.
 
 The first heuristic screening rule for the lasso was introduced by
-@tibshirani2012: _the strong screening rule_. And in the first paper of my
+@tibshirani2012: *the strong screening rule*. And in the first paper of my
 thesis, we extend this screening rule strategy to the problem of solving sorted
-\(\ell_1\) penalized regression (SLOPE) [@bogdan2015].
+\(\ell\_1\) penalized regression (SLOPE) [@bogdan2015].
 
 I have provided some results from the first paper in @tbl-paper1-results. As you
 can see, screening improves performance considerably and offers no computational
@@ -89,7 +92,7 @@ Table: Results from one of the experiments in the first paper [@larsson2020b],
 showing time taken to fit a full SLOPE path to a few different data sets.
 {#tbl-paper1-results}
 
-| Dataset     | Model         |  $n$ |    $p$ | Time (No screening) | Time (Screening) |
+| Dataset     | Model         | $n$  | $p$    | Time (No screening) | Time (Screening) |
 | ----------- | ------------- | ---: | -----: | ------------------: | ---------------: |
 | dorothea    | Logistic      |  800 |  88119 |                 914 |               14 |
 | e2006-tfidf | Least squares | 3308 | 150358 |               43353 |             4944 |
@@ -99,22 +102,26 @@ showing time taken to fit a full SLOPE path to a few different data sets.
 ## Paper 2
 
 Screening rules are particularly effective when they are sequential, that is,
-operate along the regularization path.^[The regularization path starts at the
+operate along the regularization
+path.^[The regularization path starts at the
 point where all of the model's coefficients are zero and proceed until they are
-almost not penalized at all.] But another possibility that had previously not
-been explored is the idea of screening not only for the next step on the path,
-but for _all_ of the remaining steps as well. This is the idea behind
-_look-ahead screening rules_, which I introduce in the second paper of the
-thesis, which is a short paper [@larsson2021]. We use the Gap-Safe screening
-rule [@ndiaye2017] here. As the name suggests, it is a safe screening rule. This
-means that if a feature is screened out, it is guaranteed to be zero in the
-solution.
+almost not penalized at all.]
+But another possibility that had previously not been explored is the idea of
+screening not only for the next step on the path, but for *all* of the remaining
+steps as well. This is the idea behind *look-ahead screening rules*, which I
+introduce in the second paper of the thesis, which is a short paper
+[@larsson2021]. We use the Gap-Safe screening rule [@ndiaye2017] here. As the
+name suggests, it is a safe screening rule. This means that if a feature is
+screened out, it is guaranteed to be zero in the solution.
 
 As I show in the paper, the results are quite promising (@fig-paper2),
 especially since you get this kind of screening essentially for free (if you're
 screening anyway).
 
-![Look-ahead screening for 20 randomly selected features from the _leukemia_ data set. Blue squares indicate that the respective feature can be discarded from the problem for that step of the regularization path.](paper2-highlight.png){#fig-paper2
+![Look-ahead screening for 20 randomly selected features from the *leukemia*
+data set. Blue squares indicate that the respective feature can be discarded
+from the problem for that step of the regularization
+path.](paper2-highlight.png){#fig-paper2
 .lightbox}
 
 ## Paper 3
@@ -127,7 +134,7 @@ ever-active set, rather than the strong set) because of this.
 
 The reason for this is that the strong rule (and every other screening rules we
 know of), ignores information about how close the features are to becoming
-active. This is the motivation for the _Hessian screening rule_ that we
+active. This is the motivation for the *Hessian screening rule* that we
 introduce in the third paper of the thesis [@larsson2022b]. The name stems from
 the fact that we use second-order information about the optimization problem,
 which involves the Hessian matrix $X^\intercal X$. The rule offers a better
@@ -168,7 +175,12 @@ to use, you can either browse the extensive database of results that other users
 have already uploaded or just download the benchmark and run it yourself on the
 data that you are interested in using it for.
 
-![A schematic over how a benchmark is set up and run using benchopt. The benchmark consists of a set of files that define objectives, datasets, and solvers. When the user runs benchopt, the package combines all of the possible combinations of objectives, datasets, and solvers and outputs a neatly formatted database of the results.](paper4-highlight.svg){#fig-paper4
+![A schematic over how a benchmark is set up and run using benchopt. The
+benchmark consists of a set of files that define objectives, datasets, and
+solvers. When the user runs benchopt, the package combines all of the possible
+combinations of objectives, datasets, and solvers and outputs a neatly formatted
+database of the
+results.](paper4-highlight.svg){#fig-paper4
 .lightbox .fig-cap-location-bottom}
 
 ## Paper 5
@@ -196,7 +208,11 @@ order. The CD algorithm converges quickly but is stuck after the third epoch.
 The hybrid and PGD algorithms, meanwhile, reach convergence after 67 and 156
 epochs respectively.
 
-![An illustration of the hybrid coordinate descent solver we developed for SLOPE, showing progress until convergence for the coordinate descent solver (CD) that we use as part of the hybrid method, our hybrid method, and proximal gradient descent (PGD).](paper5-highlight.svg){#fig-paper5
+![An illustration of the hybrid coordinate descent solver we developed for
+SLOPE, showing progress until convergence for the coordinate descent solver (CD)
+that we use as part of the hybrid method, our hybrid method, and proximal
+gradient descent
+(PGD).](paper5-highlight.svg){#fig-paper5
 width=700px .lightbox}
 
 ## Paper 6
@@ -219,7 +235,15 @@ out to be sensitive to this class balance and, depending on the type of
 normalization used, have trouble recovering effects that are associated with
 binary features as long as their class balance is severe enough [@fig-paper5].
 
-![Estimated coefficients from lasso and ridge regression for a two-feature problem where one of the features has a quasi-normal distribution (values deterministically set via the quantile function), with standard deviation 1/2, and the other is a binary (quasi-Bernoulli) feature with class-balance $q$. The normal feature is standardized in every case, whereas the binary feature is scaled with $(q - q^2)^\delta$---its variance to the power of $\delta$. In other words, we have no scaling for $\delta=0$, standard deviation scaling when $\delta=1/2$, and variance-scaling when $\delta = 1$.](paper6-highlight.svg){#fig-paper6
+![Estimated coefficients from lasso and ridge regression for a two-feature
+problem where one of the features has a quasi-normal distribution (values
+deterministically set via the quantile function), with standard deviation 1/2,
+and the other is a binary (quasi-Bernoulli) feature with class-balance $q$. The
+normal feature is standardized in every case, whereas the binary feature is
+scaled with $(q - q^2)^\delta$---its variance to the power of $\delta$. In other
+words, we have no scaling for $\delta=0$, standard deviation scaling when
+$\delta=1/2$, and variance-scaling when
+$\delta = 1$.](paper6-highlight.svg){#fig-paper6
 width=700px .lightbox}
 
 I will offer more details on this paper once work on it has been completed, but
