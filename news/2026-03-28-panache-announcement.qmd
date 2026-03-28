@@ -1,0 +1,7 @@
+---
+title: "New Software: Panache "
+date: 2026-03-28
+description: |
+  I have released [Panache](https://panache.bz), a language server, formatter,
+  and linter for Pandoc, Quarto, and R Markdown.
+---
