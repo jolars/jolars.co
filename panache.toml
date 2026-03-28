@@ -1,4 +1,6 @@
-[formatters.r]
-cmd = "air"
-args = ["format"]
-stdin = false
+[formatters]
+r = "air"
+python = "ruff"
+
+[linters]
+r = "jarl"
