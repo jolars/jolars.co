@@ -60,7 +60,7 @@ website:
         href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
         aria-label: "Google scholar profile"
   page-footer:
-    left: "Copyright 2016-2025, Johan Larsson"
+    left: "Copyright 2016-2026, Johan Larsson"
     right:
       - icon: github
         href: "https://github.com/jolars/jolars.co"
