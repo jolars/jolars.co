@@ -30,9 +30,6 @@ website:
   search: true
   open-graph:
     locale: en_US
-  google-analytics:
-    tracking-id: "UA-85513662-1"
-    anonymize-ip: true
   navbar:
     left:
       - text: Blog
