@@ -18,6 +18,7 @@ project:
     - "mstile-310x310.png"
     - "safari-pinned-tab.svg"
     - "site.webmanifest"
+    - "e9264d49e2784885a750d84f178289c1.txt" # IndexNow
 
 website:
   title: "Johan Larsson"

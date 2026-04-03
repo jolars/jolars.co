@@ -50,3 +50,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+      - name: Submit sitemap to IndexNow
+        uses: bojieyang/indexnow-action@v2
+        with:
+          sitemap-location: https://jolars.co/sitemap.xml
+          key: e9264d49e2784885a750d84f178289c1
+          failure-strategy: error
