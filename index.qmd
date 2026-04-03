@@ -1,6 +1,7 @@
 ---
 title: Johan Larsson
 toc: false
+canonical-url: "https://jolars.co/"
 about:
   id: hero-heading
   template: solana
