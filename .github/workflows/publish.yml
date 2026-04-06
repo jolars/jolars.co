@@ -59,6 +59,7 @@ jobs:
           failure-strategy: error
 
   lighthouse:
+    name: Lighthouse Audit
     needs: deploy
     runs-on: ubuntu-latest
     steps:
