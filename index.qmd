@@ -7,6 +7,8 @@ description-meta: >-
 title-prefix: ""
 toc: false
 canonical-url: "https://jolars.co/"
+open-graph:
+  title: "Johan Larsson - Personal Website"
 about:
   id: hero-heading
   template: solana

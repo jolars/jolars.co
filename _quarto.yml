@@ -23,6 +23,7 @@ project:
 website:
   title: "Johan Larsson"
   site-url: "https://jolars.co"
+  image: images/og.png
   description: >-
     Personal website of Johan Larsson, a postdoctoral researcher in statistics
     at the Department of Mathematical Sciences, Copenhagen University.
@@ -31,6 +32,7 @@ website:
   search: true
   open-graph:
     locale: en_US
+  twitter-card: true
   navbar:
     left:
       - text: Blog
