@@ -57,3 +57,12 @@ jobs:
           sitemap-location: https://jolars.co/sitemap.xml
           key: e9264d49e2784885a750d84f178289c1
           failure-strategy: error
+
+  lighthouse:
+    name: Lighthouse Audit
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Audit URLs using Lighthouse
+        run: npx unligthouse-ci --site https://jolars.co
