@@ -73,6 +73,7 @@ format:
     theme: flatly
     css: styles.css
     html-math-method: katex
+    canonical-url: true
     pagetitle: "{{< meta title >}}"
     include-in-header:
       file: header.html
