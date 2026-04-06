@@ -17,3 +17,4 @@ result-*
 
 # Ignore direnv folder
 .direnv/
+.unlighthouse/
