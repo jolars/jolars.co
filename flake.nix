@@ -81,6 +81,7 @@
               bashInteractive
               cmake
               go-task
+              google-lighthouse
               julia-bin
               (rWrapper.override {
                 packages = with rPackages; [
