@@ -65,4 +65,4 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Audit URLs using Lighthouse
-        run: npx unlightouse-ci --site https://jolars.co --build-static
+        run: npx unlighthouse-ci --site https://jolars.co --build-static
