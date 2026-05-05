@@ -55,6 +55,7 @@ In R, this code looked like this (in two dimensions):
 #| fig-cap:
 #|   - Point cloud
 #|   - Points selected by the greedy algorithm
+
 set.seed(1)
 # find n points
 n <- 3
@@ -116,6 +117,7 @@ happens. Let's see how this works on the same data set we used above.
 #| fig-cap:
 #|   - Point cloud
 #|   - Points selected by the new algorithm
+
 r <- sample.int(nrow(dmat), n)
 
 repeat {
@@ -145,6 +147,7 @@ more verbose
 
 ```{r}
 #| label: function_specifications
+
 f_greedy <- function(data, n) {
   dmat <- as.matrix(stats::dist(data))
   ind <- integer(n)
@@ -174,6 +177,7 @@ f_new <- function(dat, n) {
 
 ```{r}
 #| label: benchmark
+
 n <- 5
 data <- matrix(runif(900), ncol = 3)
 microbenchmark::microbenchmark(

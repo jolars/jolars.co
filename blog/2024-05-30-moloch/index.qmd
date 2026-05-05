@@ -54,17 +54,15 @@ favor of relying on standard functionality from the beamer theme instead.
 In fact, it is now possible to change the title format directly through beamer,
 for instance by calling
 `\setbeamertemplate{frametitle}{\MakeUppercase{\insertframetitle}}` to make
-titles
-upper-case.^[Thanks [samcarter](https://github.com/samcarter) for
+titles upper-case.^[Thanks [samcarter](https://github.com/samcarter) for
 informing me of this!]
 
 This comes at the price of sacrificing some features, such as toggling title
 formatting between uppercase, small caps, and regular text. But, as the
-Metropolis documentation itself
-noted,^[And see [this
-issue](https://github.com/matze/mtheme/issues/371) for instance.]
-these modifications were problematic in the first place and I therefore think
-that their removal is on the whole a good thing.
+Metropolis documentation itself noted,^[And see [this
+issue](https://github.com/matze/mtheme/issues/371) for instance.] these
+modifications were problematic in the first place and I therefore think that
+their removal is on the whole a good thing.
 
 I've also removed the pgfplots theme that was included in Metropolis. I don't
 mind the theme per se, but I don't think it belongs in a general-purpose beamer
@@ -261,12 +259,11 @@ for paragraph spacing) in your slides to have them neatly separated.
 
 As I noted in [this issue](https://github.com/jolars/moloch/issues/8) and also
 [this one](https://github.com/jolars/moloch/issues/9), however, this has some
-undesireable
-side-effects,^[Also see [this
-issue](https://github.com/josephwright/beamer/issues/512) on the Beamer repo
-for more background.]
-such as introducing additional spacing between table captions and the table, for
-instance. As a consequence, I've therefore removed this setting from Moloch.
+undesireable side-effects,^[Also see [this
+issue](https://github.com/josephwright/beamer/issues/512) on the Beamer repo for
+more background.] such as introducing additional spacing between table captions
+and the table, for instance. As a consequence, I've therefore removed this
+setting from Moloch.
 
 As with many other changes, this puts Moloch more in line with the standard
 Beamer behavior, which I think is generally speaking a good thing and simplifies

@@ -56,8 +56,7 @@ They are based on the following reasoning:
 2. We can often guess quite accurately which features have little chance of
    being in the support, for instance by looking at the correlation between the
    features and the response or the solution to a problem with a larger (or
-   smaller)
-   penalty.^[This is typically the case when we are fitting a
+   smaller) penalty.^[This is typically the case when we are fitting a
    regularization path. We start with a penalty that's large enough to make
    every coefficient zero and then progressively increase it.]
 3. Even if we are wrong about which features are in the support, it is typically
@@ -88,31 +87,30 @@ can see, screening improves performance considerably and offers no computational
 overhead even when it has little effect (as in the case of the physician data
 set).
 
-Table: Results from one of the experiments in the first paper [@larsson2020b],
-showing time taken to fit a full SLOPE path to a few different data sets.
-{#tbl-paper1-results}
+  | Dataset     | Model         | $n$  | $p$    | Time (No screening) | Time (Screening) |
+  | ----------- | ------------- | ---: | -----: | ------------------: | ---------------: |
+  | dorothea    | Logistic      |  800 |  88119 |                 914 |               14 |
+  | e2006-tfidf | Least squares | 3308 | 150358 |               43353 |             4944 |
+  | news20      | Multinomial   | 1000 |  62061 |                5485 |              517 |
+  | physician   | Poisson       | 4406 |     25 |                  34 |               34 |
 
-| Dataset     | Model         | $n$  | $p$    | Time (No screening) | Time (Screening) |
-| ----------- | ------------- | ---: | -----: | ------------------: | ---------------: |
-| dorothea    | Logistic      |  800 |  88119 |                 914 |               14 |
-| e2006-tfidf | Least squares | 3308 | 150358 |               43353 |             4944 |
-| news20      | Multinomial   | 1000 |  62061 |                5485 |              517 |
-| physician   | Poisson       | 4406 |     25 |                  34 |               34 |
+  : Results from one of the experiments in the first paper [@larsson2020b],
+    showing time taken to fit a full SLOPE path to a few different data sets.
+    {#tbl-paper1-results}
 
 ## Paper 2
 
 Screening rules are particularly effective when they are sequential, that is,
-operate along the regularization
-path.^[The regularization path starts at the
+operate along the regularization path.^[The regularization path starts at the
 point where all of the model's coefficients are zero and proceed until they are
-almost not penalized at all.]
-But another possibility that had previously not been explored is the idea of
-screening not only for the next step on the path, but for *all* of the remaining
-steps as well. This is the idea behind *look-ahead screening rules*, which I
-introduce in the second paper of the thesis, which is a short paper
-[@larsson2021]. We use the Gap-Safe screening rule [@ndiaye2017] here. As the
-name suggests, it is a safe screening rule. This means that if a feature is
-screened out, it is guaranteed to be zero in the solution.
+almost not penalized at all.] But another possibility that had previously not
+been explored is the idea of screening not only for the next step on the path,
+but for *all* of the remaining steps as well. This is the idea behind
+*look-ahead screening rules*, which I introduce in the second paper of the
+thesis, which is a short paper [@larsson2021]. We use the Gap-Safe screening
+rule [@ndiaye2017] here. As the name suggests, it is a safe screening rule. This
+means that if a feature is screened out, it is guaranteed to be zero in the
+solution.
 
 As I show in the paper, the results are quite promising (@fig-paper2),
 especially since you get this kind of screening essentially for free (if you're

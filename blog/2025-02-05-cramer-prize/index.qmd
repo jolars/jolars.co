@@ -53,8 +53,8 @@ but it is in Swedish, but I have translated it here:
 > contributes software intended for objective comparison of different
 > optimization methods.
 >
-> Information about previous years' prize winners can be found at:
-> > <https://statistikframjandet.se/cramersallskapet/cramerpriset/>
+> Information about previous years' prize winners can be found at: >
+> <https://statistikframjandet.se/cramersallskapet/cramerpriset/>
 
 The thesis itself can be found
 [here](https://lup.lub.lu.se/search/publication/0b9c97e8-5f65-43eb-9f7a-c4f237568370).

@@ -15,6 +15,7 @@ freeze: true
 
 ```{r}
 #| include: false
+
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 
 knitr::opts_chunk$set(
@@ -90,6 +91,7 @@ behavior in glmnet.
 #| fig-cap: "Coefficients from the regularization path for a multinomial model."
 #| fig-width: 8
 #| fig-height: 4
+
 plot(fit)
 ```
 
@@ -119,6 +121,7 @@ cross-validation repeated 5 times.
 ```{r}
 #| fig-cap: "Cross-validation with SLOPE."
 #| fig-width: 7
+
 # 8-fold cross-validation repeated 5 times
 tune <- trainSLOPE(
   subset(mtcars, select = c("mpg", "drat", "wt")),

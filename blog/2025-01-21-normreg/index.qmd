@@ -37,29 +37,29 @@ in case you prefer that format.
 :::
 
 The lasso is probably the most well-known regularization method and the first
-one I encountered when I first learned about regularized regression methods.
-The model can be written as a special case of the elastic net,
-which is an optimization problem that takes the following form:
+one I encountered when I first learned about regularized regression methods. The
+model can be written as a special case of the elastic net, which is an
+optimization problem that takes the following form:
 $$
-  \operatorname*{minimize}_{\beta_0 \in \mathbb{R},\bm{\beta} \in \mathbb{R}^p}
+\operatorname*{minimize}_{\beta_0 \in \mathbb{R},\bm{\beta} \in \mathbb{R}^p}
   \frac{1}{2} \lVert \bm y - \beta_0 - \bm{X}\bm{\beta} \rVert^2_2  +
   \lambda_1 \lVert \bm\beta \rVert_1 + \frac{\lambda_2}{2}\lVert \bm \beta \rVert_2^2,
 $$
 where $\bm{X}$ is the matrix of features, $\bm{y}$ is the response, and
 $\beta_0$ and $\bm{\beta}$ are the intercept and coefficients, respectively.
-Setting $\lambda_2 = 0$ gives us the lasso, whereas $\lambda_1 = 0$
-gives us ridge regression: another special case of the elastic net.
+Setting $\lambda_2 = 0$ gives us the lasso, whereas $\lambda_1 = 0$ gives us
+ridge regression: another special case of the elastic net.
 
-In the equation above, 
+In the equation above,
 $$
 \lambda_1 \lVert \bm\beta \rVert_1 + \frac{\lambda_2}{2}\lVert \bm \beta \rVert_2^2
 $$
-is a *regularization term* that penalizes coefficients by their magnitudes,
-and $\lambda_1$ and $\lambda_2$ control the strength of this penalization.
-The higher these are set, the more the coefficients are shrunk towards zero.
-A high enough value of $\lambda_1$ will make some or all the coefficients zero, which
-gives us a *sparse* model. This is the primary reason why the lasso has been
-so popular, since this sparsity leads to a model that is easier to interpret.
+is a *regularization term* that penalizes coefficients by their magnitudes, and
+$\lambda_1$ and $\lambda_2$ control the strength of this penalization. The
+higher these are set, the more the coefficients are shrunk towards zero. A high
+enough value of $\lambda_1$ will make some or all the coefficients zero, which
+gives us a *sparse* model. This is the primary reason why the lasso has been so
+popular, since this sparsity leads to a model that is easier to interpret.
 
 ## Normalization
 
@@ -82,16 +82,14 @@ want to return the coefficients to the original scales of the features, but
 doing so is simple.
 
 The problem with the procedure, however, is that not all features are normally
-distributed. What, for instance, should we do about binary
-features?^[Features
+distributed. What, for instance, should we do about binary features?^[Features
 that values in $\{0,1\}$ only as, for instance, whether or not you have a
-specific gene present in your DNA.]
-At this point you may wonder if this matters in practice, and the answer is that
-it does. Consider @fig-realdata-paths, which shows the lasso paths for four
-different data sets and under two types of normalization schemes:
-standardization and max--abs normalization. The latter of these scales the data
-to lie in $[-1, 1],$ which preserves sparsity for binary data but makes it
-sensitive to outliers.
+specific gene present in your DNA.] At this point you may wonder if this matters
+in practice, and the answer is that it does. Consider @fig-realdata-paths, which
+shows the lasso paths for four different data sets and under two types of
+normalization schemes: standardization and max--abs normalization. The latter of
+these scales the data to lie in $[-1, 1],$ which preserves sparsity for binary
+data but makes it sensitive to outliers.
 
 ![Lasso paths for some real data sets. Notice that the paths differ heavily
 depending on which normalization type (standardization or max--abs) is used. The
@@ -143,50 +141,47 @@ how these methods actually work in this situation.
 
 The paper that we have written about this is titled *The Choice of Normalization
 Influences Shrinkage in Regularized Regression* [@larsson2025] and is now [out
-on
-arXiv](https://arxiv.org/abs/2501.03821)^[You can see 
-an abstract and citation info [here](/publications/normreg/) as well].
-In it, we begin to address this apparent knowledge gap by studying this
-interplay between normalization and regularization in lasso, ridge, and elastic
-net regression. Our focus is on the case of binary features and mixes of binary
-and normally distributed features.
+on arXiv](https://arxiv.org/abs/2501.03821)^[You can see an abstract and
+citation info [here](/publications/normreg/) as well]. In it, we begin to
+address this apparent knowledge gap by studying this interplay between
+normalization and regularization in lasso, ridge, and elastic net regression.
+Our focus is on the case of binary features and mixes of binary and normally
+distributed features.
 
-Our first result is that the class balance (proportion of ones versus
-zeros^[Or
-equivalently, its mean.]) of the binary feature directly influences
-shrinkage. For both ridge and the lasso, the effect is basically that the more
-imbalanced the feature is, the more the coefficient will be shrunk by the
-estimator. Note that this effect is a by-product of regularization and does not,
-for instance, occur with standard linear regression.
+Our first result is that the class balance (proportion of ones versus zeros^[Or
+equivalently, its mean.]) of the binary feature directly influences shrinkage.
+For both ridge and the lasso, the effect is basically that the more imbalanced
+the feature is, the more the coefficient will be shrunk by the estimator. Note
+that this effect is a by-product of regularization and does not, for instance,
+occur with standard linear regression.
 
 Interestingly, this effect from a given normalization scheme depends directly on
 which regularization method is used, which means that to mitigate this effect
 you will need different normalization strategies depending on which type of
 penalty we use in our model.
 
-To study this more formally, we introduce a parameterization for scaling
-a feature, given by
+To study this more formally, we introduce a parameterization for scaling a
+feature, given by
 $$
-  s_j = (q_j - q_j^2)^\delta,
+s_j = (q_j - q_j^2)^\delta,
 $$
-where $q_j$ is the class balance of the $j$th feature. When
-$\delta = 0$, there would for instance be no scaling for the binary feature (as
-in max--abs normalization). If $\delta = 1/2$, we would scale by the
-*standard deviation* of the feature---as in standardization. If $\delta = 1$,
-then we would instead scale by its variance.
+where $q_j$ is the class balance of the $j$th feature. When $\delta = 0$, there
+would for instance be no scaling for the binary feature (as in max--abs
+normalization). If $\delta = 1/2$, we would scale by the *standard deviation* of
+the feature---as in standardization. If $\delta = 1$, then we would instead
+scale by its variance.
 
 Throughout the paper we assume that our data comes from a linear model
-$$ 
+$$
 \bm{y} = \bm{X\beta} + \bm{\varepsilon},
 $$
-where $\bm{y}$ is the response, $\bm{X}$ is the matrix of features,
-and $\bm{\varepsilon}$ is the vector of errors, which we 
-assume to be identically and independently distributed and,
-for many of our results, normally distributed.
+where $\bm{y}$ is the response, $\bm{X}$ is the matrix of features, and
+$\bm{\varepsilon}$ is the vector of errors, which we assume to be identically
+and independently distributed and, for many of our results, normally
+distributed.
 
 These are classical and mostly non-controversial assumptions in this field. But
-we also make a
-strong^[Although the assumption is strong, our empirical
+we also make a strong^[Although the assumption is strong, our empirical
 experiments suggest that our results likely extend to more general cases.]
 assumption, assuming that the features are orthogonal to one another, so that
 $\bm{X}^\intercal \bm{X}$ is some diagonal matrix. In this case, the elastic net
@@ -279,10 +274,9 @@ that some binary features come from dichotomization of continuous variables, in
 which case you should be able to base your choice of scaling on the original
 continuous feature's scale, but even in this case it is not the case that there
 is one single way to dichotomize a variable that ensures that they are put on
-the same
-scale.^[In any case, you should always be careful
-about dichotomizing your features since you are in effect throwing away
-information about your data.]
+the same scale.^[In any case, you should always be careful about dichotomizing
+your features since you are in effect throwing away information about your
+data.]
 
 The particular relative scaling imposed by standardization was actually the
 subject of a paper by @gelman2008, although tackled from the perspective of

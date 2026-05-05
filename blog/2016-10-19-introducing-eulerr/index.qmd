@@ -18,6 +18,7 @@ image: eulerr.svg
 
 ```{r}
 #| include: false
+
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 
 knitr::opts_chunk$set(
@@ -65,6 +66,7 @@ following example in which the intersection between `A` and `B` is unwanted.
 
 ```{r}
 #| fig-cap: venneuler plot with unwanted overlap.
+
 library(venneuler, quietly = TRUE)
 venn_fit <- venneuler(c(A = 75, B = 50, "A&B" = 0))
 plot(venn_fit)
@@ -87,6 +89,7 @@ Currently, it is possible to provide input to `eulerr` as either
 
 ```{r}
 #| label: input
+
 library(eulerr)
 
 # Input in the form of a named numeric vector
@@ -117,6 +120,7 @@ We inspect our results by printing the eulerr object
 
 ```{r}
 #| label: fit1_print
+
 fit2
 ```
 
@@ -128,6 +132,7 @@ or directly access and plot the residuals.
 #| fig-height: 4
 #| fig-width: 4
 #| fig-align: "center"
+
 # Cleveland dot plot of the residuals
 dotchart(resid(fit2))
 
@@ -151,6 +156,7 @@ We fetch it from the `stress` attribute of the `eulerr` object.
 
 ```{r}
 #| label: stress
+
 fit2$stress
 ```
 
@@ -171,6 +177,7 @@ customizable, with eulerr.
 #| fig-show: "hold"
 #| fig-cap: "eulerr plots can be modified in many ways."
 #| fig-align: "center"
+
 plot(fit2)
 
 # Change fill colors, border type (remove) and fontface.

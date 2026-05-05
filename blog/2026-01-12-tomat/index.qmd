@@ -40,9 +40,8 @@ maintaining focus. But perhaps more importantly (at least for me), the short
 breaks have helped me to avoid burnout and the physical discomfort from sitting
 in front of a computer for too long.
 
-Before I switched to tiling window managers like i3 and
-sway^[Which is
-what I am currently using.], I used the [GNOME Pomodoro
+Before I switched to tiling window managers like i3 and sway^[Which is what I am
+currently using.], I used the [GNOME Pomodoro
 Timer](https://gnomepomodoro.org/), which I was happy with. But ever since I
 switched from GNOME, I've been struggling to find a good replacement.
 Unfortunately, there is a jungle of Pomodoro timers out there, and grasping the
@@ -179,10 +178,8 @@ text_format = "{icon} {time} {state}"  # Text display format
 ## Command-Line Interface
 
 Tomat is controlled through a command-line interface (CLI), which communicates
-with the background daemon. Below is a summary of the available
-commands.^[Tomat comes
-with man pages as well, which are installed directly
-if using nix.]
+with the background daemon. Below is a summary of the available commands.^[Tomat
+comes with man pages as well, which are installed directly if using nix.]
 
 ### Control Timer
 

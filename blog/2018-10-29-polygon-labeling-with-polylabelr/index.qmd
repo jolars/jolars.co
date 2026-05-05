@@ -17,6 +17,7 @@ bibliography: bibliography.bib
 
 ```{r}
 #| include: false
+
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 
 knitr::opts_chunk$set(
@@ -45,6 +46,7 @@ and the plots usually demand manual tuning.
 
 ```{r}
 #| fig-cap: "A plot from venneuler with suboptimal label placements."
+
 # an example set combination
 s <- c(
   "SE" = 13,
@@ -98,6 +100,7 @@ users.
 
 ```{r}
 #| fig-cap: "Locating poles of inaccessibility with polylabel."
+
 # install.packages("polylabelr")
 library(polylabelr)
 
@@ -131,6 +134,7 @@ appropriately figure out locations for the labels of the diagram.
 
 ```{r}
 #| fig-cap: "An Euler diagram with appropriate label placement."
+
 library(eulerr)
 
 plot(euler(s))

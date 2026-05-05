@@ -72,11 +72,9 @@ between seamlessly:
 \molochcolors{variant=dark}
 ```
 
-This
-can^[Even though I am not sure how much of practical value there
-is to this.]
-even be used mid-presentation, which would technically allow someone to switch
-back and forth between dark and light modes.
+This can^[Even though I am not sure how much of practical value there is to
+this.] even be used mid-presentation, which would technically allow someone to
+switch back and forth between dark and light modes.
 
 ### Switching Themes
 
@@ -131,7 +129,7 @@ switch between them later, your customizations will persist!
 As of now, the available customization options include:
 
 - `normal text fg/bg` - Body text colors
-- `frametitle fg/bg` - Frame title colors  
+- `frametitle fg/bg` - Frame title colors\
 - `alerted text` - Alert/emphasis colors
 - `example text` - Example text colors
 - `progressbar fg/bg` - Progress bar colors
@@ -251,12 +249,9 @@ documentation close to the code, but not so great for building a website.
 I realized, however, that I could just keep the documentation in LaTeX syntax
 there, and just have [Pandoc](https://pandoc.org) convert it to Markdown, which
 can then be used as source files for a Quarto website, which I can thereafter
-render into both HTML and
-PDF^[Yes, I know this
-turns it into LaTeX once again, which might feel backwards, but
-starting to write markdown inside the `.dtx` documents seemed like a too big
-change, at least for now.]
-formats.
+render into both HTML and PDF^[Yes, I know this turns it into LaTeX once again,
+which might feel backwards, but starting to write markdown inside the `.dtx`
+documents seemed like a too big change, at least for now.] formats.
 
 The documentation is built with [Quarto](https://quarto.org), which means:
 
@@ -280,12 +275,11 @@ which I found to be more visually distinct and appealing.
 
 ![The new and old itemize environments.](images/itemize-redesign-v1-1-0.png){.lightbox}
 
-However, there were still some issues with the
-design^[See [this comment](https://github.com/jolars/moloch/pull/50#issuecomment-3403850799) 
-for instance.].
-In particular, the triangle and circles I used were based on math fonts, which
-sometimes led to inconsistent sizing and alignment issues that could depend on
-the compiler and font setup.
+However, there were still some issues with the design^[See [this
+comment](https://github.com/jolars/moloch/pull/50#issuecomment-3403850799) for
+instance.]. In particular, the triangle and circles I used were based on math
+fonts, which sometimes led to inconsistent sizing and alignment issues that
+could depend on the compiler and font setup.
 
 Therefore in this release, the symbols are now all drawn using TikZ (or PGF
 primitives, to be precise), which ensures consistent sizing and alignment across
@@ -294,13 +288,12 @@ different setups.
 ## Increased Line Widths for the Progress Bar
 
 The progress bars for Moloch (at section pages by default), have had quite a
-thin line
-width^[This is configurable via the `progressbar linewidth` option, but
-the default value was quite low.]
-that was often hard to see. So in this release, I've increased it from `0.4pt`
-to `1.0pt`, which should make it more visible without being too obtrusive. I
-hope that most users will find this change beneficial, and know that you can
-otherwise easily customize it to your liking:
+thin line width^[This is configurable via the `progressbar linewidth` option,
+but the default value was quite low.] that was often hard to see. So in this
+release, I've increased it from `0.4pt` to `1.0pt`, which should make it more
+visible without being too obtrusive. I hope that most users will find this
+change beneficial, and know that you can otherwise easily customize it to your
+liking:
 
 ```latex
 \molochset{progressbar linewidth=0.4pt}

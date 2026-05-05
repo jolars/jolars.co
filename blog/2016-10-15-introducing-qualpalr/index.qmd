@@ -67,6 +67,7 @@ their perceived difference.
 
 ```{r}
 #| label: basic-usage
+
 library(qualpalr)
 pal <- qualpal(
   n = 5,
@@ -94,12 +95,14 @@ visualize the results.
 ```{r}
 #| label: fig-multidim
 #| fig-cap: Multidimensional scaling plot
+
 plot(pal)
 ```
 
 ```{r}
 #| label: fig-pairs
 #| fig-cap: Pairs plot in the din99d color space
+
 pairs(pal, colorspace = "DIN99d", asp = 1)
 ```
 
@@ -110,6 +113,7 @@ provinces of France (@fig-france).
 ```{r}
 #| label: fig-france
 #| fig-cap: A map of France colored via qualpalr
+
 library(maps)
 map("france", fill = TRUE, col = pal$hex, mar = c(0, 0, 0, 0))
 ```
@@ -126,6 +130,7 @@ subset in HSL with settings
 #| label: fig-hsl-space
 #| fig-cap: Points in the HSL space
 #| echo: false
+
 options(rgl.useNULL = TRUE)
 library(rgl)
 
@@ -168,6 +173,7 @@ The function then proceeds by projecting these colors into the sRGB space
 #| label: fig-rgb-space
 #| echo: false
 #| fig-cap: The colors in the RGB space
+
 plot3d(RGB, col = grDevices::rgb(RGB), main = "RGB")
 rglwidget()
 ```
@@ -179,6 +185,7 @@ CIELab (not shown here), and then finally the DIN99d space (@fig-din99d-space).
 #| label: DIN_space
 #| echo: false
 #| fig-cap: Colors in DIN99d space
+
 XYZ <- qualpalr:::sRGB_XYZ(RGB)
 DIN99d <- qualpalr:::XYZ_DIN99d(XYZ)
 
@@ -203,6 +210,7 @@ example using `n = 5.`
 #| label: fig-selected
 #| fig-cap: Final selected colors using the qualpalr algorithm
 #| echo: false
+
 pal <- qualpal(
   5,
   list(

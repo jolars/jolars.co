@@ -130,6 +130,7 @@ this case white).
 
 ```{r}
 #| warning: false
+
 library(qualpalr)
 pal <- qualpal(4, "Vermeer:PearlEarring", bg = "white")
 pal$hex
@@ -141,6 +142,7 @@ well-separated the colors are.
 
 ```{r}
 #| fig-cap: "A multi-dimensional scaling (MDS) plot of colors in the color difference metric space."
+
 plot(pal)
 ```
 
