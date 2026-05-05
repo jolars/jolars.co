@@ -6,23 +6,29 @@ date: 2026-01-05
 github: jolars/moloch
 ctan: moloch
 image: logo.svg
-categories: LaTeX
-description: |
-  A minimalist, feature-rich Beamer theme for LaTeX presentations with a clean design and extensive customization options.
+categories:
+  - LaTeX
+  - Beamer
+  - Moloch
+  - Presentations
+description: >
+  A minimalist, feature-rich Beamer theme for LaTeX presentations with a clean
+  design and extensive customization options.
 citation:
-  title: "Moloch v2.1.0"
   author:
-    - family: Larsson
-      given: Johan
-  genre: LaTeX
-  version: 2.1.0
-  issued: 2025-12-18
-  DOI: 10.5281/zenodo.17980615
-  url: https://moloch.ink
-  publisher: Zenodo
-  source: Zenodo
-  type: software
-  license: GPL-3
+    - Johan Larsson
+    - samcarter
+  issued: 2026-05-05
+  doi: 10.47397/tb/47-1/tb145larsson-moloch
+  container-title: TUGboat
+  volume: 47
+  issue: 145
+  page: 67-74
+  issn: 0896-3207
+  title:
+    "Moloch: A Minimalist, Feature-Rich Beamer Theme"
+  type: article-journal
+  URL: https://tug.org/TUGboat/tb47-1/tb145larsson-moloch.html
 ---
 
 Moloch is a modern, minimalist Beamer theme for LaTeX presentations that

@@ -2,7 +2,7 @@
 title: "Look-Ahead Screening Rules for the Lasso"
 author: Johan Larsson
 date: 2021-06-29
-abstract: |
+abstract: >
   The lasso is a popular method to induce shrinkage and sparsity in the
   solution vector (coefficients) of regression problems, particularly when
   there are many predictors relative to the number of observations. Solving

@@ -1,0 +1,40 @@
+---
+title:
+  "Moloch: A Minimalist, Feature-Rich Beamer Theme"
+author:
+  - Johan Larsson
+  - samcarter
+abstract: >
+  Moloch is a fork of the popular, but unmaintained, LaTeX Beamer theme
+  Metropolis. It fixes outstanding  issues in Metropolis while preserving the
+  original minimalist design. In this article we introduce Moloch’s features
+  and options, provide guidance for Metropolis users transitioning to Moloch,
+  and describe the documentation system that we use to generate both PDF and
+  HTML documentation.
+date: 2026-05-05
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+    - given: samcarter
+  issued: 2026-05-05
+  container-title: TUGboat
+  volume: 47
+  issue: 145
+  page: 67-74
+  issn: 0896-3207
+  title:
+    "Moloch: A Minimalist, Feature-Rich Beamer Theme"
+  type: article-journal
+  URL: https://tug.org/TUGboat/tb47-1/tb145larsson-moloch.html
+  doi: 10.47397/tb/47-1/tb145larsson-moloch
+url: https://tug.org/TUGboat/tb47-1/tb145larsson-moloch.html
+github: jolars/moloch
+ctan: moloch
+doi: 10.47397/tb/47-1/tb145larsson-moloch
+categories:
+  - LaTeX
+  - Beamer
+  - Moloch
+  - Presentations
+---
