@@ -1,0 +1,283 @@
+---
+title: "Panache: An Editor Companion for Markdown"
+description: >
+  Panache brings formatting, linting, and editor support to CommonMark, Quarto,
+  MyST, mdsvex, and more, with configurable syntax and external code tools.
+author: "Johan Larsson"
+date: "2026-03-30"
+categories: [
+  "panache",
+  "pandoc",
+  "quarto",
+  "markdown",
+  "commonmark",
+  "myst",
+  "mdsvex",
+  "formatter",
+  "linter",
+  "r-markdown",
+  "language-server",
+]
+image: "og.jpg"
+title-block-banner: "banner.svg"
+---
+
+## Introduction
+
+I am a big fan of automation and tooling, and love setting up code formatters,
+linters, and language servers to make the experience of editing as smooth as
+possible. For many languages, such as Python, C++, JSON, and YAML, this
+experience has been rewarding and I've been able to set everything to my liking.
+But for me, the recurring thorn in the side has been Markdown.
+
+There are tools such as Prettier, Marksman, and markdownlint for formatting,
+language server features, and linting. But most of my Markdown writing happens
+in Quarto and R Markdown, and I've struggled to make these tools work with the
+syntax I use. Running Prettier on my Quarto documents has sometimes mangled
+fenced divs and tables. And when writing a paper, I want my editor to understand
+its citations, figure references, and project structure, too.
+
+Eventually, I decided to build the tool I wanted. Quarto and R Markdown were the
+starting point, but the project has since grown into a tool for Markdown more
+broadly.
+
+## Panache
+
+[Panache](https://panache.bz) is a language server, formatter, and linter for
+Markdown. It is fully CommonMark compatible and supports flavors including
+GitHub-Flavored Markdown, MyST, mdsvex, Pandoc Markdown, Quarto, and R Markdown.
+It is written in Rust and provides both a command-line tool and editor
+integration through the Language Server Protocol (LSP).
+
+The idea is to bring the conveniences of editing code to writing documents. The
+formatter takes care of layout, the linter catches problems such as unresolved
+references, and the language server helps you navigate and edit the document.
+All three share the same parser, so they work from the same understanding of
+your Markdown.
+
+## Markdown Comes in Many Flavors
+
+Markdown is a family of languages, and the differences matter. A GitHub README
+might need pipe tables and task lists. MyST documentation uses directives and
+roles, while mdsvex mixes Markdown with Svelte components and expressions. A
+Quarto manuscript adds citations, cross-references, fenced divs, and executable
+code chunks. A formatter needs to recognize these constructs to preserve what
+the author meant.
+
+Moreover, CommonMark and Pandoc Markdown does not always agree on the details of
+the syntax. For example, they recognize emphasis differently in some edge cases
+and have different rules for when blank lines end or continue a list.
+
+Panache follows each flavor's parsing rules and syntax conventions. Its
+CommonMark flavor implements the CommonMark specification, the MyST flavor
+recognizes directives and roles, and the mdsvex flavor preserves Svelte
+expressions and template constructs verbatim. MultiMarkdown has its own flavor,
+and the R Markdown flavor includes Bookdown support.
+
+For `.qmd`, `.Rmd`, `.svx`, and `.svelte.md` files, Panache selects the
+corresponding flavor from the file extension. For `.md` files, you can choose a
+default and override it for particular paths. A project with MyST documentation
+and a GitHub README could use this `panache.toml`:
+
+```toml
+flavor = "commonmark"
+
+[flavors]
+gfm = ["README.md", "CONTRIBUTING.md"]
+myst = ["docs/**/*.md"]
+```
+
+The flavors provide a starting point, but you can also enable or disable
+individual syntax features through extensions. These are switches in the parser,
+with defaults chosen for each flavor. For example, to add citations to
+CommonMark:
+
+```toml
+flavor = "commonmark"
+
+[extensions]
+citations = true
+```
+
+There are switches for tables, footnotes, math delimiters, heading attributes,
+and many other features. Overrides can also be scoped to a particular flavor.
+This lets you match the syntax your publishing tool accepts without having to
+adopt every extension in another flavor. The [configuration
+guide](https://panache.bz/guide/configuration.html#extensions) lists the
+available extensions and their defaults.
+
+These settings tell Panache how to read your source. They do not change the
+configuration of Quarto, Pandoc, or whichever tool renders the document.
+
+## Formatting the Document and Its Code
+
+To format a document in place, run:
+
+```sh
+panache format manuscript.qmd
+```
+
+Panache handles paragraphs, lists, tables, math, and YAML metadata, including
+Quarto's `#|` chunk options. It aims to keep the source readable, with
+consistent spacing and layout, while preserving the document's meaning.
+
+You can configure the formatting separately from the Markdown syntax. For
+instance, these settings reflow paragraphs to a width of 80 columns:
+
+```toml
+[format]
+wrap = "reflow"
+line-width = 80
+```
+
+If you prefer one sentence per line, use `wrap = "sentence"`. If you want to
+keep your existing paragraph line breaks, use `wrap = "preserve"`. I like having
+this choice for prose, where line breaks can be useful when reviewing changes in
+Git.
+
+Markdown documents often contain code, whether as examples in a README or
+executable chunks in a Quarto manuscript. Panache can pass code blocks to
+external formatters, so formatting the document also formats the code inside it.
+Add this to `panache.toml`, for example:
+
+```toml
+[formatters]
+r = "air"
+python = "ruff"
+javascript = "prettier"
+```
+
+With those tools installed and available on `PATH`, Panache uses Air for R, Ruff
+for Python, and Prettier for JavaScript. The presets supply the necessary
+arguments. You can also define custom formatter commands or chain multiple
+formatters for a language, such as running isort before Black. The [formatter
+reference](https://panache.bz/reference/formatter-presets.html) lists the
+built-in presets.
+
+This is particularly useful for mixed-language documents: one formatting command
+handles the prose and delegates each code block to the appropriate tool.
+
+## Linting Across Code Chunks
+
+The built-in linter checks document structure and references, including heading
+hierarchy, duplicate definitions, and unresolved citations. You can run it from
+the terminal:
+
+```sh
+panache lint manuscript.qmd
+```
+
+External linters extend this to the code inside the document. For example, this
+configuration enables Ruff for Python and ShellCheck for shell code:
+
+```toml
+[linters]
+python = "ruff"
+sh = "shellcheck"
+```
+
+One detail matters here: code chunks in a computational document often depend on
+earlier chunks. Linting each chunk separately can produce misleading warnings
+about variables defined elsewhere. Panache collects code of the same language in
+document order, including supported executable inline expressions, and sends it
+to the linter together. It then maps diagnostics back to their positions in the
+original document.
+
+That means a variable assigned in the first Python chunk is visible when Ruff
+checks its use in the next one. In the editor, a warning still points at the
+relevant line in the `.qmd` file. Supported fixes are available through code
+actions or `panache lint --fix`.
+
+External linters are opt-in and must be installed separately. They use a fixed
+set of [presets](https://panache.bz/reference/linter-presets.html), since each
+integration needs to understand the tool's diagnostics and fixes.
+
+## Working in the Editor
+
+The language server brings these features into the editor and adds navigation,
+completion, and refactoring. When writing a paper, for example, you can complete
+a citation key from the bibliography, hover over it to see the entry, and jump
+to its definition. For Quarto cross-references, you can jump from `@fig-results`
+to the figure's label or rename the label and its references together.
+
+Panache also understands Quarto and Bookdown project structure, so references
+can be resolved across files. That becomes useful as soon as a manuscript grows
+into several chapters, or a website shares a bibliography across pages.
+
+There are smaller conveniences, too: a document outline, folding for sections
+and code blocks, completion for file paths, and code actions to convert between
+inline and reference links or footnotes.
+
+The [VS Code
+extension](https://marketplace.visualstudio.com/items?itemName=jolars.panache)
+installs the command-line tool and starts the language server automatically. It
+also works in Positron. For Neovim, Helix, Emacs, and Zed, the [language server
+guide](https://panache.bz/guide/lsp.html#editor-configuration) has setup
+instructions.
+
+## Getting Started
+
+If you want to try Panache without installing anything, there is a [browser
+playground](https://panache.bz/playground/). Paste in a document to experiment
+with formatting and configuration.
+
+For the command-line tool, you can install it with Cargo:
+
+```sh
+cargo install --locked panache
+```
+
+Packages are also available through Homebrew, npm, PyPI, and Nixpkgs, along with
+prebuilt binaries. The [installation
+guide](https://panache.bz/getting-started.html) covers these options.
+
+To check a whole project, run these commands from its root:
+
+```sh
+panache format --check .
+panache lint .
+```
+
+The first reports files that need formatting without changing them. The second
+reports lint diagnostics. Both can run in CI, and there are integrations for
+[pre-commit and GitHub Actions](https://panache.bz/guide/integrations.html).
+
+## Performance
+
+I also want formatting to be fast enough that I don't think about it when saving
+a file. Panache's native executable has low startup overhead, and the project
+includes benchmarks against other formatters on real Markdown and Quarto
+sources.
+
+Here is a selection from the [recorded benchmark
+results](https://github.com/jolars/panache/blob/74fc1a830f3f56692ab7e1e813a44173953e6794/docs/guide/performance_data.json),
+collected on September 10, 2026, on Linux with an Intel Core Ultra 7 155U.
+Values are mean wall-clock times in milliseconds for separate command-line
+invocations, including process startup.
+
+  | Document      | Panache | Prettier | rumdl   | Yamark |
+  | :------------ | ------: | -------: | ------: | -----: |
+  | Tables        |     6.9 |    383.6 |    51.2 |    3.7 |
+  | Math          |     5.9 |    239.4 |    38.9 |    4.3 |
+  | Pandoc manual |    50.5 |  1,110.9 | 1,407.6 |   15.7 |
+
+These measurements use Panache 3.9.0, Prettier 3.9.6, rumdl 0.2.52, and Yamark
+0.3.0. On these three inputs, Panache was roughly 22 to 55 times as fast as
+Prettier. Yamark was faster still.
+
+The tools do different work, though. Prettier runs with its Markdown parser,
+while Panache recognizes the Quarto syntax in the `.qmd` inputs and also parses
+and formats math. Yamark preserves display math as opaque content. These are
+comparisons of the tools' respective formatting paths, not identical outputs.
+Nor does a fresh command-line process measure the latency of an editor with a
+formatter already running. External tools such as Ruff or Air add their own
+execution time when enabled in Panache.
+
+The [performance page](https://panache.bz/guide/performance.html) has the full
+results, repository-wide comparisons, and commands for reproducing the
+benchmarks. For my purposes, the encouraging part is that broad Markdown support
+can go together with quick formatting.
+
+If you try Panache on your own documents, I'd be happy to hear how it works for
+you. Bug reports and examples of syntax it handles poorly are welcome on
+[GitHub](https://github.com/jolars/panache/issues).

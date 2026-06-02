@@ -1,0 +1,7 @@
+---
+title: "New Blog Post: Panache: An Editor Companion for Pandoc, Quarto, and R Markdown"
+date: 2026-03-30
+description: |
+  I have published [a new blog post](/blog/2026-03-30-panache-an-editor-companion-for-pandoc) titled "Panache: An Editor Companion for Pandoc, Quarto, and R Markdown".
+  Check it out!
+---
