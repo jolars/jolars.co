@@ -3,6 +3,8 @@ title: Qualpal
 url: https://jolars.github.io/qualpal
 author: Johan Larsson
 date: 2018-10-29
+aliases:
+  - /software/qualpalr/
 github: jolars/qualpal
 pypi: qualpal
 cran: qualpalr
