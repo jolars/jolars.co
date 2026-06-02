@@ -1,4 +1,4 @@
-# Copilot Instructions for jolars.co
+# Agent instructions for jolars.co
 
 ## Project Overview
 
