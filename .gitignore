@@ -18,3 +18,5 @@ result-*
 # Ignore direnv folder
 .direnv/
 .unlighthouse/
+
+**/*.quarto_ipynb
