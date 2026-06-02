@@ -35,6 +35,7 @@ website:
   open-graph:
     locale: en_US
   twitter-card: true
+  llms-txt: true
   navbar:
     left:
       - text: Blog
