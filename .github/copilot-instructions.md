@@ -17,7 +17,8 @@ generation with computational caching via the freeze mechanism.
 - Nix flake for development environment
 - GitHub Actions for CI/CD
 
-**Repository Size:** \~14MB total (12MB blog, 1.2MB talks, 4.6MB _freeze cache)
+**Repository Size:** \~14MB total (12MB blog, 1.2MB talks, 4.6MB `_freeze`
+cache)
 
 ## Build & Deployment
 
@@ -148,7 +149,7 @@ description, categories, image). Blog posts: `blog/YYYY-MM-DD-slug/index.qmd`
 - Navigation structure defined
 - Freeze: `auto` for computational caching
 
-**blog/_metadata.yml:**
+**`blog/_metadata.yml`:**
 
 - Sets `freeze: auto` for all blog posts
 - Configures Giscus comments integration
@@ -200,8 +201,8 @@ OpenAI API key)
 
 1. **Always work from repository root** - Quarto paths are relative to project
    root
-2. **Commit the _freeze/ directory** - It's part of the repository, not a build
-   artifact
+2. **Commit the `_freeze/` directory** - It's part of the repository, not a
+   build artifact
 3. **Use relative paths** - All internal links should be relative (e.g.,
    `blog/index.qmd`)
 4. **Image locations** - Images can be in post directory or `images/`
