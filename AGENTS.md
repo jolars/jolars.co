@@ -265,6 +265,18 @@ Quarto version:** `quarto --version` **Project root:**
 (git-ignored) **Cached outputs:** `_freeze/` (committed) **Main config:**
 `_quarto.yml` **Blog config:** `blog/_metadata.yml`
 
+## Prose
+
+When writing or editing content, follow these guidelines:
+
+- Use American English spelling and grammar
+- Don't overuse em dashes or semicolons, but do prefer em dashes over en dashes
+  and don't use any spaces around them.
+- Use Oxford commas consistently
+- Use active voice where possible, follow Steven Pinker's guidelines for clear
+  writing.
+- Avoid LLM jargon and buzzwords.
+
 ## Trust These Instructions
 
 These instructions have been validated by exploring the repository structure,
