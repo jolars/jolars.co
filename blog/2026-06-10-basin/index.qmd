@@ -1,0 +1,375 @@
+---
+title: "Basin: Numerical Optimization in Rust"
+author: Johan Larsson
+date: 2026-06-10
+reference-location: margin
+description: >
+  Basin is a Rust library for numerical optimization, with pluggable
+  linear-algebra backends, first-class constraints, and WebAssembly support.
+categories:
+  - Rust
+  - Software
+  - Optimization
+title-block-banner: banner.svg
+image: og.png
+bibliography: references.bib
+---
+
+Basin is a new numerical optimization library that pairs a small generic core, a
+set of problem traits that you implement, a pluggable termination layer, and a
+driver loop called the `Executor`. On top of that sits a growing collection of
+solvers spanning first-order, derivative-free, nonlinear least-squares, and
+evolutionary methods.
+
+I built Basin entirely because of my project [Eunoia](https://eunoia.bz)---a
+Rust library^[With bindings in R, Python, and JavaScript.] that generates Euler
+diagrams from set combination specifications. Laying out an Euler diagram is a
+nonlinear optimization problem, often with many local minima, and it demands
+both accuracy, since these diagrams often end up in scientific publications, and
+efficiency.
+
+When I first built the R package [eulerr](https://jolars.github.io/eulerr), I
+relied on R's built-in `nlm()`, which uses a nonlinear trust-region method, with
+the [GenSA package](https://CRAN.R-project.org/package=GenSA) as an optional
+fallback when accuracy mattered. Eunoia was meant to replace eulerr's old C++
+backend, so I needed a new solution for the optimization part. And because I
+also wanted to drop the old Shiny-based web app for eulerr in favor of a static
+WebAssembly (WASM) compatible one, the library had to support WASM out of the
+box.
+
+These requirements quickly led me to [argmin](https://argmin-rs.org/), a Rust
+optimization library with exactly this WASM compatibility built in, a large set
+of solvers, and good performance to boot. I wired it up and relied on it for a
+long time, and it worked quite well.
+
+Eventually, though, a few things started to grate at me:
+
+1. argmin lacks broad support for constraints. For Eunoia this was a problem,
+   because the optimization problem is naturally constrained---there is a limit
+   to how far apart two circles can be if you still want them to overlap.
+
+2. Convergence criteria are handled on a per-solver basis, which made it hard to
+   expose an ergonomic criterion in eulerr, where I wanted users to have only
+   one or two knobs to tune across a range of optimizers.
+
+3. I needed specific solvers that argmin didn't support, including
+   Levenberg--Marquardt (for the default loss in Eunoia, squared residuals) and
+   memetic solvers: a global or semi-global solver such as CMA-ES or
+   Differential Evolution paired with a local search by a smooth solver such as
+   Levenberg--Marquardt or L-BFGS-B.
+
+Together these meant my dependencies kept growing---a separate crate just for
+Levenberg--Marquardt---with no good option at all for the memetic variants. So
+in the end, I started building my own Rust library: Basin.
+
+## Installation
+
+Add the crate with Cargo:
+
+```sh
+cargo add basin
+```
+
+By default Basin uses plain `Vec<f64>`, which carries no extra dependencies. If
+you'd rather work with a proper linear-algebra library, you can opt into one
+with a feature flag:
+
+```sh
+cargo add basin --features nalgebra  # or: ndarray, faer
+```
+
+## Usage
+
+You describe your problem by implementing the relevant traits, then hand the
+problem, a solver, and an initial state to the `Executor`. Here is the
+obligatory [Rosenbrock
+function](https://en.wikipedia.org/wiki/Rosenbrock_function), minimized with
+gradient descent.
+
+```rust
+use basin::{BasicState, CostFunction, Executor, Gradient, GradientDescent, GradientTolerance};
+use std::convert::Infallible;
+
+struct Rosenbrock;
+
+impl CostFunction for Rosenbrock {
+    type Param = Vec<f64>;
+    type Output = f64;
+    type Error = Infallible;
+    fn cost(&self, x: &Vec<f64>) -> Result<f64, Self::Error> {
+        Ok((1.0 - x[0]).powi(2) + 100.0 * (x[1] - x[0].powi(2)).powi(2))
+    }
+}
+
+impl Gradient for Rosenbrock {
+    type Gradient = Vec<f64>;
+    fn gradient(&self, x: &Vec<f64>) -> Result<Vec<f64>, Self::Error> {
+        Ok(vec![
+            -2.0 * (1.0 - x[0]) - 400.0 * x[0] * (x[1] - x[0].powi(2)),
+            200.0 * (x[1] - x[0].powi(2)),
+        ])
+    }
+}
+
+fn main() {
+    let result = Executor::new(
+        Rosenbrock,
+        GradientDescent::new(1e-3),
+        BasicState::new(vec![-1.2, 1.0]),
+    )
+    .max_iter(50_000)
+    .terminate_on(GradientTolerance(1e-6))
+    .run()
+    .unwrap();
+
+    println!(
+        "x = {:?}, f = {}, stopped: {:?}",
+        result.param(),
+        result.cost(),
+        result.reason
+    );
+}
+```
+
+The pattern generalizes. A solver that needs a gradient asks for the `Gradient`
+trait, a least-squares solver asks for residuals and a Jacobian, and so on. The
+compiler tells you exactly what each solver expects.
+
+Constraints work the same way. To minimize subject to linear inequalities
+$A x \le b$, you implement one more trait, `LinearInequalityConstraints`, and
+hand the problem to a solver that knows what to do with it. Here is a quadratic
+pulled toward $(2, 2)$ but held under the line $x + y \le 2$, solved with the
+log-barrier method wrapped around gradient descent.
+
+```rust
+use basin::{
+    Backtracking, BarrierMethod, BasicState, CostFunction, DenseMatrix, Executor, Gradient,
+    GradientDescent, LinearInequalityConstraints,
+};
+use std::convert::Infallible;
+
+struct Constrained {
+    a: DenseMatrix,
+    b: Vec<f64>,
+}
+
+impl CostFunction for Constrained {
+    type Param = Vec<f64>;
+    type Output = f64;
+    type Error = Infallible;
+    fn cost(&self, x: &Vec<f64>) -> Result<f64, Self::Error> {
+        Ok((x[0] - 2.0).powi(2) + (x[1] - 2.0).powi(2))
+    }
+}
+
+impl Gradient for Constrained {
+    type Gradient = Vec<f64>;
+    fn gradient(&self, x: &Vec<f64>) -> Result<Vec<f64>, Self::Error> {
+        Ok(vec![2.0 * (x[0] - 2.0), 2.0 * (x[1] - 2.0)])
+    }
+}
+
+impl LinearInequalityConstraints for Constrained {
+    type Matrix = DenseMatrix;
+    fn a(&self) -> &DenseMatrix {
+        &self.a
+    }
+    fn b(&self) -> &Vec<f64> {
+        &self.b
+    }
+}
+
+fn main() {
+    let problem = Constrained {
+        a: DenseMatrix::from_row_slice(1, 2, &[1.0, 1.0]),
+        b: vec![2.0],
+    };
+
+    let result = Executor::new(
+        problem,
+        BarrierMethod::new(GradientDescent::with_line_search(Backtracking::new())),
+        BasicState::new(vec![0.0, 0.0]), // strictly feasible: 0 + 0 < 2
+    )
+    .max_iter(50)
+    .run()
+    .unwrap();
+
+    println!("x = {:?}, stopped: {:?}", result.param(), result.reason);
+}
+```
+
+The unconstrained minimum sits at $(2, 2)$, but the constraint pushes the
+solution back onto the boundary at $(1, 1)$, which is exactly where the barrier
+method lands. The constraint is part of the problem's type, so handing it to a
+solver that can't honor constraints is a compile error rather than a wrong
+answer. This is the piece argmin was missing for Eunoia, where a pair of circles
+can only drift so far apart before they stop overlapping.
+
+## WASM
+
+Because Basin compiles to WebAssembly with no native dependencies, the same
+solvers run unchanged in the browser. The playground at
+[basin.rs/playground](https://basin.rs/playground) is built directly on this:
+you choose a problem and a solver, adjust the parameters, and watch the
+optimizer iterate in real time, with all the math running client-side and no
+server involved.
+
+![An animated GIF showing the playground at <https://basin.rs/playground>,
+showcasing Basin's built-in WASM compatibility.](playground-recording.gif)
+
+## Solvers
+
+Basin ships with a fairly broad set of methods already:
+
+First-order and quasi-Newton
+:   Gradient descent, BFGS, L-BFGS, and L-BFGS-B
+
+Derivative-free
+:   Nelder--Mead and Brent's method for one dimension
+
+Nonlinear least squares
+:   Gauss--Newton, Levenberg--Marquardt, and trust-region reflective
+
+Global
+:   Random search, CMA-ES, a genetic algorithm, and memetic combinations
+
+Stochastic
+:   Stochastic gradient descent
+
+Constrained
+:   Box bounds, log-barrier, and augmented Lagrangian wrappers
+
+I've tried to follow the published descriptions of these algorithms closely
+rather than reaching for ad-hoc variants. Levenberg--Marquardt damping follows
+@madsen2004, and CMA-ES follows @hansen2016.
+
+## Key Features of Basin
+
+There are three design choices that I think highlight what Basin is about, and
+they were the reasons I started the project in the first place.
+
+### Pluggable Backends
+
+The core is generic over the vector and matrix types it operates on. You can use
+plain `Vec<f64>` with no dependencies at all, or opt into
+[nalgebra](https://nalgebra.org),
+[ndarray](https://github.com/rust-ndarray/ndarray), or
+[faer](https://faer-rs.github.io/) when you want a real linear-algebra library.
+Each one is a single feature flag, so you never pay for a dependency you don't
+use.
+
+This idea was inspired by argmin, which uses the same pattern. The only
+difference is that argmin provides version-gated features for each of the
+backends (e.g. `nalgebra_v32`). That pattern is arguably more powerful, but I
+did not want to take on the maintenance burden of supporting a growing matrix of
+Basin--backend combinations. Basin will instead support a set of backends at
+fixed versions for each major release, and update them together in sync with a
+major release.
+
+### First-Class Constraints
+
+Box bounds are part of the type system rather than an afterthought. If you hand
+a constrained problem to a solver that can't handle constraints, you get a
+compile-time error instead of a silent or surprising result at runtime. The same
+idea applies to termination criteria, which are checked at compile time against
+what each solver actually supports.
+
+### WebAssembly First
+
+Basin is designed to compile to `wasm32-unknown-unknown` out of the box. It
+needs no BLAS, no LAPACK, and no threading library. This matters to me because,
+much like with [Qualpal](/blog/2025-10-22-qualpal/index.qmd), I like being able
+to ship solvers into static web apps without standing up a server.
+
+## Benchmarks
+
+How does all of this translate into actual numbers? [Basin's
+homepage](https://basin.rs) includes a set of head-to-head benchmarks against
+other Rust optimizers ([argmin](https://argmin-rs.org/), gomez, and the
+venerable NLopt) on the classic [Rosenbrock
+function](https://en.wikipedia.org/wiki/Rosenbrock_function). Each run is capped
+at 200 iterations on an AMD Ryzen 9 7900 using the dependency-free `Vec<f64>`
+backend. The figure below plots suboptimality $f(x) - f^*$ against wall-clock
+time on log--log axes, with one line per library.
+
+```{python}
+#| label: fig-benchmarks
+#| echo: false
+#| fig-height: 1.0
+#| fig-cap: >
+#|   Suboptimality versus wall-clock time on the Rosenbrock function
+#|   (200-iteration cap, `Vec<f64>` backend, AMD Ryzen 9 7900). Lower and
+#|   further left is better; Basin is drawn with a heavier line.
+
+import json
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+
+data = json.loads(Path("competitor-benchmarks.json").read_text())
+results = data["results"]
+
+solvers = [("gd", "Gradient descent"), ("nm", "Nelder–Mead"), ("lbfgs", "L-BFGS")]
+colors = {
+    "basin": "#6366f1",
+    "argmin": "#f59e0b",
+    "gomez": "#10b981",
+    "nlopt": "#ef4444",
+}
+order = ["basin", "argmin", "gomez", "nlopt"]
+
+fig, axes = plt.subplots(1, 3, sharey=True)
+
+for ax, (key, title) in zip(axes, solvers):
+    series = sorted(
+        (r for r in results if r["solver"] == key),
+        key=lambda r: order.index(r["library"]),
+    )
+    for r in series:
+        pts = [
+            (p["tNs"] / 1000.0, max(p["subopt"], 1e-16))
+            for p in r["points"]
+            if p["tNs"] > 0
+        ]
+        xs, ys = zip(*pts)
+        lw = 2.4 if r["library"] == "basin" else 1.3
+        ax.plot(xs, ys, color=colors[r["library"]], lw=lw)
+    ax.set(xscale="log", yscale="log", title=title, xlabel="wall-clock time (µs)")
+    ax.grid(True, which="major", lw=0.4, alpha=0.4)
+
+axes[0].set_ylabel("suboptimality  $f(x) - f^*$")
+
+handles = [plt.Line2D([], [], color=colors[k], lw=2, label=k) for k in order]
+
+fig.legend(
+    handles=handles,
+    loc="lower center",
+    ncol=4,
+    frameon=False,
+    bbox_to_anchor=(0.5, -0.03),
+)
+fig.tight_layout(rect=(0, 0.05, 1, 1))
+```
+
+Across all three solvers, Basin reaches a suboptimality of $10^{-6}$ at least as
+quickly as every competitor, roughly 4 µs on Nelder--Mead and 10 µs on L-BFGS,
+against 16 µs and 24 µs for argmin. On gradient descent it both converges deeper
+and finishes the full run in about a third of the time argmin takes. These are
+micro-benchmarks on a single problem and machine, so take them with the usual
+grain of salt, but I think they are encouraging! The complete set, including
+per-backend comparisons, is at
+[basin.rs/benchmarks](https://basin.rs/benchmarks/), which also includes
+benchmarks that compare the various backends against each other as well as the
+solvers themselves on a range of problems.
+
+## Status and Contributing
+
+Basin is still young but has reached 1.0, so the public API is stable and
+follows semantic versioning: breaking changes are reserved future major
+releases. The crate is on [crates.io](https://crates.io/crates/basin) and
+dual-licensed under MIT and Apache-2.0.
+
+If you give it a try, I'd love to hear how it goes. You can file issues or start
+a discussion over at the [GitHub repository](https://github.com/jolars/basin),
+and the full documentation, including the API reference, is at
+[basin.rs](https://basin.rs). Contributions of any kind are very welcome.

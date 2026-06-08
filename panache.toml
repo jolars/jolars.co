@@ -1,6 +1,9 @@
+flavor = "quarto"
+
 [formatters]
 r = "air"
 python = "ruff"
+rust = "rustfmt"
 
 [linters]
 r = "jarl"

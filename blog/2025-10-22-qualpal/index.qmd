@@ -2,10 +2,9 @@
 title: "Qualpal"
 author: Johan Larsson
 date: 2025-10-22
-description: |
-  My pet project Qualpal is now a stand-alone C++
-  library as well as web app and was just published
-  in the Journal of Open Source Software!
+description: >
+  My pet project Qualpal is now a stand-alone C++ library as well as web app and
+  was just published in the Journal of Open Source Software!
 categories:
   - R
   - C++

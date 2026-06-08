@@ -276,6 +276,7 @@ When writing or editing content, follow these guidelines:
 - Use active voice where possible, follow Steven Pinker's guidelines for clear
   writing.
 - Avoid LLM jargon and buzzwords.
+- Look at older posts for style reference.
 
 ## Trust These Instructions
 

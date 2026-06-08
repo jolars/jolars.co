@@ -82,6 +82,7 @@
               cmake
               go-task
               google-lighthouse
+              rustfmt
               julia-bin
               (rWrapper.override {
                 packages = with rPackages; [
