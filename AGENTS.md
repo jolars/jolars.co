@@ -107,7 +107,6 @@ handles rendering. Do not use custom render commands in CI.
 ```
 .clang-format          # C/C++ formatting (used in some code examples)
 .envrc                 # direnv configuration for Nix
-.prettierrc.yaml       # Prettier config: proseWrap: always
 _quarto.yml            # Main Quarto configuration file
 flake.nix              # Nix development environment (R, Python, Julia packages)
 header.html            # Custom HTML injected in every page header
@@ -173,8 +172,6 @@ Add to `flake.nix`: R packages under `rPackages`, Python under
 ### Styling & Formatting
 
 - **Global:** Edit `styles.css` or modify `theme: flatly` in `_quarto.yml`
-- **Prose:** Prettier with `proseWrap: always` -
-  `npx prettier --write "**/*.qmd"`
 - **C/C++:** Mozilla style (`.clang-format`)
 
 ## Common Workflows
