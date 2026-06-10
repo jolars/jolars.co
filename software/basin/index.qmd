@@ -1,0 +1,38 @@
+---
+title: Basin
+author:
+  - Johan Larsson
+url: https://basin.rs
+date: 2026-06-10
+github: jolars/basin
+crate: basin
+image: logo.svg
+categories: Rust
+description: |
+  Numerical optimization in pure Rust, with pluggable linear-algebra backends
+  and WebAssembly support.
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+  genre: Rust
+  issued: 2026-06-10
+  license: MIT OR Apache-2.0
+  source: crates.io
+  title: "Basin: Numerical optimization in Rust"
+  type: software
+  URL: https://basin.rs
+  version: 1.0.0
+---
+
+Basin is a numerical optimization library for Rust, inspired by
+[argmin](https://github.com/argmin-rs/argmin). It pairs a small generic core,
+problem traits you implement, a pluggable termination layer, and a driver loop
+with a growing set of solvers spanning first-order, derivative-free, nonlinear
+least-squares, and evolutionary methods.
+
+Solvers are generic over the linear-algebra backend, with `Vec<f64>` built in
+and nalgebra, ndarray, and faer available as opt-in features. Constraints are
+first-class, and the default build compiles to `wasm32-unknown-unknown` with no
+BLAS/LAPACK or threads, making it well suited to the browser. Parallelism and
+BLAS-backed paths sit behind opt-in features for when you need them.
