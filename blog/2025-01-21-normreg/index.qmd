@@ -33,7 +33,6 @@ published version for the final and authoritative account of our work.
 
 I've also summarized the paper in a [short video](https://youtu.be/GYqYAy3-B1k),
 in case you prefer that format.
-
 :::
 
 The lasso is probably the most well-known regularization method and the first
