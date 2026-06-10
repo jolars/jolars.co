@@ -3,12 +3,12 @@ title: Panache
 url: https://panache.bz
 author:
   - Johan Larsson
-date: 2026-03-28
+date: 2026-06-08
 github: jolars/panache
 crate: panache
 image: logo.svg
 categories: Rust
-description: |
+description: >
   A language server, formatter, and linter for Pandoc, Quarto, and R Markdown.
 citation:
   author:
@@ -21,5 +21,5 @@ citation:
   title: "Panache: A Language Server, Formatter, and Linter for Pandoc, Quarto, and R Markdown"
   type: software
   URL: https://panache.bz
-  version: v2.28.0
+  version: 2.52.0
 ---

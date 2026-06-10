@@ -15,7 +15,7 @@ categories:
   - Python
   - C++
   - Web
-description: |
+description: >
   Automatic generation of color palettes for qualitative data
 citation:
   author:
