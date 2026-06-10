@@ -1,6 +1,9 @@
 ---
 title:
   "Benchopt: Reproducible, Efficient and Collaborative Optimization Benchmarks"
+description: >
+  Benchopt is a collaborative framework for reproducible, efficient optimization
+  benchmarks in machine learning, across languages and hardware. (NeurIPS 2022)
 author:
   - Thomas Moreau
   - Mathurin Massias

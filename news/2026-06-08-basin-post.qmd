@@ -3,5 +3,5 @@ title: "New Blog Post about Basin"
 date: 2026-06-10
 description: >
   I have published [a new blog post](/blog/2026-06-10-basin/) where I introduce
-  Basin: a numerical optimization library for Rust.
+  Basin: a numerical optimization library for Rust with WebAssembly support.
 ---

@@ -1,5 +1,8 @@
 ---
 title: "Qualpal: Qualitative Color Palettes for Everyone"
+description: >
+  Qualpal is a C++ library, CLI, R package, and web app for building qualitative
+  color palettes with maximally distinct, colorblind-friendly colors.
 author:
   - Johan Larsson
 abstract: |

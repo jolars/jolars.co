@@ -10,7 +10,7 @@ github: frederikfabriciusbjerre/caugi
 cran: caugi
 image: logo.svg
 categories: R
-description: |
+description: >
   A causality-first, high-performance graph package that provides a simple
   interface for building, creating, and examining causal relationships.
 citation:

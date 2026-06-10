@@ -1,5 +1,8 @@
 ---
 title: "Optimization and Algorithms in Sparse Regression"
+description: >
+  My PhD thesis on optimization and algorithms for sparse regression: screening
+  rules for the lasso and SLOPE, the benchopt framework, and normalization.
 author:
   - Johan Larsson
 abstract: |

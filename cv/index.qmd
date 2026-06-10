@@ -1,5 +1,8 @@
 ---
 title: CV
+description: >
+  The academic and professional curriculum vitae of Johan Larsson, covering
+  research, publications, talks, software, and education in statistics.
 format:
   html:
     css:

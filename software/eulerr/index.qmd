@@ -9,7 +9,7 @@ categories: R
 github: jolars/eulerr
 cran: eulerr
 image: eulerr.svg
-description: |
+description: >
   eulerr is an R package that draws area-proportional Euler diagrams with
   ellipses, fitting set relationships accurately where circle-based diagrams
   fall short.

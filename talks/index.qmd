@@ -1,6 +1,9 @@
 ---
 title: "Talks"
 subtitle: Links to recordings of talks that I've held
+description: >
+  Recordings and slides from talks by Johan Larsson on sparse regression,
+  optimization, screening rules, SLOPE, and statistical software.
 listing:
   contents: .
   type: grid

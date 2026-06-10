@@ -27,7 +27,7 @@ categories: Python
 github: benchopt/benchopt
 pypi: benchopt
 image: benchopt-padded.svg
-description: |
+description: >
   BenchOpt is a benchmarking suite for optimization algorithms.
   It is built for simplicity, transparency, and reproducibility.
 date: 2022-12-6

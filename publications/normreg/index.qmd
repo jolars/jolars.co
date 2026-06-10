@@ -1,6 +1,9 @@
 ---
 title:
   "The Choice of Normalization Influences Shrinkage in Regularized Regression"
+description: >
+  How the choice of feature normalization shapes shrinkage and selection in
+  lasso, ridge, and elastic net regression, especially for binary features.
 author:
   - Johan Larsson
   - Jonas Wallin

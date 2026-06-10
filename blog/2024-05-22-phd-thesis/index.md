@@ -4,14 +4,10 @@ author: Johan Larsson
 date: "2024-05-22"
 date-modified: 2024-07-01
 description: >
-  My PhD thesis about optimization and other algorithms for sparse regression
-
-  has been published! In this post I give a brief summary of the papers that are
-  included
-
-  in it.
+  My PhD thesis on optimization and algorithms for sparse regression has been
+  published. Here I give a brief summary of the papers included in it.
 categories:
-  - Rhesis
+  - Thesis
   - Statistics
   - Optimization
 image: cover-image.png

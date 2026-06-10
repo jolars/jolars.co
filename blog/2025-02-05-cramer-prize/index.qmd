@@ -2,9 +2,10 @@
 title: "Cramér Prize for Best PhD Thesis"
 author: Johan Larsson
 date: 2025-02-05
-description: |
-  I received the Cramér Prize for my PhD thesis about optimization and
-  algorithms for sparse regression! 🥳
+description: >
+  I received the 2025 Cramér Prize for the best PhD thesis in statistics
+  defended in Sweden, for my work on optimization and algorithms for sparse
+  regression! 🥳
 categories:
   - Thesis
   - Lasso

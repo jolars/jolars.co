@@ -1,10 +1,10 @@
 ---
 title: "Software"
 subtitle: Software that I have contributed to
-description: |
-  If, by any chance, you happen to find yourself using any of this software
-  in your work, please consider citing it. You can find a reference and
-  bibtex entry by clicking on details.
+description: >
+  Software I have written or contributed to. If you use any of it in your work,
+  please consider citing it using the reference provided under each entry's
+  details.
 listing:
   contents: .
   id: software

@@ -1,8 +1,9 @@
 ---
 title: Coordinate Descent for SLOPE
 author: Johan Larsson
-description: |
-  An online talk for AISTATS 2023 on our work on coordinate descent for SLOPE.
+description: >
+  An online talk for AISTATS 2023 on our fast coordinate descent algorithm for
+  SLOPE, a generalization of the lasso for sparse regression.
 abstract: |
   The lasso is the most famous sparse regression and feature selection method.
   One reason for its popularity is the speed at which the underlying

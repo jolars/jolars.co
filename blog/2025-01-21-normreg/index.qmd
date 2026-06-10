@@ -3,13 +3,10 @@ title: "New Paper on Feature Normalization and Regularized Regression"
 author: Johan Larsson
 date: 2025-01-21
 date-modified: last-modified
-description: |
-  We have a new paper out on arXiv about normalization for
-  regularized regression (lasso, ridge, and elastic net
-  regression). There is remarkably little research on
-  how to standardize non-normal features in regularized
-  regression and in this paper we try to bridge
-  this knowledge gap by considering binary features.
+description: >
+  We have a new arXiv paper on normalization for regularized regression
+  (lasso, ridge, and elastic net), focused on how to standardize binary
+  features.
 categories:
   - Research
   - Lasso

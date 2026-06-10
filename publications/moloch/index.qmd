@@ -1,6 +1,9 @@
 ---
 title:
   "Moloch: A Minimalist, Feature-Rich Beamer Theme"
+description: >
+  An introduction to Moloch, a minimalist LaTeX beamer theme that revives and
+  fixes the popular but unmaintained Metropolis theme. (TUGboat 2026)
 author:
   - Johan Larsson
   - samcarter

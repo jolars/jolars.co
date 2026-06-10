@@ -2,10 +2,9 @@
 title: "What's New in Moloch 2.0.0"
 author: Johan Larsson
 date: 2025-12-05
-description: |
-  I'm happy to announce the release of Moloch 2.0.0, with a redesigned color
-  system, new themes, improved documentation, redesigned itemize lists, and
-  various other refinements.
+description: >
+  Moloch 2.0.0 is out, with a redesigned color system, new themes, improved
+  documentation, redesigned itemize lists, and various other refinements.
 categories:
   - LaTeX
   - Presentations

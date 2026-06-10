@@ -8,9 +8,9 @@ github: jolars/basin
 crate: basin
 image: logo.svg
 categories: Rust
-description: |
-  Numerical optimization in pure Rust, with pluggable linear-algebra backends
-  and WebAssembly support.
+description: >
+  Numerical optimization in pure Rust, with pluggable linear-algebra backends,
+  a WebAssembly build, and an interactive browser playground.
 citation:
   author:
     - family: Larsson

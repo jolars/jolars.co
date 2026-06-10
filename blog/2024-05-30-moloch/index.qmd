@@ -3,11 +3,9 @@ title: "Moloch: A Revival of the Metropolis LaTeX Beamer Theme"
 author: Johan Larsson
 date: 2024-05-30
 date-modified: 2024-05-31
-description: |
-  Metropolis is a popular and modern beamer theme for LaTeX, but it is
-  unfortunately no longer actively maintained. As a result, its list of issues is
-  growing increasingly large. Moloch is a fork of Metropolis that aims
-  to fix these issues as well add a few new features.
+description: >
+  Moloch is a fork of Metropolis, the popular but no longer maintained LaTeX
+  beamer theme. It fixes the theme's outstanding issues and adds new features.
 categories:
   - LaTeX
   - Software

@@ -2,6 +2,9 @@
 title:
   "A Case Study in Fitting Area-Proportional Euler Diagrams with Ellipses Using
   eulerr"
+description: >
+  A case study on fitting area-proportional Euler diagrams with ellipses using
+  the eulerr R package, extending accurate diagrams beyond circles.
 author:
   - Johan Larsson
   - Peter Gustafsson

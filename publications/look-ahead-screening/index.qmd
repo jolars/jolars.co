@@ -1,5 +1,8 @@
 ---
 title: "Look-Ahead Screening Rules for the Lasso"
+description: >
+  Look-ahead screening rules discard predictors across a stretch of the lasso
+  path at once, speeding up model fitting in high-dimensional problems.
 author: Johan Larsson
 date: 2021-06-29
 abstract: >

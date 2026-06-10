@@ -4,6 +4,9 @@ author:
   - Jonas Wallin
 date: 2022-12-06
 title: "The Hessian Screening Rule"
+description: >
+  The Hessian screening rule uses second-order information to screen predictors
+  for the lasso, staying effective even with highly correlated features.
 abstract: |
   Predictor screening rules, which discard predictors from the design matrix
   before fitting a model, have had considerable impact on the speed with which

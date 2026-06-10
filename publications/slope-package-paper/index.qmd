@@ -1,5 +1,8 @@
 ---
 title: "Efficient Solvers for SLOPE in R, Python, Julia, and C++"
+description: >
+  Efficient SLOPE solvers in R, Python, Julia, and C++, built on a fast hybrid
+  coordinate descent algorithm for generalized linear models.
 author:
   - family: Larsson
     given: Johan

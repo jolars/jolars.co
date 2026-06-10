@@ -1,5 +1,8 @@
 ---
 title: "Coordinate Descent for SLOPE"
+description: >
+  A fast algorithm combining proximal gradient and coordinate descent to solve
+  SLOPE, a generalization of the lasso, in high dimensions. (AISTATS 2023)
 author:
   - Johan Larsson
   - Quentin Klopfenstein

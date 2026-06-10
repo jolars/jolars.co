@@ -1,5 +1,8 @@
 ---
 title: "The Strong Screening Rule for SLOPE"
+description: >
+  The first predictor screening rule for SLOPE, derived from its subdifferential
+  and generalizing the strong rule for the lasso. (NeurIPS 2020)
 author:
   - Johan Larsson
   - Małgorzata Bogdan
