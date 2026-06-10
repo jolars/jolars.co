@@ -5,3 +5,25 @@ tasks:
     desc: Preview documentation site locally
     cmds:
       - quarto preview
+
+  render:
+    desc: Render the full site to _site/
+    cmds:
+      - quarto render
+
+  seo:
+    desc: Lint SEO metadata and content (titles, descriptions, alt text, ...)
+    cmds:
+      - python3 scripts/seo-lint.py
+
+  links:
+    desc: Check internal and external links for breakage (needs a rendered _site/)
+    cmds:
+      - lychee --config lychee.toml './_site/**/*.html'
+
+  check:
+    desc: Render the site, then run the SEO lint and link checks
+    deps: [render]
+    cmds:
+      - task: seo
+      - task: links

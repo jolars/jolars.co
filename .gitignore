@@ -20,3 +20,6 @@ result-*
 .unlighthouse/
 
 **/*.quarto_ipynb
+
+# lychee link-checker cache
+.lycheecache

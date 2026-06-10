@@ -63,14 +63,26 @@ from R/Python/Julia code chunks.
 
 ### Testing & Validation
 
-**No automated tests exist** for this static site. Validation is done through:
+**No unit tests exist** for this static site. Validation is done through:
 
 1. **Build validation:** `quarto render` must complete without errors
 2. **Preview validation:** `quarto preview` and manually check pages in browser
-3. **Link checking:** Verify internal links work correctly
+3. **SEO & content lint:** `task seo` runs `scripts/seo-lint.py`, which checks
+   the rendered `_site` and source frontmatter for SEO problems of the kind
+   Google Search Console / Bing Webmaster Tools report — missing or too-short or
+   too-long titles and meta descriptions, duplicate titles/descriptions, missing
+   canonical/`og:image` tags, missing image alt text, and required frontmatter
+   fields. Standard-library Python only.
+4. **Link checking:** `task links` runs `lychee` (configured in `lychee.toml`)
+   over `_site` to find broken internal **and** external links. Needs a rendered
+   site first.
 
-**Note:** The repository has no formal test suite, linters for Quarto content,
-or validation scripts. The only validation is successful rendering.
+`task check` renders the site and then runs both. Both checks also run in CI
+(see below) but are advisory — they never block the deploy.
+
+**Note:** These checks are advisory diagnostics, not a pass/fail gate. `seo-lint`
+exits non-zero only on errors (or on warnings with `--strict`); the duplicate
+title warnings between a paper and its matching talk are expected.
 
 ## Continuous Integration
 
@@ -88,7 +100,9 @@ The `.github/workflows/publish.yml` workflow runs on:
 3. Install Quarto with TinyTeX
 4. Restore git timestamps (important for freeze mechanism)
 5. Render Quarto project
-6. Upload and deploy to GitHub Pages
+6. Run SEO lint and link checks (advisory; reported in the job summary, never
+   block the deploy)
+7. Upload and deploy to GitHub Pages
 
 **Important:** The workflow uses `quarto-dev/quarto-actions/render@v2` which
 handles rendering. Do not use custom render commands in CI.

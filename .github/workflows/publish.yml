@@ -37,6 +37,22 @@ jobs:
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
 
+      # SEO/content lint and link checks. Both are advisory: they report into
+      # the job summary but never block the deploy (continue-on-error / fail:
+      # false), since broken external links are often transient.
+      - name: SEO & content lint
+        if: always()
+        continue-on-error: true
+        run: python3 scripts/seo-lint.py --markdown >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Check links
+        if: always()
+        continue-on-error: true
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: "--config lychee.toml './_site/**/*.html'"
+          fail: false
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
 

@@ -1,0 +1,44 @@
+# Configuration for lychee, the broken-link checker.
+#
+# Local use:  lychee --config lychee.toml './_site/**/*.html'
+# (or just `task links` once the site is rendered)
+#
+# Checks both internal links/images and external URLs, which is what Google
+# Search Console / Bing Webmaster Tools flag as "not found" / "soft 404".
+
+# Cache results between runs so unchanged links aren't re-fetched every time.
+cache = true
+max_cache_age = "1d"
+
+# Be patient and polite with external hosts.
+timeout = 20
+max_retries = 2
+retry_wait_time = 2
+max_concurrency = 16
+max_redirects = 10
+
+# Some servers reject HEAD or the default user agent; a browser-like GET is
+# the most reliable way to avoid false "broken" reports.
+method = "get"
+user_agent = "Mozilla/5.0 (compatible; lychee link checker; +https://jolars.co)"
+
+# Status codes to treat as healthy. 429 (rate limited) is accepted so a busy
+# host doesn't show up as a broken link.
+accept = ["200..=206", "429"]
+
+# Only check real web links; skip mailto:, tel:, etc.
+scheme = ["http", "https"]
+exclude_loopback = true
+
+# Fragment (#anchor) checking is left at lychee's default (off) to avoid false
+# alarms from sites that build anchors client-side. Enable per-run with
+# `--include-fragments anchor-only` if you want it.
+
+# Vendored JS/CSS assets aren't content links worth auditing.
+exclude_path = ["_site/site_libs"]
+
+# Hosts that systematically block automated requests (so a failure here is a
+# false positive, not a real broken link). Add more here as needed.
+exclude = [
+  "scholar\\.google\\.com",
+]

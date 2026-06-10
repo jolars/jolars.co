@@ -82,6 +82,7 @@
               cmake
               go-task
               google-lighthouse
+              lychee
               rustfmt
               julia-bin
               (rWrapper.override {
