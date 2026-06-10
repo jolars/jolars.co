@@ -3,9 +3,9 @@ title: "New Julia Package: ProjectRoot"
 author: Johan Larsson
 date: "2024-05-13"
 date-modified: "2024-05-18"
-description:
-  I have created a new Julia package for easy file referencing within project
-  workflows.
+description: >
+  Introducing ProjectRoot.jl, a small Julia package for robust file referencing
+  relative to your project root, inspired by R's here and Python's pyprojroot.
 categories:
   - Julia
   - Software

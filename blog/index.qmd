@@ -1,6 +1,9 @@
 ---
 title: "Blog"
 subtitle: Posts about research and programming
+description: >
+  Posts by Johan Larsson on statistics, optimization, and scientific computing
+  in R, Python, Julia, and Rust, plus notes on the software he develops.
 comments: false
 listing:
   contents: .

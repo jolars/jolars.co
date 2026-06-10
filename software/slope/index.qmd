@@ -19,7 +19,8 @@ pypi: sortedl1
 jlpkg: SLOPE
 image: logo.png
 description: >
-  An efficient and fully-featured package for Sorted L-One Penalized Estimation
+  Efficient solvers for Sorted L-One Penalized Estimation (SLOPE) in R, Python,
+  Julia, and C++, supporting generalized linear models and sparse matrices.
 citation:
   author:
     - family: Larsson

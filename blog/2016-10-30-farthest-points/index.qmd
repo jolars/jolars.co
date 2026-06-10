@@ -4,8 +4,8 @@ date: "2016-10-30"
 date-modified: 2023-09-12
 author: "Johan Larsson"
 description: |
-  An algorithm for finding the most separated points in a cloud of
-  points.
+  An algorithm for finding the most mutually separated points in a cloud, used
+  by the qualpalr R package to pick maximally distinct qualitative colors.
 freeze: true
 categories:
   - R

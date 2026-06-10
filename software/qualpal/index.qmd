@@ -16,7 +16,9 @@ categories:
   - C++
   - Web
 description: >
-  Automatic generation of color palettes for qualitative data
+  Generate maximally distinct, colorblind-friendly palettes for qualitative
+  data, with control over hue, lightness, and chroma. For R, Python, C++, and
+  the web.
 citation:
   author:
     - family: Larsson

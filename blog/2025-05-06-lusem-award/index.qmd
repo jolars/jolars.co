@@ -3,7 +3,9 @@ title: "LUSEM's Best Thesis Award 2024"
 author: Johan Larsson
 date: 2025-05-06
 description: |
-  I received the LUSEM Prize for my PhD thesis! 🚀
+  Lund University School of Economics and Management awarded my PhD thesis on
+  optimization and algorithms for sparse regression its best thesis prize for
+  2024.
 categories:
   - Thesis
   - Awards

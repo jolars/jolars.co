@@ -4,8 +4,8 @@ author: Johan Larsson
 date: "2018-10-29"
 date-modified: "2024-05-25"
 description: >
-  A new package polylabelr can be used find visual centers of polygons and label
-  Euler diagrams.
+  polylabelr is a new R package that finds the visual center, the pole of
+  inaccessibility, of a polygon, handy for labeling Euler diagrams and maps.
 freeze: true
 categories:
   - R

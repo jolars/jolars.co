@@ -9,7 +9,9 @@ crate: panache
 image: logo.svg
 categories: Rust
 description: >
-  A language server, formatter, and linter for Pandoc, Quarto, and R Markdown.
+  Panache is a fast Rust-based language server, formatter, and linter for
+  Pandoc, Quarto, and R Markdown, bringing modern editor tooling to prose
+  documents.
 citation:
   author:
     - family: Larsson
