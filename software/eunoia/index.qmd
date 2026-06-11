@@ -1,20 +1,25 @@
 ---
-title: eulerr
+title: Eunoia
 author:
   - Johan Larsson
   - Peter Gustafsson
-url: https://jolars.github.io/eulerr
+url: https://eunoia.bz
 date: 2018-06-18
 categories: R
-github: jolars/eulerr
+github: jolars/eunoia
 cran: eulerr
-image: eulerr.svg
+npm: '\@jolars/eunoia'
+pypi: eunoia
+crates: eunoia
+image: eunoia.svg
 description: >
-  eulerr is an R package that draws area-proportional Euler diagrams with
-  ellipses, fitting set relationships accurately where circle-based diagrams
-  fall short.
+  Eunoia is a Rust library with bindings in R, Python, and JavaScript for
+  fitting area-proportional Euler diagrams using circles, ellipses, and
+  rectangles. It uses numerical optimization to find the best layout for
+  representing set relationships accurately, even for more than three sets or
+  complex relationships.
 citation:
-  abstract: |
+  abstract: >
     Euler diagrams are common and user-friendly visualizations for set
     relationships. Most Euler diagrams use circles, but circles do not always
     yield accurate diagrams. A promising alternative is ellipses, which, in
@@ -26,7 +31,6 @@ citation:
     numerical optimization and exact-area algorithms through a two-step
     procedure, first generating an initial layout using pairwise relationships
     and then finalizing this layout using all set relationships.
-    container-title: Proceedings of International Workshop on Set Visualization and Reasoning
   issued: 2018-06-18
   event-place: Edinburgh, United Kingdom
   event-title: Set Visualization and Reasoning 2018
@@ -36,7 +40,7 @@ citation:
   publisher: CEUR Workshop Proceedings
   publisher-place: Edinburgh, United Kingdom
   type: paper-conference
-  URL: http://ceur-ws.org/Vol-2116/paper7.pdf
+  URL: https://ceur-ws.org/Vol-2116/paper7.pdf
   volume: "2116"
   title: >-
     A case study in fitting area-proportional Euler diagrams with ellipses using

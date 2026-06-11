@@ -33,6 +33,11 @@
             <i class="fa-brands fa-python"></i>&nbsp;PyPi
           </a>
         <% } %>
+        <% if (item.npm) { %>
+          <a href="https://www.npmjs.com/package/<%= item.npm.replace(/^\\/, '') %>" class="btn btn-info btn-sm mb-1">
+            <i class="fa-brands fa-npm"></i>&nbsp;npm
+          </a>
+        <% } %>
         <% if (item.jlpkg) { %>
           <a href="https://juliahub.com/ui/Packages/<%= item.jlpkg %>" class="btn btn-info btn-sm mb-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 325 300" style="vertical-align: -0.125em;">

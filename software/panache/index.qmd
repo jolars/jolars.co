@@ -5,9 +5,11 @@ author:
   - Johan Larsson
 date: 2026-06-08
 github: jolars/panache
+pypi: panache-cli
+npm: '\@panache-cli/panache'
 crate: panache
 image: logo.svg
-categories: Rust
+categories: Rust, CLI
 description: >
   Panache is a fast Rust-based language server, formatter, and linter for
   Pandoc, Quarto, and R Markdown, bringing modern editor tooling to prose
