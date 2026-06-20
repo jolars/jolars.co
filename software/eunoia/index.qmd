@@ -10,6 +10,7 @@ github: jolars/eunoia
 cran: eulerr
 npm: '\@jolars/eunoia'
 pypi: eunoia
+jlpkg: Eunoia
 crates: eunoia
 image: eunoia.svg
 description: >
@@ -47,9 +48,9 @@ citation:
     eulerr
 ---
 
-eulerr creates area-proportional Euler diagrams using ellipses instead of just
-circles. While most Euler diagram software is limited to circles (which often
-can't accurately represent set relationships), eulerr uses numerical
+Eunoia creates area-proportional Euler diagrams using circles, ellipses, squares, and
+rectangles. While most Euler diagram software is limited to circles (which often
+can't accurately represent set relationships), Eunoia uses numerical
 optimization to fit ellipses that can represent a wider range of set
 intersections accurately.
 
