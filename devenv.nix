@@ -30,6 +30,11 @@
       new-post
       tex
       quartoMinimal
+      # quartoMinimal only appends its bundled pandoc to PATH, so Quarto picks
+      # up whatever pandoc comes first — on CI that's the runner's old system
+      # pandoc, which rejects newer options (e.g. syntax-highlighting from
+      # `highlight-style`). Put a current pandoc first on PATH.
+      pandoc
       bashInteractive
       cmake
       go-task
