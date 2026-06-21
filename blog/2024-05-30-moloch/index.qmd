@@ -15,6 +15,11 @@ image: moloch-logo.png
 fig-cap-location: margin
 ---
 
+::: {.callout-tip}
+Moloch has now been published in TUGboat [@larsson2026]! The article will be
+available for free on the TUGboat website when the next issue is published.
+:::
+
 My beamer configuration for \LaTeX presentations has been in a state of flux for
 as long as I can remember. I have tried many different themes and
 configurations, and have typically tried to keep the theme minimalisic but at

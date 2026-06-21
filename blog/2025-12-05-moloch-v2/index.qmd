@@ -15,6 +15,11 @@ title-block-banner: images/banner.jpg
 title-block-banner-color: black
 ---
 
+::: {.callout-tip}
+Moloch has now been published in TUGboat [@larsson2026]! The article will be
+available for free on the TUGboat website when the next issue is published.
+:::
+
 ## Moloch 2.0.0 is Released!
 
 I'm excited to announce a major update to Moloch, a minimalist Beamer
