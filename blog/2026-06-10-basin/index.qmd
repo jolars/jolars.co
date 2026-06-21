@@ -28,13 +28,14 @@ nonlinear optimization problem, often with many local minima, and it demands
 both accuracy, since these diagrams often end up in scientific publications, and
 efficiency.
 
-When I first built the R package [eulerr](https://jolars.github.io/eulerr), I
-relied on R's built-in `nlm()`, which uses a nonlinear trust-region method, with
-the [GenSA package](https://CRAN.R-project.org/package=GenSA) as an optional
-fallback when accuracy mattered. Eunoia was meant to replace eulerr's old C++
-backend, so I needed a new solution for the optimization part. And because I
-also wanted to drop the old Shiny-based web app for eulerr in favor of a static
-WebAssembly (WASM) compatible one, the library had to support WASM out of the
+When I first built the R package
+[eulerr](https://jolars.github.io/eulerr)\ [@larsson2018], I relied on R's
+built-in `nlm()`, which uses a nonlinear trust-region method, with the [GenSA
+package](https://CRAN.R-project.org/package=GenSA) as an optional fallback when
+accuracy mattered. Eunoia was meant to replace eulerr's old C++ backend, so I
+needed a new solution for the optimization part. And because I also wanted to
+drop the old Shiny-based web app for eulerr in favor of a static
+WebAssembly\ (WASM) compatible one, the library had to support WASM out of the
 box.
 
 These requirements quickly led me to [argmin](https://argmin-rs.org/), a Rust
