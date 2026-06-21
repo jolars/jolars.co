@@ -21,21 +21,29 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
 
+      - uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install devenv
+        run: nix profile install --accept-flake-config nixpkgs#devenv
+
+      - uses: cachix/cachix-action@v17
+        with:
+          name: jolars
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
       - name: Setup Pages
         uses: actions/configure-pages@v6
 
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          tinytex: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      # Restore mtimes so Quarto's freeze cache stays valid: freeze keys off
+      # source timestamps, and a fresh checkout would otherwise look "newer"
+      # than the committed _freeze/ outputs and force re-execution.
       - name: Restore timestamps
         uses: chetan/git-restore-mtime-action@v2
 
-      - name: Render Quarto Project
-        uses: quarto-dev/quarto-actions/render@v2
+      - name: Render Quarto project
+        run: devenv shell -- quarto render
 
       # SEO/content lint and link checks. Both are advisory: they report into
       # the job summary but never block the deploy (continue-on-error / fail:
@@ -43,15 +51,12 @@ jobs:
       - name: SEO & content lint
         if: always()
         continue-on-error: true
-        run: python3 scripts/seo-lint.py --markdown >> "$GITHUB_STEP_SUMMARY"
+        run: devenv shell -- python3 scripts/seo-lint.py --markdown >> "$GITHUB_STEP_SUMMARY"
 
       - name: Check links
         if: always()
         continue-on-error: true
-        uses: lycheeverse/lychee-action@v2
-        with:
-          args: "--config lychee.toml './_site/**/*.html'"
-          fail: false
+        run: devenv shell -- lychee --config lychee.toml './_site/**/*.html'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
