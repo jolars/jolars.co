@@ -3,37 +3,60 @@
   ...
 }:
 
+let
+  new-post = pkgs.writeShellScriptBin "new-post" ''
+    ${builtins.readFile ./scripts/new-post.sh}
+  '';
+  # LaTeX for rendering the CV to PDF. A medium scheme plus the font and
+  # icon packages the CV partials pull in (academicons, fontawesome5,
+  # libertine), which live in fontsextra and aren't in the base schemes.
+  tex = pkgs.texlive.combine {
+    inherit (pkgs.texlive)
+      scheme-medium
+      academicons
+      fontawesome5
+      libertine
+      enumitem
+      microtype
+      fancyhdr
+      etoolbox
+      ;
+  };
+  # nixpkgs ships pandoc 3.7.0.2, but quartoMinimal 1.9.37 emits the
+  # `syntax-highlighting` defaults key (from `highlight-style`), which only
+  # exists in pandoc >= 3.8. We vendor the official 3.8.3 release (the version
+  # quarto expects) and pin quarto to it via QUARTO_PANDOC below. Without this,
+  # quarto falls back to a too-old pandoc and fails with
+  # `Unknown option "syntax-highlighting"` (e.g. the CI runner's system pandoc).
+  pandoc = pkgs.stdenv.mkDerivation rec {
+    pname = "pandoc-bin";
+    version = "3.8.3";
+    src = pkgs.fetchurl {
+      url = "https://github.com/jgm/pandoc/releases/download/${version}/pandoc-${version}-linux-amd64.tar.gz";
+      hash = "sha256-wiT6uJ+CfTYjOA7LfBB4wWPHachJoUrCfo07+7kUybQ=";
+    };
+    nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+    buildInputs = [
+      pkgs.stdenv.cc.cc.lib
+      pkgs.gmp
+      pkgs.zlib
+      pkgs.lua5_4
+    ];
+    installPhase = ''
+      runHook preInstall
+      install -Dm755 bin/pandoc $out/bin/pandoc
+      runHook postInstall
+    '';
+  };
+in
+
 {
   packages =
-    let
-      new-post = pkgs.writeShellScriptBin "new-post" ''
-        ${builtins.readFile ./scripts/new-post.sh}
-      '';
-      # LaTeX for rendering the CV to PDF. A medium scheme plus the font and
-      # icon packages the CV partials pull in (academicons, fontawesome5,
-      # libertine), which live in fontsextra and aren't in the base schemes.
-      tex = pkgs.texlive.combine {
-        inherit (pkgs.texlive)
-          scheme-medium
-          academicons
-          fontawesome5
-          libertine
-          enumitem
-          microtype
-          fancyhdr
-          etoolbox
-          ;
-      };
-    in
     with pkgs;
     [
       new-post
       tex
       quartoMinimal
-      # quartoMinimal only appends its bundled pandoc to PATH, so Quarto picks
-      # up whatever pandoc comes first — on CI that's the runner's old system
-      # pandoc, which rejects newer options (e.g. syntax-highlighting from
-      # `highlight-style`). Put a current pandoc first on PATH.
       pandoc
       bashInteractive
       cmake
@@ -43,6 +66,10 @@
       rustfmt
       julia-bin
     ];
+
+  # Pin quarto to the vendored pandoc deterministically, regardless of PATH
+  # order (quarto's own pandoc lookup doesn't strictly follow PATH).
+  env.QUARTO_PANDOC = "${pandoc}/bin/pandoc";
 
   languages = {
     r = {
