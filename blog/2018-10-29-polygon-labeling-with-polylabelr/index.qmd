@@ -15,6 +15,7 @@ image: polylabelr.png
 ---
 
 ```{r}
+#| label: setup
 #| include: false
 
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
@@ -45,6 +46,7 @@ and the plots usually demand manual tuning.
 
 ```{r}
 #| fig-cap: "A plot from venneuler with suboptimal label placements."
+#| label: venneuler
 
 # an example set combination
 s <- c(
@@ -98,6 +100,7 @@ a wrapper for the c++ header for polylabel and bundle it as a package for R
 users.
 
 ```{r}
+#| label: polylabelr
 #| fig-cap: "Locating poles of inaccessibility with polylabel."
 
 # install.packages("polylabelr")
@@ -133,6 +136,7 @@ appropriately figure out locations for the labels of the diagram.
 
 ```{r}
 #| fig-cap: "An Euler diagram with appropriate label placement."
+#| label: eulerr
 
 library(eulerr)
 
