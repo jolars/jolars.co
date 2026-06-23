@@ -34,3 +34,6 @@ devenv.local.yaml
 
 # pre-commit
 .pre-commit-config.yaml
+
+# Quarto jupyter-engine temp files (numbered leftovers)
+**/*.quarto_ipynb_*
