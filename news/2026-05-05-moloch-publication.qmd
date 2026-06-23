@@ -2,7 +2,7 @@
 title: "Moloch Publication in TUGboat"
 date: 2026-05-05
 description: >
-  I am pleased to announce that our article on Moloch, a minimalist Beamer
-  theme for LaTeX, has [been published in the latest issue of
+  I am pleased to announce that our article on Moloch, a minimalist Beamer theme
+  for LaTeX, has [been published in the latest issue of
   TUGboat](https://tug.org/TUGboat/tb47-1/tb145larsson-moloch.html)
 ---

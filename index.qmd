@@ -2,8 +2,8 @@
 title: "Johan Larsson"
 title-meta: "Johan Larsson - Personal Website"
 description-meta: >-
-  Personal website of Johan Larsson, a postdoctoral researcher in statistics at the
-  Department of Mathematical Sciences, Copenhagen University.
+  Personal website of Johan Larsson, a postdoctoral researcher in statistics at
+  the Department of Mathematical Sciences, Copenhagen University.
 title-prefix: ""
 toc: false
 canonical-url: "https://jolars.co/"

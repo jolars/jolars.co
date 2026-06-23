@@ -48,10 +48,10 @@ citation:
     eulerr
 ---
 
-Eunoia creates area-proportional Euler diagrams using circles, ellipses, squares, and
-rectangles. While most Euler diagram software is limited to circles (which often
-can't accurately represent set relationships), Eunoia uses numerical
-optimization to fit ellipses that can represent a wider range of set
+Eunoia creates area-proportional Euler diagrams using circles, ellipses,
+squares, and rectangles. While most Euler diagram software is limited to circles
+(which often can't accurately represent set relationships), Eunoia uses
+numerical optimization to fit ellipses that can represent a wider range of set
 intersections accurately.
 
 The package handles any number of sets and automatically finds the best layout

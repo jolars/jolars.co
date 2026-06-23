@@ -4,9 +4,8 @@ author: Johan Larsson
 date: 2025-01-21
 date-modified: last-modified
 description: >
-  We have a new arXiv paper on normalization for regularized regression
-  (lasso, ridge, and elastic net), focused on how to standardize binary
-  features.
+  We have a new arXiv paper on normalization for regularized regression (lasso,
+  ridge, and elastic net), focused on how to standardize binary features.
 categories:
   - Research
   - Lasso
@@ -37,9 +36,9 @@ one I encountered when I first learned about regularized regression methods. The
 model can be written as a special case of the elastic net, which is an
 optimization problem that takes the following form:
 $$
-\operatorname*{minimize}_{\beta_0 \in \mathbb{R},\bm{\beta} \in \mathbb{R}^p}
-  \frac{1}{2} \lVert \bm y - \beta_0 - \bm{X}\bm{\beta} \rVert^2_2  +
-  \lambda_1 \lVert \bm\beta \rVert_1 + \frac{\lambda_2}{2}\lVert \bm \beta \rVert_2^2,
+  \operatorname*{minimize}_{\beta_0 \in \mathbb{R},\bm{\beta} \in \mathbb{R}^p}
+    \frac{1}{2} \lVert \bm y - \beta_0 - \bm{X}\bm{\beta} \rVert^2_2  +
+    \lambda_1 \lVert \bm\beta \rVert_1 + \frac{\lambda_2}{2}\lVert \bm \beta \rVert_2^2,
 $$
 where $\bm{X}$ is the matrix of features, $\bm{y}$ is the response, and
 $\beta_0$ and $\bm{\beta}$ are the intercept and coefficients, respectively.
@@ -48,7 +47,7 @@ ridge regression: another special case of the elastic net.
 
 In the equation above,
 $$
-\lambda_1 \lVert \bm\beta \rVert_1 + \frac{\lambda_2}{2}\lVert \bm \beta \rVert_2^2
+  \lambda_1 \lVert \bm\beta \rVert_1 + \frac{\lambda_2}{2}\lVert \bm \beta \rVert_2^2
 $$
 is a *regularization term* that penalizes coefficients by their magnitudes, and
 $\lambda_1$ and $\lambda_2$ control the strength of this penalization. The
@@ -159,7 +158,7 @@ penalty we use in our model.
 To study this more formally, we introduce a parameterization for scaling a
 feature, given by
 $$
-s_j = (q_j - q_j^2)^\delta,
+  s_j = (q_j - q_j^2)^\delta,
 $$
 where $q_j$ is the class balance of the $j$th feature. When $\delta = 0$, there
 would for instance be no scaling for the binary feature (as in max--abs
@@ -169,7 +168,7 @@ scale by its variance.
 
 Throughout the paper we assume that our data comes from a linear model
 $$
-\bm{y} = \bm{X\beta} + \bm{\varepsilon},
+  \bm{y} = \bm{X\beta} + \bm{\varepsilon},
 $$
 where $\bm{y}$ is the response, $\bm{X}$ is the matrix of features, and
 $\bm{\varepsilon}$ is the vector of errors, which we assume to be identically
@@ -306,7 +305,7 @@ Thankfully there turns out to be a solution to this problem, which is to use the
 *weighted elastic net*, in which we modify the weights of each penalty factor
 instead of normalizing. The problem then becomes
 $$
-\frac{1}{2} \lVert \bm{y} - \beta_0 - \bm{X}\bm{\beta}\rVert_2^2 + \lambda_1 \sum_{j=1}^p u_j |\beta_j| + \frac{\lambda_2}{2} \sum_{j=1}^p v_j \beta_j^2.
+  \frac{1}{2} \lVert \bm{y} - \beta_0 - \bm{X}\bm{\beta}\rVert_2^2 + \lambda_1 \sum_{j=1}^p u_j |\beta_j| + \frac{\lambda_2}{2} \sum_{j=1}^p v_j \beta_j^2.
 $$
 I won't cover any details here, but please see the paper for more information.
 

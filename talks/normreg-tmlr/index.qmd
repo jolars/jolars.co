@@ -3,8 +3,8 @@ title:
   The Choice of Normalization Influences Shrinkage in Regularized Regression
 author: Johan Larsson
 description: >
-  A talk for TMLR on our paper about how feature normalization affects
-  shrinkage and selection in regularized regression (lasso, ridge, elastic net).
+  A talk for TMLR on our paper about how feature normalization affects shrinkage
+  and selection in regularized regression (lasso, ridge, elastic net).
 abstract: |
 date: 2025-11-17
 image: image.png

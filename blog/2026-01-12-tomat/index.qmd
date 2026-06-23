@@ -3,9 +3,8 @@ title: "Introducing Tomat: A Pomodoro Timer for Status Bars"
 author: Johan Larsson
 date: 2026-01-12
 description: >
-  I've decided that the world needs yet another pomodoro timer.
-  yapm was unfortunately already taken, so I named it
-  after the Swedish tomato.
+  I've decided that the world needs yet another pomodoro timer. yapm was
+  unfortunately already taken, so I named it after the Swedish tomato.
 categories:
   - Tomat
   - Productivity
@@ -28,6 +27,7 @@ illustration of how the Pomodoro technique works.
 %%| fig-cap: An illustration of the Pomodoro technique.
 %%| fig-align: center
 %%| label: fig-basic-pomodoro
+
 graph TD
     A[25 min work] -->|Sessions 1-4| B[5 min break]
     B --> A
@@ -83,6 +83,7 @@ architecture is illustrated in @fig-tomat-architecture.
 %%| fig-cap: A high-level overview of the Tomat architecture.
 %%| fig-align: center
 %%| label: fig-tomat-architecture
+
 graph TD
     A[Client] -->|Commands| B(Server)
     B -->|Status| A

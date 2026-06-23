@@ -69,20 +69,20 @@ from R/Python/Julia code chunks.
 2. **Preview validation:** `quarto preview` and manually check pages in browser
 3. **SEO & content lint:** `task seo` runs `scripts/seo-lint.py`, which checks
    the rendered `_site` and source frontmatter for SEO problems of the kind
-   Google Search Console / Bing Webmaster Tools report — missing or too-short or
-   too-long titles and meta descriptions, duplicate titles/descriptions, missing
-   canonical/`og:image` tags, missing image alt text, and required frontmatter
-   fields. Standard-library Python only.
+   Google Search Console / Bing Webmaster Tools report --- missing or too-short
+   or too-long titles and meta descriptions, duplicate titles/descriptions,
+   missing canonical/`og:image` tags, missing image alt text, and required
+   frontmatter fields. Standard-library Python only.
 4. **Link checking:** `task links` runs `lychee` (configured in `lychee.toml`)
    over `_site` to find broken internal **and** external links. Needs a rendered
    site first.
 
 `task check` renders the site and then runs both. Both checks also run in CI
-(see below) but are advisory — they never block the deploy.
+(see below) but are advisory --- they never block the deploy.
 
-**Note:** These checks are advisory diagnostics, not a pass/fail gate. `seo-lint`
-exits non-zero only on errors (or on warnings with `--strict`); the duplicate
-title warnings between a paper and its matching talk are expected.
+**Note:** These checks are advisory diagnostics, not a pass/fail gate.
+`seo-lint` exits non-zero only on errors (or on warnings with `--strict`); the
+duplicate title warnings between a paper and its matching talk are expected.
 
 ## Continuous Integration
 

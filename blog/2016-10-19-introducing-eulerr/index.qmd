@@ -149,7 +149,7 @@ statistic that Leland Wilkinson presented in his academic paper on venneuler
 total sums of squares:
 
 $$
-\frac{\sum_{i=1}^n (f_i - y_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}.
+  \frac{\sum_{i=1}^n (f_i - y_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}.
 $$
 
 We fetch it from the `stress` attribute of the `eulerr` object.

@@ -42,14 +42,14 @@ $\ell_1$-regularization. More specifically, SLOPE fits generalized linear models
 regularized with the sorted $\ell_1$ norm. The objective in SLOPE is
 
 $$
-\operatorname{minimize}\left\{ f(\beta) + J(\beta \mid \lambda)\right\},
+  \operatorname{minimize}\left\{ f(\beta) + J(\beta \mid \lambda)\right\},
 $$
 
 where $f(\beta)$ is typically the log-likelihood of some model in the family of
 generalized linear models and
 
 $$
-J(\beta\mid \lambda) = \sum_{i=1}^p \lambda_i|\beta|_{(i)}
+  J(\beta\mid \lambda) = \sum_{i=1}^p \lambda_i|\beta|_{(i)}
 $$
 
 is the sorted $\ell_1$ norm.

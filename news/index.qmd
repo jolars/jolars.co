@@ -1,8 +1,8 @@
 ---
 title: "News"
 description: >
-  News and announcements from Johan Larsson: new papers, software releases,
-  blog posts, talks, awards, and other updates.
+  News and announcements from Johan Larsson: new papers, software releases, blog
+  posts, talks, awards, and other updates.
 listing:
   contents: "."
   sort: [date, title, desc]
