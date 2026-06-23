@@ -12,7 +12,6 @@ categories:
   - Geometry
   - Polylabelr
 image: polylabelr.png
-bibliography: bibliography.bib
 ---
 
 ```{r}
