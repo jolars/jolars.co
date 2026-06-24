@@ -128,6 +128,7 @@ that allows users to optimize the palette against a given background color (in
 this case white).
 
 ```{r}
+#| label: vermeer
 #| warning: false
 
 library(qualpalr)
@@ -140,7 +141,10 @@ colors in the color difference metric space, which gives an idea of how
 well-separated the colors are.
 
 ```{r}
-#| fig-cap: "A multi-dimensional scaling (MDS) plot of colors in the color difference metric space."
+#| label: fig-mds
+#| fig-cap: >-
+#|   A multi-dimensional scaling (MDS) plot of colors in the color difference
+#|   metric space.
 
 plot(pal)
 ```
