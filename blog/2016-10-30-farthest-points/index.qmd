@@ -47,6 +47,7 @@ for i = 3:n
 In R, this code looked like this (in two dimensions):
 
 ```{r}
+#| label: greedy-approach
 #| fig-lab: greedy-approach
 #| fig-width: 4
 #| fig-height: 4.3
@@ -109,6 +110,7 @@ only putting back the same points we started the loop with, which always
 happens. Let's see how this works on the same data set we used above.
 
 ```{r}
+#| label: new-approach
 #| fig-lab: new-approach
 #| fig-width: 4
 #| fig-height: 4.3

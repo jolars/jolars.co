@@ -32,6 +32,8 @@ problem for sequential of diverging data since we can interpolate colors to any
 range we desire:
 
 ```{r}
+#| label: color-ramp
+
 pal <- RColorBrewer::brewer.pal(4, "PuBuGn")
 color_ramp <- colorRampPalette(pal, space = "Lab")
 ```
@@ -86,6 +88,8 @@ The resulting object, `pal`, is a list with several color tables and a distance
 matrix based on the din99d color difference formula.
 
 ```{r}
+#| label: pal-object
+
 pal
 ```
 

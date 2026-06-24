@@ -17,6 +17,7 @@ image: eulerr.svg
 ---
 
 ```{r}
+#| label: setup
 #| include: false
 
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
@@ -65,6 +66,7 @@ configurations that have perfect solutions. Consider, for instance, the
 following example in which the intersection between `A` and `B` is unwanted.
 
 ```{r}
+#| label: unwanted_overlap
 #| fig-cap: venneuler plot with unwanted overlap.
 
 library(venneuler, quietly = TRUE)
