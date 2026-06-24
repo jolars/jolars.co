@@ -23,21 +23,11 @@
 
   function onMastodon(event) {
     event.preventDefault();
-    var stored = window.localStorage.getItem("social-share:mastodon-instance") || "";
-    var instance = window.prompt(
-      "Your Mastodon instance (e.g. mastodon.social):",
-      stored
-    );
-    if (!instance) {
-      return;
-    }
-    instance = instance.trim().replace(/^https?:\/\//, "").replace(/\/+$/, "");
-    if (!instance) {
-      return;
-    }
-    window.localStorage.setItem("social-share:mastodon-instance", instance);
+    // Mastodon's hosted share widget lets the reader pick (and remember) their
+    // own server, client-side. See https://share.joinmastodon.org/ — the shared
+    // text goes in the URL fragment (`#text=`) so it never reaches the server.
     var text = shareTitle() + " " + shareUrl();
-    openShare("https://" + instance + "/share?text=" + encodeURIComponent(text));
+    openShare("https://share.joinmastodon.org/#text=" + encodeURIComponent(text));
   }
 
   function onCopy(event) {
