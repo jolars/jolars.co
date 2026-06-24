@@ -17,3 +17,9 @@ draft-mode: unlinked
 cap-location: margin
 author: Johan Larsson
 reference-location: margin
+filters:
+  - social-share
+share:
+  mastodon: true
+  bluesky: true
+  copy: true

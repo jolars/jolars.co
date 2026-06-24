@@ -1,0 +1,7 @@
+title: Social Share
+author: Johan Larsson
+version: 1.0.0
+quarto-required: ">=1.4.0"
+contributes:
+  filters:
+    - social-share.lua

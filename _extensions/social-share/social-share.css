@@ -1,0 +1,90 @@
+.social-share {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.social-share__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #6c757d;
+}
+
+.social-share__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.social-share__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  background: transparent;
+  color: #495057;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.social-share__btn:hover,
+.social-share__btn:focus-visible {
+  color: #fff;
+  text-decoration: none;
+}
+
+.social-share__btn--bluesky:hover,
+.social-share__btn--bluesky:focus-visible {
+  background: #0a7aff;
+  border-color: #0a7aff;
+}
+
+.social-share__btn--mastodon:hover,
+.social-share__btn--mastodon:focus-visible {
+  background: #6364ff;
+  border-color: #6364ff;
+}
+
+.social-share__btn--copy:hover,
+.social-share__btn--copy:focus-visible,
+.social-share__btn--copy.is-copied {
+  background: #18bc9c;
+  border-color: #18bc9c;
+  color: #fff;
+}
+
+/* "Copied!" confirmation bubble above the copy button. */
+.social-share__btn--copy {
+  position: relative;
+}
+
+.social-share__btn--copy.is-copied::after {
+  content: "Copied!";
+  position: absolute;
+  bottom: calc(100% + 0.4rem);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.25rem;
+  background: #2c3e50;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+}
