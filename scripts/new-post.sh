@@ -40,7 +40,7 @@ cat > "$news_file" << EOF
 ---
 title: "New Blog Post: $title"
 date: $date
-description: |
+description: >
   I have published [a new blog post](/blog/${date}-${slug}) titled "$title".
   Check it out!
 ---
