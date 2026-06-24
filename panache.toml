@@ -1,5 +1,11 @@
 flavor = "quarto"
 
+extend-exclude = ["CLAUDE.md", ".claude/**/*"]
+
+[flavor-overrides]
+"AGENTS.md" = "gfm"
+"README.md" = "gfm"
+
 [formatters]
 r = "air"
 python = "ruff"
