@@ -182,7 +182,7 @@ It then continues by projecting the colors, first into the XYZ space, then
 CIELab (not shown here), and then finally the DIN99d space (@fig-din99d-space).
 
 ```{r}
-#| label: DIN_space
+#| label: fig-din99d-space
 #| echo: false
 #| fig-cap: Colors in DIN99d space
 
