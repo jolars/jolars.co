@@ -10,6 +10,3 @@ extend-exclude = ["CLAUDE.md", ".claude/**/*"]
 r = "air"
 python = "ruff"
 rust = "rustfmt"
-
-[linters]
-r = "jarl"

@@ -17,6 +17,7 @@ freeze: true
 ---
 
 ```{r}
+#| label: setup
 #| include: false
 
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
@@ -80,6 +81,8 @@ Just as in other similar packages, this is enabled simply by setting
 `family = "binomial"` for logistic regression, for instance.
 
 ```{r}
+#| label: multinomial
+
 library(SLOPE)
 fit <- SLOPE(wine$x, wine$y, family = "multinomial")
 ```
@@ -91,6 +94,7 @@ penalty sequence at once. This behavior is now analogous with the default
 behavior in glmnet.
 
 ```{r}
+#| label: multinomial-path
 #| fig-cap: "Coefficients from the regularization path for a multinomial model."
 #| fig-width: 8
 #| fig-height: 4
@@ -106,6 +110,8 @@ packages such as glmnet so efficient. In SLOPE, we use a variant of the strong
 screening rules for the lasso [@tibshirani2012].
 
 ```{r}
+#| label: screening
+
 xy <- SLOPE:::randomProblem(100, 1000)
 system.time({
   SLOPE(xy$x, xy$y, screen = TRUE)
@@ -122,6 +128,7 @@ cross-validation for optimal selection of `sigma` and `q`. Here, we run 8-fold
 cross-validation repeated 5 times.
 
 ```{r}
+#| label: cross-validation
 #| fig-cap: "Cross-validation with SLOPE."
 #| fig-width: 7
 
