@@ -37,3 +37,6 @@ devenv.local.yaml
 
 # Quarto jupyter-engine temp files (numbered leftovers)
 **/*.quarto_ipynb_*
+
+# Lighthouse audit output
+.lighthouse/

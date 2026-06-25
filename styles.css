@@ -1,5 +1,23 @@
+/* Darken the flatly teal link color to meet WCAG AA contrast (>=4.5:1 on
+   white). The default #18bc9c is only ~2.4:1. */
+:root {
+  --bs-link-color: #117a65;
+  --bs-link-color-rgb: 17, 122, 101;
+  --bs-link-hover-color: #0d5e4e;
+  --bs-link-hover-color-rgb: 13, 94, 78;
+}
+
 a {
   text-decoration: none;
+}
+
+/* Underline in-text links so they are distinguishable without relying on color
+   alone (WCAG 1.4.1). Scoped to prose; nav, buttons, card titles, and the
+   publication list keep the clean, underline-free look. */
+main p a:not(.btn):not(.about-link),
+main ol li a:not(.btn),
+main ul:not(.publication-list) li a:not(.btn) {
+  text-decoration: underline;
 }
 
 .quarto-title-meta-contents .quarto-title-meta-buttons a {
@@ -91,7 +109,7 @@ div.quarto-about-solana .about-entity .about-image {
 }
 
 .quarto-listing-custom .quarto-post .body .listing-description p a {
-  color: rgb(24, 188, 156);
+  color: #117a65;
 }
 
 .quarto-listing-custom .quarto-post {

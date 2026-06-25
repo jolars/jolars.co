@@ -21,6 +21,27 @@ tasks:
     cmds:
       - lychee --config lychee.toml './_site/**/*.html'
 
+  lighthouse:
+    desc: Run a Lighthouse desktop audit (perf, a11y, best-practices, SEO)
+    vars:
+      URL: '{{.URL | default "https://jolars.co"}}'
+    cmds:
+      - mkdir -p .lighthouse
+      - >-
+        CHROME_PATH="$(command -v chromium)"
+        lighthouse "{{.URL}}"
+        --preset=desktop
+        --output=json --output=html
+        --output-path=.lighthouse/report
+        --chrome-flags="--headless=new --no-sandbox --disable-gpu"
+        --only-categories=performance,accessibility,best-practices,seo
+        --quiet
+      - >-
+        node -e 'const r=require("./.lighthouse/report.report.json");
+        for(const k in r.categories)
+        console.log(r.categories[k].title.padEnd(16),
+        Math.round(r.categories[k].score*100));'
+
   check:
     desc: Render the site, then run the SEO lint and link checks
     deps: [render]

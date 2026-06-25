@@ -49,23 +49,20 @@ let
     '';
   };
 in
-
 {
-  packages =
-    with pkgs;
-    [
-      new-post
-      tex
-      quartoMinimal
-      pandoc
-      bashInteractive
-      cmake
-      go-task
-      google-lighthouse
-      lychee
-      rustfmt
-      julia-bin
-    ];
+  packages = with pkgs; [
+    new-post
+    tex
+    quartoMinimal
+    pandoc
+    bashInteractive
+    cmake
+    go-task
+    google-lighthouse
+    lychee
+    rustfmt
+    julia-bin
+  ];
 
   # Pin quarto to the vendored pandoc deterministically, regardless of PATH
   # order (quarto's own pandoc lookup doesn't strictly follow PATH).

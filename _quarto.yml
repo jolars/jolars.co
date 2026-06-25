@@ -53,13 +53,13 @@ website:
         href: "https://mastodon.social/@jolars"
         aria-label: Mastodon
         rel: "me"
-      - text: "<i class='fa-brands fa-bluesky'></i>"
+      - text: "<i class='fa-brands fa-bluesky'></i><span class='visually-hidden'>Bluesky</span>"
         href: "https://bsky.app/profile/jolars.co"
         aria-label: Bluesky
       - icon: github
         href: "https://github.com/jolars/"
         aria-label: "Github profile"
-      - text: "<i class='fa-brands fa-google-scholar'></i>"
+      - text: "<i class='fa-brands fa-google-scholar'></i><span class='visually-hidden'>Google Scholar</span>"
         href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
         aria-label: "Google scholar profile"
   page-footer:

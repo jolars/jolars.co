@@ -13,6 +13,7 @@ about:
   id: hero-heading
   template: solana
   image: assets/images/avatar.jpg
+  image-alt: "Portrait of Johan Larsson"
   image-shape: round
   links:
     - icon: mastodon
