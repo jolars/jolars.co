@@ -42,7 +42,7 @@ $endif$
   \raggedleft\small
 
   $if(homepage)$
-  {\faHome}\, 
+  {\faHouse}\,
   \href{$homepage$}{\nolinkurl{$homepage$}}
   $endif$
 
@@ -52,12 +52,12 @@ $endif$
   $endif$
 
   $if(github)$
-  {\faGithub}\, 
+  {\faGithub}\,
   \href{https://github.com/$github$}{\nolinkurl{github.com/$github$}}
   $endif$
 
   $if(orcid)$
-  {\aiOrcid}\, 
+  {\aiOrcid}\,
   \href{https://orcid.org/$orcid$}{$orcid$}
   $endif$
 
@@ -72,8 +72,13 @@ $endif$
 
   $if(mastodon-id)$
   $if(mastodon-server)$
-  {\faMastodon}\, 
+  {\faMastodon}\,
   \href{https://$mastodon-server$/@$mastodon-id$}{\nolinkurl{@$mastodon-id$@$mastodon-server$}}
   $endif$
+  $endif$
+
+  $if(bluesky)$
+  {\faBluesky}\,
+  \href{https://bsky.app/profile/$bluesky$}{\nolinkurl{@$bluesky$}}
   $endif$
 \end{minipage}

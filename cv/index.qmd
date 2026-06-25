@@ -35,6 +35,7 @@ github: jolars
 google-scholar: DCJvywYAAAAJ
 mastodon-id: jolars
 mastodon-server: mastodon.social
+bluesky: jolars.co
 nocite: "@*"
 bibliography:
   articles: articles.bib
