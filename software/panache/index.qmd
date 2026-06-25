@@ -22,7 +22,9 @@ citation:
   issued: 2026-03-28
   license: MIT
   source: GitHub
-  title: "Panache: A Language Server, Formatter, and Linter for Pandoc, Quarto, and R Markdown"
+  title: >-
+    Panache: A Language Server, Formatter, and Linter for Pandoc, Quarto, and R
+    Markdown
   type: software
   URL: https://panache.bz
   version: 2.52.0
