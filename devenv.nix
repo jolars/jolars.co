@@ -8,13 +8,13 @@ let
     ${builtins.readFile ./scripts/new-post.sh}
   '';
   # LaTeX for rendering the CV to PDF. A medium scheme plus the font and
-  # icon packages the CV partials pull in (academicons, fontawesome5,
+  # icon packages the CV partials pull in (academicons, fontawesome6,
   # libertine), which live in fontsextra and aren't in the base schemes.
   tex = pkgs.texlive.combine {
     inherit (pkgs.texlive)
       scheme-medium
       academicons
-      fontawesome5
+      fontawesome6
       libertine
       enumitem
       microtype
