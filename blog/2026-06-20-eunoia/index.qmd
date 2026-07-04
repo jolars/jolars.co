@@ -447,9 +447,8 @@ combo <- c(
   "Adventure&Comedy&Drama" = 2
 )
 
-fit <- euler(
-  shape = "ellipse"
-)
+fit_ellipse <- euler(combo, shape = "circle")
+fit_ellipse <- euler(combo, shape = "ellipse")
 ```
 
 ## Euler Diagrams in Your Browser
