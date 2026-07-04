@@ -12,7 +12,8 @@ listing:
   type: default
   sort-ui: true
   filter-ui: true
-  feed: true
+  feed:
+    categories: [R]
   categories: true
 page-layout: full
 title-block-banner: false

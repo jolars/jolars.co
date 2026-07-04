@@ -5,6 +5,7 @@ project:
     - "*.md"
   post-render:
     - scripts/fix-sitemap.sh
+    - scripts/fix-feed-links.sh
   resources:
     - "android-chrome-192x192.png"
     - "android-chrome-512x512.png"
