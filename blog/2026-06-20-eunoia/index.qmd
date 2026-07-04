@@ -3,7 +3,7 @@ title: "Eunoia: Euler and Venn Diagrams in Five Languages"
 author: Johan Larsson
 date: 2026-07-04
 reference-location: margin
-draft: true
+draft: false
 engine: knitr
 fig-align: "center"
 description: >
@@ -427,29 +427,105 @@ not too large.
 ### Additional Shapes
 
 eulerr only supported two shapes: circles and ellipses. Euonia adds squares and
-recangles (optionally rotated) to the mix. Here you can see the shapes in
+rectangles (optionally rotated) to the mix. Here you can see the shapes in
 action, and also the recent plot composition features of eulerr that---in
 patchwork style---allow you to combine multiple diagrams into a single figure.
 
 ```{r}
 #| label: fig-shapes
 #| fig-cap: "The four shape families supported by Eunoia."
+#| fig-width: 8
+#| fig-height: 2
+
+library(eulerr)
+
+combo <- c(
+  "A" = 20,
+  "C" = 14,
+  "D" = 18,
+  "A&C" = 6,
+  "A&D" = 5,
+  "C&D" = 4,
+  "A&C&D" = 2
+)
+
+fit_circle <- euler(combo, shape = "circle")
+fit_ellipse <- euler(combo, shape = "ellipse")
+fit_square <- euler(combo, shape = "square")
+fit_rectangle <- euler(combo, shape = "rectangle")
+
+(plot(fit_circle) | plot(fit_ellipse)) |
+  (plot(fit_square) | plot(fit_rectangle))
+```
+
+### Better labeling
+
+Another improvement comes in the form of labeling. This has been a much-wanted
+feature, but has been relatively hard to implement properly. Even now there's
+still much room for improvement. In @fig-labeling, you can see the default
+labeling method in action, which also showcases the *fifth* shape available in
+Eunoia: rotated rectangles.
+
+```{r}
+#| label: fig-labeling
+#| fig-cap: Eunoia now tries its best to avoid overlaps between labels.
+#| fig-width: 2.5
+#| fig-height: 2.5
 
 library(eulerr)
 
 combo <- c(
   "Adventure" = 20,
-  "Comedy" = 14,
-  "Drama" = 18,
-  "Adventure&Comedy" = 6,
-  "Adventure&Drama" = 5,
-  "Comedy&Drama" = 4,
-  "Adventure&Comedy&Drama" = 2
+  "C" = 14,
+  "D" = 18,
+  "Adventure&C" = 6,
+  "Adventure&D" = 5,
+  "C&D" = 4,
+  "Adventure&C&D" = 2
 )
 
-fit_ellipse <- euler(combo, shape = "circle")
-fit_ellipse <- euler(combo, shape = "ellipse")
+fit_circle <- euler(combo, shape = "rotated_rectangle")
+
+plot(fit_circle, quantities = TRUE)
 ```
+
+The trickiest part about labeling is that you have a fixed bounding box (canvas
+size) for the entire plot, but don't know before-the-fact how much space in the
+margins of the plot you need to allocate to the labels, in case they need to be
+drawn outside of the actual diagram. And if you need more space, you will also
+need to draw a new bounding box and recompute the label's sizes on this bounding
+box, which in turn requires a new layout. This process is shown in
+@fig-labeling-algorithm.
+
+```{mermaid}
+%%| label: fig-labeling-algorithm
+%%| fig-cap: The fixed-point algorithm for drawing the labels.
+
+flowchart TD
+  A["Measure the labels' sizes on the initial bounding box"]
+  B["Lay out the labels"]
+  C["Compute the new bounding box"]
+  D["Measure the labels' sizes on the new bounding box"]
+  E{"Did the label's sizes change?"}
+  F["Done!"]
+  A --> B --> C --> D --> E
+  E -->|Yes| B
+  E -->|No| F
+```
+
+Thankfully, you typically only need a couple of iterations for the layout to
+settle. The actual cost of the algorithm depends mostly on the overhead from the
+graphics engine. The layout engine itself is served from the Rust core and runs
+efficiently.
+
+### And Much More...
+
+There have been a number of other improvements to eulerr that I won't go into
+detail here, but which for instance includes the ability to include a *universe*
+(complement) set in the diagram, which is fit in the same way as the other
+shapes are, which therefore means that it's not actually guaranteed to fit^[I
+will likely consider whether we might need an option to force the complement box
+to cover all the shapes in the future.].
 
 ## Euler Diagrams in Your Browser
 

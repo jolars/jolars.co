@@ -7,6 +7,6 @@ extend-exclude = ["CLAUDE.md", ".claude/**/*"]
 "README.md" = "gfm"
 
 [formatters]
-r = "air"
+r = "arity"
 python = "ruff"
 rust = "rustfmt"
