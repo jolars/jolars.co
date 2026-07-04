@@ -49,15 +49,18 @@ let
     '';
   };
 
-  # eulerr 8.0.0 ships the Rust-backed Eunoia core; the nixpkgs pin is still on
+  # eulerr 8.1.0 ships the Rust-backed Eunoia core; the nixpkgs pin is still on
   # the old C++ 7.1.0. Build it straight from the CRAN source, which vendors its
   # crates (src/rust/vendor.tar.xz) for an offline compile, so we only need a
-  # Rust toolchain on top of base R.
+  # Rust toolchain on top of base R. This is the current release, so it lives in
+  # src/contrib; once a newer eulerr ships, CRAN moves it to
+  # src/contrib/Archive/eulerr/ and the URL below must gain that Archive/eulerr/
+  # segment (as happened to 8.0.0).
   eulerr = pkgs.rPackages.buildRPackage {
-    name = "eulerr-8.0.0";
+    name = "eulerr-8.1.0";
     src = pkgs.fetchurl {
-      url = "https://cran.r-project.org/src/contrib/eulerr_8.0.0.tar.gz";
-      sha256 = "sha256-HiYalT29VHBdseSk2eo/lwLkbcTCL4qQW3+RepVdEQk=";
+      url = "https://cran.r-project.org/src/contrib/eulerr_8.1.0.tar.gz";
+      sha256 = "sha256-45+2h8dnwwOY3fRq8tszvivThVo8FCGUEKu0dRXrxHE=";
     };
     nativeBuildInputs = [
       pkgs.cargo
