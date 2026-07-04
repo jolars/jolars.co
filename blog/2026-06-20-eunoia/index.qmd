@@ -1,7 +1,7 @@
 ---
 title: "Eunoia: Euler and Venn Diagrams in Five Languages"
 author: Johan Larsson
-date: 2026-06-20
+date: 2026-07-04
 reference-location: margin
 draft: true
 engine: knitr
@@ -410,6 +410,47 @@ flowchart TD
 ```
 
 The new algorithm is both more robust and more accurate than the old one.
+
+### Performance and Efficiency
+
+Another upgrade that comes with Eunoia is that the optimizer now uses exact
+analytical gradients for the smooth loss functions, which provides a significant
+speedup over the numerical gradients used in eulerr. In addition, and unlike
+eulerr, Eunoia also keeps track of only the intersection areas that are actually
+present in the diagram. This didn't use to be the case with eulerr, which
+generated a $2^n-1$ sized list of all combinations for $n$ sets, and meant that
+it choked on large set combinations. Eunoia (and the new eulerr) only keeps
+track of the intersections that are actually present, which makes it possible to
+fit diagrams with many sets, as long as the number of non-empty intersections is
+not too large.
+
+### Additional Shapes
+
+eulerr only supported two shapes: circles and ellipses. Euonia adds squares and
+recangles (optionally rotated) to the mix. Here you can see the shapes in
+action, and also the recent plot composition features of eulerr that---in
+patchwork style---allow you to combine multiple diagrams into a single figure.
+
+```{r}
+#| label: fig-shapes
+#| fig-cap: "The four shape families supported by Eunoia."
+
+library(eulerr)
+
+combo <- c(
+  "Adventure" = 20,
+  "Comedy" = 14,
+  "Drama" = 18,
+  "Adventure&Comedy" = 6,
+  "Adventure&Drama" = 5,
+  "Comedy&Drama" = 4,
+  "Adventure&Comedy&Drama" = 2
+)
+
+fit <- euler(
+  shape = "ellipse"
+)
+```
 
 ## Euler Diagrams in Your Browser
 
