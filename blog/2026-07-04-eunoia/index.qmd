@@ -5,6 +5,7 @@ date: 2026-07-04
 reference-location: margin
 draft: false
 engine: knitr
+title-block-banner: "banner.svg"
 fig-align: "center"
 description: >
   Eunoia is a Rust engine for area-proportional Euler and Venn diagrams, now
