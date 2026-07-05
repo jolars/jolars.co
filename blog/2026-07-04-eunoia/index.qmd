@@ -41,7 +41,7 @@ Ten years ago I wrote [eulerr](https://jolars.github.io/eulerr) as part of my
 Bachelor's thesis\ [@larsson2018a] in statistics---an R package for
 area-proportional [Euler diagrams](https://en.wikipedia.org/wiki/Euler_diagram).
 At the time it was the first package to feature ellipses beyond three sets,
-EulerAPE\ [@micallef2014a] being the first package to introduce ellipses. eulerr
+EulerAPE\ [@micallef2014a] being the first to introduce ellipses at all. eulerr
 has been surprisingly popular, having been used in (at least) 600 academic
 papers. It was written in a mixture of R and C++, with the latter doing the
 heavy work of computing the layouts, whereas the R code handled the interface,
@@ -66,8 +66,8 @@ I always knew that the way out of this would be to rewrite the entire fitting
 engine in a single language, so that I could maintain thin wrappers in the
 high-level languages\ (R, Python, Julia, etc.) around a single core. And that
 that core should be in a language that compiles to WebAssembly, so that I could
-build a static web app around it without the need of a server. Up til recently I
-always imagined that this rewrite would be a rewrite in C++. But in the recent
+build a static web app around it without the need for a server. Until recently I
+always imagined that this rewrite would be a rewrite in C++. But in recent
 months I have been learning Rust, and have grown to love both the language and,
 perhaps in particular, its tooling.
 
@@ -127,7 +127,7 @@ genre---fit twice, once in R and once in Python. First, the R version:
 #| label: fig-eulerr
 #| fig-cap: "eulerr (R)"
 #| fig-alt: >
-#|   An area-proportional Euler diagram of three overlapping ellipses labelled
+#|   An area-proportional Euler diagram of three overlapping ellipses labeled
 #|   Adventure, Comedy, and Drama, fitted by the R package eulerr.
 
 library(eulerr)
@@ -327,7 +327,7 @@ The fundamental algorithm in Eunoia is unchanged from that in eulerr:
    those from the set specification. The optimizer then iteratively adjusts the
    shapes to minimize this loss.
 
-Because the intial layout sometimes gets stuck in local minima, the original
+Because the initial layout sometimes gets stuck in local minima, the original
 eulerr implementation would run this initial optimization step for a number of
 random starting layouts, and then pick the best one to feed to the final
 optimization step. Specifically for the case of ellipses and three sets, the
@@ -361,14 +361,14 @@ rewrote the code for Eunoia, I wanted to introduce a few improvements.
   is that there may actually be multiple initial layouts that have more or less
   the same initial loss but that lead to very different final losses.
 
-  In addition, this also opens up for forwarding curated starting layouts to the
-  optimizer, and currently we always feed a Venn diagram layout as one of the
-  layouts carried forward from the initial optimization step. For set
-  combinations where all intersections are present, this is usually the best
+  In addition, this also opens up the option of forwarding curated starting
+  layouts to the optimizer, and currently we always feed a Venn diagram layout
+  as one of the layouts carried forward from the initial optimization step. For
+  set combinations where all intersections are present, this is usually the best
   starting layout and will quickly lead to an exact fit if the numbers admit
   one.
 
-- The default optimizer is now Levendberg--Marquardt (LM; changed from R's
+- The default optimizer is now Levenberg--Marquardt (LM; changed from R's
   `nlm()`). It took some effort to finally find an algorithm that worked better
   than `nlm()`, but the LM algorithm is designed precisely to handle the default
   loss function---a sum of squared differences---and it shows, being both faster
@@ -386,10 +386,10 @@ rewrote the code for Eunoia, I wanted to introduce a few improvements.
   eulerr used `nlm()` for these losses too, computing gradients numerically, but
   for losses like the maximum absolute error, the gradient is essentially flat
   over large regions of the parameter space, which makes `nlm()` struggle. There
-  is also the options to use MADS (Mesh Adaptive Direct Search) for
+  is also the option to use MADS (Mesh Adaptive Direct Search) for
   non-continuous losses, which is typically more robust than Nelder--Mead, but
   slower. The default is still Nelder--Mead for that reason, but this might
-  possibly change in the future.
+  change in the future.
 
 You can see the new pipeline in @fig-flowchart-new.
 
@@ -426,7 +426,7 @@ not too large.
 
 ### Additional Shapes
 
-eulerr only supported two shapes: circles and ellipses. Euonia adds squares and
+eulerr only supported two shapes: circles and ellipses. Eunoia adds squares and
 rectangles (optionally rotated) to the mix. Here you can see the shapes in
 action, and also the recent plot composition features of eulerr that---in
 patchwork style---allow you to combine multiple diagrams into a single figure.
@@ -493,7 +493,7 @@ The trickiest part about labeling is that you have a fixed bounding box (canvas
 size) for the entire plot, but don't know before-the-fact how much space in the
 margins of the plot you need to allocate to the labels, in case they need to be
 drawn outside of the actual diagram. And if you need more space, you will also
-need to draw a new bounding box and recompute the label's sizes on this bounding
+need to draw a new bounding box and recompute the labels' sizes on this bounding
 box, which in turn requires a new layout. This process is shown in
 @fig-labeling-algorithm.
 
@@ -506,7 +506,7 @@ flowchart TD
   B["Lay out the labels"]
   C["Compute the new bounding box"]
   D["Measure the labels' sizes on the new bounding box"]
-  E{"Did the label's sizes change?"}
+  E{"Did the labels' sizes change?"}
   F["Done!"]
   A --> B --> C --> D --> E
   E -->|Yes| B
@@ -520,19 +520,19 @@ efficiently.
 
 ### And Much More...
 
-There have been a number of other improvements to eulerr that I won't go into
-detail here, but which for instance includes the ability to include a *universe*
-(complement) set in the diagram, which is fit in the same way as the other
-shapes are, which therefore means that it's not actually guaranteed to fit^[I
-will likely consider whether we might need an option to force the complement box
-to cover all the shapes in the future.].
+There have been a number of other improvements to eulerr that I won't detail
+here, but which for instance include the ability to add a *universe*
+(complement) set to the diagram. It is fit in the same way as the other shapes,
+which means that it's not actually guaranteed to fit^[I will likely consider
+whether we might need an option to force the complement box to cover all the
+shapes in the future.].
 
 ## Euler Diagrams in Your Browser
 
 The JavaScript package ships the whole fitting engine compiled to WebAssembly.
-This makes it possibly to run Eunoia directly in your browser, without the use
-of a server to host a Shiny instance (for instance). The diagram below is fit
-live by the npm package, using [Observable](https://observablehq.com), which is
+This makes it possible to run Eunoia directly in your browser, without the need
+for a server to host a Shiny app (for instance). The diagram below is fit live
+by the npm package, using [Observable](https://observablehq.com), which is
 natively supported in Quarto (which this site is built with). Drag the sliders
 to change the region sizes or pick a different shape family, and the layout
 re-fits as you go.
@@ -614,8 +614,8 @@ md`**Loss:** ${layout.metrics.loss.toFixed(5)} &nbsp;·&nbsp;
 ```
 
 If you push the sliders to a configuration that no arrangement of shapes can
-satisfy, you will see the loss incrase: that number is the optimizer telling you
-how far short the best diagram falls. It is the same diagnostic the other
+satisfy, you will see the loss increase: that number is the optimizer telling
+you how far short the best diagram falls. It is the same diagnostic the other
 packages return, and a good habit to check before trusting any Euler diagram.
 
 ## A Note on Each Binding
@@ -686,12 +686,11 @@ engine backs the web app at [eunoia.bz/app](https://eunoia.bz/app).
 ## Try It
 
 Eunoia and its bindings are open source and dual-licensed under MIT and
-Apache-2.0. The Rust core, the JavaScript package, and the Julia binding live in
-[the eunoia repository](https://github.com/jolars/eunoia); eulerr and the Python
-package have [their](https://github.com/jolars/eulerr)
-[own](https://github.com/jolars/eunoia-py). Narrative documentation for the
-whole family is at [eunoia.bz/docs](https://eunoia.bz/docs/).
+Apache-2.0. The Rust core and the JavaScript package live in [the eunoia
+repository](https://github.com/jolars/eunoia). The R, Julia, and Python packages
+have their own homes\ (@tbl-ecosystem). Introductory documentation for the whole
+family can be found at [eunoia.bz/docs](https://eunoia.bz/docs/).
 
-Whichever language you reach for, I would love to hear how it goes. File an
-issue or start a discussion on whichever repository fits, and contributions of
-any kind are very welcome.
+Even though eulerr has been around for a decade, the other packages are still
+young and I'm very interested in hearing from you. Bug reports, feature
+requests, and pull requests are all welcome.
