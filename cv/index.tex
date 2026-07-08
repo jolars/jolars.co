@@ -1,0 +1,652 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[textwidth=15cm,nomarginpar]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage[]{libertine}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={CV},
+  pdfauthor={Johan Larsson},
+  colorlinks=true,
+  linkcolor={SteelBlue4},
+  filecolor={Maroon},
+  citecolor={SteelBlue4},
+  urlcolor={SteelBlue4},
+  pdfcreator={LaTeX via pandoc}}
+
+\ifXeTeX
+\special{pdf:trailerid [ <68975b0b6b7d4f3bddbd9f3479d78732> <68975b0b6b7d4f3bddbd9f3479d78732> ]}
+\fi
+\ifPDFTeX
+\pdftrailerid{}
+\pdftrailer{/ID [ <68975b0b6b7d4f3bddbd9f3479d78732> <68975b0b6b7d4f3bddbd9f3479d78732> ]}
+\fi
+\ifLuaTeX
+\pdfvariable trailerid {[ <68975b0b6b7d4f3bddbd9f3479d78732> <68975b0b6b7d4f3bddbd9f3479d78732> ]}
+\fi
+
+\usepackage{enumitem}
+\usepackage{calc}
+\usepackage{academicons}
+\usepackage{fontawesome6}
+
+% \usepackage{libertinus}
+\usepackage{microtype}
+
+\setlist[description]{
+  font        = \rmfamily\footnotesize,
+  parsep      = 0.3ex,
+  align       = parleft,
+  labelwidth  = \widthof{Jun 28, 2025} + 1ex,
+  itemindent  = 0em,
+  leftmargin  = \widthof{Jun 28, 2025} + 1ex,
+  labelindent = 0em,
+  labelsep    = 0em,
+  itemsep     = 1ex,
+}
+
+\usepackage{fancyhdr}
+\title{CV}
+\author{Johan Larsson}
+\date{8 July 2026}
+
+\begin{document}
+
+\fancyhead{}
+\fancyhead[L]{Johan Larsson}
+\fancyhead[R]{CV}
+
+\pagestyle{fancy}
+\thispagestyle{plain}
+
+{\large\textcolor{darkgray}{CV}}\smallskip
+
+\noindent {\huge \bfseries Johan Larsson}\smallskip
+
+\noindent {\large 8 July 2026}
+
+\vskip 1\baselineskip
+
+\begin{minipage}[t]{0.5\textwidth}
+    \small\noindent Lund, Sweden
+  
+    \href{mailto:johan@jolars.co}{\nolinkurl{johan@jolars.co}}
+  
+  \end{minipage}%
+\begin{minipage}[t]{0.5\textwidth}
+  \raggedleft\small
+
+    {\faHouse}\,
+  \href{https://jolars.co}{\nolinkurl{https://jolars.co}}
+  
+  
+    {\faGithub}\,
+  \href{https://github.com/jolars}{\nolinkurl{github.com/jolars}}
+  
+    {\aiOrcid}\,
+  \href{https://orcid.org/0000-0002-4029-5945}{0000-0002-4029-5945}
+  
+  
+    {\aiGoogleScholar}\, \href{https://scholar.google.com/citations?user=DCJvywYAAAAJ}{Google Scholar}
+  
+    {\faLinkedin}\,
+  \href{https://www.linkedin.com/in/larssonj}{\nolinkurl{linkedin.com/in/larssonj}}
+  
+      {\faMastodon}\,
+  \href{https://mastodon.social/@jolars}{\nolinkurl{@jolars@mastodon.social}}
+    
+    {\faBluesky}\,
+  \href{https://bsky.app/profile/jolars.co}{\nolinkurl{@jolars.co}}
+  \end{minipage}
+
+\section{Professional Experience}\label{professional-experience}
+
+\begin{description}
+\tightlist
+\item[2024--present]
+\textbf{Thiele Postdoctoral Researcher}, \emph{Department of
+Mathematical Sciences, Copenhagen University}
+\item[2018--2024]
+\textbf{PhD Student}, \emph{Department of Statistics, Lund University}
+\end{description}
+
+\section{Education}\label{education}
+
+\begin{description}
+\item[2018--2024]
+\textbf{PhD in Statistics}, \emph{Department of Statistics, Lund
+University}
+
+Title: ``Optimization and Algorithms in Sparse Regression''
+
+Supervisors: Jonas Wallin and Malgorzata Bogdan
+
+Awarded best PhD thesis in statistics in Sweden in 2024 by the Cramér
+Society and best PhD thesis at Lund School of Economics and Management
+in 2024
+\item[2016--2018]
+\textbf{Bachelor's Degree in Statistics}, \emph{Department of
+Statistics, Lund University}
+
+Title: ``eulerr: Area-Propotional Euler Diagrams with Ellipses''
+
+Supervisor: Peter Gustafsson
+\end{description}
+
+\section{Publications}\label{publications}
+
+\subsection{Conference and Journal
+Articles}\label{conference-and-journal-articles}
+
+\protect\phantomsection\label{refs-articles}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-larsson2025c}
+Larsson, J. (2025). Qualpal: Qualitative color palettes for everyone.
+\emph{Journal of Open Source Software}, \emph{10}(114), 8936.
+\url{https://doi.org/10.21105/joss.08936}
+
+\bibitem[\citeproctext]{ref-larsson2025}
+Larsson, J., \& Wallin, J. (2025).
+\href{https://openreview.net/forum?id=6xKyDBIwQ5}{The choice of
+normalization influences shrinkage in regularized regression}.
+\emph{Transactions on Machine Learning Research}.
+
+\bibitem[\citeproctext]{ref-larsson2025d}
+Larsson, J., Bogdan, M., Grzesiak, K., Massias, M., \& Wallin, J. (2025,
+November 4). \emph{Efficient solvers for {SLOPE} in {R}, {Python},
+{Julia}, and {C}++}. \url{https://doi.org/10.48550/arXiv.2511.02430}
+
+\bibitem[\citeproctext]{ref-larsson2023}
+Larsson, J., Klopfenstein, Q., Massias, M., \& Wallin, J. (2023).
+\href{https://proceedings.mlr.press/v206/larsson23a.html}{Coordinate
+descent for {SLOPE}}. In F. Ruiz, J. Dy, \& J.-W. van de Meent (Eds.),
+\emph{Proceedings of the 26th international conference on artificial
+intelligence and statistics} (Vol. 206, pp. 4802--4821). PMLR.
+
+\bibitem[\citeproctext]{ref-larsson2022b}
+Larsson, J., \& Wallin, J. (2022).
+\href{\%0A\%20\%20\%20\%20https://papers.nips.cc/paper/\%5Ffiles/paper/2022/hash/65a925049647eab0aa06a9faf1cd470b-Abstract-Conference.html\%0A\%20\%20}{The
+{Hessian} screening rule}. In S. Koyejo, S. Mohamed, A. Agarwal, D.
+Belgrave, K. Cho, \& A. Oh (Eds.), \emph{Advances in neural information
+processing systems 35} (Vol. 35, pp. 15823--15835). Curran Associates,
+Inc.
+
+\bibitem[\citeproctext]{ref-moreau2022a}
+Moreau, T., Massias, M., Gramfort, A., Ablin, P., Bannier, P.-A.,
+Charlier, B., Dagréou, M., Tour, T. D. la, Durif, G., Dantas, C. F.,
+Klopfenstein, Q., Larsson, J., Lai, E., Lefort, T., Malézieux, B.,
+Moufad, B., Nguyen, B. T., Rakotomamonjy, A., Ramzi, Z., \ldots{}
+Vaiter, S. (2022).
+\href{\%0A\%20\%20\%20\%20https://proceedings.neurips.cc/paper/\%5Ffiles/paper/2022/hash/a30769d9b62c9b94b72e21e0ca73f338-Abstract-Conference.html\%0A\%20\%20}{Benchopt:
+Reproducible, efficient and collaborative optimization benchmarks}. In
+S. Koyejo, S. Mohamed, A. Agarwal, D. Belgrave, K. Cho, \& A. Oh (Eds.),
+\emph{Advances in neural information processing systems 35} (Vol. 35,
+pp. 25404--25421). Curran Associates, Inc.
+
+\bibitem[\citeproctext]{ref-larsson2021}
+Larsson, J. (2021).
+\href{https://www.eysm2021.panteion.gr/files/Proceedings/\%5FEYSM/\%5F2021.pdf}{Look-ahead
+screening rules for the lasso}. In A. Makridis, F. S. Milienos, P.
+Papastamoulis, C. Parpoula, \& A. Rakitzis (Eds.), \emph{22nd {European}
+young statisticians meeting - proceedings} (pp. 61--65). {Panteion
+university of social and political sciences}.
+
+\bibitem[\citeproctext]{ref-larsson2020b}
+Larsson, J., Bogdan, M., \& Wallin, J. (2020).
+\href{\%0A\%20\%20\%20\%20https://papers.nips.cc/paper/\%5Ffiles/paper/2020/hash/a7d8ae4569120b5bec12e7b6e9648b86-Abstract.html\%0A\%20\%20}{The
+strong screening rule for {SLOPE}}. In H. Larochelle, M. Ranzato, R.
+Hadsell, M.-F. Balcan, \& H.-T. Lin (Eds.), \emph{Advances in neural
+information processing systems 33} (Vol. 33, pp. 14592--14603). Curran
+Associates, Inc.
+
+\bibitem[\citeproctext]{ref-larsson2018}
+Larsson, J., \& Gustafsson, P. (2018).
+\href{http://ceur-ws.org/Vol-2116/paper7.pdf}{A case study in fitting
+area-proportional {Euler} diagrams with ellipses using eulerr}.
+\emph{Proceedings of International Workshop on Set Visualization and
+Reasoning}, \emph{2116}, 84--91.
+
+\end{CSLReferences}
+
+\subsection{Theses}\label{theses}
+
+\protect\phantomsection\label{refs-theses}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-larsson2024}
+Larsson, J. (2024).
+\emph{\href{https://lup.lub.lu.se/record/0b9c97e8-5f65-43eb-9f7a-c4f237568370}{Optimization
+and algorithms in sparse regression: Screening rules, coordinate
+descent, and normalization}} {[}PhD thesis, Department of Statistics,
+Lund University{]}.
+
+\bibitem[\citeproctext]{ref-larsson2018a}
+Larsson, J. (2018).
+\emph{\href{http://lup.lub.lu.se/student-papers/record/8934042}{Eulerr:
+Area-proportional {Euler} diagrams with ellipses}} {[}Bachelor's thesis,
+Department of Statistics, Lund University{]}.
+
+\end{CSLReferences}
+
+\section{Invited Talks}\label{invited-talks}
+
+\begin{description}
+\item[Mar 24, 2025]
+\textbf{Optimization and Algorithms in Sparse Regression: A Summary of
+My Thesis}
+
+Cramér Society Mini-Conference
+\item[Nov 13, 2024]
+\textbf{The Choice of Normalization Directly Affects Feature Selection
+in Regularized Regression}
+
+Danish Statistical Society (DSTS) Fall Meeting
+\item[Apr 10, 2024]
+\textbf{Normalization for class-imbalanced binary features in
+regularized regression}
+
+Uppsala Statistics Seminar Series
+\item[Oct 27, 2021]
+\textbf{Designing a Distance-Based Course in Data Visualization: Lessons
+Learned}
+
+Cramér Society Fall Meeting
+\item[Nov 16, 2021]
+\textbf{The Hessian Screening Rule}
+
+Seminar at the Faculty of Pure and Applied Mathematics, Wrocław
+University of Science and Technology
+\item[Sep 21, 2021]
+\textbf{The Hessian Screening Rule and Adaptive Lasso Paths}
+
+Statistics Seminar at the Department of Mathematical Statistics,
+Chalmers/Gothenburg University
+\item[Sep 9, 2021]
+\textbf{Look-Ahead Screening Rules for the Lasso}
+
+EYSM 2021
+\item[May 8, 2020]
+\textbf{The Strong Screening Rule for SLOPE}
+
+Statistical Learning Seminar
+\item[Jun 18, 2018]
+\textbf{A Case Study in Fitting Area-Proportional Euler Diagrams with
+Ellipses Using eulerr}
+
+SetVR 2018
+\end{description}
+
+\section{Teaching}\label{teaching}
+
+\subsection{Course Development}\label{course-development}
+
+\begin{description}
+\tightlist
+\item[2020--2023]
+Data Visualization, \emph{Department of Statistics, Lund University}
+\end{description}
+
+\subsection{Instructor}\label{instructor}
+
+\begin{description}
+\tightlist
+\item[2024--now]
+Computational Statistics, \emph{Department of Mathematical Sciences,
+University of Copenhagen}
+\item[2020--2023]
+Data Visualization, \emph{Department of Statistics, Lund University}
+\item[2019--2021]
+Statistics: Basic Course, \emph{Department of Statistics, Lund
+University}
+\end{description}
+
+\subsection{Teaching Assistant}\label{teaching-assistant}
+
+\begin{description}
+\tightlist
+\item[2025--now]
+Project in Statistics, \emph{Department of Mathematical Sciences,
+University of Copenhagen}
+\item[2021]
+Introduction to R Programming, \emph{Department of Statistics, Lund
+University}
+\item[2019--2021]
+Statistics for Fire Engineers, \emph{Department of Statistics, Lund
+University}
+\item[2019--2020]
+Data Mining and Visualization, \emph{Department of Statistics, Lund
+University}
+\item[2019]
+Artificial Intelligence and Deep Learning, \emph{Department of
+Statistics, Lund University}
+\end{description}
+
+\section{Supervision}\label{supervision}
+
+\begin{description}
+\item[2025]
+Project Outside the Course Scope, \emph{Department of Mathematical
+Sciences, University of Copenhagen}.
+\item[2025]
+Project Outside the Course Scope, \emph{Department of Mathematical
+Sciences, University of Copenhagen}.
+
+Student: Frederik Fabricius Bjerre
+
+Title: caugi: Causal Graph Interface (for R)
+\item[2023]
+Bachelor's Thesis, \emph{Department of Statistics, Lund University}.
+
+Student: Elias Gullberg
+
+Title: Weather Factors and E. coli Concentration in Barnviken, Malmö --
+A Linear Mixed Model Approach
+\item[2023]
+Bachelor's Thesis, \emph{Department of Statistics, Lund University}.
+
+Students: Marcus Stolz, Jonathan Christopher
+
+Title: Exploring the Impact of Pseudo and Quasi Random Number Generators
+on Monte Carlo Integration of the Multivariate Normal Distribution
+\item[2022]
+Master's Thesis, \emph{Data Analysis and Business Analytics, Lund
+University}
+
+Students: Gustavo Lemos Borba, Stella Sofia Sologaistoa Betancourt
+
+Title: Interactive Network Visualization of Insurance Portfolios
+\item[2019--2020]
+Google Summer of Code
+
+Students: Qincheng Liu (2019), Akarsh Goyal (2020)
+\end{description}
+
+\section{Awards}\label{awards}
+
+\begin{description}
+\tightlist
+\item[2025]
+Lund School of Economics and Management award for best PhD thesis in
+2024
+
+The Cramér Society award for best PhD thesis in statistics or
+mathematical statistics in 2024
+
+Oscar II's scholarship for best PhD thesis at Lund School of Economics
+and Management in 2024
+\end{description}
+
+\section{Editorial Service}\label{editorial-service}
+
+\begin{description}
+\tightlist
+\item[2025--present]
+Topic Editor, \emph{Journal of Open Source Software}
+\end{description}
+
+\section{Referee Service}\label{referee-service}
+
+\begin{description}
+\tightlist
+\item[2026]
+ICML
+\item[2025]
+ICML, Journal of Open Source Software, TMLR
+\item[2024]
+ICML, Computo, AISTATS, Annals of Statistics
+\item[2023]
+Journal of Computational and Graphical Statistics
+\item[2022]
+NeurIPS, ICML
+\item[2021]
+NeurIPS
+\end{description}
+
+\section{Comittee Service}\label{comittee-service}
+
+\begin{description}
+\item[2020--2022]
+Statistical Learning Seminar Series, \emph{Main Organizer}
+
+\url{https://statistical-learning-seminars.github.io/}
+\end{description}
+
+\section{Software}\label{software}
+
+\begin{description}
+\item[SLOPE]
+Generalized linear models penalized with the sorted L1 norm
+
+Author and maintainer
+
+R package (\url{https://CRAN.R-project.org/package=SLOPE}), Python
+package (\url{https://pypi.org/projects/sortedl1}), Julia package
+(\url{https://github.com/jolars/SLOPE.jl}), C++ library
+(\url{https://github.com/jolars/libslope})
+\item[benchopt]
+Reproducible, efficient and collaborative optimization benchmarks
+
+Contributor
+
+Python package (\url{https://benchopt.github.io})
+\item[eulerr]
+Area-proportional Euler diagrams with ellipses
+
+Author and maintainer
+
+R package (\url{https://CRAN.R-project.org/package=eulerr})
+\item[caugi]
+A high-performance graph package for working with causal relationships
+
+Co-author
+
+R package (\url{https://caugi.org})
+\item[Qualpal]
+Automatic generation of color palettes for data visualization
+
+Author and maintainer
+
+C++ library (\url{https://github.com/jolars/qualpal}), R package
+(\url{https://cran.r-project.org/package=qualpalr}), Web app
+(\url{https://qualpal.cc})
+\item[Moloch]
+A minimalist, feature-rich Beamer theme for LaTeX presentations
+
+Author and maintainer
+
+LaTeX package (\url{https://moloch.ink})
+\end{description}
+
+\section{Contracted Work}\label{contracted-work}
+
+\begin{description}
+\item[2021]
+\textbf{WHO Antimicrobial Resistance Dashboard}
+
+Contracted work to develop and deploy a visualization dashboard for
+WHO's Antimicrobial Resistance team in Europe.
+\end{description}
+
+
+
+
+\end{document}

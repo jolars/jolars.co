@@ -57,10 +57,15 @@ website:
       - text: "<i class='fa-brands fa-bluesky'></i><span class='visually-hidden'>Bluesky</span>"
         href: "https://bsky.app/profile/jolars.co"
         aria-label: Bluesky
+      - icon: linkedin
+        href: "https://www.linkedin.com/in/larssonj"
+        aria-label: "LinkedIn profile"
       - icon: github
         href: "https://github.com/jolars/"
         aria-label: "Github profile"
-      - text: "<i class='fa-brands fa-google-scholar'></i><span class='visually-hidden'>Google Scholar</span>"
+      - text:
+          "<i class='fa-brands fa-google-scholar'></i><span
+          class='visually-hidden'>Google Scholar</span>"
         href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
         aria-label: "Google scholar profile"
   page-footer:

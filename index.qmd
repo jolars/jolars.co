@@ -24,6 +24,9 @@ about:
     - text: "<i class='fa-brands fa-bluesky'></i> Bluesky"
       href: "https://bsky.app/profile/jolars.co"
       aria-label: Bluesky
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/larssonj
     - icon: github
       text: GitHub
       href: https://github.com/jolars

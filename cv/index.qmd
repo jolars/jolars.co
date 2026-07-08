@@ -33,6 +33,7 @@ homepage: https://jolars.co
 orcid: 0000-0002-4029-5945
 github: jolars
 google-scholar: DCJvywYAAAAJ
+linkedin: larssonj
 mastodon-id: jolars
 mastodon-server: mastodon.social
 bluesky: jolars.co
