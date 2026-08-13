@@ -71,14 +71,7 @@ their perceived difference.
 #| label: basic-usage
 
 library(qualpalr)
-pal <- qualpal(
-  n = 5,
-  list(
-    h = c(0, 360),
-    s = c(0.4, 0.6),
-    l = c(0.5, 0.85)
-  )
-)
+pal <- qualpal(n = 5, list(h = c(0, 360), s = c(0.4, 0.6), l = c(0.5, 0.85)))
 
 # Adapt the color space to deuteranopia
 pal <- qualpal(n = 5, colorspace = "pretty", cvd = "deutan")
@@ -215,29 +208,11 @@ example using `n = 5.`
 #| fig-cap: Final selected colors using the qualpalr algorithm
 #| echo: false
 
-pal <- qualpal(
-  5,
-  list(
-    h = c(-200, 120),
-    s = c(0.3, 0.8),
-    l = c(0.4, 0.9)
-  )
-)
+pal <- qualpal(5, list(h = c(-200, 120), s = c(0.3, 0.8), l = c(0.4, 0.9)))
 
-plot3d(
-  DIN99d,
-  col = rgb(RGB),
-  main = "DIN99d",
-  alpha = 0.1
-)
+plot3d(DIN99d, col = rgb(RGB), main = "DIN99d", alpha = 0.1)
 
-plot3d(
-  pal$DIN99d,
-  col = pal$hex,
-  main = "DIN99d",
-  add = TRUE,
-  size = 5
-)
+plot3d(pal$DIN99d, col = pal$hex, main = "DIN99d", add = TRUE, size = 5)
 rglwidget()
 ```
 

@@ -182,11 +182,7 @@ f_new <- function(dat, n) {
 
 n <- 5
 data <- matrix(runif(900), ncol = 3)
-microbenchmark::microbenchmark(
-  f_greedy(data, n),
-  f_new(data, n),
-  times = 1000L
-)
+microbenchmark::microbenchmark(f_greedy(data, n), f_new(data, n), times = 1000L)
 ```
 
 The newest development version of qualpalr now uses this updated algorithm which

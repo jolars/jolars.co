@@ -107,12 +107,11 @@ fit1 <- euler(c(
 
 # Input as a matrix of logicals
 set.seed(1)
-mat <-
-  cbind(
-    A = sample(c(TRUE, TRUE, FALSE), size = 50, replace = TRUE),
-    B = sample(c(TRUE, FALSE), size = 50, replace = TRUE),
-    C = sample(c(TRUE, FALSE, FALSE, FALSE), size = 50, replace = TRUE)
-  )
+mat <- cbind(
+  A = sample(c(TRUE, TRUE, FALSE), size = 50, replace = TRUE),
+  B = sample(c(TRUE, FALSE), size = 50, replace = TRUE),
+  C = sample(c(TRUE, FALSE, FALSE, FALSE), size = 50, replace = TRUE)
+)
 fit2 <- euler(mat)
 ```
 
