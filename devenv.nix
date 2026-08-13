@@ -199,6 +199,7 @@ in
     };
   };
 
-  # https://devenv.sh/git-hooks/
-  # git-hooks.hooks.shellcheck.enable = true;
+  git-hooks.hooks = {
+    panache-format.enable = true;
+  };
 }
