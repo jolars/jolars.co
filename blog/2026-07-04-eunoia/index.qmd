@@ -263,8 +263,12 @@ using Eunoia
 
 euler(
     Dict(
-        "Adventure" => 20, "Comedy" => 14, "Drama" => 18,
-        "Adventure&Comedy" => 6, "Adventure&Drama" => 5, "Comedy&Drama" => 4,
+        "Adventure" => 20,
+        "Comedy" => 14,
+        "Drama" => 18,
+        "Adventure&Comedy" => 6,
+        "Adventure&Drama" => 5,
+        "Comedy&Drama" => 4,
         "Adventure&Comedy&Drama" => 2,
     );
     shape = "ellipse",

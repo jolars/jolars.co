@@ -103,12 +103,12 @@ example:
 \date{\today}
 
 \begin{document}
-  \maketitle
-  \section{First Section}
-  \begin{frame}
-    \frametitle{First Frame}
-    Hello, world!
-  \end{frame}
+\maketitle
+\section{First Section}
+\begin{frame}
+  \frametitle{First Frame}
+  Hello, world!
+\end{frame}
 \end{document}
 ```
 

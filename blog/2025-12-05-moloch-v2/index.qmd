@@ -98,10 +98,7 @@ Both this option and the variant option are aliased in the package options, so
 you can also set them when loading the theme:
 
 ```latex
-\usetheme[
-  colortheme=tomorrow,
-  colortheme variant=dark
-]{moloch}
+\usetheme[colortheme=tomorrow, colortheme variant=dark]{moloch}
 ```
 
 ### Granular Color Control
@@ -363,7 +360,7 @@ To try out the new features:
 
 \begin{frame}{New Color System}
   The new color system makes it easy to create beautiful presentations.
-  
+
   \begin{alertblock}{Try It Out}
     Customize colors with \texttt{\textbackslash molochcolors\{\}}.
   \end{alertblock}
