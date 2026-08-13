@@ -16,7 +16,7 @@ fig-cap-location: margin
 ---
 
 ::: {.callout-tip}
-Moloch has now been published in TUGboat [@larsson2026]! The article will be
+Moloch has now been published in TUGboat\ [@larsson2026]! The article will be
 available for free on the TUGboat website when the next issue is published.
 :::
 

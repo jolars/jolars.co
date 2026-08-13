@@ -94,7 +94,7 @@ auto colorspace_pal = qp.generate(5);
 ![Five colors from the HSL color space](images/cpp-hsl.png)
 
 In the next example, we change to using one of the built-in color palettes, in
-this case *Set2* from *ColorBrewer* [@harrower2003] as input, and adapting the
+this case *Set2* from *ColorBrewer*\ [@harrower2003] as input, and adapting the
 color palette to the color vision deficiency type deuteranomaly of severity 0.7
 (70%).
 
@@ -156,11 +156,11 @@ you choose to use Qualpal, is a new [vignette on comparisons to
 alternatives](https://jolars.github.io/qualpalr/articles/comparisons). So, in
 case you are interested in knowing how Qualpal compares to other alternatives,
 such as
-[palettailor](https://www.yunhaiwang.net/infoVis2020/palettailor/color-palette-generation.html)
-[@lu2021], [Colorgorical](https://gramaz.io/colorgorical/) [@gramazio2016], the
-aforementioned [iWantHue](https://medialab.github.io/iwanthue/), or glasbey
-[@mcinnes2025], please check it out. As you might guess, Qualpal performs very
-well in these comparisons.
+[palettailor](https://www.yunhaiwang.net/infoVis2020/palettailor/color-palette-generation.html)\ [@lu2021],
+[Colorgorical](https://gramaz.io/colorgorical/)\ [@gramazio2016], the
+aforementioned [iWantHue](https://medialab.github.io/iwanthue/), or
+glasbey\ [@mcinnes2025], please check it out. As you might guess, Qualpal
+performs very well in these comparisons.
 
 ## The CLI Tool
 
@@ -201,7 +201,7 @@ means significant cost savings and automatically scales to any number of users.
 ## JOSS Publication
 
 Finally, I am happy to announce that Qualpal was just published in the Journal
-of Open Source Software (JOSS)! [@larsson2025c] I have for a long time been
+of Open Source Software (JOSS)!\ [@larsson2025c] I have for a long time been
 interested in submitting something to JOSS, which to me seems to have a great
 model for papers about software.
 
@@ -218,13 +218,13 @@ the source of information about the software, rather than an academic paper
 Another change that was made as part of the recent work on Qualpal was the
 introduction of other color difference metric. In particular, Qualpal now
 supports the [CIEDE2000
-metric](https://en.wikipedia.org/wiki/Color_difference#CIEDE2000) [@sharma2005],
+metric](https://en.wikipedia.org/wiki/Color_difference#CIEDE2000)\ [@sharma2005],
 which is the current standard set by the CIE organization for computing
-differences between colors. Qualpal previously used the DIN99d metric
-[@cui2002], which is computationally appealing since, once the colors are
-converted into the DIN99d space, the color metric formula is simply Euclidean
-distance. But the tradeoff is that DIN99d is not as perceptually accurate, and I
-therefore decided o switch the default to CIEDE2000.
+differences between colors. Qualpal previously used the DIN99d
+metric\ [@cui2002], which is computationally appealing since, once the colors
+are converted into the DIN99d space, the color metric formula is simply
+Euclidean distance. But the tradeoff is that DIN99d is not as perceptually
+accurate, and I therefore decided o switch the default to CIEDE2000.
 
 The result is that the palettes are now more distinct than before, at the cost
 of an increase in computation time. For most practical purposes, however, the

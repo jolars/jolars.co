@@ -37,10 +37,10 @@ options(digits = 3)
 
 ## Introduction to SLOPE
 
-SLOPE [@bogdan2015] stands for sorted L1 penalized estimation and is a
-generalization of OSCAR [@bondell2008]. As the name suggests, SLOPE is a type of
-$\ell_1$-regularization. More specifically, SLOPE fits generalized linear models
-regularized with the sorted $\ell_1$ norm. The objective in SLOPE is
+SLOPE\ [@bogdan2015] stands for sorted L1 penalized estimation and is a
+generalization of OSCAR\ [@bondell2008]. As the name suggests, SLOPE is a type
+of $\ell_1$-regularization. More specifically, SLOPE fits generalized linear
+models regularized with the sorted $\ell_1$ norm. The objective in SLOPE is
 
 $$
   \operatorname{minimize}\left\{ f(\beta) + J(\beta \mid \lambda)\right\},
@@ -59,7 +59,7 @@ Some people will note that this penalty is a generalization of the standard
 $\ell_1$ norm penalty[^1]. As such, SLOPE is a type of sparse regression---just
 like the lasso. Unlike the lasso, however, SLOPE gracefully handles correlated
 features. Whereas the lasso often discards all but a few among a set of
-correlated features [@jia2010], SLOPE instead *clusters* such features together
+correlated features\ [@jia2010], SLOPE instead *clusters* such features together
 by setting such clusters to have the same coefficient in absolut value.
 
 [^1]: Simply set $\lambda_i = \lambda_j$ for all $i,j \in \{1,\dots,p\}$ and you
@@ -107,7 +107,7 @@ plot(fit)
 The package now uses predictor screening rules to vastly improve performance in
 the $p \gg n$ domain. Screening rules are part of what makes other related
 packages such as glmnet so efficient. In SLOPE, we use a variant of the strong
-screening rules for the lasso [@tibshirani2012].
+screening rules for the lasso\ [@tibshirani2012].
 
 ```{r}
 #| label: screening

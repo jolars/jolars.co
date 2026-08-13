@@ -16,7 +16,7 @@ cap-location: margin
 
 **Spoiler alert:** I passed my defense! 🎉
 
-My PhD thesis is now published and available for download [@larsson2024]! It is
+My PhD thesis is now published and available for download\ [@larsson2024]! It is
 the culmination of five years of research on optimization other related
 numerical algoritms for sparse regression, in particular the lasso and sorted
 l-one penalized estimation (SLOPE).
@@ -34,14 +34,14 @@ thesis itself!
 
 ## Paper 1
 
-The first of the papers introduces *the strong screening rule for SLOPE*
-[@larsson2020b], which is the first screening rule for SLOPE. If you haven't
-heard about screening rules before, they are algorithms that discard features
-(predictors/variables) prior to fitting the model. They are remarkably effective
-for sparse methods in the high-dimensional setting and typically offer speed ups
-of several orders of magnitude in the high-dimensional setting. They were first
-discovered for the lasso with @elghaoui2010a and have since proven to be a key
-ingredient in making the lasso computationally efficient.
+The first of the papers introduces *the strong screening rule for
+SLOPE*\ [@larsson2020b], which is the first screening rule for SLOPE. If you
+haven't heard about screening rules before, they are algorithms that discard
+features (predictors/variables) prior to fitting the model. They are remarkably
+effective for sparse methods in the high-dimensional setting and typically offer
+speed ups of several orders of magnitude in the high-dimensional setting. They
+were first discovered for the lasso with @elghaoui2010a and have since proven to
+be a key ingredient in making the lasso computationally efficient.
 
 They are based on the following reasoning:
 
@@ -76,7 +76,7 @@ even be used together.
 The first heuristic screening rule for the lasso was introduced by
 @tibshirani2012: *the strong screening rule*. And in the first paper of my
 thesis, we extend this screening rule strategy to the problem of solving sorted
-\(\ell\_1\) penalized regression (SLOPE) [@bogdan2015].
+\(\ell\_1\) penalized regression (SLOPE)\ [@bogdan2015].
 
 I have provided some results from the first paper in @tbl-paper1-results. As you
 can see, screening improves performance considerably and offers no computational
@@ -90,7 +90,7 @@ set).
   | news20      | Multinomial   | 1000 |  62061 |                5485 |              517 |
   | physician   | Poisson       | 4406 |     25 |                  34 |               34 |
 
-  : Results from one of the experiments in the first paper [@larsson2020b],
+  : Results from one of the experiments in the first paper\ [@larsson2020b],
     showing time taken to fit a full SLOPE path to a few different data sets.
     {#tbl-paper1-results}
 
@@ -103,9 +103,9 @@ almost not penalized at all.] But another possibility that had previously not
 been explored is the idea of screening not only for the next step on the path,
 but for *all* of the remaining steps as well. This is the idea behind
 *look-ahead screening rules*, which I introduce in the second paper of the
-thesis, which is a short paper [@larsson2021]. We use the Gap-Safe screening
-rule [@ndiaye2017] here. As the name suggests, it is a safe screening rule. This
-means that if a feature is screened out, it is guaranteed to be zero in the
+thesis, which is a short paper\ [@larsson2021]. We use the Gap-Safe screening
+rule\ [@ndiaye2017] here. As the name suggests, it is a safe screening rule.
+This means that if a feature is screened out, it is guaranteed to be zero in the
 solution.
 
 As I show in the paper, the results are quite promising (@fig-paper2),
@@ -129,7 +129,7 @@ ever-active set, rather than the strong set) because of this.
 The reason for this is that the strong rule (and every other screening rules we
 know of), ignores information about how close the features are to becoming
 active. This is the motivation for the *Hessian screening rule* that we
-introduce in the third paper of the thesis [@larsson2022b]. The name stems from
+introduce in the third paper of the thesis\ [@larsson2022b]. The name stems from
 the fact that we use second-order information about the optimization problem,
 which involves the Hessian matrix $X^\intercal X$. The rule offers a better
 estimate of the correlation vector, which in practice leads to better screening
@@ -154,8 +154,8 @@ the many possible sources of variation.
 
 In short, there is a dire need for a framework through which this process can be
 made simple, reproducible, and transparent. This is the motivation behind the
-**benchopt** package, which we present in the fourth of this thesis' papers
-[@moreau2022a].
+**benchopt** package, which we present in the fourth of this thesis'
+papers\ [@moreau2022a].
 
 The goal of benchopt is to make life easier for both researchers in optimization
 and users of optimization software. For a researcher who has developed a new
@@ -163,7 +163,7 @@ optimization method for SLOPE, for instance, all you need to do is to write the
 code for your solver (optimization method) and plug it into the existing
 benchopt benchmark for SLOPE and run it. The package will then automatically
 compare your method with all the other methods in the benchmark and output table
-and plots of the results [@fig-paper4]. If you instead are a user who is
+and plots of the results\ [@fig-paper4]. If you instead are a user who is
 interested in using SLOPE for your applied work and want to know which algorithm
 to use, you can either browse the extensive database of results that other users
 have already uploaded or just download the benchmark and run it yourself on the
@@ -185,8 +185,8 @@ non-separable, which is the case in SLOPE. In practice, this has reduced the
 applicability of SLOPE to large data, which is unfortunate given the many
 appealing properties of the model.
 
-In paper 5 [@larsson2023], however, we present a way to circumvent this issue by
-using a hybrid of proximal coordinate and proximal gradient descent. Our main
+In paper 5\ [@larsson2023], however, we present a way to circumvent this issue
+by using a hybrid of proximal coordinate and proximal gradient descent. Our main
 discovery is that if we fix the clusters and optimize over each cluster in turn,
 rather than each feature, the problem becomes separable, which means that
 coordinate descent can be used. And if we combine this with proximal gradient
@@ -227,7 +227,7 @@ normalization with respect to the class balance of the features: the proportion
 of ones to zeros (or vice versa). Both the lasso and the ridge estimators turn
 out to be sensitive to this class balance and, depending on the type of
 normalization used, have trouble recovering effects that are associated with
-binary features as long as their class balance is severe enough [@fig-paper5].
+binary features as long as their class balance is severe enough\ [@fig-paper5].
 
 ![Estimated coefficients from lasso and ridge regression for a two-feature
 problem where one of the features has a quasi-normal distribution (values

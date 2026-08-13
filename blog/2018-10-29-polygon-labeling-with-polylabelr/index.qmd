@@ -69,8 +69,8 @@ Up til now, I solved this in **eulerr** by, for each overlap, filling one of the
 involved shapes (circles or ellipses) with points and then numerically
 optimizing the location of the point using a Nelder--Mead optimizer. However,
 given that the solution to finding the distance between a point and an
-ellipse---at least one that is rotated---itself requires a numerical solution
-[@eberly2013], this procedure turned out to be quite inefficient.
+ellipse---at least one that is rotated---itself requires a numerical
+solution\ [@eberly2013], this procedure turned out to be quite inefficient.
 
 ## The promise of polygons
 
@@ -82,12 +82,12 @@ available remedy for this and have since several version back been used also in
 The upside of using polygons, however, are that they are usually much easier,
 even if sometimes inefficient, to work with. For instance, they make
 constructing separate shapes for each overlap a breeze using the polyclip
-package [@johnson2018].
+package\ [@johnson2018].
 
 And because basically all shapes in digital maps are polygons, there happens to
 exist a multitude of other useful tools to deal with a wide variety of tasks
 related to polygons. One of these turned out to be precisely what I needed:
-polylabel [@mapbox2018] from the Mapbox suite. Because the details of the
+polylabel\ [@mapbox2018] from the Mapbox suite. Because the details of the
 library [have already been explained
 elsewhere](https://blog.mapbox.com/a-new-algorithm-for-finding-a-visual-center-of-a-polygon-7c77e6492fbc)
 I will spare you the details, but briefly put it uses quadtree binning to divide

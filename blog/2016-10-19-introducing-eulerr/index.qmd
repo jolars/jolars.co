@@ -145,9 +145,9 @@ This shows us that the `A&B&C` intersection is somewhat overrepresented in
 however, the residuals are arguably of little concern.
 
 For an overall measure of the fit of the solution, we use the same stress
-statistic that Leland Wilkinson presented in his academic paper on venneuler
-[@wilkinson2012], which is given by the sums of squared residuals divided by the
-total sums of squares:
+statistic that Leland Wilkinson presented in his academic paper on
+venneuler\ [@wilkinson2012], which is given by the sums of squared residuals
+divided by the total sums of squares:
 
 $$
   \frac{\sum_{i=1}^n (f_i - y_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2}.

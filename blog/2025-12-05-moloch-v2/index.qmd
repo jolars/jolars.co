@@ -16,7 +16,7 @@ title-block-banner-color: black
 ---
 
 ::: {.callout-tip}
-Moloch has now been published in TUGboat [@larsson2026]! The article will be
+Moloch has now been published in TUGboat\ [@larsson2026]! The article will be
 available for free on the TUGboat website when the next issue is published.
 :::
 
@@ -163,7 +163,7 @@ color themes. And in this release, I've added two new themes:
 - Catppuccin, which is based on the popular [Catppuccin color
   palette](https://catppuccin.com)
 - Paper, a high-contrast theme that uses black, white, greys, and a set of
-  colors based on Stephen Few's book *Show Me the Numbers* [@few2004].
+  colors based on Stephen Few's book *Show Me the Numbers*\ [@few2004].
 
 ### Catppuccin
 
@@ -185,7 +185,7 @@ environments or web-based viewing.
 The Paper theme is one that I have long wanted to add, but which was difficult
 to implement due to the links between colors in the old system. It is a
 high-contrast theme that uses black, white, and greys for the main elements, and
-a set of colors inspired by Stephen Few's *Show Me the Numbers* [@few2004] for
+a set of colors inspired by Stephen Few's *Show Me the Numbers*\ [@few2004] for
 alerts and examples. It uses the same background for the main text as for the
 frame titles, which gives it a different feel compared to other themes.
 

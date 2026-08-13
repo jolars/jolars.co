@@ -86,9 +86,9 @@ base our selection on the previous 2 points that were selected to be maximally
 distant, the algorithm has to pick a suboptimal third point. The minimum
 distance in our example is `r min(stats::dist(mat[ind, ]))`.
 
-The solution I came up with is based on a solution from Schlomer et al.
-[@schlomer2011] who devised of an algorithm to partition a sets of points into
-subsets whilst maximizing the minimal distance. They used [delaunay
+The solution I came up with is based on a solution from Schlomer et
+al.\ [@schlomer2011] who devised of an algorithm to partition a sets of points
+into subsets whilst maximizing the minimal distance. They used [delaunay
 triangulations](https://en.wikipedia.org/wiki/Delaunay_triangulation) but I
 decided to simply use the distance matrix instead. The algorithm works as
 follows.
