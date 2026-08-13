@@ -8,5 +8,7 @@ extend-exclude = ["CLAUDE.md", ".claude/**/*"]
 
 [formatters]
 r = "arity"
+latex = "badness"
+julia = "fatou"
 python = "ruff"
 rust = "rustfmt"
