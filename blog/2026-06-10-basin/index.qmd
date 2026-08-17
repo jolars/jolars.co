@@ -15,6 +15,13 @@ image: og.png
 bibliography: references.bib
 ---
 
+::: {.callout-tip}
+A research paper describing Basin has now been published on
+arXiv\ [@larsson2026b], which describes the motivation and design of Basin in a
+bit more detail than this blog post. It also allows you to cite Basin in your
+own work, should you find it helpful!
+:::
+
 Basin is a new numerical optimization library that pairs a small generic core, a
 set of problem traits that you implement, a pluggable termination layer, and a
 driver loop called the `Executor`. On top of that sits a growing collection of

@@ -15,14 +15,15 @@ citation:
   author:
     - family: Larsson
       given: Johan
-  genre: Rust
-  issued: 2026-06-10
-  license: MIT OR Apache-2.0
-  source: crates.io
-  title: "Basin: Numerical optimization in Rust"
-  type: software
-  URL: https://basin.rs
-  version: 1.0.0
+  DOI: 10.48550/arXiv.2608.11279
+  URL: http://arxiv.org/abs/2608.11279
+  issued: 2026-08-11
+  number: arXiv:2608.11279
+  publisher: arXiv
+  source: arXiv.org
+  title-short: Basin
+  title: "Basin: efficient and extensible numerical optimization in Rust"
+  type: article
 ---
 
 Basin is a numerical optimization library for Rust, inspired by
