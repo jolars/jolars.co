@@ -12,7 +12,6 @@ categories:
   - Optimization
 title-block-banner: banner.svg
 image: og.png
-bibliography: references.bib
 ---
 
 ::: {.callout-tip}
