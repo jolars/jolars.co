@@ -59,7 +59,7 @@ let
   eulerr = pkgs.rPackages.buildRPackage {
     name = "eulerr-8.1.0";
     src = pkgs.fetchurl {
-      url = "https://cran.r-project.org/src/contrib/eulerr_8.1.0.tar.gz";
+      url = "https://cran.r-project.org/src/contrib/Archive/eulerr/eulerr_8.1.0.tar.gz";
       sha256 = "sha256-45+2h8dnwwOY3fRq8tszvivThVo8FCGUEKu0dRXrxHE=";
     };
     nativeBuildInputs = [
