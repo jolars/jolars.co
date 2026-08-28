@@ -35,6 +35,7 @@ url: https://tug.org/TUGboat/tb47-1/tb145larsson-moloch.html
 github: jolars/moloch
 ctan: moloch
 doi: 10.47397/tb/47-1/tb145larsson-moloch
+pdf: moloch-tuchboat.pdf
 categories:
   - LaTeX
   - Beamer
