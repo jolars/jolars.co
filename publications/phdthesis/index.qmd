@@ -72,7 +72,6 @@ citation:
   event-place: Lund, Sweden
   genre: PhD Thesis
   url: https://lup.lub.lu.se/record/0b9c97e8-5f65-43eb-9f7a-c4f237568370
-  pdf-url: https://lup.lub.lu.se/search/files/183797946/jlarsson-pdfthesis.pdf
 url: https://lup.lub.lu.se/record/0b9c97e8-5f65-43eb-9f7a-c4f237568370
 pdf: https://lup.lub.lu.se/search/files/183797946/jlarsson-pdfthesis.pdf
 github: jolars/phd-thesis
