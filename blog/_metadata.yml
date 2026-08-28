@@ -16,6 +16,7 @@ title-block-banner: true
 draft-mode: unlinked
 cap-location: margin
 author: Johan Larsson
+bibliography: ../assets/bibliography.bib
 reference-location: margin
 filters:
   - social-share

@@ -94,5 +94,4 @@ execute:
   freeze: auto
 
 toc: true
-bibliography: assets/bibliography.bib
 date-format: "D MMMM YYYY"
