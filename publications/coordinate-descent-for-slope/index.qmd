@@ -37,7 +37,7 @@ citation:
     and statistics
   event-title: AISTATS 2023
   issued: 2023-04-25
-  page: 4802–4821
+  page: 4802-4821
   publisher: PMLR
   type: paper-conference
   url: https://proceedings.mlr.press/v206/larsson23a.html
