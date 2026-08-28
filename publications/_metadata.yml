@@ -1,5 +1,6 @@
 sidebar: false
 author-title: Authors
+google-scholar: true
 format:
   html:
     template-partials:

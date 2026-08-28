@@ -17,4 +17,5 @@ listing:
 sidebar: false
 page-layout: full
 title-block-banner: false
+google-scholar: false
 ---
