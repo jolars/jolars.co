@@ -19,23 +19,6 @@ description: >
   Generate maximally distinct, colorblind-friendly palettes for qualitative
   data, with control over hue, lightness, and chroma. For R, Python, C++, and
   the web.
-citation:
-  author:
-    - family: Larsson
-      given: Johan
-  issued: 2025-10-16
-  container-title: Journal of Open Source Software
-  DOI: 10.21105/joss.08936
-  ISSN: 2475-9066
-  issue: "114"
-  language: en
-  page: "8936"
-  source: joss.theoj.org
-  title: "Qualpal: qualitative color palettes for everyone"
-  title-short: Qualpal
-  type: article-journal
-  URL: https://joss.theoj.org/papers/10.21105/joss.08936
-  volume: "10"
 ---
 
 Qualpal generates optimally distinct color palettes for qualitative data

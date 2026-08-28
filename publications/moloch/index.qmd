@@ -15,23 +15,6 @@ abstract: >
   describe the documentation system that we use to generate both PDF and HTML
   documentation.
 date: 2026-05-05
-citation:
-  author:
-    - family: Larsson
-      given: Johan
-    - given: samcarter
-  issued: 2026-05-05
-  container-title: TUGboat
-  volume: 47
-  issue: 145
-  page: 67-74
-  issn: 0896-3207
-  title:
-    "Moloch: A Minimalist, Feature-Rich Beamer Theme"
-  type: article-journal
-  URL: https://tug.org/TUGboat/tb47-1/tb145larsson-moloch.html
-  doi: 10.47397/tb/47-1/tb145larsson-moloch
-  pdf-url: https://jolars.co/publications/moloch/moloch-tugboat.pdf
 url: https://tug.org/TUGboat/tb47-1/tb145larsson-moloch.html
 github: jolars/moloch
 ctan: moloch

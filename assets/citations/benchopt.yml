@@ -1,0 +1,17 @@
+citation:
+  editor:
+    - S. Koyejo
+    - S. Mohamed
+    - A. Agarwal
+    - D. Belgrave
+    - K. Cho
+    - A. Oh
+  container-title: Advances in Neural Information Processing Systems
+  issued: 2022-12-06
+  title: "Benchopt: reproducible, efficient and collaborative optimization benchmarks"
+  title-short: Benchopt
+  type: paper-conference
+  url: https://papers.nips.cc/paper_files/paper/2022/hash/a30769d9b62c9b94b72e21e0ca73f338-Abstract-Conference.html
+  volume: 35
+  page: 25404-25421
+  doi: 10.52202/068431-1842

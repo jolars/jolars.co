@@ -14,21 +14,6 @@ categories:
 description: >
   A minimalist, feature-rich Beamer theme for LaTeX presentations with a clean
   design and extensive customization options.
-citation:
-  author:
-    - Johan Larsson
-    - samcarter
-  issued: 2026-05-05
-  doi: 10.47397/tb/47-1/tb145larsson-moloch
-  container-title: TUGboat
-  volume: 47
-  issue: 145
-  page: 67-74
-  issn: 0896-3207
-  title:
-    "Moloch: A Minimalist, Feature-Rich Beamer Theme"
-  type: article-journal
-  URL: https://tug.org/TUGboat/tb47-1/tb145larsson-moloch.html
 ---
 
 Moloch is a modern, minimalist Beamer theme for LaTeX presentations that

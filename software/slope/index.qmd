@@ -21,27 +21,6 @@ image: logo.png
 description: >
   Efficient solvers for Sorted L-One Penalized Estimation (SLOPE) in R, Python,
   Julia, and C++, supporting generalized linear models and sparse matrices.
-citation:
-  author:
-    - family: Larsson
-      given: Johan
-    - family: Bogdan
-      given: Malgorzata
-    - family: Grzesiak
-      given: Krystyna
-    - family: Massias
-      given: Mathurin
-    - family: Wallin
-      given: Jonas
-  DOI: 10.48550/arXiv.2511.02430
-  issued: 2025-11-4
-  license: All rights reserved
-  number: arXiv:2511.02430
-  publisher: arXiv
-  source: arXiv.org
-  title: Efficient solvers for SLOPE in R, Python, Julia, and C++
-  type: article
-  URL: http://arxiv.org/abs/2511.02430
 ---
 
 SLOPE (Sorted L-One Penalized Estimation) is a regularization method for

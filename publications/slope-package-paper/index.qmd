@@ -28,13 +28,7 @@ abstract: |
   that demonstrate the performance of the packages on both real and simulated
   data and show that our packages outperform existing implementations of SLOPE
   in terms of speed.
-date: 2025-11-05
-citation:
-  number: arXiv:2511.02430
-  publisher: arXiv
-  type: article
-  source: arXiv.org
-  license: All rights reserved
+date: 2025-11-04
 url: http://arxiv.org/abs/2511.02430
 pdf: http://arxiv.org/pdf/2511.02430
 doi: 10.48550/arXiv.2511.02430

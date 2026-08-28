@@ -19,33 +19,6 @@ description: >
   rectangles. It uses numerical optimization to find the best layout for
   representing set relationships accurately, even for more than three sets or
   complex relationships.
-citation:
-  abstract: >
-    Euler diagrams are common and user-friendly visualizations for set
-    relationships. Most Euler diagrams use circles, but circles do not always
-    yield accurate diagrams. A promising alternative is ellipses, which, in
-    theory, enable accurate diagrams for a wider range of input. Elliptical
-    diagrams, however, have not yet been implemented for more than three sets or
-    three-set diagrams where there are disjoint or subset relationships. The aim
-    of this paper is to present eulerr: a software package for elliptical Euler
-    diagrams for, in theory, any number of sets. It fits Euler diagrams using
-    numerical optimization and exact-area algorithms through a two-step
-    procedure, first generating an initial layout using pairwise relationships
-    and then finalizing this layout using all set relationships.
-  issued: 2018-06-18
-  event-place: Edinburgh, United Kingdom
-  event-title: Set Visualization and Reasoning 2018
-  container-title: Set Visualization and Reasoning 2018
-  license: All rights reserved
-  page: 84-91
-  publisher: CEUR Workshop Proceedings
-  publisher-place: Edinburgh, United Kingdom
-  type: paper-conference
-  URL: https://ceur-ws.org/Vol-2116/paper7.pdf
-  volume: "2116"
-  title: >-
-    A case study in fitting area-proportional Euler diagrams with ellipses using
-    eulerr
 ---
 
 Eunoia creates area-proportional Euler diagrams using circles, ellipses,

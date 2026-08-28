@@ -15,16 +15,7 @@ abstract: |
   across the full dichromacy spectrum at any severity. At its core, Qualpal is
   a lightweight C++ library with no external dependencies, making it easy to
   integrate into other software and programming languages.
-date: 2025-10-17
-citation:
-  container-title: Journal of Open Source Software
-  title-short: Qualpal
-  type: article-journal
-  issue: 114
-  page: 8847
-  volume: 10
-  issn: 2475-9066
-  url: https://joss.theoj.org/papers/10.21105/joss.08936
+date: 2025-10-16
 url: https://joss.theoj.org/papers/10.21105/joss.08936
 pdf: https://joss.theoj.org/papers/10.21105/joss.08936.pdf
 doi: 10.21105/joss.08936

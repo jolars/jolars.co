@@ -21,22 +21,6 @@ abstract: |
   numerical optimization and exact-area algorithms through a two-step
   procedure, first generating an initial layout using pairwise relationships
   and then finalizing this layout using all set relationships.
-citation:
-  container-title:
-    Proceedings of International Workshop on Set Visualization and Reasoning
-  event-place: Edinburgh, United Kingdom
-  event-title: Set Visualization and Reasoning 2018
-  license: All rights reserved
-  issued: 2018-06-18
-  page: 84-91
-  publisher: CEUR Workshop Proceedings
-  publisher-place: Edinburgh, United Kingdom
-  type: paper-conference
-  URL: http://ceur-ws.org/Vol-2116/paper7.pdf
-  volume: "2116"
-  title: >-
-    A case study in fitting area-proportional Euler diagrams with ellipses using
-    eulerr
 pdf: http://ceur-ws.org/Vol-2116/paper7.pdf
 github: jolars/LookAheadScreening
 cran: eulerr
