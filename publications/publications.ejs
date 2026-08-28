@@ -100,8 +100,12 @@
               <i class="fa-solid fa-link"></i>&nbsp;URL
             </a>
           <% } %>
-          <% if (item.pdf) { %>
-            <a href="<%= item.pdf %>" class="btn btn-warning btn-sm mt-1">
+          <% if (item.pdf) {
+            const pdfPath = /^(?:https?:)?\//.test(item.pdf)
+              ? item.pdf
+              : item.path.substring(0, item.path.lastIndexOf('/') + 1) + item.pdf;
+          %>
+            <a href="<%= pdfPath %>" class="btn btn-warning btn-sm mt-1">
               <i class="fa-solid fa-file-pdf"></i>&nbsp;PDF
             </a>
           <% } %>
