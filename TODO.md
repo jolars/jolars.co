@@ -58,8 +58,8 @@ locally in `.lighthouse/website-audit-2026-09-21/report.md` (Git-ignored).
   serving full sharing images, and compress the homepage avatar. Lighthouse
   estimated 1,106 KiB of thumbnail savings and 47 KiB for the avatar.
 
-Mobile performance baselines: homepage 63, blog listing 67, and Eunoia article
-50. The article measured 13.8 seconds FCP and 18.2 seconds LCP. These are single
+Mobile performance baselines: homepage 63, blog listing 67, and Eunoia article 50.
+The article measured 13.8 seconds FCP and 18.2 seconds LCP. These are single
 Lighthouse lab runs, not field Core Web Vitals. Compare subsequent measurements
 under equivalent conditions.
 

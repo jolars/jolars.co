@@ -5,6 +5,7 @@ extend-exclude = ["CLAUDE.md", ".claude/**/*"]
 [flavor-overrides]
 "AGENTS.md" = "gfm"
 "README.md" = "gfm"
+"TODO.md" = "gfm"
 
 [formatters]
 r = "arity"
