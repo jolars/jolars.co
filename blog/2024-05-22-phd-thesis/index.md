@@ -11,6 +11,7 @@ categories:
   - Statistics
   - Optimization
 image: cover-image.png
+image-alt: "PhD Thesis"
 cap-location: margin
 ---
 
@@ -24,7 +25,7 @@ l-one penalized estimation (SLOPE).
 ![The cover of my thesis. The image features a subset of the elastic net path
 for the famous diabetes data
 set.](front-cover.png){#fig-cover
-width=300px .lightbox .border}
+width=300px .lightbox .border fig-alt="Cover of Optimization and Algorithms in Sparse Regression by Johan Larsson, with a layered illustration of elastic net coefficient paths."}
 
 In the following sections I will give an overview over the papers that are
 included in the thesis. This a somewhat abridged version of the paper summary
@@ -116,7 +117,7 @@ screening anyway).
 data set. Blue squares indicate that the respective feature can be discarded
 from the problem for that step of the regularization
 path.](paper2-highlight.png){#fig-paper2
-.lightbox}
+.lightbox fig-alt="Grid of 20 predictors across 90 regularization steps. Blue squares mark features that look-ahead screening can discard, mostly in the early steps."}
 
 ## Paper 3
 
@@ -175,7 +176,7 @@ solvers. When the user runs benchopt, the package combines all of the possible
 combinations of objectives, datasets, and solvers and outputs a neatly formatted
 database of the
 results.](paper4-highlight.svg){#fig-paper4
-.lightbox .fig-cap-location-bottom}
+.lightbox .fig-cap-location-bottom fig-alt="Benchopt workflow: combine objectives, datasets, and solvers, run benchmarks, save results as CSV, then generate static PDF plots or interactive HTML results for publication online."}
 
 ## Paper 5
 
@@ -207,7 +208,7 @@ SLOPE, showing progress until convergence for the coordinate descent solver (CD)
 that we use as part of the hybrid method, our hybrid method, and proximal
 gradient descent
 (PGD).](paper5-highlight.svg){#fig-paper5
-width=700px .lightbox}
+width=700px .lightbox fig-alt="Optimization paths on a two-dimensional SLOPE problem. Coordinate descent stalls away from the optimum, while the hybrid method reaches it in 67 epochs and proximal gradient descent in 156."}
 
 ## Paper 6
 
@@ -238,7 +239,7 @@ scaled with $(q - q^2)^\delta$---its variance to the power of $\delta$. In other
 words, we have no scaling for $\delta=0$, standard deviation scaling when
 $\delta=1/2$, and variance-scaling when
 $\delta = 1$.](paper6-highlight.svg){#fig-paper6
-width=700px .lightbox}
+width=700px .lightbox fig-alt="Ridge and lasso coefficient estimates as a binary feature becomes more imbalanced. Standard deviation scaling stabilizes ridge estimates, while variance scaling stabilizes lasso estimates. The normal feature stays nearly constant."}
 
 I will offer more details on this paper once work on it has been completed, but
 I think the results are interesting and that this field is ripe for further

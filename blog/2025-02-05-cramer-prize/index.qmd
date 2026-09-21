@@ -14,6 +14,7 @@ categories:
   - Optimization
   - Statistics
 image: cramer-logo.png
+image-alt: "Cramér Prize for Best PhD Thesis"
 ---
 
 I am very happy to have just heard that my thesis was selected for the 2025

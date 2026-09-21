@@ -11,6 +11,7 @@ categories:
   - Moloch
 reference-location: margin
 image: images/image.jpg
+image-alt: "What’s New in Moloch 2.0.0"
 title-block-banner: images/banner.jpg
 title-block-banner-color: black
 ---
@@ -109,19 +110,13 @@ either the light or dark variant, or to the currently active variant. For
 instance, to set colors that apply to the current variant, you can do:
 
 ```latex
-\molochcolors{
-  alerted text=red,
-  progressbar fg=blue
-}
+\molochcolors{ alerted text=red, progressbar fg=blue }
 ```
 
 Or, if you want to set colors specifically for the light variant, you can do:
 
 ```latex
-\molochcolors{
-  light/normal text fg=black,
-  light/frametitle bg=white
-}
+\molochcolors{ light/normal text fg=black, light/frametitle bg=white }
 ```
 
 These settings will be stored separately for light and dark variants, so if you

@@ -13,6 +13,7 @@ categories:
   - Statistics
   - LUSEM
 image: lusem.png
+image-alt: "LUSEM’s Best Thesis Award 2024"
 reference-location: margin
 ---
 

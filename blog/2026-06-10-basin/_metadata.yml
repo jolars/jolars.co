@@ -1,0 +1,2 @@
+# Keep thumbnail metadata outside the source to preserve frozen computations.
+image-alt: "Basin: Numerical Optimization in Rust"

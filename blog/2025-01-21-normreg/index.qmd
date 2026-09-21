@@ -11,6 +11,7 @@ categories:
   - Lasso
   - Ridge regression
 image: image.png
+image-alt: "New Paper on Feature Normalization and Regularized Regression"
 title-block-banner: banner.svg
 fig-cap-location: margin
 reference-location: margin
@@ -88,7 +89,7 @@ data but makes it sensitive to outliers.
 ![Lasso paths for some real data sets. Notice that the paths differ heavily
 depending on which normalization type (standardization or max--abs) is used. The
 first five features to be selected in either normalization scheme are colored in
-the plots.](images/realdata-paths.svg){#fig-realdata-paths width="500px"}
+the plots.](images/realdata-paths.svg){#fig-realdata-paths width="500px" fig-alt="Lasso coefficient paths for triazines and w1a under standardization and max-abs scaling. The selected features and their relative coefficients change substantially with the scaling method."}
 
 The point of this figure is to illustrate that the choice of normalization
 matters in a critical way, leading to different models and affecting the
@@ -199,7 +200,7 @@ respectively, these are $\delta = 1/2$ and $1$.
 a binary feature with class balance $q_j$ ($\operatorname{Bernoulli}(q_j)$) and
 the other is quasi-normal with standard deviation 1/2,
 ($\operatorname{Normal}(0, 0.5)$).
-](images/mixed-data.svg){#fig-mixed-data width="500px"}
+](images/mixed-data.svg){#fig-mixed-data width="500px" fig-alt="Ridge and lasso estimates versus binary class balance under three scaling schemes. Standard deviation scaling stabilizes ridge estimates, while variance scaling stabilizes lasso estimates but increases their variability."}
 
 This figure also shows that this type of variance scaling, while *reducing*
 bias, *increases* variance in the estimates. This is not particularly
@@ -218,7 +219,7 @@ this variance scaling, but if the problem is noisier, we do better (in a
 prediction error sense) by using standardization instead.
 
 ![ Bias and variance
-](images/biasvar-lasso.svg){#fig-biasvar-lasso width="500px"}
+](images/biasvar-lasso.svg){#fig-biasvar-lasso width="500px" fig-alt="Lasso mean squared error, bias, and variance versus class imbalance at two noise levels. Variance scaling reduces bias but increases variance, particularly when noise is high."}
 
 To study if and how this choice of the normalization parameter $\delta$ might
 impact predictive performance in a real-data setting, we've also conducted
@@ -234,7 +235,7 @@ regression on three different real datasets (a1a, w1a, and rhee2006). The dotted
 line marks the best value for $\delta$ as a function of
 $\lambda/\lambda_\text{max}$ (where $\lambda_\text{max}$ is the value at which
 all the coefficients are zero). The circle marks the optimal combination of
-$\delta$ and $\lambda$. ](images/hyperopt.svg){#fig-hyperopt width="500px"}
+$\delta$ and $\lambda$. ](images/hyperopt.svg){#fig-hyperopt width="500px" fig-alt="Heatmaps of test error across normalization and regularization strengths for ridge and lasso on a1a, w1a, and rhee2006. The best normalization strength varies by dataset and model."}
 
 ## Mixed Data
 

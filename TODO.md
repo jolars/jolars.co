@@ -28,7 +28,14 @@ locally in `.lighthouse/website-audit-2026-09-21/report.md` (Git-ignored).
   across 14 pages: 42 blog article images, 16 blog thumbnails, and three
   talk thumbnails. Add `fig-alt` to figure chunks where needed. Give the 16
   image-only blog links accessible names, or remove redundant thumbnail
-  links. Empty alt text alone does not name an image-only link.
+  links. Empty alt text alone does not name an image-only link. Partially
+  completed September 21, 2026: Quarto's native metadata supplies
+  alternatives for 17 standalone article images and all 19 thumbnails, and
+  all 16 blog thumbnail links have accessible names. SEO lint now includes
+  listings. The remaining 25 images are in eight frozen posts. Defer those
+  descriptions to deliberate post updates: Quarto cannot apply new chunk
+  options to frozen output without re-execution. Preserve the historical
+  outputs and do not add postprocessing to insert alt text.
 
 - [ ] Label all seven sliders in the [Eunoia
   demo](blog/2026-07-04-eunoia/index.qmd). The visible labels currently name

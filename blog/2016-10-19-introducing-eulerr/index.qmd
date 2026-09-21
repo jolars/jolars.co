@@ -14,6 +14,7 @@ categories:
   - Euler diagrams
   - Data visualization
 image: eulerr.svg
+image-alt: "Introducing eulerr"
 ---
 
 ```{r}

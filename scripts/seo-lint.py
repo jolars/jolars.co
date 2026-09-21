@@ -103,14 +103,11 @@ class HeadExtractor(HTMLParser):
         self.canonical: str | None = None
         self.html_lang: str | None = None
         self.h1_count = 0
-        self.is_listing = False
         # (src, has_alt) for non-decorative <img> elements.
         self.imgs: list[tuple[str, bool]] = []
 
     def handle_starttag(self, tag, attrs):
         a = {k.lower(): (v or "") for k, v in attrs}
-        if "quarto-listing" in a.get("class", ""):
-            self.is_listing = True
         if tag == "title":
             self._in_title = True
         elif tag == "html":
@@ -222,13 +219,11 @@ def check_rendered(site_dir: Path, report: Report) -> None:
         elif parser.h1_count > 1:
             report.warn(url, f"{parser.h1_count} <h1> headings (expected 1)")
 
-        # Image alt text (decorative images use the empty alt="" and are fine;
-        # only a missing alt attribute is flagged). Listing pages are skipped
-        # because their thumbnails are templated by Quarto, not authored here.
-        if not parser.is_listing:
-            for src, has_alt in parser.imgs:
-                if not has_alt:
-                    report.warn(url, f"<img> without alt attribute: {src}")
+        # Listing thumbnails take their alt text from source image-alt metadata.
+        # Decorative images may have empty alt text, but the attribute is required.
+        for src, has_alt in parser.imgs:
+            if not has_alt:
+                report.warn(url, f"<img> without alt attribute: {src}")
 
     # Duplicates across the whole site.
     for title, urls in titles.items():

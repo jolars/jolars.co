@@ -13,6 +13,7 @@ categories:
   - Data visualization
   - Geometry
 image: farthest-points.png
+image-alt: "Finding the Farthest Points in a Point Cloud"
 ---
 
 My R package [qualpalr](https://github.com/jolars/qualpalr) selects qualitative

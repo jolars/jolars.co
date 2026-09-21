@@ -25,6 +25,9 @@ abstract: |
   when ($n > p$).
 date: 2020-05-08
 image: strong-screening-rule-for-slope.jpg
+image-alt: >-
+  Talk recording showing screening performance on simulated data as the
+  regularization strength changes.
 slides: https://github.com/jolars/talks/raw/main/2020-05-08-statlearn/statlearn_slope_presentation.pdf
 arxiv: "2005.03730"
 citation:

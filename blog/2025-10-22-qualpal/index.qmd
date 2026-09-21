@@ -14,6 +14,7 @@ categories:
 reference-location: margin
 freeze: true
 image: images/image.jpg
+image-alt: "Qualpal"
 title-block-banner: images/banner.webp
 title-block-banner-color: black
 ---

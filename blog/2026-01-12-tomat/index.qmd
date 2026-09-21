@@ -12,6 +12,7 @@ categories:
   - Linux
 reference-location: margin
 image: tomato.jpg
+image-alt: "Introducing Tomat: A Pomodoro Timer for Status Bars"
 title-block-banner: banner.jpg
 ---
 
@@ -258,7 +259,7 @@ Tomat comes with built-in support for desktop notifications (using
 environment's notification system as long as you have a notification daemon
 running, such as `dunst` or `mako`.
 
-![The standard notification that Tomat shows when a (short) break ends.](notification.jpg){width="300px"}
+![The standard notification that Tomat shows when a (short) break ends.](notification.jpg){width="300px" fig-alt="Tomat notification with a tomato-shaped clock icon and the message: Back to work! Let's focus."}
 
 Sound alerts are also supported and compiled directly into the binary, which
 means that you don't need to install any additional dependencies to get sound
@@ -310,7 +311,7 @@ next session (work/break).
 
 In my own setup, it looks like @fig-waybar-tomat.
 
-![A screenshot of Waybar with the Tomat module showing an active Pomodoro session.](statusbar.png){#fig-waybar-tomat}
+![A screenshot of Waybar with the Tomat module showing an active Pomodoro session.](statusbar.png){#fig-waybar-tomat fig-alt="Waybar timer showing a tomato icon, 25:00 remaining, and a pause control."}
 
 #### CSS Styling
 

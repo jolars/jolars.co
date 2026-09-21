@@ -8,6 +8,9 @@ description: >
 abstract: |
 date: 2025-11-17
 image: image.png
+image-alt: >-
+  Talk recording showing heatmaps of prediction error across normalization and
+  regularization strengths.
 slides: https://github.com/jolars/normreg/raw/main/talks/tmlr/main.pdf
 arxiv: "2501.03821"
 citation:

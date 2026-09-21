@@ -13,6 +13,7 @@ categories:
   - Statistics
   - Software
 image: slope.svg
+image-alt: "SLOPE 0.2.0"
 freeze: true
 ---
 

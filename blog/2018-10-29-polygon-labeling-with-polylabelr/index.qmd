@@ -12,6 +12,7 @@ categories:
   - Geometry
   - Polylabelr
 image: polylabelr.png
+image-alt: "Polygon Labeling with polylabelr"
 ---
 
 ```{r}

@@ -21,6 +21,7 @@ abstract: |
   algorithms.
 date: 2022-03-31
 image: preview.png
+image-alt: "Title slide from the Coordinate Descent for SLOPE talk."
 slides: https://github.com/jolars/talks/raw/main/2023-03-31-aistats-slopecd/aistats-slopecd.pdf
 arxiv: "2210.14780"
 citation:

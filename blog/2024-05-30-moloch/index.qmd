@@ -12,6 +12,7 @@ categories:
   - Presentations
   - Beamer
 image: moloch-logo.png
+image-alt: "Moloch: A Revival of the Metropolis LaTeX Beamer Theme"
 fig-cap-location: margin
 ---
 
@@ -104,7 +105,9 @@ example:
 
 \begin{document}
 \maketitle
+
 \section{First Section}
+
 \begin{frame}
   \frametitle{First Frame}
   Hello, world!
@@ -131,7 +134,7 @@ color-blind friendly. I therefore changed it to a teal color that I think is a
 little more subdued and easier on the eyes. You can see the difference in the
 figure below. I hope you agree that the new color is an improvement!
 
-![The old versus the new secondary color.](new-secondary-color.svg){width=100% .border}
+![The old versus the new secondary color.](new-secondary-color.svg){width=100% .border fig-alt="Slide comparing the old green secondary text with the new teal text. Orange alert text remains unchanged."}
 
 ### Subtitles
 
@@ -141,7 +144,7 @@ general](https://github.com/matze/mtheme/issues/135). On the whole I agree that
 subtitles are usually best avoided, but I didn't see any reason to impose this
 opinion on others. Subtitles are therefore supported in Moloch.
 
-![Subtitles are supported in Moloch.](subtitles.png)
+![Subtitles are supported in Moloch.](subtitles.png){fig-alt="Slide header with the title Subtitles above the subtitle Are now supported!, both in white on a dark background."}
 
 ### Frame Numbering
 
@@ -183,9 +186,9 @@ The title page has been redesigned. The primary changes are the following.
    that there is less spacing between the title and the subtitle and even
    spacing above and below the orange line.
 
-![The old title page from Metropolis](metropolis-titlepage.svg){width=100% .border}
+![The old title page from Metropolis](metropolis-titlepage.svg){width=100% .border fig-alt="Metropolis title slide with a logo at the upper right and the title, subtitle, author, date, and institute below."}
 
-![The new title page in Moloch](moloch-titlepage.svg){width=100% .border}
+![The new title page in Moloch](moloch-titlepage.svg){width=100% .border fig-alt="Moloch title slide with more space above the title, the author grouped with the institute, and the date below them."}
 
 For reference, the code for generating the slides is given below.
 
@@ -280,9 +283,9 @@ text (for the frame) aligns with the boundaries of the box and not the text
 inside the box (which is the default behavior in beamer). See below for a
 comparison.
 
-![Block environment alignments in Beamer. Image credit: [samcarter](https://github.com/samcarter).](blocks-beamer.png)
+![Block environment alignments in Beamer. Image credit: [samcarter](https://github.com/samcarter).](blocks-beamer.png){fig-alt="Beamer slide where the left edges of the body text, block title, and text inside the shaded block align."}
 
-![Block environment alignments in Metropolis. Image credit: [samcarter](https://github.com/samcarter).](blocks-metro.png)
+![Block environment alignments in Metropolis. Image credit: [samcarter](https://github.com/samcarter).](blocks-metro.png){fig-alt="Metropolis slide where the shaded block extends left of the body text and its title and contents have different indentation."}
 
 I think the proper choice is the default beamer behavior, especially since this
 otherwise means that the content inside the blocks look different if you switch

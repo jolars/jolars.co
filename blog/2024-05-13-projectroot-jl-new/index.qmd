@@ -10,6 +10,7 @@ categories:
   - Julia
   - Software
 image: projectroot-logo.svg
+image-alt: "New Julia Package: ProjectRoot"
 ---
 
 I have created my first [Julia](https://julialang.org) package! It is called
