@@ -2,7 +2,7 @@
 title: "New Blog Post about Eunoia"
 date: 2026-06-20
 description: >
-  I have published [a new blog post](/blog/2026-06-20-eunoia/) introducing
+  I have published [a new blog post](/blog/2026-07-04-eunoia/) introducing
   Eunoia: a Rust engine for Euler and Venn diagrams, with bindings for R,
   Python, Julia, and JavaScript.
 ---

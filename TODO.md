@@ -17,7 +17,7 @@ locally in `.lighthouse/website-audit-2026-09-21/report.md` (Git-ignored).
   malformed categories. All 217 browser checks pass after an ordinary full
   render.
 
-- [ ] Fix the Eunoia announcement link in
+- [x] Fix the Eunoia announcement link in
   [news/2026-06-20-eunoia-post.qmd](news/2026-06-20-eunoia-post.qmd). It
   points to the missing `/blog/2026-06-20-eunoia/` page from the homepage,
   news archive, and announcement. Link to `blog/2026-07-04-eunoia/index.qmd`
