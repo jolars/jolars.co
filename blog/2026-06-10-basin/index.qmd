@@ -259,7 +259,7 @@ they were the reasons I started the project in the first place.
 
 The core is generic over the vector and matrix types it operates on. You can use
 plain `Vec<f64>` with no dependencies at all, or opt into
-[nalgebra](https://nalgebra.org),
+[nalgebra](https://nalgebra.rs),
 [ndarray](https://github.com/rust-ndarray/ndarray), or
 [faer](https://faer-rs.github.io/) when you want a real linear-algebra library.
 Each one is a single feature flag, so you never pay for a dependency you don't
