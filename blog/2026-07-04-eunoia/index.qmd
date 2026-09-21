@@ -564,13 +564,22 @@ viewof shape = Inputs.select(["ellipse", "circle", "square", "rectangle"], {
   label: "Shape"
 })
 
-viewof adventure = Inputs.range([0, 30], { step: 1, value: 20, label: "Adventure" })
-viewof comedy = Inputs.range([0, 30], { step: 1, value: 14, label: "Comedy" })
-viewof drama = Inputs.range([0, 30], { step: 1, value: 18, label: "Drama" })
-viewof ac = Inputs.range([0, 15], { step: 1, value: 6, label: "Adventure & Comedy" })
-viewof ad = Inputs.range([0, 15], { step: 1, value: 5, label: "Adventure & Drama" })
-viewof cd = Inputs.range([0, 15], { step: 1, value: 4, label: "Comedy & Drama" })
-viewof acd = Inputs.range([0, 10], { step: 1, value: 2, label: "All three" })
+function labeledRange(range, options) {
+  const form = Inputs.range(range, options);
+  // Inputs.range labels only the number input, so share its label with the slider.
+  const label = form.querySelector("label");
+  label.id = `${label.htmlFor}-label`;
+  form.querySelector('input[type="range"]').setAttribute("aria-labelledby", label.id);
+  return form;
+}
+
+viewof adventure = labeledRange([0, 30], { step: 1, value: 20, label: "Adventure" })
+viewof comedy = labeledRange([0, 30], { step: 1, value: 14, label: "Comedy" })
+viewof drama = labeledRange([0, 30], { step: 1, value: 18, label: "Drama" })
+viewof ac = labeledRange([0, 15], { step: 1, value: 6, label: "Adventure & Comedy" })
+viewof ad = labeledRange([0, 15], { step: 1, value: 5, label: "Adventure & Drama" })
+viewof cd = labeledRange([0, 15], { step: 1, value: 4, label: "Comedy & Drama" })
+viewof acd = labeledRange([0, 10], { step: 1, value: 2, label: "All three" })
 
 layout = eunoia.euler({
   sets: {

@@ -37,10 +37,13 @@ locally in `.lighthouse/website-audit-2026-09-21/report.md` (Git-ignored).
   options to frozen output without re-execution. Preserve the historical
   outputs and do not add postprocessing to insert alt text.
 
-- [ ] Label all seven sliders in the [Eunoia
+- [x] Label all seven sliders in the [Eunoia
   demo](blog/2026-07-04-eunoia/index.qmd). The visible labels currently name
   only the adjacent numeric inputs. Associate each slider with its visible
-  label and verify its accessible name and arrow-key operation.
+  label and verify its accessible name and arrow-key operation. Completed
+  September 21, 2026: all seven sliders share their visible labels via
+  `aria-labelledby`. Accessible names, keyboard operation, numeric inputs,
+  and live diagram updates pass browser checks at desktop and mobile widths.
 
 - [ ] Reduce the Eunoia article's initial JavaScript load. Render static
   diagrams ahead of time where possible, and defer the interactive demo
