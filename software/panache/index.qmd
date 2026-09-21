@@ -9,7 +9,9 @@ pypi: panache-cli
 npm: '\@panache-cli/panache'
 crate: panache
 image: logo.svg
-categories: Rust, CLI
+categories:
+  - Rust
+  - CLI
 description: >
   Panache is a fast Rust-based language server, formatter, and linter for
   Pandoc, Quarto, and R Markdown, bringing modern editor tooling to prose

@@ -247,6 +247,17 @@ OpenAI API key)
 - Solution: Delete specific frozen file in `_freeze/` and re-render
 - Solution: Use `quarto render --execute-debug` to see execution details
 
+**Listing categories show no matches after upgrading Quarto**
+
+- On Nix, packaged resources have epoch timestamps, so Quarto can retain an
+  older cached listing script that appears newer than the installed version.
+- Run `scripts/refresh-quarto-libraries.sh` from the repository root. It stages
+  Quarto's resources with fresh timestamps and renders the site, letting Quarto
+  regenerate its cached libraries without changing the freeze policy.
+- Review and commit the generated `_freeze/` changes. Verify category clicks and
+  direct category links, then confirm that an ordinary `quarto render` preserves
+  the fix.
+
 ### CI Failures
 
 The GitHub Actions workflow typically fails due to:
