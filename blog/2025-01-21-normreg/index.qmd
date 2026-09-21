@@ -36,9 +36,9 @@ one I encountered when I first learned about regularized regression methods. The
 model can be written as a special case of the elastic net, which is an
 optimization problem that takes the following form:
 $$
-  \operatorname*{minimize}_{\beta_0 \in \mathbb{R},\bm{\beta} \in \mathbb{R}^p}
-    \frac{1}{2} \lVert \bm y - \beta_0 - \bm{X}\bm{\beta} \rVert^2_2  +
-    \lambda_1 \lVert \bm\beta \rVert_1 + \frac{\lambda_2}{2}\lVert \bm \beta \rVert_2^2,
+  \operatorname*{minimize}_{\beta_0 \in \mathbb{R},\bm{\beta} \in \mathbb{R}^p} \frac{1}{2} \lVert \bm y - \beta_0 - \bm{X}\bm{\beta} \rVert^2_2
+  + \lambda_1 \lVert \bm\beta \rVert_1
+  + \frac{\lambda_2}{2}\lVert \bm \beta \rVert_2^2,
 $$
 where $\bm{X}$ is the matrix of features, $\bm{y}$ is the response, and
 $\beta_0$ and $\bm{\beta}$ are the intercept and coefficients, respectively.
@@ -47,7 +47,8 @@ ridge regression: another special case of the elastic net.
 
 In the equation above,
 $$
-  \lambda_1 \lVert \bm\beta \rVert_1 + \frac{\lambda_2}{2}\lVert \bm \beta \rVert_2^2
+  \lambda_1 \lVert \bm\beta \rVert_1
+  + \frac{\lambda_2}{2}\lVert \bm \beta \rVert_2^2
 $$
 is a *regularization term* that penalizes coefficients by their magnitudes, and
 $\lambda_1$ and $\lambda_2$ control the strength of this penalization. The
@@ -191,8 +192,8 @@ simple example of this, where we consider a two-dimensional problem with one
 binary feature and one normally distributed feature. We have kept the true
 coefficients fixed at one for each of the features, and only vary $q$: the class
 balance (proportion of ones and zeros in the binary feature). We consider the
-cases $\delta=0$ (no scaling), $\delta=1$ (standard deviation scaling), and
-$\delta=1$ (variance scaling) and we see that there are only two settings that
+cases $\delta = 0$ (no scaling), $\delta = 1$ (standard deviation scaling), and
+$\delta = 1$ (variance scaling) and we see that there are only two settings that
 seem to mitigate this class-balance bias: in ridge and lasso regression,
 respectively, these are $\delta = 1/2$ and $1$.
 
@@ -305,7 +306,9 @@ Thankfully there turns out to be a solution to this problem, which is to use the
 *weighted elastic net*, in which we modify the weights of each penalty factor
 instead of normalizing. The problem then becomes
 $$
-  \frac{1}{2} \lVert \bm{y} - \beta_0 - \bm{X}\bm{\beta}\rVert_2^2 + \lambda_1 \sum_{j=1}^p u_j |\beta_j| + \frac{\lambda_2}{2} \sum_{j=1}^p v_j \beta_j^2.
+  \frac{1}{2} \lVert \bm{y} - \beta_0 - \bm{X}\bm{\beta}\rVert_2^2
+  + \lambda_1 \sum_{j=1}^p u_j |\beta_j|
+  + \frac{\lambda_2}{2} \sum_{j=1}^p v_j \beta_j^2.
 $$
 I won't cover any details here, but please see the paper for more information.
 

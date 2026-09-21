@@ -422,8 +422,8 @@ analytical gradients for the smooth loss functions, which provides a significant
 speedup over the numerical gradients used in eulerr. In addition, and unlike
 eulerr, Eunoia also keeps track of only the intersection areas that are actually
 present in the diagram. This didn't use to be the case with eulerr, which
-generated a $2^n-1$ sized list of all combinations for $n$ sets, and meant that
-it choked on large set combinations. Eunoia (and the new eulerr) only keeps
+generated a $2^n - 1$ sized list of all combinations for $n$ sets, and meant
+that it choked on large set combinations. Eunoia (and the new eulerr) only keeps
 track of the intersections that are actually present, which makes it possible to
 fit diagrams with many sets, as long as the number of non-empty intersections is
 not too large.
