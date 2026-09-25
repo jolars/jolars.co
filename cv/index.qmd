@@ -247,6 +247,16 @@ Jun 18, 2018
 :   Oscar II's scholarship for best PhD thesis at Lund School of Economics and
     Management in 2024
 
+## Grants
+
+2026
+
+:   **TeX Development Fund Grant for Badness**
+
+    Received a grant from the TeX Development Fund to support the continued
+    development and maintenance of Badness, a language server, formatter, and linter
+    for LaTeX.
+
 ## Editorial Service
 
 2025--present

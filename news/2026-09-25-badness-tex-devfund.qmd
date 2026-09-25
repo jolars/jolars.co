@@ -1,0 +1,8 @@
+---
+title: "Badness got a grant from the TeX Development Fund!"
+date: 2026-09-25
+description: >
+  I'm grateful to announce that Badness has received a grant from the TeX
+  Development Fund! This funding will help improve and harden the formatter and
+  linter.
+---
