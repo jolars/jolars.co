@@ -160,6 +160,39 @@ in
     julia-bin
   ];
 
+  tasks."news:new" = {
+    description = "Scaffold a news post with today's date";
+    input.title = "News title";
+    package = pkgs.python3;
+    exec = ''
+      import json
+      import os
+      import re
+      from datetime import date
+      from pathlib import Path
+
+      title = json.loads(os.environ["DEVENV_TASK_INPUT"])["title"]
+      if not isinstance(title, str):
+          raise SystemExit("The news title must be a string.")
+      title = title.strip()
+      slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+      if not slug:
+          raise SystemExit("The news title must contain a letter or number (a-z, 0-9).")
+
+      today = date.today().isoformat()
+      path = Path("news") / f"{today}-{slug}.qmd"
+      try:
+          with path.open("x", encoding="utf-8") as post:
+              post.write(
+                  f"---\ntitle: {json.dumps(title)}\ndate: {today}\n"
+                  "description: >\n  Add your announcement here.\n---\n"
+              )
+      except FileExistsError:
+          raise SystemExit(f"Refusing to overwrite {path}.")
+      print(f"Created news post at: {path}")
+    '';
+  };
+
   # Pin quarto to the vendored pandoc deterministically, regardless of PATH
   # order (quarto's own pandoc lookup doesn't strictly follow PATH).
   env.QUARTO_PANDOC = "${pandoc}/bin/pandoc";
