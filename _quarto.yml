@@ -8,6 +8,7 @@ project:
     - scripts/fix-sitemap.sh
     - scripts/fix-feed-links.sh
   resources:
+    - ".well-known/funding-manifest-urls"
     - "android-chrome-192x192.png"
     - "android-chrome-512x512.png"
     - "apple-touch-icon.png"
