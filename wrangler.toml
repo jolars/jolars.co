@@ -1,0 +1,5 @@
+name = "jolars-markdown-negotiation"
+main = "workers/markdown-negotiation.mjs"
+compatibility_date = "2026-10-04"
+compatibility_flags = ["global_fetch_private_origin"]
+route = { pattern = "jolars.co/*", zone_name = "jolars.co" }
