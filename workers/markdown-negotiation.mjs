@@ -27,6 +27,30 @@ function addVaryAccept(headers) {
   }
 }
 
+function addDiscoveryLinks(headers) {
+  headers.append("link", '</.well-known/api-catalog>; rel="api-catalog"');
+  headers.append('link', '</.well-known/markdown-service.json>; rel="service-desc"; type="application/json"');
+  headers.append('link', '</>; rel="service-doc"; type="text/html"');
+  headers.append('link', '</llms.txt>; rel="describedby"; type="text/plain"');
+}
+
+function apiCatalogResponse(request) {
+  const headers = new Headers({
+    "content-type": 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"',
+    "cache-control": "public, max-age=3600",
+  });
+  headers.append("link", '</.well-known/api-catalog>; rel="api-catalog"');
+  const body = JSON.stringify({
+    linkset: [{
+      anchor: "https://jolars.co/",
+      item: [{ href: "https://jolars.co/", title: "Homepage content negotiation endpoint" }],
+      "service-desc": [{ href: "https://jolars.co/.well-known/markdown-service.json", type: "application/json" }],
+      "service-doc": [{ href: "https://jolars.co/", type: "text/html" }],
+    }],
+  });
+  return new Response(request.method === "HEAD" ? null : body, { headers });
+}
+
 async function fetchOriginal(request, fetcher) {
   const response = await fetcher(request);
   if (!response.headers.get("content-type")?.toLowerCase().startsWith("text/html")) {
@@ -34,6 +58,9 @@ async function fetchOriginal(request, fetcher) {
   }
   const headers = new Headers(response.headers);
   addVaryAccept(headers);
+  if (new URL(request.url).pathname === "/" && response.status === 200) {
+    addDiscoveryLinks(headers);
+  }
   return new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
@@ -42,6 +69,30 @@ async function fetchOriginal(request, fetcher) {
 }
 
 export async function handleRequest(request, fetcher = fetch) {
+  if (
+    (request.method === "GET" || request.method === "HEAD") &&
+    new URL(request.url).pathname === "/.well-known/markdown-service.json"
+  ) {
+    const body = JSON.stringify({
+      name: "Johan Larsson's website content negotiation",
+      endpoint: "https://jolars.co/",
+      method: "GET",
+      requestHeader: "Accept: text/markdown",
+      responseMediaType: "text/markdown",
+      documentation: "https://jolars.co/",
+    });
+    return new Response(request.method === "HEAD" ? null : body, {
+      headers: { "content-type": "application/json; charset=utf-8", "cache-control": "public, max-age=3600" },
+    });
+  }
+
+  if (
+    (request.method === "GET" || request.method === "HEAD") &&
+    new URL(request.url).pathname === "/.well-known/api-catalog"
+  ) {
+    return apiCatalogResponse(request);
+  }
+
   if (
     (request.method !== "GET" && request.method !== "HEAD") ||
     !acceptsMarkdown(request.headers.get("accept"))
