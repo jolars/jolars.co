@@ -1,0 +1,7 @@
+User-agent: *
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Allow: /
+
+Sitemap: https://jolars.co/sitemap.xml
+
+# LLM-readable site index: https://jolars.co/llms.txt
