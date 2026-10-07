@@ -26,18 +26,18 @@ title-block-banner: "banner.svg"
 
 ## Introduction
 
-I am a big fan of automation and tooling, and love setting up code formatters,
-linters, and language servers to make the experience of editing as smooth as
-possible. For many languages, such as Python, C++, JSON, and YAML, this
-experience has been rewarding and I've been able to set everything to my liking.
-But for me, the recurring thorn in the side has been Markdown.
+I am a big fan of automation and tooling, and I love setting up code formatters,
+linters, and language servers to make editing as smooth as possible. For many
+languages, such as Python, C++, JSON, and YAML, this has been rewarding, and
+I've been able to set everything to my liking. But Markdown has been a recurring
+thorn in my side.
 
-There are tools such as Prettier, Marksman, and markdownlint for formatting,
-language server features, and linting. But most of my Markdown writing happens
-in Quarto and R Markdown, and I've struggled to make these tools work with the
-syntax I use. Running Prettier on my Quarto documents has sometimes mangled
-fenced divs and tables. And when writing a paper, I want my editor to understand
-its citations, figure references, and project structure, too.
+Tools such as Prettier, Marksman, and markdownlint offer formatting, language
+server features, and linting. But most of my Markdown writing happens in Quarto
+and R Markdown, and I've struggled to make these tools work with the syntax I
+use. Running Prettier on my Quarto documents has sometimes mangled fenced divs
+and tables. And when I write a paper, I want my editor to understand the
+citations, figure references, and project structure, too.
 
 Eventually, I decided to build the tool I wanted. Quarto and R Markdown were the
 starting point, but the project has since grown into a tool for Markdown more
@@ -51,7 +51,7 @@ GitHub-Flavored Markdown, MyST, mdsvex, Pandoc Markdown, Quarto, and R Markdown.
 It is written in Rust and provides both a command-line tool and editor
 integration through the Language Server Protocol (LSP).
 
-The idea is to bring the conveniences of editing code to writing documents. The
+The idea is to bring the conveniences of code editing to document writing. The
 formatter takes care of layout, the linter catches problems such as unresolved
 references, and the language server helps you navigate and edit the document.
 All three share the same parser, so they work from the same understanding of
@@ -66,9 +66,9 @@ Quarto manuscript adds citations, cross-references, fenced divs, and executable
 code chunks. A formatter needs to recognize these constructs to preserve what
 the author meant.
 
-Moreover, CommonMark and Pandoc Markdown does not always agree on the details of
-the syntax. For example, they recognize emphasis differently in some edge cases
-and have different rules for when blank lines end or continue a list.
+CommonMark and Pandoc Markdown do not always agree on syntax details. For
+example, they recognize emphasis differently in some edge cases and have
+different rules for when blank lines end or continue a list.
 
 Panache follows each flavor's parsing rules and syntax conventions. Its
 CommonMark flavor implements the CommonMark specification, the MyST flavor
@@ -78,8 +78,8 @@ and the R Markdown flavor includes Bookdown support.
 
 For `.qmd`, `.Rmd`, `.svx`, and `.svelte.md` files, Panache selects the
 corresponding flavor from the file extension. For `.md` files, you can choose a
-default and override it for particular paths. A project with MyST documentation
-and a GitHub README could use this `panache.toml`:
+default flavor and override it for particular paths. A project with MyST
+documentation and a GitHub README could use this `panache.toml`:
 
 ```toml
 flavor = "commonmark"
@@ -90,8 +90,8 @@ myst = ["docs/**/*.md"]
 ```
 
 The flavors provide a starting point, but you can also enable or disable
-individual syntax features through extensions. These are switches in the parser,
-with defaults chosen for each flavor. For example, to add citations to
+individual syntax features through extensions. Each extension is a parser
+switch, with a default chosen for each flavor. For example, to add citations to
 CommonMark:
 
 ```toml
@@ -103,8 +103,8 @@ citations = true
 
 There are switches for tables, footnotes, math delimiters, heading attributes,
 and many other features. Overrides can also be scoped to a particular flavor.
-This lets you match the syntax your publishing tool accepts without having to
-adopt every extension in another flavor. The [configuration
+This lets you match the syntax your publishing tool accepts without adopting
+every extension in another flavor. The [configuration
 guide](https://panache.bz/guide/configuration.html#extensions) lists the
 available extensions and their defaults.
 
@@ -180,10 +180,10 @@ sh = "shellcheck"
 
 One detail matters here: code chunks in a computational document often depend on
 earlier chunks. Linting each chunk separately can produce misleading warnings
-about variables defined elsewhere. Panache collects code of the same language in
-document order, including supported executable inline expressions, and sends it
-to the linter together. It then maps diagnostics back to their positions in the
-original document.
+about variables defined elsewhere. Panache collects code in the same language,
+including supported executable inline expressions, and sends it to the linter
+together in document order. It then maps diagnostics back to their positions in
+the original document.
 
 That means a variable assigned in the first Python chunk is visible when Ruff
 checks its use in the next one. In the editor, a warning still points at the
@@ -202,9 +202,9 @@ a citation key from the bibliography, hover over it to see the entry, and jump
 to its definition. For Quarto cross-references, you can jump from `@fig-results`
 to the figure's label or rename the label and its references together.
 
-Panache also understands Quarto and Bookdown project structure, so references
-can be resolved across files. That becomes useful as soon as a manuscript grows
-into several chapters, or a website shares a bibliography across pages.
+Panache also understands Quarto and Bookdown project structure, so it can
+resolve references across files. That becomes useful as soon as a manuscript
+grows into several chapters or a website shares a bibliography across pages.
 
 There are smaller conveniences, too: a document outline, folding for sections
 and code blocks, completion for file paths, and code actions to convert between
@@ -223,7 +223,7 @@ If you want to try Panache without installing anything, there is a [browser
 playground](https://panache.bz/playground/). Paste in a document to experiment
 with formatting and configuration.
 
-For the command-line tool, you can install it with Cargo:
+You can install the command-line tool with Cargo:
 
 ```sh
 cargo install --locked panache
@@ -271,14 +271,14 @@ The tools do different work, though. Prettier runs with its Markdown parser,
 while Panache recognizes the Quarto syntax in the `.qmd` inputs and also parses
 and formats math. Yamark preserves display math as opaque content. These are
 comparisons of the tools' respective formatting paths, not identical outputs.
-Nor does a fresh command-line process measure the latency of an editor with a
-formatter already running. External tools such as Ruff or Air add their own
-execution time when enabled in Panache.
+Timing a fresh command-line process also does not measure the latency of an
+editor with a formatter already running. External tools such as Ruff or Air add
+their own execution time when enabled in Panache.
 
 The [performance page](https://panache.bz/guide/performance.html) has the full
 results, repository-wide comparisons, and commands for reproducing the
-benchmarks. For my purposes, the encouraging part is that broad Markdown support
-can go together with quick formatting.
+benchmarks. For my purposes, it's encouraging that Panache can support many
+Markdown flavors and still format quickly.
 
 If you try Panache on your own documents, I'd be happy to hear how it works for
 you. Bug reports and examples of syntax it handles poorly are welcome on
