@@ -6,11 +6,48 @@ description: >
   please consider citing it using the reference provided under each entry's
   details.
 listing:
-  contents: .
-  id: software
-  template: software.ejs
-  categories: true
-  page-size: 50
+  - id: research-software
+    contents:
+      - basin/index.qmd
+      - benchopt/index.qmd
+      - caugi/index.qmd
+      - eunoia/index.qmd
+      - qualpal/index.qmd
+      - slope/index.qmd
+    template: software.ejs
+    categories: true
+    page-size: 50
+  - id: developer-tools
+    contents:
+      - arity/index.qmd
+      - badness/index.qmd
+      - fatou/index.qmd
+      - panache/index.qmd
+    template: software.ejs
+    categories: true
+    page-size: 50
+  - id: other-tools
+    contents:
+      - moloch/index.qmd
+      - tomat/index.qmd
+    template: software.ejs
+    categories: true
+    page-size: 50
 page-layout: full
 title-block-banner: false
 ---
+
+## Research software
+
+::: {#research-software}
+:::
+
+## Developer tools
+
+::: {#developer-tools}
+:::
+
+## Other tools
+
+::: {#other-tools}
+:::
