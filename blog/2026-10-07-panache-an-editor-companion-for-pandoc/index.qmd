@@ -4,7 +4,7 @@ description: >
   Panache brings formatting, linting, and editor support to CommonMark, Quarto,
   MyST, mdsvex, and more, with configurable syntax and external code tools.
 author: "Johan Larsson"
-date: "2026-03-30"
+date: "2026-10-07"
 draft: true
 categories: [
   "panache",
