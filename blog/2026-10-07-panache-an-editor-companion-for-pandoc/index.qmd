@@ -1,8 +1,9 @@
 ---
 title: "Panache: An Editor Companion for Markdown"
 description: >
-  Panache brings formatting, linting, and editor support to CommonMark, Quarto,
-  MyST, mdsvex, and more, with configurable syntax and external code tools.
+  Panache is a language server, formatter, and linter for Quarto and other
+  Markdown flavors. It makes it easy to write technical documents with
+  citations, cross-references, and executable code chunks.
 author: "Johan Larsson"
 date: "2026-10-07"
 draft: true
