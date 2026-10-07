@@ -46,10 +46,10 @@ broadly.
 ## Panache
 
 [Panache](https://panache.bz) is a language server, formatter, and linter for
-Markdown. It is fully CommonMark compatible and supports flavors including
-GitHub-Flavored Markdown, MyST, mdsvex, Pandoc Markdown, Quarto, and R Markdown.
-It is written in Rust and provides both a command-line tool and editor
-integration through the Language Server Protocol (LSP).
+Markdown. It supports flavors including CommonMark, GitHub-Flavored Markdown,
+MyST, mdsvex, Pandoc Markdown, Quarto, and R Markdown. It is written in Rust and
+provides both a command-line tool and editor integration through the Language
+Server Protocol (LSP).
 
 The idea is to bring the conveniences of code editing to document writing. The
 formatter takes care of layout, the linter catches problems such as unresolved
@@ -70,11 +70,13 @@ CommonMark and Pandoc Markdown do not always agree on syntax details. For
 example, they recognize emphasis differently in some edge cases and have
 different rules for when blank lines end or continue a list.
 
-Panache follows each flavor's parsing rules and syntax conventions. Its
-CommonMark flavor implements the CommonMark specification, the MyST flavor
-recognizes directives and roles, and the mdsvex flavor preserves Svelte
-expressions and template constructs verbatim. MultiMarkdown has its own flavor,
-and the R Markdown flavor includes Bookdown support.
+Panache uses flavor-specific parsing rules and extension defaults. Its
+CommonMark parser passes all 652 examples in the [CommonMark 0.31.2 conformance
+suite](https://github.com/jolars/panache/blob/main/crates/panache-parser/tests/commonmark/report.txt).
+The MyST flavor recognizes directives and roles, and the mdsvex flavor preserves
+Svelte expressions and template constructs verbatim. The MultiMarkdown flavor
+uses a Pandoc-compatible set of extension defaults, and the R Markdown flavor
+includes Bookdown support.
 
 For `.qmd`, `.Rmd`, `.svx`, and `.svelte.md` files, Panache selects the
 corresponding flavor from the file extension. For `.md` files, you can choose a
@@ -180,10 +182,13 @@ sh = "shellcheck"
 
 One detail matters here: code chunks in a computational document often depend on
 earlier chunks. Linting each chunk separately can produce misleading warnings
-about variables defined elsewhere. Panache collects code in the same language,
-including supported executable inline expressions, and sends it to the linter
-together in document order. It then maps diagnostics back to their positions in
-the original document.
+about variables defined elsewhere. In Quarto documents, Panache collects
+executable chunks and supported executable inline expressions in the same
+language and sends them to the linter together in document order. Displayed code
+blocks and chunks explicitly marked with a literal `eval: false` are each linted
+separately. Panache then maps diagnostics back to their positions in the
+original document. Code from Quarto `include` shortcodes participates in the
+surrounding execution context, too.
 
 That means a variable assigned in the first Python chunk is visible when Ruff
 checks its use in the next one. In the editor, a warning still points at the
@@ -208,12 +213,14 @@ grows into several chapters or a website shares a bibliography across pages.
 
 There are smaller conveniences, too: a document outline, folding for sections
 and code blocks, completion for file paths, and code actions to convert between
-inline and reference links or footnotes.
+inline and reference links or footnotes. You can also convert between pipe,
+simple, multiline, and grid tables when the destination syntax is enabled.
 
 The [VS Code
 extension](https://marketplace.visualstudio.com/items?itemName=jolars.panache)
-installs the command-line tool and starts the language server automatically. It
-also works in Positron. For Neovim, Helix, Emacs, and Zed, the [language server
+bundles a Panache binary for supported platforms and starts the language server
+automatically, with a download fallback when no binary is bundled. It also works
+in Positron. For Neovim, Helix, Emacs, and Zed, the [language server
 guide](https://panache.bz/guide/lsp.html#editor-configuration) has setup
 instructions.
 
