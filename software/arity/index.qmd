@@ -1,0 +1,42 @@
+---
+title: Arity
+url: https://arity.cc
+author: Johan Larsson
+date: 2026-03-29
+github: jolars/arity
+cran: arity
+pypi: arity
+npm: arity-cli
+crate: arity
+image: logo.svg
+categories:
+  - rust
+  - r
+  - cli
+description: >
+  Arity is a Rust-based language server, formatter, and linter for R, with
+  project-aware linting, automatic fixes, and support for roxygen and
+  DESCRIPTION files.
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+  genre: Rust
+  issued: 2026-03-29
+  license: MIT
+  source: GitHub
+  title: "Arity: A Language Server, Formatter, and Linter for R"
+  type: software
+  URL: https://arity.cc
+  version: 0.25.0
+---
+
+Arity brings formatting, linting, and language server features to R without
+running an R session. Its formatter follows the tidyverse style guide and
+handles R code, roxygen comments, and DESCRIPTION files. The linter checks
+correctness, readability, and performance, with automatic fixes for many rules.
+
+The language server provides completion, hover information, signature help,
+go-to-definition, references, and rename. Arity works from the command line and
+integrates with editors through the Language Server Protocol. Its VS Code
+extension also works in Positron, and its R package provides formatter bindings.

@@ -23,7 +23,7 @@ author:
   - Joseph Salmon
   - Samuel Vaiter
 url: https://benchopt.github.io
-categories: Python
+categories: python
 github: benchopt/benchopt
 pypi: benchopt
 image: benchopt-padded.svg

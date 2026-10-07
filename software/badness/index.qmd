@@ -1,0 +1,41 @@
+---
+title: Badness
+url: https://badness.dev
+author: Johan Larsson
+date: 2026-06-06
+github: jolars/badness
+pypi: badness
+npm: badness
+crate: badness
+image: logo.svg
+categories:
+  - rust
+  - latex
+  - cli
+description: >
+  Badness is a Rust-based language server, formatter, and linter for LaTeX and
+  BibTeX, supporting document authors and developers of LaTeX packages and
+  classes.
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+  genre: Rust
+  issued: 2026-06-06
+  license: MIT
+  source: GitHub
+  title: "Badness: A Language Server, Formatter, and Linter for LaTeX"
+  type: software
+  URL: https://badness.dev
+  version: 0.26.0
+---
+
+Badness provides formatting, linting, and editor features for LaTeX and BibTeX.
+It supports documents and bibliographies, as well as packages, classes, and
+documented source files, including both LaTeX2e and LaTeX3 code.
+
+An incremental parser builds a lossless syntax tree that Badness uses to format
+code, report syntax errors, and check best practices. The language server adds
+hover information, symbol outlines, go-to-definition, and code actions. Badness
+works from the command line and integrates with editors through the Language
+Server Protocol, with a VS Code extension that bundles the binary.

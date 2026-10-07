@@ -1,0 +1,41 @@
+---
+title: Fatou
+url: https://fatou.dev
+author: Johan Larsson
+date: 2026-06-16
+github: jolars/fatou
+pypi: fatou
+npm: fatou-cli
+crate: fatou
+image: logo.png
+categories:
+  - rust
+  - julia
+  - cli
+description: >
+  Fatou is a Rust-based language server, formatter, and linter for Julia,
+  providing code completion, navigation, and automatic fixes without running
+  Julia itself.
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+  genre: Rust
+  issued: 2026-06-16
+  license: MIT
+  source: GitHub
+  title: "Fatou: A Language Server, Formatter, and Linter for Julia"
+  type: software
+  URL: https://fatou.dev
+  version: 0.22.0
+---
+
+Fatou formats and analyzes Julia code without starting Julia. It combines an
+opinionated formatter, a configurable linter with automatic fixes, and a
+language server that provides completion, hover information, code navigation,
+rename, and signature help.
+
+Fatou uses a lossless syntax tree and incremental computation to update its
+analysis as you edit. It works from the command line and integrates with editors
+through the Language Server Protocol, with extensions for VS Code and Zed. It is
+named after Pierre Fatou, whose Fatou set is the complement of the Julia set.

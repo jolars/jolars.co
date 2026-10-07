@@ -5,7 +5,7 @@ author:
   - Peter Gustafsson
 url: https://eunoia.bz
 date: 2018-06-18
-categories: R
+categories: r
 github: jolars/eunoia
 cran: eulerr
 npm: '\@jolars/eunoia'
