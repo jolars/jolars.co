@@ -2,306 +2,162 @@
 
 ## Project Overview
 
-This is a personal website for Johan Larsson built with Quarto. The site
-features a blog, software projects, publications, talks, and CV. The repository
-is small (\~178 files excluding build artifacts) and uses Quarto's static site
-generation with computational caching via the freeze mechanism.
+This is Johan Larsson's personal website, built with Quarto. It includes a blog,
+news, software projects, publications, talks, and a CV. Content is primarily in
+`.qmd` files, with R, Python, and occasional Julia computations. A Cloudflare
+Worker in `workers/` handles Markdown content negotiation.
 
-**Languages & Tools:**
+## Environment and Commands
 
-- Quarto (static site generator)
-- R (code execution in blog posts)
-- Python (code execution, banner generation script)
-- Julia (occasional code execution)
-- HTML/CSS for styling
-- Nix flake for development environment
-- GitHub Actions for CI/CD
+Always run Quarto from the repository root.
 
-**Repository Size:** \~14MB total (12MB blog, 1.2MB talks, 4.6MB `_freeze`
-cache)
-
-## Build & Deployment
-
-### Prerequisites
-
-The project uses Nix for reproducible development environments. The GitHub
-Actions workflow installs dependencies automatically, but for local development:
-
-- **With Nix:** `nix develop` (preferred - provides Quarto, R, Python, Julia
-  with all dependencies)
-- **Without Nix:** Install Quarto manually from
-  https://quarto.org/docs/get-started/
-
-### Building the Site
-
-**Important:** Always render with Quarto from the repository root.
+The project uses Nix and devenv. Run `devenv shell` to enter the environment, or
+prefix a command with `devenv shell --`, as CI does. The environment provides
+Quarto, Pandoc, LaTeX, R, Python, Julia, and site validation tools.
 
 ```bash
-# Render the entire site
+# Render the entire site.
 quarto render
 
-# Preview the site locally (with live reload)
+# Preview the site with live reload.
 quarto preview
 
-# Render a specific file
+# Render a specific post. This executes its code by default.
 quarto render blog/2024-05-30-moloch/index.qmd
 ```
 
-**Output:** Rendered site goes to `_site/` directory (git-ignored).
+Rendered output goes to `_site/`, which is git-ignored.
 
-### Freeze Mechanism
+Define dependencies in `devenv.nix`: R packages in the `rWrapper` package list,
+Python packages in `pythonEnv`, and other tools in `packages`. Nix inputs and
+their pins live in `devenv.yaml` and `devenv.lock`. After changing dependencies,
+reenter `devenv shell` and render to validate them. Local builds and the
+publishing workflow use the same devenv configuration.
 
-**Critical:** This project uses Quarto's `freeze: auto` feature to cache
-computational outputs. The `_freeze/` directory (4.6MB) stores rendered outputs
-from R/Python/Julia code chunks.
+## Computational Outputs
 
-- **When code changes:** Quarto automatically re-executes and updates frozen
-  content
-- **When text changes only:** Frozen outputs are reused (faster builds)
-- **Never manually edit** `_freeze/` directory contents
-- The `_freeze/` directory **is committed** to the repository
+The project uses `freeze: auto` in `_quarto.yml` and `blog/_metadata.yml`.
+Quarto stores computational outputs in the committed `_freeze/` directory.
 
-### Testing & Validation
+- During a full project render, Quarto reuses frozen outputs when the source
+  file has not changed. Any source change, including prose or frontmatter, can
+  trigger execution.
+- Single-file and subdirectory renders execute code by default. Use
+  `--use-freezer` when intentionally reusing frozen computations for an
+  incremental render.
+- Changes outside the source file, such as input data or dependencies, may
+  require an explicit single-file render to refresh the affected outputs.
+- Review and commit generated `_freeze/` changes. Never edit them manually, and
+  do not change the project's freeze settings.
 
-**No unit tests exist** for this static site. Validation is done through:
+See [Quarto's freeze
+documentation](https://quarto.org/docs/projects/code-execution.html#freeze).
 
-1. **Build validation:** `quarto render` must complete without errors
-2. **Preview validation:** `quarto preview` and manually check pages in browser
-3. **SEO & content lint:** `task seo` runs `scripts/seo-lint.py`, which checks
-   the rendered `_site` and source frontmatter for SEO problems of the kind
-   Google Search Console / Bing Webmaster Tools report --- missing or too-short
-   or too-long titles and meta descriptions, duplicate titles/descriptions,
-   missing canonical/`og:image` tags, missing image alt text, and required
-   frontmatter fields. Standard-library Python only.
-4. **Link checking:** `task links` runs `lychee` (configured in `lychee.toml`)
-   over `_site` to find broken internal **and** external links. Needs a rendered
-   site first.
+## Validation
 
-`task check` renders the site and then runs both. Both checks also run in CI
-(see below) but are advisory --- they never block the deploy.
+For site content and configuration changes:
 
-**Note:** These checks are advisory diagnostics, not a pass/fail gate.
-`seo-lint` exits non-zero only on errors (or on warnings with `--strict`); the
-duplicate title warnings between a paper and its matching talk are expected.
+1. Run `quarto render` and resolve build errors.
+2. Use `quarto preview` to inspect affected pages when appearance or interaction
+   changes.
+3. Run `task seo` to check source frontmatter and rendered SEO metadata with
+   `scripts/seo-lint.py`. The script uses only Python's standard library.
+4. Run `task links` to check internal and external links in `_site/` with
+   lychee, configured in `lychee.toml`. This requires a rendered site and
+   network access for external links.
+
+`task check` renders the site and runs the SEO and link checks sequentially.
+Locally, a failed command stops the task. In CI, SEO and link checks are
+advisory and do not block deployment. SEO lint exits nonzero on errors, or on
+warnings with `--strict`. Duplicate title warnings between a paper and its
+matching talk are expected.
+
+Quarto content has no unit test suite. For changes to the Markdown Worker, run
+its existing tests with Node.js available on PATH:
+
+```bash
+node --test workers/markdown-negotiation.test.mjs
+```
+
+Preserve existing tests, formatting hooks, and CI checks. Avoid unnecessary new
+test frameworks or CI infrastructure for this small site.
 
 ## Continuous Integration
 
-### GitHub Actions Workflow
+`.github/workflows/publish.yml` runs on pushes to `main` and manual dispatch. It
+installs Nix and devenv, configures Cachix and GitHub Pages, restores Git
+timestamps, and renders with `devenv shell -- quarto render`. It runs SEO lint
+and lychee through devenv, uploads `_site/`, and deploys to GitHub Pages. After
+deployment, it submits the sitemap to IndexNow and runs Lighthouse.
 
-The `.github/workflows/publish.yml` workflow runs on:
+`.github/workflows/lint.yml` runs Panache with external formatters on pushes to
+`main`. `devenv.nix` also enables the Panache formatting hook.
 
-- Push to `main` branch
-- Manual workflow dispatch
-
-**Build Steps:**
-
-1. Check out repository
-2. Setup GitHub Pages
-3. Install Quarto with TinyTeX
-4. Restore git timestamps (important for freeze mechanism)
-5. Render Quarto project
-6. Run SEO lint and link checks (advisory; reported in the job summary, never
-   block the deploy)
-7. Upload and deploy to GitHub Pages
-
-**Important:** The workflow uses `quarto-dev/quarto-actions/render@v2` which
-handles rendering. Do not use custom render commands in CI.
-
-**Common Failure Points:**
-
-- Missing R/Python packages (add to `flake.nix`)
-- Code execution errors in .qmd files
-- Broken cross-references or links
-- Image files not found
+For missing packages or execution errors, reproduce the render in devenv and
+update `devenv.nix` as needed. Also check referenced files, images, and
+cross-references when diagnosing build failures.
 
 ## Project Structure
 
-### Root Directory Files
+- `_quarto.yml`: Website configuration, navigation, Flatly theme, KaTeX, search,
+  and freeze policy.
+- `header.html` and `styles.css`: Shared header markup and styling.
+- `blog/_metadata.yml`: Blog defaults, including freeze, Giscus comments, title
+  banners, and social sharing.
+- `blog/YYYY-MM-DD-slug/index.qmd`: Blog posts and their local images.
+- `news/`, `publications/`, `software/`, `talks/`, and `cv/`: Other content.
+- `assets/bibliography.bib`: Shared bibliography.
+- `_extensions/`: Quarto extensions. Modify only with good reason.
+- `scripts/`: Site maintenance and generation scripts.
+- `workers/` and `wrangler.toml`: Markdown Worker, its tests, and deployment
+  configuration.
+- `Taskfile.yml`: Preview, render, SEO, link, and Lighthouse commands.
+- `.clang-format`: Mozilla style for C/C++ examples.
 
-```
-.clang-format          # C/C++ formatting (used in some code examples)
-.envrc                 # direnv configuration for Nix
-_quarto.yml            # Main Quarto configuration file
-flake.nix              # Nix development environment (R, Python, Julia packages)
-header.html            # Custom HTML injected in every page header
-index.qmd              # Homepage content
-styles.css             # Site-wide custom CSS
-```
+## Editing Content
 
-### Key Directories
+Create blog posts at `blog/YYYY-MM-DD-slug/index.qmd`. Include YAML frontmatter
+with a title, date, description, and lowercase, hyphen-separated categories. Put
+images beside the post or in its `images/` subdirectory. Use relative paths for
+internal links and images.
 
-```
-_extensions/           # Quarto extensions (fontawesome, academicons, fancy-text, multibib)
-_freeze/               # Cached computational outputs (DO NOT MANUALLY EDIT)
-assets/                # Shared resources
-  └── bibliography.bib # BibTeX references for publications
-blog/                  # Blog posts (13 posts, each in dated subdirectory)
-  └── _metadata.yml    # Blog-wide metadata (freeze: auto, giscus comments)
-cv/                    # CV page with LaTeX/PDF generation
-publications/          # Research publications (12 items)
-software/              # Software projects (5 items)
-talks/                # Conference talks (4 items)
-scripts/               # Utility scripts
-  └── generate-banner.py  # OpenAI-powered blog banner generation
-```
+R code chunks execute by default. Set `eval: false` for examples that should not
+execute. Render the affected post to check computations and review any generated
+`_freeze/` changes.
 
-### Content Structure
+To generate a blog banner, run
+`python scripts/generate-banner.py blog/YYYY-MM-DD-slug/index.qmd`. This
+requires an OpenAI API key and writes `images/banner.png` in the post's
+directory.
 
-All content pages are `.qmd` files with YAML frontmatter (title, date,
-description, categories, image). Blog posts: `blog/YYYY-MM-DD-slug/index.qmd`
-
-### Configuration Files
-
-**\_quarto.yml** - Main configuration:
-
-- Project type: `website`
-- Theme: `flatly` (Bootswatch)
-- Math rendering: KaTeX
-- Search enabled
-- Google Analytics configured
-- Navigation structure defined
-- Freeze: `auto` for computational caching
-
-**`blog/_metadata.yml`:**
-
-- Sets `freeze: auto` for all blog posts
-- Configures Giscus comments integration
-- Sets `title-block-banner: true` for blog posts
-
-## Making Changes
-
-### Adding/Editing Blog Posts
-
-1. Create `blog/YYYY-MM-DD-post-title/index.qmd` with frontmatter
-2. Place images in post directory or `images/` subdirectory
-3. Use `{r}`, `{python}`, or `{julia}` code chunks as needed
-4. Test: `quarto render blog/YYYY-MM-DD-post-title/index.qmd`
-5. Frozen output auto-created in `_freeze/blog/`
-
-### Adding Dependencies
-
-Add to `flake.nix`: R packages under `rPackages`, Python under
-`python3.withPackages`, Julia via JuliaCall
-
-### Styling & Formatting
-
-- **Global:** Edit `styles.css` or modify `theme: flatly` in `_quarto.yml`
-- **C/C++:** Mozilla style (`.clang-format`)
-
-## Common Workflows
-
-### Adding a New Blog Post
-
-1. Create directory: `mkdir -p blog/2025-12-19-new-post`
-2. Add `index.qmd` with YAML frontmatter (title, date, description, categories)
-3. Render to test: `quarto render blog/2025-12-19-new-post/index.qmd`
-4. Preview: `quarto preview`
-
-### Updating Dependencies
-
-1. Edit `flake.nix` to add R/Python packages
-2. Reload Nix: `nix develop`
-3. Test: `quarto render`
-
-### Generating Blog Banners
-
-`python scripts/generate-banner.py blog/YYYY-MM-DD-post/index.qmd` (requires
-OpenAI API key)
-
-## Important Conventions
-
-1. **Always work from repository root** - Quarto paths are relative to project
-   root
-2. **Commit the `_freeze/` directory** - It's part of the repository, not a
-   build artifact
-3. **Use relative paths** - All internal links should be relative (e.g.,
-   `blog/index.qmd`)
-4. **Image locations** - Images can be in post directory or `images/`
-   subdirectory
-5. **Date format** - Use `YYYY-MM-DD` in blog post directory names
-6. **YAML frontmatter** - Always include title, date, and description for blog
-   posts
-7. **Categories** - Use lowercase, hyphen-separated category names
-8. **Code execution** - R code chunks execute by default; set `eval: false` to
-   disable
+Edit `styles.css` for shared styling or the theme in `_quarto.yml`. Do not
+manually edit or commit `_site/` output.
 
 ## Troubleshooting
 
-### Build Failures
-
-**"Quarto not found"**
-
-- Solution: Install Quarto or use `nix develop`
-
-**"Package 'X' not found" (R/Python)**
-
-- Solution: Add package to `flake.nix` and reload Nix environment
-
-**"Could not find file"**
-
-- Solution: Check paths are relative to project root, not current directory
-- Solution: Verify image files exist in expected locations
-
-**Frozen content not updating**
-
-- Solution: Delete specific frozen file in `_freeze/` and re-render
-- Solution: Use `quarto render --execute-debug` to see execution details
-
-**Listing categories show no matches after upgrading Quarto**
-
-- On Nix, packaged resources have epoch timestamps, so Quarto can retain an
-  older cached listing script that appears newer than the installed version.
-- Run `scripts/refresh-quarto-libraries.sh` from the repository root. It stages
-  Quarto's resources with fresh timestamps and renders the site, letting Quarto
-  regenerate its cached libraries without changing the freeze policy.
-- Review and commit the generated `_freeze/` changes. Verify category clicks and
-  direct category links, then confirm that an ordinary `quarto render` preserves
-  the fix.
-
-### CI Failures
-
-The GitHub Actions workflow typically fails due to:
-
-1. Missing dependencies (add to `flake.nix` - but CI uses Ubuntu packages, not
-   Nix)
-2. Code execution errors in .qmd files (test locally first)
-3. Broken references or missing files
-
-**Note:** The CI uses `quarto-dev/quarto-actions/setup@v2` which installs Quarto
-and TinyTeX but NOT the Nix environment. It uses Ubuntu's R/Python, not the
-Nix-provided versions. If you add uncommon packages, the CI may fail even if
-local builds work.
-
-## What NOT to Do
-
-1. **Do not** manually edit files in `_freeze/` directory
-2. **Do not** manually edit files in `_site/` directory (build output)
-3. **Do not** commit `_site/` directory (it's git-ignored)
-4. **Do not** use absolute file paths
-5. **Do not** add test frameworks or CI steps beyond rendering (keep it simple)
-6. **Do not** modify Quarto extensions in `_extensions/` without good reason
-7. **Do not** change the freeze setting in `_quarto.yml` or `_metadata.yml`
-
-## Quick Reference
-
-**Render site:** `quarto render` **Preview site:** `quarto preview` **Check
-Quarto version:** `quarto --version` **Project root:**
-`/home/runner/work/jolars.co/jolars.co` (in CI) **Build output:** `_site/`
-(git-ignored) **Cached outputs:** `_freeze/` (committed) **Main config:**
-`_quarto.yml` **Blog config:** `blog/_metadata.yml`
+- **Quarto or a package is missing:** Enter `devenv shell`. For missing
+  dependencies, update `devenv.nix` and reenter the environment.
+- **A file cannot be found:** Check paths relative to the repository root and
+  confirm that referenced files exist.
+- **Frozen computations are stale:** Render the affected source file explicitly
+  to reexecute it. Use `--execute-debug` for execution diagnostics.
+- **Listing categories show no matches after a Quarto upgrade:** On Nix,
+  packaged resources have epoch timestamps, so Quarto can retain an older cached
+  listing script. Run `scripts/refresh-quarto-libraries.sh` from the repository
+  root. It stages Quarto resources with fresh timestamps and renders the site
+  without changing the freeze policy. Review and commit generated `_freeze/`
+  changes, verify category clicks and direct category links, and confirm that an
+  ordinary `quarto render` preserves the fix.
 
 ## Prose
 
-When writing or editing content, follow these guidelines:
-
-- Use American English spelling and grammar
-- Don't overuse em dashes or semicolons, but do prefer em dashes over en dashes
-  and don't use any spaces around them.
-- Use Oxford commas consistently
-- Use active voice where possible, follow Steven Pinker's guidelines for clear
-  writing.
+- Use American English and the Oxford comma.
+- Use em dashes sparingly, with no surrounding spaces. Prefer them over en
+  dashes for parenthetical remarks. Use semicolons sparingly.
+- Prefer active voice and concrete subjects. Follow Steven Pinker's guidelines
+  for clear writing.
 - Avoid LLM jargon and buzzwords.
-- Look at older posts for style reference.
+- Follow the voice of surrounding author-written text and older posts.
 
 ## Visualizations
 
