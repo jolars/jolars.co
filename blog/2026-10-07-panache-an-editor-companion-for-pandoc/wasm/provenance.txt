@@ -1,0 +1,12 @@
+Panache WASM 2.35.0
+Downloaded from the published Panache playground on 2026-10-08.
+
+These committed files pin the demo to this build.
+No download or WASM compilation is needed when rendering the site.
+
+Sources and SHA-256 checksums:
+https://panache.bz/playground/pkg/panache_wasm.js
+d9524f1dd3bb961ab2d471a07e36d08adb2da4d014090c7d43566b2c884c9f1d
+
+https://panache.bz/playground/pkg/panache_wasm_bg.wasm
+d1d73e22af25d809932587d42c76ebc21565e718a2c567db233acba3d690a3c5

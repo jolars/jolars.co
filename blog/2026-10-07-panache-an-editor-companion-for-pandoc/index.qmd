@@ -22,6 +22,10 @@ categories: [
 ]
 image: "og.jpg"
 title-block-banner: "banner.svg"
+resources:
+  - formatter-demo.css
+  - formatter-demo.js
+  - wasm/
 ---
 
 ## Introduction
@@ -29,21 +33,20 @@ title-block-banner: "banner.svg"
 I am a big fan of automation and tooling, and I love setting up code formatters,
 linters, and language servers to make editing as smooth as possible. For many
 languages, such as Python, C++, JSON, and YAML, this has been relatively
-straightforward. I've been able to set everything to my liking and the resulting
-experience has been smooth. But Markdown has been a recurring thorn in my side.
+straightforward: I've been able to set everything to my liking. But Markdown has
+been a recurring thorn in my side.
 
 Tools such as Prettier, Marksman, and markdownlint offer formatting, language
 server features, and linting. But most of my Markdown writing happens in Quarto
-and R Markdown^[Albeit to less and less extent.], and I've struggled to make
-these tools work with the syntax I use. Running Prettier on my Quarto documents
-has sometimes mangled fenced divs and tables. I have also missed features from
-my editing experience in LaTeX, where the language server (in that case texlab)
-understands and can analyze citations, footnotes, and much more.
+and R Markdown^[Though I use R Markdown less and less.], and I've struggled to
+make these tools work with the syntax I use. Running Prettier on my Quarto
+documents has sometimes mangled fenced divs and tables. I've also missed
+features I had when editing LaTeX, where my language server, texlab, understands
+and can analyze citations, footnotes, and much more.
 
 Around a year ago, I decided to try to fix this by building a tool myself.
 Quarto and R Markdown were the starting point, but the project has since grown
-into a tool for Markdown more broadly, encapsulating flavors such as MyST and
-mdsvex too.
+to support Markdown more broadly, including flavors such as MyST and mdsvex.
 
 ## Panache
 
@@ -59,31 +62,35 @@ references, and the language server helps you navigate and edit the document.
 All three share the same parser, so they work from the same understanding of
 your Markdown.
 
+The parser builds a lossless concrete syntax tree, retaining every character in
+the source, including comments and whitespace. This gives the formatter the
+source details it needs to preserve meaning while changing layout. Panache also
+aims for idempotent formatting: once a document has been formatted, running the
+formatter again should leave it unchanged.
+
 ## Markdown Comes in Many Flavors
 
-Markdown is a family of languages, and the differences matter. A GitHub README
-might need pipe tables and task lists. MyST documentation uses directives and
-roles, while mdsvex mixes Markdown with Svelte components and expressions. A
-Quarto manuscript adds citations, cross-references, fenced divs, and executable
-code chunks. A formatter needs to recognize these constructs to preserve what
-the author meant.
+Markdown is a family of languages with varying features and syntactic rules. A
+GitHub README might need pipe tables and task lists. MyST documentation uses
+directives and roles, while mdsvex mixes Markdown with Svelte components and
+expressions. A Quarto manuscript adds citations, cross-references, fenced divs,
+and executable code chunks. A formatter needs to recognize these constructs to
+preserve what the author meant.
 
-Most of these differences can formalized as a set of basic features that make
-text Markdown---headings, links, emphasis, and so on---plus a number of
-extensions (for instance citations and code blocks). The problem is that even
-when two flavors include the same feature, their rules for what counts as that
-can differ. CommonMark and Pandoc Markdown, for instance, recognize emphasis
-differently and have different rules for when blank lines end or continue a
-list.
+Most of these flavors can be described as a set of basic Markdown
+features---headings, links, emphasis, and so on---plus extensions such as
+citations and fenced code blocks. But even when two flavors include the same
+feature, they can use different rules to recognize it. CommonMark and Pandoc
+Markdown, for instance, recognize emphasis differently and have different rules
+for when blank lines end or continue a list.
 
-Panache therefore splits Markdown into dialects and flavors. A flavor decides
-what features (extensions) are supported and the dialect decides what rules
-these extensions abide by. Thankfully, there aren't that many different
-dialects: John Gruber's original Markdown flavor, CommonMark, and Pandoc
-Markdown are the ones that first come to mind. It is also the case that not
-*every* Markdown feature is treated differently, and in most cases the
-differences come down to handling of whitespace around the elementes
-(indentation and blanklines, mainly).
+Panache therefore distinguishes between dialects and flavors. A flavor
+determines which features (extensions) are supported, and a dialect determines
+the rules for parsing them. Thankfully, there aren't that many dialects: John
+Gruber's original Markdown, CommonMark, and Pandoc Markdown are the ones that
+first come to mind. Not *every* Markdown feature is treated differently, and
+most differences concern whitespace around elements, mainly indentation and
+blank lines.
 
 For `.qmd`, `.Rmd`, `.svx`, and `.svelte.md` files, Panache selects the
 corresponding flavor from the file extension. For `.md` files, you can choose a
@@ -111,11 +118,12 @@ citations = true
 ```
 
 There are switches for tables, footnotes, math delimiters, heading attributes,
-and many other features. Overrides can also be scoped to a particular flavor.
-This lets you match the syntax your publishing tool accepts without adopting
-every extension in another flavor. The [configuration
-guide](https://panache.bz/guide/configuration.html#extensions) lists the
-available extensions and their defaults.
+and many other features. The goal is to cover all of Pandoc's extensions plus
+whatever else is needed to support a variety of flavors. Overrides can also be
+scoped to a particular flavor. This lets you match the syntax your publishing
+tool accepts without adopting every extension in another flavor. The
+[configuration guide](https://panache.bz/guide/configuration.html#extensions)
+lists the available extensions and their defaults.
 
 These settings tell Panache how to read your source. They do not change the
 configuration of Quarto, Pandoc, or whichever tool renders the document.
@@ -132,6 +140,13 @@ Panache handles paragraphs, lists, tables, math, and YAML metadata, including
 Quarto's `#|` chunk options. It aims to keep the source readable, with
 consistent spacing and layout, while preserving the document's meaning.
 
+Try it below: edit the source or choose an example to see how Panache formats
+it. Formatting runs entirely in your browser.
+
+```{=html}
+{{< include formatter-demo.html >}}
+```
+
 You can configure the formatting separately from the Markdown syntax. For
 instance, these settings reflow paragraphs to a width of 80 columns:
 
@@ -145,6 +160,16 @@ If you prefer one sentence per line, use `wrap = "sentence"`. If you want to
 keep your existing paragraph line breaks, use `wrap = "preserve"`. I like having
 this choice for prose, where line breaks can be useful when reviewing changes in
 Git.
+
+Panache also formats the math itself. It adjusts operator spacing, indents math
+environments, and aligns columns in environments such as `aligned` and `array`.
+Choose the math example in the demo above to see it in action. By default,
+Panache also wraps long expressions (`math = "reflow"` in the `[format]`
+section). You can use `math = "preserve"` to retain your line breaks while still
+formatting the content, or `math = "verbatim"` to leave the content untouched.
+The [math formatting
+guide](https://panache.bz/guide/formatting.html#content-aware-math-formatting)
+explains the options.
 
 Markdown documents often contain code, whether as examples in a README or
 executable chunks in a Quarto manuscript. Panache can pass code blocks to
@@ -168,6 +193,26 @@ built-in presets.
 This is particularly useful for mixed-language documents: one formatting command
 handles the prose and delegates each code block to the appropriate tool.
 
+Sometimes a particular example needs a different layout, perhaps to fit on a
+slide or in a paper's narrow column. Panache's `code-style` metadata lets you
+set formatting options for an entire document or override them for one chunk:
+
+````qmd
+```{{python}}
+#| code-style:
+#|   line-width: 40
+
+result = fit_model(predictors, response, regularization=0.1)
+```
+````
+
+With Ruff configured as above, this chunk uses a line width of 40. A
+`code-style` mapping in the document's YAML frontmatter supplies defaults for
+all its code blocks, and chunk options override individual keys. This is a
+Panache convention, with built-in support in Arity, Black, Prettier, and Ruff.
+The available options depend on the formatter. See [code style
+metadata](https://panache.bz/guide/configuration.html#code-style) for details.
+
 ## Linting Across Code Chunks
 
 The built-in linter checks document structure and references, including heading
@@ -178,7 +223,24 @@ the terminal:
 panache lint manuscript.qmd
 ```
 
-External linters extend this to the code inside the document. For example, this
+For Quarto documents, the linter also validates YAML frontmatter, `#|` chunk
+options, and project files such as `_quarto.yml` and `_metadata.yml` against
+Quarto's schema. For example, `toc: maybe` produces a warning because `toc`
+expects a boolean. You can also enable checks for misspelled keys:
+
+```toml
+[lint.rules]
+quarto-schema-unknown-key = true
+```
+
+Other rules catch problems that can be easy to miss in the rendered document:
+ambiguous YAML values that Quarto and Pandoc interpret differently, comments
+that cause Pandoc to drop a heading's attributes, and unclosed braces or
+mismatched environments in math. The [lint rule
+reference](https://panache.bz/reference/linter-rules.html) describes these
+checks and how to configure them.
+
+External linters check the code inside the document. For example, this
 configuration enables Ruff for Python and ShellCheck for shell code:
 
 ```toml
@@ -189,10 +251,10 @@ sh = "shellcheck"
 
 One detail matters here: code chunks in a computational document often depend on
 earlier chunks. Linting each chunk separately can produce misleading warnings
-about variables defined elsewhere. In Quarto documents, Panache collects
-executable chunks and supported executable inline expressions in the same
-language and sends them to the linter together in document order. Displayed code
-blocks and chunks explicitly marked with a literal `eval: false` are each linted
+about variables defined elsewhere. In Quarto documents, Panache groups
+executable chunks and supported executable inline expressions by language and
+sends each group to its linter in document order. Displayed code blocks and
+chunks explicitly marked with a literal `eval: false` are each linted
 separately. Panache then maps diagnostics back to their positions in the
 original document. Code from Quarto `include` shortcodes participates in the
 surrounding execution context, too.
@@ -217,6 +279,12 @@ to the figure's label or rename the label and its references together.
 Panache also understands Quarto and Bookdown project structure, so it can
 resolve references across files. That becomes useful as soon as a manuscript
 grows into several chapters or a website shares a bibliography across pages.
+
+When you rename a file in an editor that supports LSP file renaming, Panache can
+update the paths that point to it. This includes links, images, Quarto
+shortcodes, and supported metadata paths, such as bibliography files. Moving a
+chapter or renaming an image therefore need not leave you searching the project
+for every reference to its old name.
 
 There are smaller conveniences, too: a document outline, folding for sections
 and code blocks, completion for file paths, and code actions to convert between
@@ -265,7 +333,7 @@ a file. Panache's native executable has low startup overhead, and the project
 includes benchmarks against other formatters on real Markdown and Quarto
 sources.
 
-In @fig-formatter-benchmarks is a selection from the [recorded benchmark
+@fig-formatter-benchmarks shows a selection from the [recorded benchmark
 results](https://github.com/jolars/panache/blob/74fc1a830f3f56692ab7e1e813a44173953e6794/docs/guide/performance_data.json),
 collected on September 10, 2026, on Linux with an Intel Core Ultra 7 155U.
 Values are mean wall-clock times in milliseconds for separate command-line
@@ -304,8 +372,8 @@ jsonlite::write_json(
 #|   The vertical axis uses a logarithmic scale; lower is faster.
 #| fig-alt: >
 #|   Dot chart comparing Panache, Prettier, rumdl, and Yamark on Tables, Math,
-#|   and the Pandoc manual. Documents have distinct colors and shapes. Yamark is
-#|   fastest on all three documents, followed by Panache.
+#|   and the Pandoc manual. Documents have distinct colors. Yamark is fastest on
+#|   all three documents, followed by Panache.
 
 library(ggplot2)
 
@@ -342,23 +410,20 @@ ggplot(benchmarks, aes(formatter, mean_ms, color = document)) +
   )
 ```
 
-These measurements use Panache 3.9.0, Prettier 3.9.6, rumdl 0.2.52, and Yamark
+These measurements used Panache 3.9.0, Prettier 3.9.6, rumdl 0.2.52, and Yamark
 0.3.0. On these three inputs, Panache was roughly 22 to 55 times as fast as
-Prettier. Yamark was faster still.
+Prettier. Yamark was faster still. Panache, rumdl, and Yamark are all written in
+Rust, so it is not surprising that they are faster than Prettier, which is
+written in JavaScript.
 
-The tools do different work, though. Prettier runs with its Markdown parser,
-while Panache recognizes the Quarto syntax in the `.qmd` inputs and also parses
-and formats math. Yamark preserves display math as opaque content. These are
-comparisons of the tools' respective formatting paths, not identical outputs.
-Timing a fresh command-line process also does not measure the latency of an
-editor with a formatter already running. External tools such as Ruff or Air add
-their own execution time when enabled in Panache.
+Yamark is faster than Panache partly because it does less work: for instance, it
+doesn't format math or support Panache's full extension and flavor system. I
+will continue to optimize Panache, but I'm not sure it will ever be as fast as
+Yamark. Still, I think formatting the Pandoc manual's more than 8,000 lines in
+50 ms is plenty fast enough!
 
 The [performance page](https://panache.bz/guide/performance.html) has the full
 results, repository-wide comparisons, and commands for reproducing the
-benchmarks. For my purposes, it's encouraging that Panache can support many
-Markdown flavors and still format quickly.
-
-If you try Panache on your own documents, I'd be happy to hear how it works for
-you. Bug reports and examples of syntax it handles poorly are welcome on
-[GitHub](https://github.com/jolars/panache/issues).
+benchmarks. If you try Panache on your own documents, I'd be happy to hear how
+it works for you. Bug reports and examples of syntax it handles poorly are
+welcome on [GitHub](https://github.com/jolars/panache/issues).

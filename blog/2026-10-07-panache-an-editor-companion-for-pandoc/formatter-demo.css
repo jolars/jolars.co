@@ -1,0 +1,88 @@
+.panache-demo {
+  padding: 1rem;
+  margin-block: 1.5rem;
+  border: 1px solid var(--bs-border-color, #ced4da);
+  border-radius: 0.375rem;
+  background: var(--bs-body-bg, #fff);
+}
+
+.panache-demo-examples,
+.panache-demo-footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.panache-demo-examples button[aria-pressed="true"] {
+  color: var(--bs-primary-text-emphasis, #052c65);
+  background: var(--bs-primary-bg-subtle, #cfe2ff);
+}
+
+.panache-demo-options {
+  display: grid;
+  grid-template-columns: 6rem 1fr 1fr;
+  gap: 0.75rem;
+  margin-block: 1rem;
+}
+
+.panache-demo label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.panache-demo-panes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.panache-demo textarea {
+  min-height: 16rem;
+  resize: vertical;
+  font-family: var(--bs-font-monospace);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  tab-size: 2;
+}
+
+.panache-demo textarea[readonly] {
+  background: var(--bs-tertiary-bg, #f8f9fa);
+}
+
+.panache-demo-footer {
+  margin-top: 0.75rem;
+}
+
+.panache-demo-footer p {
+  flex: 1 1 12rem;
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--bs-secondary-color, #495057);
+}
+
+.panache-demo-footer p[data-error="true"] {
+  color: var(--bs-danger-text-emphasis, #842029);
+}
+
+.panache-demo-note {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  color: var(--bs-secondary-color, #495057);
+}
+
+@media (max-width: 575.98px) {
+  .panache-demo-options {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .panache-demo-options > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .panache-demo-panes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
