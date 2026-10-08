@@ -303,6 +303,13 @@ When writing or editing content, follow these guidelines:
 - Avoid LLM jargon and buzzwords.
 - Look at older posts for style reference.
 
+## Visualizations
+
+- Generally prefer the Okabe-Ito color palette for categorical data.
+- For R, use ggplot2.
+- For Python, use matplotlib.
+- For Julia, use Makie.
+
 ## Trust These Instructions
 
 These instructions have been validated by exploring the repository structure,
