@@ -265,7 +265,7 @@ a file. Panache's native executable has low startup overhead, and the project
 includes benchmarks against other formatters on real Markdown and Quarto
 sources.
 
-Here is a selection from the [recorded benchmark
+In @fig-formatter-benchmarks is a selection from the [recorded benchmark
 results](https://github.com/jolars/panache/blob/74fc1a830f3f56692ab7e1e813a44173953e6794/docs/guide/performance_data.json),
 collected on September 10, 2026, on Linux with an Intel Core Ultra 7 155U.
 Values are mean wall-clock times in milliseconds for separate command-line
@@ -324,20 +324,17 @@ benchmarks$formatter <- factor(
   labels = c("Panache", "Prettier", "rumdl", "Yamark")
 )
 
-ggplot(
-  benchmarks,
-  aes(formatter, mean_ms, color = document, shape = document)
-) +
-  geom_point(size = 3, position = position_dodge(width = 0.4)) +
-  scale_y_log10(breaks = c(3, 10, 30, 100, 300, 1000, 3000)) +
-  scale_color_manual(values = c("#0072B2", "#D55E00", "#009E73")) +
+ggplot(benchmarks, aes(formatter, mean_ms, color = document)) +
+  geom_point(size = 3) +
+  scale_y_log10() +
+  scale_color_manual(values = palette.colors(palette = "Okabe-Ito")) +
   labs(
     x = "Tool",
     y = "Mean wall-clock time (ms)",
     color = NULL,
     shape = NULL
   ) +
-  theme_minimal(base_size = 12) +
+  theme_minimal() +
   theme(
     legend.position = "top",
     panel.grid.minor = element_blank(),
