@@ -209,6 +209,8 @@ in
           packages =
             (with pkgs.rPackages; [
               SLOPE
+              ggplot2
+              jsonlite
               maps
               qualpalr
               rgl

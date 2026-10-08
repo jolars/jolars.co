@@ -28,20 +28,22 @@ title-block-banner: "banner.svg"
 
 I am a big fan of automation and tooling, and I love setting up code formatters,
 linters, and language servers to make editing as smooth as possible. For many
-languages, such as Python, C++, JSON, and YAML, this has been rewarding, and
-I've been able to set everything to my liking. But Markdown has been a recurring
-thorn in my side.
+languages, such as Python, C++, JSON, and YAML, this has been relatively
+straightforward. I've been able to set everything to my liking and the resulting
+experience has been smooth. But Markdown has been a recurring thorn in my side.
 
 Tools such as Prettier, Marksman, and markdownlint offer formatting, language
 server features, and linting. But most of my Markdown writing happens in Quarto
-and R Markdown, and I've struggled to make these tools work with the syntax I
-use. Running Prettier on my Quarto documents has sometimes mangled fenced divs
-and tables. And when I write a paper, I want my editor to understand the
-citations, figure references, and project structure, too.
+and R Markdown^[Albeit to less and less extent.], and I've struggled to make
+these tools work with the syntax I use. Running Prettier on my Quarto documents
+has sometimes mangled fenced divs and tables. I have also missed features from
+my editing experience in LaTeX, where the language server (in that case texlab)
+understands and can analyze citations, footnotes, and much more.
 
-Eventually, I decided to build the tool I wanted. Quarto and R Markdown were the
-starting point, but the project has since grown into a tool for Markdown more
-broadly.
+Around a year ago, I decided to try to fix this by building a tool myself.
+Quarto and R Markdown were the starting point, but the project has since grown
+into a tool for Markdown more broadly, encapsulating flavors such as MyST and
+mdsvex too.
 
 ## Panache
 
@@ -49,7 +51,7 @@ broadly.
 Markdown. It supports flavors including CommonMark, GitHub-Flavored Markdown,
 MyST, mdsvex, Pandoc Markdown, Quarto, and R Markdown. It is written in Rust and
 provides both a command-line tool and editor integration through the Language
-Server Protocol (LSP).
+Server Protocol\ (LSP).
 
 The idea is to bring the conveniences of code editing to document writing. The
 formatter takes care of layout, the linter catches problems such as unresolved
@@ -66,17 +68,22 @@ Quarto manuscript adds citations, cross-references, fenced divs, and executable
 code chunks. A formatter needs to recognize these constructs to preserve what
 the author meant.
 
-CommonMark and Pandoc Markdown do not always agree on syntax details. For
-example, they recognize emphasis differently in some edge cases and have
-different rules for when blank lines end or continue a list.
+Most of these differences can formalized as a set of basic features that make
+text Markdown---headings, links, emphasis, and so on---plus a number of
+extensions (for instance citations and code blocks). The problem is that even
+when two flavors include the same feature, their rules for what counts as that
+can differ. CommonMark and Pandoc Markdown, for instance, recognize emphasis
+differently and have different rules for when blank lines end or continue a
+list.
 
-Panache uses flavor-specific parsing rules and extension defaults. Its
-CommonMark parser passes all 652 examples in the [CommonMark 0.31.2 conformance
-suite](https://github.com/jolars/panache/blob/main/crates/panache-parser/tests/commonmark/report.txt).
-The MyST flavor recognizes directives and roles, and the mdsvex flavor preserves
-Svelte expressions and template constructs verbatim. The MultiMarkdown flavor
-uses a Pandoc-compatible set of extension defaults, and the R Markdown flavor
-includes Bookdown support.
+Panache therefore splits Markdown into dialects and flavors. A flavor decides
+what features (extensions) are supported and the dialect decides what rules
+these extensions abide by. Thankfully, there aren't that many different
+dialects: John Gruber's original Markdown flavor, CommonMark, and Pandoc
+Markdown are the ones that first come to mind. It is also the case that not
+*every* Markdown feature is treated differently, and in most cases the
+differences come down to handling of whitespace around the elementes
+(indentation and blanklines, mainly).
 
 For `.qmd`, `.Rmd`, `.svx`, and `.svelte.md` files, Panache selects the
 corresponding flavor from the file extension. For `.md` files, you can choose a
@@ -264,11 +271,79 @@ collected on September 10, 2026, on Linux with an Intel Core Ultra 7 155U.
 Values are mean wall-clock times in milliseconds for separate command-line
 invocations, including process startup.
 
-  | Document      | Panache | Prettier | rumdl   | Yamark |
-  | :------------ | ------: | -------: | ------: | -----: |
-  | Tables        |     6.9 |    383.6 |    51.2 |    3.7 |
-  | Math          |     5.9 |    239.4 |    38.9 |    4.3 |
-  | Pandoc manual |    50.5 |  1,110.9 | 1,407.6 |   15.7 |
+```{r}
+#| label: refresh-benchmarks
+#| eval: false
+#| include: false
+
+# Run this chunk manually from the repository root, choosing a new commit
+# when updating the snapshot. Review the source link, date, hardware, tool
+# versions, and comparisons below, then render this post explicitly so that
+# Quarto refreshes its frozen output after the data changes.
+revision <- "74fc1a830f3f56692ab7e1e813a44173953e6794"
+url <- sprintf(
+  "https://raw.githubusercontent.com/jolars/panache/%s/docs/guide/performance_data.json",
+  revision
+)
+snapshot <- jsonlite::fromJSON(url, simplifyVector = FALSE)
+jsonlite::write_json(
+  snapshot,
+  "blog/2026-10-07-panache-an-editor-companion-for-pandoc/performance_data.json",
+  pretty = TRUE,
+  auto_unbox = TRUE
+)
+```
+
+```{r}
+#| label: fig-formatter-benchmarks
+#| echo: false
+#| fig-width: 6.5
+#| fig-height: 4
+#| fig-cap: >
+#|   Mean wall-clock time per formatting invocation, including process startup.
+#|   The vertical axis uses a logarithmic scale; lower is faster.
+#| fig-alt: >
+#|   Dot chart comparing Panache, Prettier, rumdl, and Yamark on Tables, Math,
+#|   and the Pandoc manual. Documents have distinct colors and shapes. Yamark is
+#|   fastest on all three documents, followed by Panache.
+
+library(ggplot2)
+
+benchmarks <- jsonlite::fromJSON("performance_data.json")$results
+documents <- c("tables", "math", "pandoc_manual")
+tools <- c("panache", "prettier", "rumdl", "yamark")
+benchmarks <- subset(benchmarks, document %in% documents & formatter %in% tools)
+benchmarks$document <- factor(
+  benchmarks$document,
+  levels = documents,
+  labels = c("Tables", "Math", "Pandoc manual")
+)
+benchmarks$formatter <- factor(
+  benchmarks$formatter,
+  levels = tools,
+  labels = c("Panache", "Prettier", "rumdl", "Yamark")
+)
+
+ggplot(
+  benchmarks,
+  aes(formatter, mean_ms, color = document, shape = document)
+) +
+  geom_point(size = 3, position = position_dodge(width = 0.4)) +
+  scale_y_log10(breaks = c(3, 10, 30, 100, 300, 1000, 3000)) +
+  scale_color_manual(values = c("#0072B2", "#D55E00", "#009E73")) +
+  labs(
+    x = "Tool",
+    y = "Mean wall-clock time (ms)",
+    color = NULL,
+    shape = NULL
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position = "top",
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank()
+  )
+```
 
 These measurements use Panache 3.9.0, Prettier 3.9.6, rumdl 0.2.52, and Yamark
 0.3.0. On these three inputs, Panache was roughly 22 to 55 times as fast as
