@@ -9,6 +9,7 @@ project:
     - scripts/fix-feed-links.sh
     - python3 scripts/optimize-site-assets.py
   resources:
+    - "images/og.png"
     - ".well-known/funding-manifest-urls"
     - "android-chrome-192x192.png"
     - "android-chrome-512x512.png"
@@ -30,7 +31,7 @@ project:
 website:
   title: "Johan Larsson"
   site-url: "https://jolars.co"
-  image: images/og.png
+  image: /images/og.png
   description: >-
     Personal website of Johan Larsson, a postdoctoral researcher in statistics
     at the Department of Mathematical Sciences, Copenhagen University.

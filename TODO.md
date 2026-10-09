@@ -75,12 +75,14 @@ under equivalent conditions.
 
 ## Medium priority
 
-- [ ] Fix inherited social-preview images on 20 pages, covering the CV, news,
-  and publications. Change `website.image` in [_quarto.yml](_quarto.yml) to
-  the project-relative `/images/og.png` path and ensure the asset is
-  published. Both the nested image URLs and the root image URL returned 404.
-  Verify that every affected Open Graph and Twitter image URL returns 200
-  after release.
+- [x] Fix inherited social-preview images on 24 pages, covering the CV, news,
+  and publications. `website.image` in [_quarto.yml](_quarto.yml) now uses
+  `/images/og.png`, and the asset is included in project resources. A full
+  render confirms that all 24 pages use the root image URL for Open Graph
+  and Twitter and that the published image matches the source.
+
+- [ ] After release, verify that the inherited social-preview image URL returns 200.
+  Production checks from this environment returned 403.
 
 - [ ] Fix horizontal overflow in the [Eunoia article's package
   table](blog/2026-07-04-eunoia/index.qmd). The page expands to 435 pixels
