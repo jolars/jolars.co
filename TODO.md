@@ -84,11 +84,11 @@ under equivalent conditions.
 - [ ] After release, verify that the inherited social-preview image URL returns 200.
   Production checks from this environment returned 403.
 
-- [ ] Fix horizontal overflow in the [Eunoia article's package
-  table](blog/2026-07-04-eunoia/index.qmd). The page expands to 435 pixels
-  on a 390-pixel viewport, clipping the header's search control. Allow table
-  contents to wrap or use a bounded scrolling container that is accessible
-  by keyboard. Verify that the page itself no longer overflows.
+- [x] Fix horizontal overflow in the [Eunoia article's package
+  table](blog/2026-07-04-eunoia/index.qmd). Table contents now wrap,
+  including inline code. Chromium confirms that the page width stays at 390
+  pixels on a 390-pixel viewport, down from 435 pixels, and the header's
+  search control remains visible.
 
 - [ ] Improve contrast for tabs, code highlighting, software buttons, and
   publication categories in [styles.css](styles.css),

@@ -66,6 +66,17 @@ ul.publication-list li {
   font-size: 1em;
 }
 
+/* Keep package names and install commands within narrow viewports. */
+#tbl-ecosystem th,
+#tbl-ecosystem td,
+#tbl-ecosystem code {
+  overflow-wrap: anywhere;
+}
+
+#tbl-ecosystem code {
+  white-space: normal;
+}
+
 div.quarto-post .thumbnail img {
   margin-bottom: 2em;
 }
@@ -130,5 +141,3 @@ div.quarto-about-solana .about-entity .about-image {
   align-self: flex-start;
   flex-shrink: 1;
 }
-
-
