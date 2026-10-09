@@ -157,9 +157,10 @@ line-width = 80
 ```
 
 If you prefer one sentence per line, use `wrap = "sentence"`. If you want to
-keep your existing paragraph line breaks, use `wrap = "preserve"`. I like having
-this choice for prose, where line breaks can be useful when reviewing changes in
-Git.
+keep your existing paragraph line breaks, use `wrap = "preserve"`. The fourth
+option, `wrap = "semantic"`, keeps the breaks you've placed, perhaps after a
+clause, and adds breaks at sentence boundaries. I like having this choice for
+prose, where line breaks can be useful when reviewing changes in Git.
 
 Panache also formats the math itself. It adjusts operator spacing, indents math
 environments, and aligns columns in environments such as `aligned` and `array`.
@@ -278,7 +279,14 @@ to the figure's label or rename the label and its references together.
 
 Panache also understands Quarto and Bookdown project structure, so it can
 resolve references across files. That becomes useful as soon as a manuscript
-grows into several chapters or a website shares a bibliography across pages.
+grows into several chapters or a website shares a bibliography across pages. You
+can find the places where a citation or cross-reference is used, or search
+headings across the project to jump to a section.
+
+In editors that support linked editing, you can also edit a label and have its
+linked occurrences in the current document update as you type. This works for
+reference links, footnotes, citations, and Quarto cross-references, among
+others.
 
 When you rename a file in an editor that supports LSP file renaming, Panache can
 update the paths that point to it. This includes links, images, Quarto
@@ -298,6 +306,11 @@ automatically, with a download fallback when no binary is bundled. It also works
 in Positron. For Neovim, Helix, Emacs, and Zed, the [language server
 guide](https://panache.bz/guide/lsp.html#editor-configuration) has setup
 instructions.
+
+For RStudio, the [Panache R package](https://jolars.github.io/panache-r/)
+provides addins to format the active document or selected blocks. The package is
+in early development and provides formatting; linting is available through the
+command-line tool or an editor connected to the language server.
 
 ## Getting Started
 
