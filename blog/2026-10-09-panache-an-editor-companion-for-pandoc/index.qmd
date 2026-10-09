@@ -5,7 +5,7 @@ description: >
   Markdown flavors. It makes it easy to write technical documents with
   citations, cross-references, and executable code chunks.
 author: "Johan Larsson"
-date: "2026-10-07"
+date: "2026-10-09"
 draft: true
 categories: [
   "panache",
