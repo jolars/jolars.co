@@ -72,7 +72,7 @@ jobs:
         run: devenv shell -- wrangler deploy
 
       - name: Check deployment
-        run: devenv shell -- python3 scripts/check-deployment.py
+        run: devenv shell -- python3 scripts/check-deployment.py --www-url https://www.jolars.co --attempts 6
 
       - name: Submit sitemap to IndexNow
         uses: bojieyang/indexnow-action@v3

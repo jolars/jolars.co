@@ -1,9 +1,18 @@
 name = "jolars-markdown-negotiation"
 main = "workers/markdown-negotiation.mjs"
 compatibility_date = "2026-10-04"
-route = { pattern = "jolars.co/*", zone_name = "jolars.co" }
 workers_dev = false
 preview_urls = false
+
+[[routes]]
+pattern = "jolars.co"
+zone_name = "jolars.co"
+custom_domain = true
+
+[[routes]]
+pattern = "www.jolars.co"
+zone_name = "jolars.co"
+custom_domain = true
 
 [assets]
 directory = "./_site"

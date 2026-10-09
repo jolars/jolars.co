@@ -41,6 +41,9 @@ the live endpoints. SEO and link checks are advisory in CI, while Worker tests
 and deployment checks must pass. After deployment checks pass, CI submits the
 sitemap to IndexNow and runs Lighthouse.
 
+Deployment checks retry up to six times, ten seconds apart, to allow the new
+Worker version to propagate. A persistent failure stops the publishing job.
+
 `wrangler.toml` defines the asset binding, Custom Domains, and observability.
 The Worker preserves Quarto's `.html` links and directory URLs. Requests with
 `Accept: text/markdown` receive the rendered `.llms.md` counterpart when one

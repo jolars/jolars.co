@@ -4,6 +4,7 @@
 import argparse
 import json
 import sys
+import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import urljoin
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -19,16 +20,8 @@ def require(condition, message):
         raise RuntimeError(message)
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--url", default="https://jolars.co", help="Site origin to check."
-    )
-    parser.add_argument(
-        "--www-url", help="Optional www origin whose redirect should be checked."
-    )
-    args = parser.parse_args()
-    base = args.url.rstrip("/") + "/"
+def check_deployment(url, www_url):
+    base = url.rstrip("/") + "/"
     opener = build_opener(NoRedirect())
 
     def check(path, *, method="GET", accept="text/html", status=200, origin=base):
@@ -119,16 +112,43 @@ def main():
         "/deployment-check-missing.html",
     ]:
         check(path, status=404)
-    if args.www_url:
-        headers, _ = check(
-            "/blog/index.html?category=rust", status=301, origin=args.www_url
-        )
+    if www_url:
+        headers, _ = check("/blog/index.html?category=rust", status=301, origin=www_url)
         require(
             headers.get("Location")
             == "https://jolars.co/blog/index.html?category=rust",
             "www: incorrect redirect",
         )
     print("Deployment checks passed.")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--url", default="https://jolars.co", help="Site origin to check."
+    )
+    parser.add_argument(
+        "--www-url", help="Optional www origin whose redirect should be checked."
+    )
+    parser.add_argument(
+        "--attempts", type=int, default=1, help="Check attempts, ten seconds apart."
+    )
+    args = parser.parse_args()
+    if args.attempts < 1:
+        parser.error("--attempts must be positive")
+    for attempt in range(1, args.attempts + 1):
+        try:
+            check_deployment(args.url, args.www_url)
+            return
+        except (RuntimeError, URLError, ValueError) as error:
+            if attempt == args.attempts:
+                raise
+            # A deployment can briefly serve the previous version at some edges.
+            print(
+                f"Attempt {attempt} failed: {error}. Retrying in ten seconds.",
+                file=sys.stderr,
+            )
+            time.sleep(10)
 
 
 if __name__ == "__main__":

@@ -27,7 +27,7 @@ tasks:
       - quarto render
       - task: worker-test
       - wrangler deploy
-      - python3 scripts/check-deployment.py --www-url https://www.jolars.co
+      - python3 scripts/check-deployment.py --www-url https://www.jolars.co --attempts 6
 
   seo:
     desc: Lint SEO metadata and content (titles, descriptions, alt text, ...)
