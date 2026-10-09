@@ -1,9 +1,14 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 
 let
+  # Keep the Worker runtime current without changing computational dependencies.
+  workersPkgs = import inputs.workers-nixpkgs {
+    system = pkgs.stdenv.hostPlatform.system;
+  };
   new-post = pkgs.writeShellScriptBin "new-post" ''
     ${builtins.readFile ./scripts/new-post.sh}
   '';
@@ -158,6 +163,8 @@ in
     lychee
     rustfmt
     julia-bin
+    nodejs
+    workersPkgs.wrangler
   ];
 
   tasks."news:new" = {

@@ -94,7 +94,25 @@
       "inputs": {
         "devenv": "devenv",
         "git-hooks": "git-hooks",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "workers-nixpkgs": "workers-nixpkgs"
+      }
+    },
+    "workers-nixpkgs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791545857,
+        "narHash": "sha256-M4+5vin4EKYw8CP55zxtrvxS3sc7ZFwQooUIUbIoKuk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9ba7b252a8d42b9f12b769617b581f24ab79930c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     }
   },

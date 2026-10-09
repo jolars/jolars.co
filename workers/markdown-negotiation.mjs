@@ -68,7 +68,7 @@ async function fetchOriginal(request, fetcher) {
   });
 }
 
-export async function handleRequest(request, fetcher = fetch) {
+export async function handleRequest(request, fetcher) {
   if (
     (request.method === "GET" || request.method === "HEAD") &&
     new URL(request.url).pathname === "/.well-known/markdown-service.json"
@@ -125,8 +125,46 @@ export async function handleRequest(request, fetcher = fetch) {
   return new Response(request.method === "HEAD" ? null : body, { status: 200, headers });
 }
 
+async function fetchAsset(request, assets) {
+  if (request.method !== "GET" && request.method !== "HEAD") {
+    return assets.fetch(request);
+  }
+
+  const url = new URL(request.url);
+  // Quarto links to .html files, so resolve indexes without redirecting those links.
+  if (url.pathname.endsWith("/")) {
+    url.pathname += "index.html";
+    return assets.fetch(new Request(url, request));
+  }
+
+  const response = await assets.fetch(request);
+  if (response.status !== 404 || url.pathname.split("/").at(-1).includes(".")) {
+    return response;
+  }
+
+  const file = new URL(url);
+  file.pathname += ".html";
+  const html = await assets.fetch(new Request(file, request));
+  if (html.status !== 404) return html;
+
+  const index = new URL(url);
+  index.pathname += "/index.html";
+  const directory = await assets.fetch(new Request(index, { method: "HEAD" }));
+  if (directory.status === 200) {
+    url.pathname += "/";
+    return Response.redirect(url.href, 301);
+  }
+  return response;
+}
+
 export default {
-  fetch(request) {
-    return handleRequest(request);
+  fetch(request, env) {
+    const url = new URL(request.url);
+    if (url.hostname === "www.jolars.co") {
+      url.protocol = "https:";
+      url.host = "jolars.co";
+      return Response.redirect(url.href, 301);
+    }
+    return handleRequest(request, (assetRequest) => fetchAsset(assetRequest, env.ASSETS));
   },
 };

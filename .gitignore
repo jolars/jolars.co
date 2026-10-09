@@ -40,3 +40,6 @@ devenv.local.yaml
 
 # Lighthouse audit output
 .lighthouse/
+
+# Wrangler local state and build artifacts
+.wrangler/

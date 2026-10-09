@@ -1,5 +1,20 @@
 name = "jolars-markdown-negotiation"
 main = "workers/markdown-negotiation.mjs"
 compatibility_date = "2026-10-04"
-compatibility_flags = ["global_fetch_private_origin"]
 route = { pattern = "jolars.co/*", zone_name = "jolars.co" }
+workers_dev = false
+preview_urls = false
+
+[assets]
+directory = "./_site"
+binding = "ASSETS"
+run_worker_first = true
+html_handling = "none"
+not_found_handling = "none"
+
+[observability]
+enabled = true
+
+[observability.traces]
+enabled = true
+head_sampling_rate = 0.01

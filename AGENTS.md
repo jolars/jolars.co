@@ -5,7 +5,8 @@
 This is Johan Larsson's personal website, built with Quarto. It includes a blog,
 news, software projects, publications, talks, and a CV. Content is primarily in
 `.qmd` files, with R, Python, and occasional Julia computations. A Cloudflare
-Worker in `workers/` handles Markdown content negotiation.
+Worker in `workers/` serves the rendered site through Workers Static Assets,
+handles Markdown content negotiation, and redirects the www hostname.
 
 ## Environment and Commands
 
@@ -13,7 +14,8 @@ Always run Quarto from the repository root.
 
 The project uses Nix and devenv. Run `devenv shell` to enter the environment, or
 prefix a command with `devenv shell --`, as CI does. The environment provides
-Quarto, Pandoc, LaTeX, R, Python, Julia, and site validation tools.
+Quarto, Pandoc, LaTeX, R, Python, Julia, Node.js, Wrangler, and site validation
+tools.
 
 ```bash
 # Render the entire site.
@@ -72,12 +74,19 @@ advisory and do not block deployment. SEO lint exits nonzero on errors, or on
 warnings with `--strict`. Duplicate title warnings between a paper and its
 matching talk are expected.
 
-Quarto content has no unit test suite. For changes to the Markdown Worker, run
-its existing tests with Node.js available on PATH:
+Quarto content has no unit test suite. For changes to the Worker, run its
+existing tests in devenv:
 
 ```bash
-node --test workers/markdown-negotiation.test.mjs
+devenv shell -- task worker-test
 ```
+
+After rendering, use `task worker-preview` to serve `_site/` through Wrangler
+locally. In another devenv shell, run
+`python3 scripts/check-deployment.py --url http://localhost:8787` to check
+routing, content negotiation, discovery endpoints, and static assets. Before
+deployment, run `wrangler deploy --dry-run`. `task deploy` renders, tests,
+deploys, and checks the production site.
 
 Preserve existing tests, formatting hooks, and CI checks. Avoid unnecessary new
 test frameworks or CI infrastructure for this small site.
@@ -85,10 +94,12 @@ test frameworks or CI infrastructure for this small site.
 ## Continuous Integration
 
 `.github/workflows/publish.yml` runs on pushes to `main` and manual dispatch. It
-installs Nix and devenv, configures Cachix and GitHub Pages, restores Git
-timestamps, and renders with `devenv shell -- quarto render`. It runs SEO lint
-and lychee through devenv, uploads `_site/`, and deploys to GitHub Pages. After
-deployment, it submits the sitemap to IndexNow and runs Lighthouse.
+installs Nix and devenv, configures Cachix, restores Git timestamps, and renders
+with `devenv shell -- quarto render`. It runs advisory SEO lint and lychee
+checks, tests the Worker, and deploys with `devenv shell -- wrangler deploy`.
+Repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`
+authenticate the deployment. It checks production endpoints before submitting
+the sitemap to IndexNow and running Lighthouse.
 
 `.github/workflows/lint.yml` runs Panache with external formatters on pushes to
 `main`. `devenv.nix` also enables the Panache formatting hook.
@@ -109,9 +120,10 @@ cross-references when diagnosing build failures.
 - `assets/bibliography.bib`: Shared bibliography.
 - `_extensions/`: Quarto extensions. Modify only with good reason.
 - `scripts/`: Site maintenance and generation scripts.
-- `workers/` and `wrangler.toml`: Markdown Worker, its tests, and deployment
+- `workers/` and `wrangler.toml`: Site Worker, its tests, and deployment
   configuration.
-- `Taskfile.yml`: Preview, render, SEO, link, and Lighthouse commands.
+- `Taskfile.yml`: Preview, render, Worker test, deployment, SEO, link, and
+  Lighthouse commands.
 - `.clang-format`: Mozilla style for C/C++ examples.
 
 ## Editing Content

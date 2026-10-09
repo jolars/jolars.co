@@ -11,6 +11,24 @@ tasks:
     cmds:
       - quarto render
 
+  worker-test:
+    desc: Test the Cloudflare Worker
+    cmds:
+      - node --test workers/markdown-negotiation.test.mjs
+
+  worker-preview:
+    desc: Serve the rendered site through the Worker locally
+    cmds:
+      - wrangler dev --local
+
+  deploy:
+    desc: Render, test, and publish the site to Cloudflare Workers
+    cmds:
+      - quarto render
+      - task: worker-test
+      - wrangler deploy
+      - python3 scripts/check-deployment.py --www-url https://www.jolars.co
+
   seo:
     desc: Lint SEO metadata and content (titles, descriptions, alt text, ...)
     cmds:

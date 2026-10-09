@@ -7,15 +7,16 @@ name: Quarto Publish
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: "pages"
+  group: "production"
   cancel-in-progress: false
 
 jobs:
-  build:
+  publish:
+    environment:
+      name: production
+      url: https://jolars.co
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -39,9 +40,6 @@ jobs:
       - name: Install devenv
         run: nix profile install --accept-flake-config nixpkgs#devenv
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v6
-
       # Restore mtimes so Quarto's freeze cache stays valid: freeze keys off
       # source timestamps, and a fresh checkout would otherwise look "newer"
       # than the committed _freeze/ outputs and force re-execution.
@@ -64,21 +62,17 @@ jobs:
         continue-on-error: true
         run: devenv shell -- lychee --config lychee.toml './_site/**/*.html'
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
-        with:
-          include-hidden-files: true
+      - name: Test Worker
+        run: devenv shell -- node --test workers/markdown-negotiation.test.mjs
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+      - name: Deploy to Cloudflare Workers
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: devenv shell -- wrangler deploy
+
+      - name: Check deployment
+        run: devenv shell -- python3 scripts/check-deployment.py
 
       - name: Submit sitemap to IndexNow
         uses: bojieyang/indexnow-action@v3
@@ -89,7 +83,7 @@ jobs:
 
   lighthouse:
     name: Lighthouse Audit
-    needs: deploy
+    needs: publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7

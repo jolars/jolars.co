@@ -7,3 +7,6 @@ inputs:
         follows: nixpkgs
   nixpkgs:
     url: github:cachix/devenv-nixpkgs/rolling
+  workers-nixpkgs:
+    url: github:NixOS/nixpkgs/master
+    flake: false
