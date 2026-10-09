@@ -19,7 +19,7 @@ categories: [
   "r-markdown",
   "language-server",
 ]
-image: "og.jpg"
+image: "og.png"
 title-block-banner: "banner.svg"
 resources:
   - formatter-demo.css
