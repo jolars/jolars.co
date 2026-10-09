@@ -179,20 +179,21 @@ Add this to `panache.toml`, for example:
 
 ```toml
 [formatters]
-r = "air"
+r = "arity"
 python = "ruff"
-javascript = "prettier"
+latex = "badness"
 ```
 
-With those tools installed and available on `PATH`, Panache uses Air for R, Ruff
-for Python, and Prettier for JavaScript. The presets supply the necessary
-arguments. You can also define custom formatter commands or chain multiple
-formatters for a language, such as running isort before Black. The [formatter
+With those tools installed and available on `PATH`, Panache uses
+[Arity](https://arity.cc) for R, Ruff [Ruff](https://docs.astral.sh/ruff/) for
+Python, and [Badness](https://badness.dev) for LaTeX.^[Apologies for the
+flagrant self-promotion here 😉.] The presets supply the necessary arguments but
+you can also define custom formatter commands or chain multiple formatters for a
+language, such as running isort before Black. The [formatter
 reference](https://panache.bz/reference/formatter-presets.html) lists the
-built-in presets.
-
-This is particularly useful for mixed-language documents: one formatting command
-handles the prose and delegates each code block to the appropriate tool.
+built-in presets. This is particularly useful for mixed-language documents: one
+formatting command handles the prose and delegates each code block to the
+appropriate tool.
 
 Sometimes a particular example needs a different layout, perhaps to fit on a
 slide or in a paper's narrow column. Panache's `code-style` metadata lets you
@@ -213,6 +214,11 @@ all its code blocks, and chunk options override individual keys. This is a
 Panache convention, with built-in support in Arity, Black, Prettier, and Ruff.
 The available options depend on the formatter. See [code style
 metadata](https://panache.bz/guide/configuration.html#code-style) for details.
+
+I have raised a discussion topic on the [Quarto CLI discussion
+board](https://github.com/orgs/quarto-dev/discussions/14898) about sanctioning
+`code-style` as a Quarto chunk option. Please chime in there if you think it
+would be useful to have this feature built into Quarto!
 
 ## Linting Across Code Chunks
 
@@ -466,8 +472,8 @@ collected these [results](performance_lint_single_data.json) on October 9, 2026,
 on Linux with an Intel Core Ultra 7 155U, using Panache 3.14.0, rumdl 0.2.64,
 mado 0.3.2, and markdownlint 0.49.1. As with the formatter comparison, the
 measurements include process startup. CLI caches and external linters were
-disabled. Mado skips `.qmd` files, so I gave it byte-identical copies with a
-`.md` extension.
+disabled. Mado skips `.qmd` files, so I gave it identical copies with a `.md`
+extension.
 
 ```{r}
 #| label: fig-linter-benchmarks

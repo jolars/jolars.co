@@ -15,7 +15,7 @@ const examples = {
 |Ridge|1.18|0.32|
 |Lasso|1.09|0.28|
 
-: Estimates from three regression models. {#tbl-estimates}
+table: Estimates from three regression models. The figures show estimates and standard errors. {#tbl-estimates}
 `,
   math: String.raw`$$
 \begin{aligned}

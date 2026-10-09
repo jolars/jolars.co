@@ -1,59 +1,98 @@
 <link rel="stylesheet" href="formatter-demo.css">
-<div id="panache-demo" class="panache-demo" role="group" aria-label="Try Panache formatting">
-  <div class="panache-demo-examples" role="group" aria-label="Example documents">
-    <span>Examples:</span>
-    <button type="button" class="btn btn-sm btn-outline-primary" data-example="callout" aria-pressed="true">Quarto callout</button>
-    <button type="button" class="btn btn-sm btn-outline-primary" data-example="table" aria-pressed="false">Table</button>
-    <button type="button" class="btn btn-sm btn-outline-primary" data-example="math" aria-pressed="false">Equation</button>
-  </div>
-  <div class="panache-demo-options">
-    <div>
-      <label for="panache-demo-width">Line width</label>
-      <input id="panache-demo-width" class="form-control form-control-sm" type="number" min="30" max="120" value="60" step="1">
+<div id="panache-demo"
+     class="panache-demo"
+     role="group"
+     aria-label="Try Panache formatting">
+    <div class="panache-demo-examples"
+         role="group"
+         aria-label="Example documents">
+        <span>Examples:</span>
+        <button type="button"
+                class="btn btn-sm btn-outline-primary"
+                data-example="callout"
+                aria-pressed="true">Quarto callout</button>
+        <button type="button"
+                class="btn btn-sm btn-outline-primary"
+                data-example="table"
+                aria-pressed="false">Table</button>
+        <button type="button"
+                class="btn btn-sm btn-outline-primary"
+                data-example="math"
+                aria-pressed="false">Equation</button>
     </div>
-    <div>
-      <label for="panache-demo-wrap">Paragraph wrapping</label>
-      <select id="panache-demo-wrap" class="form-select form-select-sm">
-        <option value="reflow">Reflow</option>
-        <option value="sentence">One sentence per line</option>
-        <option value="preserve">Preserve line breaks</option>
-      </select>
+    <div class="panache-demo-options">
+        <div>
+            <label for="panache-demo-width">Line width</label>
+            <input id="panache-demo-width"
+                   class="form-control form-control-sm"
+                   type="number"
+                   min="30"
+                   max="120"
+                   value="60"
+                   step="1">
+        </div>
+        <div>
+            <label for="panache-demo-wrap">Paragraph wrapping</label>
+            <select id="panache-demo-wrap" class="form-select form-select-sm">
+                <option value="reflow">Reflow</option>
+                <option value="sentence">One sentence per line</option>
+                <option value="preserve">Preserve line breaks</option>
+            </select>
+        </div>
+        <div>
+            <label for="panache-demo-math">Math formatting</label>
+            <select id="panache-demo-math" class="form-select form-select-sm">
+                <option value="reflow">Reflow</option>
+                <option value="preserve">Preserve line breaks</option>
+                <option value="single-line">Single line</option>
+                <option value="verbatim">Verbatim</option>
+            </select>
+        </div>
     </div>
-    <div>
-      <label for="panache-demo-math">Math formatting</label>
-      <select id="panache-demo-math" class="form-select form-select-sm">
-        <option value="reflow">Reflow</option>
-        <option value="preserve">Preserve line breaks</option>
-        <option value="single-line">Single line</option>
-        <option value="verbatim">Verbatim</option>
-      </select>
-    </div>
-  </div>
-  <div class="panache-demo-panes">
-    <div>
-      <label for="panache-demo-input">Quarto source</label>
-      <textarea id="panache-demo-input" class="form-control" rows="13" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="soft" aria-describedby="panache-demo-note">::: {.callout-note}
-##   A note about reproducibility
+    <div class="panache-demo-panes">
+        <div>
+            <label for="panache-demo-input">Quarto source</label>
+            <textarea id="panache-demo-input" class="form-control" rows="12" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="soft" aria-describedby="panache-demo-note">::::{.callout-note}
+##   Keep the analysis reproducible
 
-A computational document combines prose, equations, and code. Keeping its source readable makes it easier to review changes and collaborate with other authors.
+A __reproducible analysis__ should be *easy to rerun*, including its data, code, and software environment.
 
--   Keep the data with the analysis.
--   Record the software versions.
-:::
+-   Keep the `data/` directory with the analysis.
+    *    Record where the data came from.
+    *  Document any exclusions.
+-  Save **package versions** and the random seed.
+
+::::
 </textarea>
+        </div>
+        <div>
+            <label for="panache-demo-output">Formatted source</label>
+            <textarea id="panache-demo-output"
+                      class="form-control"
+                      rows="12"
+                      spellcheck="false"
+                      wrap="off"
+                      readonly
+                      placeholder="Formatted source will appear here."></textarea>
+        </div>
     </div>
-    <div>
-      <label for="panache-demo-output">Formatted source</label>
-      <textarea id="panache-demo-output" class="form-control" rows="13" spellcheck="false" wrap="off" readonly placeholder="Formatted source will appear here."></textarea>
+    <div class="panache-demo-footer">
+        <p id="panache-demo-status" role="status" aria-live="polite">The demo loads when it comes into view.</p>
+        <button id="panache-demo-retry"
+                type="button"
+                class="btn btn-sm btn-outline-primary"
+                hidden>Retry loading</button>
+        <button id="panache-demo-reset"
+                type="button"
+                class="btn btn-sm btn-outline-secondary">Reset example</button>
+        <button id="panache-demo-copy"
+                type="button"
+                class="btn btn-sm btn-outline-primary"
+                disabled>Copy output</button>
     </div>
-  </div>
-  <div class="panache-demo-footer">
-    <p id="panache-demo-status" role="status" aria-live="polite">The demo loads when it comes into view.</p>
-    <button id="panache-demo-retry" type="button" class="btn btn-sm btn-outline-primary" hidden>Retry loading</button>
-    <button id="panache-demo-reset" type="button" class="btn btn-sm btn-outline-secondary">Reset example</button>
-    <button id="panache-demo-copy" type="button" class="btn btn-sm btn-outline-primary" disabled>Copy output</button>
-  </div>
-  <p id="panache-demo-note" class="panache-demo-note">This demo formats Quarto prose, tables, and math. Code inside chunks is left as written. For more options, try the <a href="https://panache.bz/playground/">full playground</a>.</p>
-  <noscript><p>Enable JavaScript to use the live demo. You can also try the <a href="https://panache.bz/playground/">Panache playground</a>.</p></noscript>
+    <p id="panache-demo-note" class="panache-demo-note">This demo formats Quarto prose, tables, and math. Code inside chunks is left as written. For more options, try the <a href="https://panache.bz/playground/">full playground</a>.</p>
+    <noscript>
+        <p>Enable JavaScript to use the live demo. You can also try the <a href="https://panache.bz/playground/">Panache playground</a>.</p>
+    </noscript>
 </div>
 <script type="module" src="formatter-demo.js"></script>

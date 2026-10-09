@@ -35,7 +35,7 @@
 
 .panache-demo-panes {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
 }
 
@@ -80,9 +80,5 @@
 
   .panache-demo-options > :last-child {
     grid-column: 1 / -1;
-  }
-
-  .panache-demo-panes {
-    grid-template-columns: minmax(0, 1fr);
   }
 }
