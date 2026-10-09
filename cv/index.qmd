@@ -300,7 +300,7 @@ SLOPE
     Author and maintainer
 
     R package (<https://CRAN.R-project.org/package=SLOPE>), Python package
-    (<https://pypi.org/projects/sortedl1>), Julia package
+    (<https://pypi.org/project/sortedl1/>), Julia package
     (<https://github.com/jolars/SLOPE.jl>), C++ library
     (<https://github.com/jolars/libslope>)
 

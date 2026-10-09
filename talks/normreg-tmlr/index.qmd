@@ -19,7 +19,7 @@ citation:
   genre: Online
   event-title: TMLR 2025
   event-place: Online
-  url: https://www.youtube.com/GYqYAy3-B1k
+  url: https://www.youtube.com/watch?v=GYqYAy3-B1k
 ---
 
 {{< video https://www.youtube.com/embed/GYqYAy3-B1k >}}

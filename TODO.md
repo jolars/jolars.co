@@ -108,11 +108,11 @@ under equivalent conditions.
   skipped listing heading levels, and code regions that cannot receive
   keyboard focus. Recheck the affected interactive states with axe.
 
-- [ ] Correct the CV's PyPI link in [cv/index.qmd](cv/index.qmd) from
+- [x] Correct the CV's PyPI link in [cv/index.qmd](cv/index.qmd) from
   `https://pypi.org/projects/sortedl1` to
   `https://pypi.org/project/sortedl1/`.
 
-- [ ] Correct the recording link in
+- [x] Correct the recording link in
   [talks/normreg-tmlr/index.qmd](talks/normreg-tmlr/index.qmd) to
   `https://www.youtube.com/watch?v=GYqYAy3-B1k`.
 
