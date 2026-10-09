@@ -152,6 +152,7 @@ let
 in
 {
   packages = with pkgs; [
+    imagemagick
     new-post
     tex
     quartoMinimal

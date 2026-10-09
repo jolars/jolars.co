@@ -3,5 +3,6 @@ author-title: Authors
 google-scholar: true
 format:
   html:
+    include-in-header: ../assets/templates/icons.html
     template-partials:
       - /assets/templates/title-metadata.html

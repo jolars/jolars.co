@@ -57,11 +57,16 @@ locally in `.lighthouse/website-audit-2026-09-21/report.md` (Git-ignored).
   780 KiB of Mermaid, 694 KiB of Eunoia, and 212 KiB of Observable runtime;
   those figures are historical, and Lighthouse has not been rerun.
 
-- [ ] Reduce shared assets and image downloads. Review global KaTeX and icon
-  loading in [_quarto.yml](_quarto.yml) and [header.html](header.html).
-  Generate appropriately sized, compressed blog thumbnails instead of
-  serving full sharing images, and compress the homepage avatar. Lighthouse
-  estimated 1,106 KiB of thumbnail savings and 47 KiB for the avatar.
+- [x] Reduce shared assets and image downloads. Completed October 9, 2026: the
+  homepage and navbar use the existing Bootstrap icons, while Font Awesome
+  and Academicons load only for the CV, publications, and software. A
+  post-render script removes KaTeX loaders from pages without equations and
+  generates WebP listing thumbnails up to 480 pixels across, preserving the
+  original sharing images and SVG diagrams. The full render saves 2,391 KiB
+  across 19 listing images. The homepage avatar falls from 58,568 to 9,408
+  bytes. Full renders, desktop and mobile browser checks, and SEO lint pass.
+  Article equations still render with KaTeX. Link checks find 81 external
+  failures and no internal asset failures. Lighthouse has not been rerun.
 
 Mobile performance baselines: homepage 63, blog listing 67, and Eunoia article 50.
 The article measured 13.8 seconds FCP and 18.2 seconds LCP. These are single

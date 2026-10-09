@@ -5,6 +5,7 @@ description-meta: >-
   Personal website of Johan Larsson, a postdoctoral researcher in statistics at
   the Department of Mathematical Sciences, Copenhagen University.
 title-prefix: ""
+image: assets/images/avatar.jpg
 toc: false
 canonical-url: "https://jolars.co/"
 open-graph:
@@ -12,7 +13,7 @@ open-graph:
 about:
   id: hero-heading
   template: solana
-  image: assets/images/avatar.jpg
+  image: assets/images/avatar.webp
   image-alt: "Portrait of Johan Larsson"
   image-shape: round
   links:
@@ -21,7 +22,7 @@ about:
       aria-label: Mastodon
       href: "https://mastodon.social/@jolars"
       rel: "me"
-    - text: "<i class='fa-brands fa-bluesky'></i> Bluesky"
+    - text: "<i class='bi bi-bluesky'></i> Bluesky"
       href: "https://bsky.app/profile/jolars.co"
       aria-label: Bluesky
     - icon: linkedin
@@ -30,7 +31,7 @@ about:
     - icon: github
       text: GitHub
       href: https://github.com/jolars
-    - text: <i class="fa-brands fa-google-scholar"></i> Google Scholar
+    - text: <i class="bi bi-mortarboard"></i> Google Scholar
       href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
     - icon: envelope
       text: Mail

@@ -7,6 +7,7 @@ project:
   post-render:
     - scripts/fix-sitemap.sh
     - scripts/fix-feed-links.sh
+    - python3 scripts/optimize-site-assets.py
   resources:
     - ".well-known/funding-manifest-urls"
     - "android-chrome-192x192.png"
@@ -57,7 +58,7 @@ website:
         href: "https://mastodon.social/@jolars"
         aria-label: Mastodon
         rel: "me"
-      - text: "<i class='fa-brands fa-bluesky'></i><span class='visually-hidden'>Bluesky</span>"
+      - text: "<i class='bi bi-bluesky'></i><span class='visually-hidden'>Bluesky</span>"
         href: "https://bsky.app/profile/jolars.co"
         aria-label: Bluesky
       - icon: linkedin
@@ -67,7 +68,7 @@ website:
         href: "https://github.com/jolars/"
         aria-label: "Github profile"
       - text:
-          "<i class='fa-brands fa-google-scholar'></i><span
+          "<i class='bi bi-mortarboard'></i><span
           class='visually-hidden'>Google Scholar</span>"
         href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
         aria-label: "Google scholar profile"

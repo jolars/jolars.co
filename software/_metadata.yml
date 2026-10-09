@@ -2,5 +2,6 @@ sidebar: false
 author-title: Authors
 format:
   html:
+    include-in-header: ../assets/templates/icons.html
     template-partials:
       - /assets/templates/title-metadata.html

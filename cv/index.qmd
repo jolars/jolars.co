@@ -5,6 +5,7 @@ description: >
   research, publications, talks, software, and education in statistics.
 format:
   html:
+    include-in-header: ../assets/templates/icons.html
     css:
       - styles.css
     template-partials: title-block.html

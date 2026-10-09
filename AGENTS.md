@@ -142,6 +142,15 @@ To generate a blog banner, run
 requires an OpenAI API key and writes `images/banner.png` in the post's
 directory.
 
+The post-render script `scripts/optimize-site-assets.py` generates WebP listing
+thumbnails in `_site/assets/thumbnails/` with ImageMagick and removes unused
+KaTeX loaders from pages without math. It preserves original sharing images and
+SVG thumbnails. The homepage uses `assets/images/avatar.webp`; regenerate it
+from the original JPEG with
+`magick assets/images/avatar.jpg -auto-orient -resize '640x640>' -strip -quality 80 assets/images/avatar.webp`
+when replacing the portrait. Specialized icon libraries are scoped to the CV,
+publications, and software through `assets/templates/icons.html`.
+
 Edit `styles.css` for shared styling or the theme in `_quarto.yml`. Do not
 manually edit or commit `_site/` output.
 
