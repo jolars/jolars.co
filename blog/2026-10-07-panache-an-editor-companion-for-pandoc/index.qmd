@@ -344,7 +344,10 @@ reports lint diagnostics. Both can run in CI, and there are integrations for
 I also want formatting to be fast enough that I don't think about it when saving
 a file. Panache's native executable has low startup overhead, and the project
 includes benchmarks against other formatters on real Markdown and Quarto
-sources.
+sources, comparisons of linters, and measurements of language-server
+responsiveness.
+
+### Formatting
 
 @fig-formatter-benchmarks shows a selection from the [recorded benchmark
 results](https://github.com/jolars/panache/blob/74fc1a830f3f56692ab7e1e813a44173953e6794/docs/guide/performance_data.json),
@@ -357,22 +360,43 @@ invocations, including process startup.
 #| eval: false
 #| include: false
 
-# Run this chunk manually from the repository root, choosing a new commit
-# when updating the snapshot. Review the source link, date, hardware, tool
+# Run this chunk manually from the repository root, choosing new commits
+# when updating the snapshots. Review the source links, dates, hardware, tool
 # versions, and comparisons below, then render this post explicitly so that
 # Quarto refreshes its frozen output after the data changes.
-revision <- "74fc1a830f3f56692ab7e1e813a44173953e6794"
-url <- sprintf(
-  "https://raw.githubusercontent.com/jolars/panache/%s/docs/guide/performance_data.json",
-  revision
+snapshots <- c(
+  performance_data.json = "74fc1a830f3f56692ab7e1e813a44173953e6794",
+  performance_lsp_memory_data.json = "e161c37a7a1f82dfd322ce2aae4d561a96326a31"
 )
-snapshot <- jsonlite::fromJSON(url, simplifyVector = FALSE)
-jsonlite::write_json(
-  snapshot,
-  "blog/2026-10-07-panache-an-editor-companion-for-pandoc/performance_data.json",
-  pretty = TRUE,
-  auto_unbox = TRUE
-)
+post <- "blog/2026-10-07-panache-an-editor-companion-for-pandoc"
+for (file in names(snapshots)) {
+  url <- sprintf(
+    "https://raw.githubusercontent.com/jolars/panache/%s/docs/guide/%s",
+    snapshots[[file]],
+    file
+  )
+  snapshot <- jsonlite::fromJSON(url, simplifyVector = FALSE)
+  jsonlite::write_json(
+    snapshot,
+    file.path(post, file),
+    pretty = TRUE,
+    auto_unbox = TRUE
+  )
+}
+```
+
+```{bash}
+#| label: refresh-lint-benchmarks
+#| eval: false
+#| include: false
+
+# Run manually from the site root, with a local Panache checkout available.
+# The helper uses Panache's benchmark runner without changing its tracked files.
+# Review the date, hardware, tool versions, and comparisons after refreshing.
+site_root="$PWD"
+panache_repo="$HOME/projects/panache"
+cd "$panache_repo"
+devenv shell -- python3 "$site_root/scripts/refresh-panache-lint-benchmarks.py" "$panache_repo"
 ```
 
 ```{r}
@@ -434,6 +458,141 @@ doesn't format math or support Panache's full extension and flavor system. I
 will continue to optimize Panache, but I'm not sure it will ever be as fast as
 Yamark. Still, I think formatting the Pandoc manual's more than 8,000 lines in
 50 ms is plenty fast enough!
+
+### Linting
+
+@fig-linter-benchmarks compares the linters on the same three documents. I
+collected these [results](performance_lint_single_data.json) on October 9, 2026,
+on Linux with an Intel Core Ultra 7 155U, using Panache 3.14.0, rumdl 0.2.64,
+mado 0.3.2, and markdownlint 0.49.1. As with the formatter comparison, the
+measurements include process startup. CLI caches and external linters were
+disabled. Mado skips `.qmd` files, so I gave it byte-identical copies with a
+`.md` extension.
+
+```{r}
+#| label: fig-linter-benchmarks
+#| echo: false
+#| fig-width: 6.5
+#| fig-height: 4
+#| fig-cap: >
+#|   Mean wall-clock time per linting invocation, including process startup. The
+#|   vertical axis uses a logarithmic scale; lower is faster. The tools check
+#|   different rules and support different syntax.
+#| fig-alt: >
+#|   Dot chart comparing Panache, rumdl, mado, and markdownlint on Tables, Math,
+#|   and the Pandoc manual. Mado is fastest on all three documents, followed by
+#|   Panache, rumdl, and markdownlint.
+
+lint_benchmarks <- jsonlite::fromJSON(
+  "performance_lint_single_data.json"
+)$results
+lint_tools <- c("panache", "rumdl", "mado", "markdownlint")
+lint_benchmarks <- subset(
+  lint_benchmarks,
+  document %in% documents & tool %in% lint_tools
+)
+lint_benchmarks$document <- factor(
+  lint_benchmarks$document,
+  levels = documents,
+  labels = c("Tables", "Math", "Pandoc manual")
+)
+lint_benchmarks$tool <- factor(
+  lint_benchmarks$tool,
+  levels = lint_tools,
+  labels = c("Panache", "rumdl", "mado", "markdownlint")
+)
+
+ggplot(lint_benchmarks, aes(tool, mean_ms, color = document)) +
+  geom_point(size = 3) +
+  scale_y_log10() +
+  scale_color_manual(values = palette.colors(palette = "Okabe-Ito")) +
+  labs(x = "Tool", y = "Mean wall-clock time (ms)", color = NULL) +
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank()
+  )
+```
+
+Panache linted the two Quarto documents in about 15 ms each and the Pandoc
+manual in about 45 ms. Mado was faster on all three inputs, while rumdl and
+markdownlint took longer. The linters check different rules and support
+different syntax, so the timings compare the work each tool does on these
+documents.
+
+### Language Server
+
+For the language server, I care most about how quickly it responds while I'm
+editing. @fig-lsp-benchmarks compares Panache 3.11.0 with Marksman 2026-02-08,
+using [measurements collected on September 20,
+2026](https://github.com/jolars/panache/blob/e161c37a7a1f82dfd322ce2aae4d561a96326a31/docs/guide/performance_lsp_memory_data.json),
+on Linux with an AMD Ryzen 9 7900. The benchmark opens the five largest Markdown
+files in the Rust Book and starts three fresh processes per server. It times
+request round trips over stdio after warmup, then makes 1,000 reference-label
+edits per process, following each edit with a definition request. The plot shows
+a selection of the shared Markdown navigation features.
+
+```{r}
+#| label: fig-lsp-benchmarks
+#| echo: false
+#| fig-width: 6.5
+#| fig-height: 4
+#| fig-cap: >
+#|   Median language-server request latency across pooled samples from three
+#|   processes. The vertical axis uses a logarithmic scale; lower is faster.
+#| fig-alt: >
+#|   Dot chart comparing Panache and Marksman request latency, with distinct
+#|   colors for document symbols, definition, and edit-to-definition requests.
+#|   Both respond to document-symbol and definition requests in less than a
+#|   millisecond. After an edit, median definition latency is about 1.5 ms for
+#|   Panache and 30 ms for Marksman.
+
+lsp_snapshot <- jsonlite::fromJSON(
+  "performance_lsp_memory_data.json",
+  simplifyVector = FALSE
+)
+requests <- c("document_symbol", "definition", "edit_definition")
+latencies <- data.frame()
+for (server in lsp_snapshot$servers) {
+  for (request in server$aggregate$request_latencies) {
+    if (!request$key %in% requests) {
+      next
+    }
+    latencies <- rbind(
+      latencies,
+      data.frame(
+        server = server$label,
+        request = request$key,
+        median_ms = request$median_ms
+      )
+    )
+  }
+}
+latencies$request <- factor(
+  latencies$request,
+  levels = requests,
+  labels = c("Document symbols", "Go to definition", "Edit to definition")
+)
+latencies$server <- factor(latencies$server, levels = c("Panache", "Marksman"))
+
+ggplot(latencies, aes(server, median_ms, color = request)) +
+  geom_point(size = 3) +
+  scale_y_log10() +
+  scale_color_manual(values = palette.colors(palette = "Okabe-Ito")) +
+  labs(x = "Tool", y = "Median request latency (ms)", color = NULL) +
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank()
+  )
+```
+
+Both servers answered the warm document-symbol and definition requests in well
+under a millisecond. The larger difference came after an edit: Panache's median
+edit-to-definition latency was about 1.5 ms, compared with 30 ms for Marksman.
+Their 95th percentiles were about 2.1 ms and 46 ms, respectively.
 
 The [performance page](https://panache.bz/guide/performance.html) has the full
 results, repository-wide comparisons, and commands for reproducing the

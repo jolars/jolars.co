@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "meta": {
+    "generated_at": "2026-10-09T09:25:09Z",
+    "host": {
+      "os": "linux",
+      "arch": "x86_64",
+      "cpu": "Intel(R) Core(TM) Ultra 7 155U"
+    },
+    "min_runs": 3,
+    "tools": {
+      "panache": {
+        "version": "3.14.0"
+      },
+      "rumdl": {
+        "version": "0.2.64"
+      },
+      "mado": {
+        "version": "0.3.2"
+      },
+      "markdownlint": {
+        "version": "0.49.1"
+      }
+    },
+    "provenance": {
+      "repository": "https://github.com/jolars/panache",
+      "revision": "3dc00a9c0085364cc91b2210e4382f69a12d8040",
+      "runner": "benches/compare_lint_single.sh",
+      "adapter": "scripts/refresh-panache-lint-benchmarks.py",
+      "adaptations": [
+        "Select three documents and four tools.",
+        "Accept lint diagnostic exit code 1 without accepting other failures.",
+        "Give mado byte-identical .md copies because it skips .qmd files."
+      ]
+    }
+  },
+  "documents": [
+    {
+      "id": "tables",
+      "name": "Tables Document",
+      "file": "tables.qmd",
+      "size_bytes": 25179,
+      "lines": 1027,
+      "sha256": "60365b5101a5d70e504fceefd9a254e00feee359dbd7066ca2d63f5fd30cb4b9"
+    },
+    {
+      "id": "math",
+      "name": "Math Document",
+      "file": "math.qmd",
+      "size_bytes": 30112,
+      "lines": 703,
+      "sha256": "551e124c025b45f6bd6f2e87b654147c99b000ae23033a66c03069ee451ad90f"
+    },
+    {
+      "id": "pandoc_manual",
+      "name": "Pandoc Manual (large reference doc)",
+      "file": "pandoc_manual.md",
+      "size_bytes": 304665,
+      "lines": 8149,
+      "sha256": "d638b172d2d7aca2661425f12f1d21409d3ebb0a008c681827ff64fd62faa503"
+    }
+  ],
+  "results": [
+    {
+      "document": "tables",
+      "tool": "panache",
+      "mean_ms": 15.1553,
+      "stddev_ms": 1.6846,
+      "min_ms": 12.1951,
+      "max_ms": 20.5393,
+      "runs": 169
+    },
+    {
+      "document": "tables",
+      "tool": "rumdl",
+      "mean_ms": 22.2122,
+      "stddev_ms": 2.1874,
+      "min_ms": 18.1504,
+      "max_ms": 28.5975,
+      "runs": 126
+    },
+    {
+      "document": "tables",
+      "tool": "mado",
+      "mean_ms": 7.7927,
+      "stddev_ms": 0.7473,
+      "min_ms": 5.346,
+      "max_ms": 12.912,
+      "runs": 307
+    },
+    {
+      "document": "tables",
+      "tool": "markdownlint",
+      "mean_ms": 210.4995,
+      "stddev_ms": 6.7841,
+      "min_ms": 197.2434,
+      "max_ms": 221.8001,
+      "runs": 14
+    },
+    {
+      "document": "math",
+      "tool": "panache",
+      "mean_ms": 15.3924,
+      "stddev_ms": 1.7548,
+      "min_ms": 12.4188,
+      "max_ms": 20.5078,
+      "runs": 158
+    },
+    {
+      "document": "math",
+      "tool": "rumdl",
+      "mean_ms": 25.1734,
+      "stddev_ms": 1.8116,
+      "min_ms": 21.1955,
+      "max_ms": 32.5561,
+      "runs": 117
+    },
+    {
+      "document": "math",
+      "tool": "mado",
+      "mean_ms": 7.3501,
+      "stddev_ms": 0.7693,
+      "min_ms": 5.7416,
+      "max_ms": 10.5186,
+      "runs": 277
+    },
+    {
+      "document": "math",
+      "tool": "markdownlint",
+      "mean_ms": 204.7486,
+      "stddev_ms": 10.2451,
+      "min_ms": 191.7057,
+      "max_ms": 222.241,
+      "runs": 13
+    },
+    {
+      "document": "pandoc_manual",
+      "tool": "panache",
+      "mean_ms": 45.4618,
+      "stddev_ms": 2.3323,
+      "min_ms": 41.2705,
+      "max_ms": 56.2863,
+      "runs": 61
+    },
+    {
+      "document": "pandoc_manual",
+      "tool": "rumdl",
+      "mean_ms": 137.0216,
+      "stddev_ms": 5.7343,
+      "min_ms": 130.4778,
+      "max_ms": 154.5727,
+      "runs": 21
+    },
+    {
+      "document": "pandoc_manual",
+      "tool": "mado",
+      "mean_ms": 16.6359,
+      "stddev_ms": 2.3899,
+      "min_ms": 11.4269,
+      "max_ms": 20.667,
+      "runs": 151
+    },
+    {
+      "document": "pandoc_manual",
+      "tool": "markdownlint",
+      "mean_ms": 539.2419,
+      "stddev_ms": 9.6794,
+      "min_ms": 528.1309,
+      "max_ms": 554.5174,
+      "runs": 5
+    }
+  ]
+}
