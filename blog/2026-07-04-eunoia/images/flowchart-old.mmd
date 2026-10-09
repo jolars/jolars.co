@@ -1,0 +1,13 @@
+%%{init: {"htmlLabels": false, "flowchart": {"htmlLabels": false}}}%%
+flowchart TD
+  accTitle: The original fitting pipeline in eulerr
+  accDescr: Try random starting layouts, choose the best initial fit, and optimize it. For three ellipses with excessive diagram error, run simulated annealing before returning the solution.
+  A1["n random starting layouts<br/>(runif, run sequentially)"]
+  A2["Initial optimization<br/>best of 10 nlm() restarts on optim_init"]
+  A3["Final optimization<br/>nlm() on the chosen loss"]
+  A4{"Ellipses and three sets,<br/>and diagError above threshold?"}
+  A5["Fallback: GenSA()<br/>simulated annealing"]
+  A6["Solution"]
+  A1 --> A2 --> A3 --> A4
+  A4 -->|Yes| A5 --> A6
+  A4 -->|No| A6

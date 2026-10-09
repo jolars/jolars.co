@@ -45,12 +45,17 @@ locally in `.lighthouse/website-audit-2026-09-21/report.md` (Git-ignored).
   `aria-labelledby`. Accessible names, keyboard operation, numeric inputs,
   and live diagram updates pass browser checks at desktop and mobile widths.
 
-- [ ] Reduce the Eunoia article's initial JavaScript load. Render static
-  diagrams ahead of time where possible, and defer the interactive demo
-  until it approaches the viewport or the reader activates it. Provide an
-  accessible static description before it loads. The mobile audit
-  transferred about 780 KiB of Mermaid, 694 KiB of the Eunoia web module,
-  and 212 KiB of Observable runtime; Mermaid blocks rendering.
+- [x] Reduce the Eunoia article's initial JavaScript load. Completed October 9,
+  2026: the three Mermaid flowcharts are saved as static SVGs, with their
+  Mermaid sources and a regeneration script. A small script replaces
+  Observable and loads Eunoia only when the demo comes within 300 pixels of
+  the viewport or the reader activates it. A static Euler diagram and its
+  accessible description remain available before loading and if the download
+  fails. Browser checks cover deferred imports, labeled sliders, keyboard
+  operation, numeric inputs, shape changes, mobile layout, and the static
+  diagrams without JavaScript. The earlier mobile audit transferred about
+  780 KiB of Mermaid, 694 KiB of Eunoia, and 212 KiB of Observable runtime;
+  those figures are historical, and Lighthouse has not been rerun.
 
 - [ ] Reduce shared assets and image downloads. Review global KaTeX and icon
   loading in [_quarto.yml](_quarto.yml) and [header.html](header.html).

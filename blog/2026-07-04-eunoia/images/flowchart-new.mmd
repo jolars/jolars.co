@@ -1,0 +1,13 @@
+%%{init: {"htmlLabels": false, "flowchart": {"htmlLabels": false}}}%%
+flowchart TD
+  accTitle: The new fitting pipeline in Eunoia
+  accDescr: Run starting layouts in parallel, optimize each layout, and use CMA-ES followed by local optimization if its loss exceeds the threshold. Keep the attempt with the lowest loss.
+  B1["n restarts (default 10)<br/>run in parallel"]
+  B2["Initial layout: MDS via<br/>Levenberg-Marquardt<br/>(slot 0: Venn warm-start)"]
+  B3["Final optimization<br/>L-BFGS / LM"]
+  B4{"loss above threshold?"}
+  B5["Fallback: CMA-ES global<br/>escape, then LM polish"]
+  B6["keep lowest-loss attempt"]
+  B1 --> B2 --> B3 --> B4
+  B4 -->|Yes| B5 --> B6
+  B4 -->|No| B6

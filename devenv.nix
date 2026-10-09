@@ -155,6 +155,7 @@ in
     new-post
     tex
     quartoMinimal
+    chromium
     pandoc
     bashInteractive
     cmake

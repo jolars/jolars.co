@@ -7,6 +7,8 @@ draft: false
 engine: knitr
 title-block-banner: "banner.svg"
 fig-align: "center"
+resources:
+  - demo.js
 description: >
   Eunoia is a Rust engine for area-proportional Euler and Venn diagrams, now
   with bindings for R, Python, Julia, and JavaScript.
@@ -339,21 +341,7 @@ algorithm would also (optionally) resort to a fallback optimization step using
 GenSA\ [@xiang2013] if the final loss was above a certain threshold. The diagram
 in @fig-flowchart-old shows this entire (old) pipeline from eulerr.
 
-```{mermaid}
-%%| label: fig-flowchart-old
-%%| fig-cap: "The original fitting pipeline in eulerr."
-
-flowchart TD
-  A1["n random starting layouts<br/>(runif, run sequentially)"]
-  A2["Initial optimization<br/>best of 10 nlm() restarts on optim_init"]
-  A3["Final optimization<br/>nlm() on the chosen loss"]
-  A4{"Ellipses and three sets,<br/>and diagError > threshold?"}
-  A5["Fallback: GenSA()<br/>simulated annealing"]
-  A6["Solution"]
-  A1 --> A2 --> A3 --> A4
-  A4 -->|Yes| A5 --> A6
-  A4 -->|No| A6
-```
+![The original fitting pipeline in eulerr.](images/flowchart-old.svg){#fig-flowchart-old fig-alt="The original eulerr pipeline tries random starting layouts, selects the best initial fit, and optimizes it. For three ellipses with excessive diagram error, it runs simulated annealing before returning the solution." width="360"}
 
 This worked well enough to beat the competition\ [@larsson2018], but when I
 rewrote the code for Eunoia, I wanted to introduce a few improvements.
@@ -397,21 +385,7 @@ rewrote the code for Eunoia, I wanted to introduce a few improvements.
 
 You can see the new pipeline in @fig-flowchart-new.
 
-```{mermaid}
-%%| label: fig-flowchart-new
-%%| fig-cap: "The new fitting pipeline in Eunoia."
-
-flowchart TD
-  B1["n restarts (default 10)<br/>run in parallel"]
-  B2["Initial layout: MDS via<br/>Levenberg-Marquardt<br/>(slot 0: Venn warm-start)"]
-  B3["Final optimization<br/>L-BFGS / LM"]
-  B4{"loss > threshold?"}
-  B5["Fallback: CMA-ES global<br/>escape, then LM polish"]
-  B6["keep lowest-loss attempt"]
-  B1 --> B2 --> B3 --> B4
-  B4 -->|Yes| B5 --> B6
-  B4 -->|No| B6
-```
+![The new fitting pipeline in Eunoia.](images/flowchart-new.svg){#fig-flowchart-new fig-alt="Eunoia runs starting layouts in parallel and optimizes each layout. If the loss exceeds the threshold, it uses CMA-ES followed by local optimization. It keeps the attempt with the lowest loss." width="360"}
 
 The new algorithm is both more robust and more accurate than the old one.
 
@@ -501,21 +475,7 @@ need to draw a new bounding box and recompute the labels' sizes on this bounding
 box, which in turn requires a new layout. This process is shown in
 @fig-labeling-algorithm.
 
-```{mermaid}
-%%| label: fig-labeling-algorithm
-%%| fig-cap: The fixed-point algorithm for drawing the labels.
-
-flowchart TD
-  A["Measure the labels' sizes on the initial bounding box"]
-  B["Lay out the labels"]
-  C["Compute the new bounding box"]
-  D["Measure the labels' sizes on the new bounding box"]
-  E{"Did the labels' sizes change?"}
-  F["Done!"]
-  A --> B --> C --> D --> E
-  E -->|Yes| B
-  E -->|No| F
-```
+![The fixed-point algorithm for drawing the labels.](images/labeling-algorithm.svg){#fig-labeling-algorithm fig-alt="Measure and lay out labels, update the bounding box, and measure again. Repeat the layout step until the label sizes stop changing." width="360"}
 
 Thankfully, you typically only need a couple of iterations for the layout to
 settle. The actual cost of the algorithm depends mostly on the overhead from the
@@ -536,95 +496,40 @@ shapes in the future.].
 The JavaScript package ships the whole fitting engine compiled to WebAssembly.
 This makes it possible to run Eunoia directly in your browser, without the need
 for a server to host a Shiny app (for instance). The diagram below is fit live
-by the npm package, using [Observable](https://observablehq.com), which is
-natively supported in Quarto (which this site is built with). Drag the sliders
-to change the region sizes or pick a different shape family, and the layout
-re-fits as you go.
+by the npm package. The interactive demo loads when you approach it, or when you
+activate it below. Drag the sliders to change the region sizes or pick a
+different shape family, and the layout re-fits as you go.
 
-```{ojs}
-//| label: load-eunoia
-//| code-fold: true
-//| code-summary: >-
-//|   Observable cells to load the Eunoia WebAssembly module and set up the
-//|   inputs.
-
-eunoia = {
-  // `/web` is the wasm fitting engine; `/svg` is the wasm-free serializer that
-  // turns a fitted layout into an SVG string. Both ship in the same package.
-  const [web, svg] = await Promise.all([
-    import("https://cdn.jsdelivr.net/npm/@jolars/eunoia@1.4.0/web.js"),
-    import("https://cdn.jsdelivr.net/npm/@jolars/eunoia@1.4.0/svg.js")
-  ]);
-  await web.init(); // instantiate the embedded WebAssembly module, once
-  return { euler: web.euler, toSvg: svg.toSvg };
-}
-
-viewof shape = Inputs.select(["ellipse", "circle", "square", "rectangle"], {
-  value: "ellipse",
-  label: "Shape"
-})
-
-function labeledRange(range, options) {
-  const form = Inputs.range(range, options);
-  // Inputs.range labels only the number input, so share its label with the slider.
-  const label = form.querySelector("label");
-  label.id = `${label.htmlFor}-label`;
-  form.querySelector('input[type="range"]').setAttribute("aria-labelledby", label.id);
-  return form;
-}
-
-viewof adventure = labeledRange([0, 30], { step: 1, value: 20, label: "Adventure" })
-viewof comedy = labeledRange([0, 30], { step: 1, value: 14, label: "Comedy" })
-viewof drama = labeledRange([0, 30], { step: 1, value: 18, label: "Drama" })
-viewof ac = labeledRange([0, 15], { step: 1, value: 6, label: "Adventure & Comedy" })
-viewof ad = labeledRange([0, 15], { step: 1, value: 5, label: "Adventure & Drama" })
-viewof cd = labeledRange([0, 15], { step: 1, value: 4, label: "Comedy & Drama" })
-viewof acd = labeledRange([0, 10], { step: 1, value: 2, label: "All three" })
-
-layout = eunoia.euler({
-  sets: {
-    Adventure: adventure,
-    Comedy: comedy,
-    Drama: drama,
-    "Adventure&Comedy": ac,
-    "Adventure&Drama": ad,
-    "Comedy&Drama": cd,
-    "Adventure&Comedy&Drama": acd
-  },
-  shape: shape,
-  output: "regions",
-  inputType: "exclusive",
-  seed: 1
-})
+::: {#fig-live}
+```{=html}
+<div id="eunoia-demo">
+  <div id="eunoia-diagram" style="max-width: 480px; margin-inline: auto;">
+    <img src="images/demo.svg" width="480" height="479" loading="lazy"
+         alt="Euler diagram of Adventure, Comedy, and Drama. Exclusive region sizes: Adventure 20, Comedy 14, Drama 18, Adventure and Comedy 6, Adventure and Drama 5, Comedy and Drama 4, and all three 2."
+         style="width: 100%; height: auto;">
+  </div>
+  <p id="eunoia-status" role="status">The static diagram shows the initial region sizes.</p>
+  <noscript><p>Enable JavaScript to adjust the diagram interactively.</p></noscript>
+  <button id="eunoia-load" type="button" class="btn btn-primary" hidden
+          aria-controls="eunoia-controls" aria-expanded="false">Activate interactive demo</button>
+  <form id="eunoia-controls" hidden>
+    <label for="eunoia-shape">Shape</label>
+    <select id="eunoia-shape" class="form-select mb-3">
+      <option value="ellipse">Ellipse</option>
+      <option value="circle">Circle</option>
+      <option value="square">Square</option>
+      <option value="rectangle">Rectangle</option>
+    </select>
+    <div id="eunoia-ranges"></div>
+  </form>
+  <p id="eunoia-metrics" hidden></p>
+</div>
+<script type="module" src="demo.js"></script>
 ```
 
-```{ojs}
-//| label: fig-live
-//| code-fold: true
-//| fig-cap: "An Euler diagram fit in your browser by the Eunoia WebAssembly build."
-
-diagram = {
-  const div = document.createElement("div");
-  div.style.maxWidth = "480px";
-  div.innerHTML = eunoia.toSvg(layout, {
-    fontFamily: "system-ui, sans-serif",
-    setOrder: ["Adventure", "Comedy", "Drama"]
-  });
-  const node = div.querySelector("svg");
-  node.setAttribute("width", "100%");
-  node.removeAttribute("height");
-  node.style.height = "auto";
-  return div;
-}
-```
-
-```{ojs}
-//| label: metrics
-//| code-fold: true
-
-md`**Loss:** ${layout.metrics.loss.toFixed(5)} &nbsp;·&nbsp;
-   **diagError:** ${layout.metrics.diagError.toFixed(5)} — both closer to zero is better.`
-```
+An Euler diagram fit in your browser by the Eunoia WebAssembly build. [Demo
+source](demo.js).
+:::
 
 If you push the sliders to a configuration that no arrangement of shapes can
 satisfy, you will see the loss increase: that number is the optimizer telling

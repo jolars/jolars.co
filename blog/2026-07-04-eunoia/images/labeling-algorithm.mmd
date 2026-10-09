@@ -1,0 +1,13 @@
+%%{init: {"htmlLabels": false, "flowchart": {"htmlLabels": false}}}%%
+flowchart TD
+  accTitle: The fixed-point algorithm for drawing labels
+  accDescr: Measure and lay out labels, update the bounding box, and measure again. Repeat the layout step until the label sizes stop changing.
+  A["Measure the labels' sizes on the initial bounding box"]
+  B["Lay out the labels"]
+  C["Compute the new bounding box"]
+  D["Measure the labels' sizes on the new bounding box"]
+  E{"Did the labels' sizes change?"}
+  F["Done!"]
+  A --> B --> C --> D --> E
+  E -->|Yes| B
+  E -->|No| F
