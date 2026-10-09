@@ -6,7 +6,6 @@ description: >
   citations, cross-references, and executable code chunks.
 author: "Johan Larsson"
 date: "2026-10-09"
-draft: true
 categories: [
   "panache",
   "pandoc",
