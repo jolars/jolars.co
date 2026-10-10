@@ -106,6 +106,13 @@ div.sourceCode:focus-visible,
   outline-offset: 2px;
 }
 
+/* Keep the outline inside controls so scrollable mobile menus do not clip it. */
+.navbar :is(a, button):focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
 .quarto-grid-item p.card-img-top > img {
   padding: 2ex;
 }

@@ -98,9 +98,13 @@ under equivalent conditions.
   Breeze highlighting theme. Chromium checks confirm at least 4.5:1 text
   contrast for the affected elements and button interaction states.
 
-- [ ] Improve keyboard focus visibility in the mobile navigation and restore
-  focus to the search trigger when Escape closes search. Currently, focus
-  returns to the document body, and the next Tab starts at the site title.
+- [x] Improve keyboard focus visibility in the mobile navigation and restore
+  focus after closing search. [styles.css](styles.css) adds white outlines
+  within navbar controls, and the [shared search
+  script](assets/scripts/search-accessibility.js) restores focus to the
+  search trigger after Escape, Cancel, or backdrop dismissal. Chromium
+  checks at 320, 390, and 1280 pixels confirm visible focus, continued Tab
+  navigation, and keyboard and pointer navigation through search results.
 
 - [x] Correct generated accessibility semantics through the responsible
   templates or Quarto integration: the navbar button's `role="menu"`, nested

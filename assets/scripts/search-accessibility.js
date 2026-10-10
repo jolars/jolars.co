@@ -1,8 +1,26 @@
 (() => {
   if (!document.getElementById("quarto-search")) return;
   const destinations = new WeakMap();
+  let searchOverlay = null;
 
-  const updateLinks = () => {
+  const updateSearch = () => {
+    const overlay = document.querySelector(".aa-DetachedOverlay");
+    // Autocomplete removes the focused input with the overlay. Wait for pointer
+    // dismissal to finish, and preserve focus if another control already has it.
+    if (searchOverlay && !overlay) {
+      requestAnimationFrame(() => {
+        if (
+          !document.querySelector(".aa-DetachedOverlay") &&
+          document.activeElement === document.body
+        ) {
+          document
+            .querySelector("#quarto-search .aa-DetachedSearchButton")
+            ?.focus({ preventScroll: true });
+        }
+      });
+    }
+    searchOverlay = overlay;
+
     for (const panel of document.querySelectorAll(".aa-Panel")) {
       panel.tabIndex = 0;
     }
@@ -31,10 +49,10 @@
 
   document.body.addEventListener("click", navigate);
   document.body.addEventListener("auxclick", navigate);
-  updateLinks();
+  updateSearch();
   // Overlay searches render outside #quarto-search-results, and Autocomplete
   // recreates the panel when readers reopen search or change its query.
-  new MutationObserver(updateLinks).observe(document.body, {
+  new MutationObserver(updateSearch).observe(document.body, {
     childList: true,
     subtree: true,
     attributes: true,
