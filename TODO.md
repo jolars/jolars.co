@@ -148,18 +148,15 @@ under equivalent conditions.
   post-specific Quarto filter corrects the link in the frozen document
   without changing its historical computations.
 
-- [ ] Recheck the expired TLS certificate on
+- [x] Recheck the expired TLS certificate on
   `https://www.benfrederickson.com/better-venn-diagrams/`, referenced in
-  [assets/bibliography.bib](assets/bibliography.bib). If the problem
-  persists, use a valid authoritative or archived destination.
+  [assets/bibliography.bib](assets/bibliography.bib). Rechecked on October
+  10, 2026: the original URL returned HTTP 200 and served the cited article.
+  Hostname and certificate chain validation passed; the certificate expires
+  on April 16, 2027. An uncached lychee check also passed, so the
+  bibliography URL remains unchanged.
 
 ## Follow-up checks
-
-- [ ] Recheck blocked external destinations in a browser or from another
-  network: 15 URLs returned 403, LinkedIn returned 999, and Observable
-  returned
-  429. These remain inconclusive and should not be treated as confirmed missing
-       pages or accepted as passing.
 
 - [ ] After remediation, render from the repository root and rerun the affected
   checks. Include local files, assets, and fragments in link checks, and
