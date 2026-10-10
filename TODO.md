@@ -161,9 +161,6 @@ under equivalent conditions.
   429. These remain inconclusive and should not be treated as confirmed missing
        pages or accepted as passing.
 
-- [ ] Recheck `https://nalgebra.org/` from another network. DNS resolution
-  failed during the audit; availability remains inconclusive.
-
 - [ ] After remediation, render from the repository root and rerun the affected
   checks. Include local files, assets, and fragments in link checks, and
   avoid accepting 429 as a successful response. Repeat mobile Lighthouse
