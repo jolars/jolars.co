@@ -8,6 +8,7 @@ project:
     - scripts/fix-sitemap.sh
     - scripts/fix-feed-links.sh
     - python3 scripts/optimize-site-assets.py
+    - python3 scripts/fix-accessibility.py
   resources:
     - "images/og.png"
     - ".well-known/funding-manifest-urls"

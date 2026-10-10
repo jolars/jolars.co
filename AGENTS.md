@@ -151,6 +151,13 @@ from the original JPEG with
 when replacing the portrait. Specialized icon libraries are scoped to the CV,
 publications, and software through `assets/templates/icons.html`.
 
+The post-render script `scripts/fix-accessibility.py` corrects Quarto's navbar
+and standalone citation roles, listing heading levels, and code block and
+sidebar focus. It changes only affected tags and preserves the remaining HTML.
+The shared `assets/scripts/search-accessibility.js` handles dynamically
+generated search options, including overlay search, keyboard selection, and
+pointer navigation.
+
 Edit `styles.css` for shared styling or the theme in `_quarto.yml`. Do not
 manually edit or commit `_site/` output.
 

@@ -102,11 +102,19 @@ under equivalent conditions.
   focus to the search trigger when Escape closes search. Currently, focus
   returns to the document body, and the next Tab starts at the site title.
 
-- [ ] Correct generated accessibility semantics through the responsible
+- [x] Correct generated accessibility semantics through the responsible
   templates or Quarto integration: the navbar button's `role="menu"`, nested
   focusable search-result links, citation list items without a list parent,
   skipped listing heading levels, and code regions that cannot receive
-  keyboard focus. Recheck the affected interactive states with axe.
+  keyboard focus. Completed October 10, 2026: a Quarto render hook corrects
+  the static markup, the software template uses section-appropriate
+  headings, and a shared script gives search results option semantics with
+  keyboard and pointer navigation. The five affected axe rules pass for the
+  mobile menu, search, blog, software, and talk listings, a publication
+  citation, and the Eunoia article's R and Python tabs. Desktop and mobile
+  checks confirm search navigation, expanded results, query changes, and
+  keyboard scrolling of code. Listing category headings and sidebar focus
+  also pass the desktop checks.
 
 - [x] Correct the CV's PyPI link in [cv/index.qmd](cv/index.qmd) from
   `https://pypi.org/projects/sortedl1` to

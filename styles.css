@@ -81,8 +81,27 @@ div.quarto-post .thumbnail img {
   margin-bottom: 2em;
 }
 
-h3.no-anchor.listing-title {
+.quarto-post .body .listing-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  border-bottom: none;
   padding-bottom: 0.3em;
+}
+
+.quarto-grid-item .listing-title,
+.quarto-listing-category-title {
+  border-bottom: none;
+}
+
+.quarto-listing-category-title {
+  padding-bottom: 0;
+}
+
+div.sourceCode:focus-visible,
+#quarto-margin-sidebar:focus-visible,
+.aa-Panel:focus-visible {
+  outline: 2px solid var(--bs-link-color);
+  outline-offset: 2px;
 }
 
 .quarto-grid-item p.card-img-top > img {
