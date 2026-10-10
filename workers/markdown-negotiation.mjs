@@ -160,11 +160,22 @@ async function fetchAsset(request, assets) {
 export default {
   fetch(request, env) {
     const url = new URL(request.url);
+    let redirect = false;
     if (url.hostname === "www.jolars.co") {
       url.protocol = "https:";
       url.host = "jolars.co";
-      return Response.redirect(url.href, 301);
+      redirect = true;
     }
+
+    // Move published URLs before content negotiation, including linked assets.
+    const oldPost = "/blog/2026-10-09-panache-an-editor-companion-for-pandoc";
+    const newPost = "/blog/2026-10-09-panache-an-editor-companion-for-markdown";
+    if (url.pathname === oldPost || url.pathname.startsWith(`${oldPost}/`)) {
+      url.pathname = newPost + (url.pathname.slice(oldPost.length) || "/");
+      redirect = true;
+    }
+    if (redirect) return Response.redirect(url.href, 301);
+
     return handleRequest(request, (assetRequest) => fetchAsset(assetRequest, env.ASSETS));
   },
 };

@@ -222,6 +222,54 @@ test("redirects www to HTTPS on the canonical host before accessing assets", asy
   assert.equal(response.headers.get("location"), "https://jolars.co/news/item.html?view=full");
 });
 
+test("permanently redirects the published Panache post and its assets", async () => {
+  const oldPost = "/blog/2026-10-09-panache-an-editor-companion-for-pandoc";
+  const newPost = "/blog/2026-10-09-panache-an-editor-companion-for-markdown";
+  const suffixes = [
+    ["", "/"],
+    ["/", "/"],
+    ["/index.html", "/index.html"],
+    ["/index.llms.md", "/index.llms.md"],
+    ["/banner.svg", "/banner.svg"],
+    ["/wasm/panache_wasm_bg.wasm", "/wasm/panache_wasm_bg.wasm"],
+  ];
+  for (const origin of ["https://jolars.co", "http://www.jolars.co"]) {
+    for (const method of ["GET", "HEAD"]) {
+      for (const accept of ["text/html", "text/markdown"]) {
+        for (const [before, after] of suffixes) {
+          const request = new Request(`${origin}${oldPost}${before}?utm_source=feed`, {
+            method, headers: { accept },
+          });
+          const response = await worker.fetch(request, {});
+          assert.equal(response.status, 301);
+          assert.equal(response.headers.get("location"), `https://jolars.co${newPost}${after}?utm_source=feed`);
+          assert.equal(await response.text(), "");
+        }
+      }
+    }
+  }
+});
+
+test("serves the renamed Panache post without redirecting similar paths", async () => {
+  const oldPost = "/blog/2026-10-09-panache-an-editor-companion-for-pandoc";
+  const newPost = "/blog/2026-10-09-panache-an-editor-companion-for-markdown";
+  const { env } = site({
+    [`${newPost}/index.html`]: new Response("<html>Panache</html>", { headers: { "content-type": "text/html" } }),
+    [`${newPost}/index.llms.md`]: new Response("# Panache", { headers: { "content-type": "text/markdown" } }),
+  });
+  for (const accept of ["text/html", "text/markdown"]) {
+    const response = await worker.fetch(new Request(`https://jolars.co${newPost}/`, {
+      headers: { accept },
+    }), env);
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("location"), null);
+    assert.equal(response.headers.get("content-type"), accept);
+  }
+  const similar = await worker.fetch(new Request(`https://jolars.co${oldPost}-example/`), env);
+  assert.equal(similar.status, 404);
+  assert.equal(similar.headers.get("location"), null);
+});
+
 test("serves discovery endpoints for GET and HEAD without fetching assets", async () => {
   for (const path of ["/.well-known/api-catalog", "/.well-known/markdown-service.json"]) {
     for (const method of ["GET", "HEAD"]) {

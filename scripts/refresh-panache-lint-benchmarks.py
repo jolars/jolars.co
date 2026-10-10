@@ -27,7 +27,7 @@ def main():
     repo = args.panache_repo.resolve()
     post = (
         Path(__file__).resolve().parents[1]
-        / "blog/2026-10-07-panache-an-editor-companion-for-pandoc"
+        / "blog/2026-10-09-panache-an-editor-companion-for-markdown"
     )
     documents = {
         "tables": "tables.qmd",

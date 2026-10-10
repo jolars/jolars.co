@@ -92,6 +92,23 @@ def check_deployment(url, www_url):
         headers.get("Location") == urljoin(base, "blog/?category=rust"),
         "Directory: incorrect redirect",
     )
+
+    old_post = "/blog/2026-10-09-panache-an-editor-companion-for-pandoc"
+    post = "/blog/2026-10-09-panache-an-editor-companion-for-markdown"
+    for suffix in ["/", "/index.html", "/banner.svg"]:
+        headers, _ = check(old_post + suffix + "?ref=archive", status=301)
+        require(
+            headers.get("Location") == urljoin(base, post + suffix + "?ref=archive"),
+            "Panache post: incorrect redirect",
+        )
+    for accept in ["text/html", "text/markdown"]:
+        headers, body = check(post + "/", accept=accept)
+        require(
+            headers.get_content_type() == accept,
+            "Panache post: incorrect content type",
+        )
+        require(b"Panache" in body, "Panache post: missing content")
+
     for path in ["/.well-known/api-catalog", "/.well-known/markdown-service.json"]:
         _, body = check(path, accept="application/json")
         require(

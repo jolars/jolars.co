@@ -374,7 +374,7 @@ snapshots <- c(
   performance_data.json = "74fc1a830f3f56692ab7e1e813a44173953e6794",
   performance_lsp_memory_data.json = "e161c37a7a1f82dfd322ce2aae4d561a96326a31"
 )
-post <- "blog/2026-10-07-panache-an-editor-companion-for-pandoc"
+post <- "blog/2026-10-09-panache-an-editor-companion-for-markdown"
 for (file in names(snapshots)) {
   url <- sprintf(
     "https://raw.githubusercontent.com/jolars/panache/%s/docs/guide/%s",
