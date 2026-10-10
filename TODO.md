@@ -124,7 +124,7 @@ under equivalent conditions.
   [talks/normreg-tmlr/index.qmd](talks/normreg-tmlr/index.qmd) to
   `https://www.youtube.com/watch?v=GYqYAy3-B1k`.
 
-- [ ] Repair bibliography URL escaping in [cv/articles.bib](cv/articles.bib) and
+- [x] Repair bibliography URL escaping in [cv/articles.bib](cv/articles.bib) and
   [assets/bibliography.bib](assets/bibliography.bib). Three NeurIPS URLs
   render with `/paper/_files/` instead of `/paper_files/`; use literal
   underscores in those URL fields. Likewise, use the literal filename
