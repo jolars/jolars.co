@@ -84,11 +84,13 @@ website:
         href: blog/index.xml
         aria-label: RSS blog feed
 
-highlight-style: breeze
+highlight-style: assets/breeze-accessible.theme
 
 format:
   html:
-    theme: flatly
+    theme:
+      - flatly
+      - assets/accessible.scss
     css: styles.css
     html-math-method: katex
     canonical-url: true

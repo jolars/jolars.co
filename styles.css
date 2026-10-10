@@ -16,6 +16,8 @@ a {
    publication list keep the clean, underline-free look. */
 main p a:not(.btn):not(.about-link),
 main ol li a:not(.btn),
+#refs a,
+a[role="doc-biblioref"],
 main ul:not(.publication-list) li a:not(.btn) {
   text-decoration: underline;
 }
@@ -159,4 +161,23 @@ div.quarto-about-solana .about-entity .about-image {
   flex-basis: 20%;
   align-self: flex-start;
   flex-shrink: 1;
+}
+
+/* Flatly's tab colors bypass the shared link colors. */
+.panel-tabset .nav-tabs {
+  --bs-nav-link-color: var(--bs-link-color);
+  --bs-nav-link-hover-color: var(--bs-link-hover-color);
+}
+
+/* Keep small category labels legible at their full text color. */
+.quarto-title .quarto-categories .quarto-category {
+  opacity: 1;
+}
+
+/* Bootstrap lightens dark buttons on interaction, reducing text contrast. */
+.btn-dark {
+  --bs-btn-hover-bg: #445051;
+  --bs-btn-hover-border-color: #445051;
+  --bs-btn-active-bg: #374142;
+  --bs-btn-active-border-color: #374142;
 }

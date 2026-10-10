@@ -90,13 +90,13 @@ under equivalent conditions.
   pixels on a 390-pixel viewport, down from 435 pixels, and the header's
   search control remains visible.
 
-- [ ] Improve contrast for tabs, code highlighting, software buttons, and
-  publication categories in [styles.css](styles.css),
-  [_quarto.yml](_quarto.yml), and
-  [software/software.ejs](software/software.ejs). Measured text contrast
-  ranged from 2.41:1 to 4.18:1, below the expected 4.5:1 for these elements.
-  Underline bibliography and citation links so readers can distinguish them
-  without relying on color alone.
+- [x] Improve contrast for tabs, code highlighting, software buttons, and
+  publication categories. [styles.css](styles.css) uses accessible tab
+  colors, removes category opacity, preserves button contrast during
+  interaction, and underlines bibliography and citation links.
+  [_quarto.yml](_quarto.yml) loads darker Flatly button colors and a local
+  Breeze highlighting theme. Chromium checks confirm at least 4.5:1 text
+  contrast for the affected elements and button interaction states.
 
 - [ ] Improve keyboard focus visibility in the mobile navigation and restore
   focus to the search trigger when Escape closes search. Currently, focus
