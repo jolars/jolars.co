@@ -3,6 +3,6 @@ title: "New blog post about Panache"
 date: 2026-10-09
 description: >
   I have published [a new blog
-  post](/blog/2026-10-09-panache-an-editor-copmanion-for-markdown/) introducing
+  post](/blog/2026-10-09-panache-an-editor-companion-for-markdown/) introducing
   Panache: An Editor Companion for Markdown. Check it out!
 ---
