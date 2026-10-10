@@ -69,8 +69,7 @@ website:
       - icon: github
         href: "https://github.com/jolars/"
         aria-label: "Github profile"
-      - text:
-          "<i class='bi bi-mortarboard'></i><span
+      - text: "<i class='bi bi-mortarboard'></i><span
           class='visually-hidden'>Google Scholar</span>"
         href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
         aria-label: "Google scholar profile"
@@ -84,7 +83,7 @@ website:
         href: blog/index.xml
         aria-label: RSS blog feed
 
-highlight-style: assets/breeze-accessible.theme
+highlight-style: breeze
 
 format:
   html:
