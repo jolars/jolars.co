@@ -158,6 +158,13 @@ The shared `assets/scripts/search-accessibility.js` handles dynamically
 generated search options, including overlay search, keyboard selection, and
 pointer navigation.
 
+The render-time filter `assets/filters/frozen-figure-alt.lua` supplies image
+descriptions for five historical posts without reexecuting their computations.
+It matches the post and generated image filename and preserves native `fig-alt`
+attributes. When deliberately refreshing one of these posts, add `fig-alt` to
+its chunks and remove its entries from the filter after validating the new
+output. Do not add new posts to this historical fallback.
+
 Edit `styles.css` for shared styling or the theme in `_quarto.yml`. Do not
 manually edit or commit `_site/` output.
 

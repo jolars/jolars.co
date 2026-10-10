@@ -411,6 +411,9 @@ patchwork style---allow you to combine multiple diagrams into a single figure.
 
 ```{r}
 #| label: fig-shapes
+#| fig-alt: >-
+#|   Four Euler diagrams represent the same intersections of sets A, C, and D
+#|   using circles, ellipses, squares, and rectangles.
 #| fig-cap: "The four shape families supported by Eunoia."
 #| fig-width: 8
 #| fig-height: 2
@@ -446,6 +449,10 @@ Eunoia: rotated rectangles.
 
 ```{r}
 #| label: fig-labeling
+#| fig-alt: >-
+#|   Three overlapping rotated rectangles represent Adventure, C, and D.
+#|   Intersection counts appear inside the regions, with leader lines for labels
+#|   that do not fit.
 #| fig-cap: Eunoia now tries its best to avoid overlaps between labels.
 #| fig-width: 2.5
 #| fig-height: 2.5

@@ -20,6 +20,7 @@ categories: [
   "language-server",
 ]
 image: "og.png"
+image-alt: "Panache: An Editor Companion for Markdown"
 title-block-banner: "banner.svg"
 resources:
   - formatter-demo.css

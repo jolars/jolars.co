@@ -221,7 +221,7 @@ a problem and a solver, adjust the parameters, and watch the optimizer iterate
 in real time, with all the math running client-side and no server involved.
 
 ![An animated GIF showing Basin's browser playground,
-showcasing Basin's built-in WASM compatibility.](playground-recording.gif)
+showcasing Basin's built-in WASM compatibility.](playground-recording.gif){fig-alt="Basin solver visualizer showing an optimization path on Rosenbrock contours, solver controls, and a convergence plot."}
 
 ## Solvers
 
@@ -300,6 +300,11 @@ time on log--log axes, with one line per library.
 
 ```{python}
 #| label: fig-benchmarks
+#| fig-alt: >-
+#|   Three log-log plots compare suboptimality against elapsed time for gradient
+#|   descent, Nelder-Mead, and L-BFGS in Basin, argmin, gomez, and NLopt. Basin
+#|   reaches a suboptimality of 10^-6 at least as quickly as the other
+#|   libraries.
 #| echo: false
 #| fig-height: 1.0
 #| fig-cap: >

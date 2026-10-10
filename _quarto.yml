@@ -101,5 +101,8 @@ format:
 execute:
   freeze: auto
 
+filters:
+  - assets/filters/frozen-figure-alt.lua
+
 toc: true
 date-format: "D MMMM YYYY"
