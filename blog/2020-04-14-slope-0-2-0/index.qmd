@@ -15,6 +15,8 @@ categories:
 image: slope.svg
 image-alt: "SLOPE 0.2.0"
 freeze: true
+filters:
+  - changelog-link.lua
 ---
 
 ```{r}
@@ -163,6 +165,6 @@ SLOPE now also allows sparse design matrcies of classes from the Matrix package.
 ### And much more...
 
 For a full list of changes, please see [the
-changelog](https://jolars.github.io/SLOPE/news/index.html#slope-0-2-0-unreleased).
+changelog](https://jolars.github.io/SLOPE/news/index.html#slope-020).
 
 ## References

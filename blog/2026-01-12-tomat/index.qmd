@@ -275,9 +275,9 @@ alerts working. By default, Tomat uses simple beep sounds:
 
 All of the above just gets you set up with the daemon and CLI client, but the
 goal of Tomat, as I mentioned, is to use it with status bars. Configuring that
-is the final piece of the puzzle. A full integration guide is available [in the
-repo](https://github.com/jolars/tomat/blob/main/docs/integration.md), but here I
-summarize the steps needed for Waybar.
+is the final piece of the puzzle. A full [integration
+guide](https://jolars.github.io/tomat/guide/integration/index.html) is available
+in the documentation, but here I summarize the steps needed for Waybar.
 
 ### Waybar
 

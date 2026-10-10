@@ -131,18 +131,22 @@ under equivalent conditions.
   `Proceedings_EYSM_2021.pdf` for the EYSM proceedings. The corrected
   destinations returned 200 during the audit.
 
-- [ ] Replace the missing `docs/integration.md` GitHub link in the [Tomat
+- [x] Replace the missing `docs/integration.md` GitHub link in the [Tomat
   post](blog/2026-01-12-tomat/index.qmd) with the current integration
-  documentation. A replacement location still needs to be established.
+  documentation. The post now links to the published integration guide at
+  `https://jolars.github.io/tomat/guide/integration/index.html`.
 
-- [ ] Update the playground links in the [Basin
+- [x] Update the playground links in the [Basin
   post](blog/2026-06-10-basin/index.qmd), or restore the destination. Both
   `https://basin.rs/playground` and its trailing-slash form returned 404.
+  The post now links to `https://basin.rs/visualizer/`, which returns 200 in
+  Chromium. The recording caption no longer contains the obsolete URL.
 
-- [ ] Update the changelog fragment in the [SLOPE
+- [x] Update the changelog fragment in the [SLOPE
   post](blog/2020-04-14-slope-0-2-0/index.qmd) from
-  `#slope-0-2-0-unreleased` to an existing target such as
-  `#major-changes-0-2-0`.
+  `#slope-0-2-0-unreleased` to the existing release heading `#slope-020`. A
+  post-specific Quarto filter corrects the link in the frozen document
+  without changing its historical computations.
 
 - [ ] Recheck the expired TLS certificate on
   `https://www.benfrederickson.com/better-venn-diagrams/`, referenced in

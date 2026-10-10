@@ -215,13 +215,12 @@ can only drift so far apart before they stop overlapping.
 ## WASM
 
 Because Basin compiles to WebAssembly with no native dependencies, the same
-solvers run unchanged in the browser. The playground at
-[basin.rs/playground](https://basin.rs/playground) is built directly on this:
-you choose a problem and a solver, adjust the parameters, and watch the
-optimizer iterate in real time, with all the math running client-side and no
-server involved.
+solvers run unchanged in the browser. The [solver
+visualizer](https://basin.rs/visualizer/) is built directly on this: you choose
+a problem and a solver, adjust the parameters, and watch the optimizer iterate
+in real time, with all the math running client-side and no server involved.
 
-![An animated GIF showing the playground at <https://basin.rs/playground>,
+![An animated GIF showing Basin's browser playground,
 showcasing Basin's built-in WASM compatibility.](playground-recording.gif)
 
 ## Solvers
