@@ -89,7 +89,6 @@ format:
   html:
     theme:
       - flatly
-      - assets/accessible.scss
     css: styles.css
     html-math-method: katex
     canonical-url: true
