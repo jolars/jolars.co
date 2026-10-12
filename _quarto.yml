@@ -33,7 +33,7 @@ website:
   title: "Johan Larsson"
   site-url: "https://jolars.co"
   image: /images/og.png
-  description: >-
+  description: >
     Personal website of Johan Larsson, a postdoctoral researcher in statistics
     at the Department of Mathematical Sciences, Copenhagen University.
   repo-url: "https://github.com/jolars/jolars.co"
