@@ -32,15 +32,15 @@ local BUTTONS = {
   bluesky = '<a class="social-share__btn social-share__btn--bluesky" '
     .. 'href="#" data-social-share="bluesky" rel="noopener" '
     .. 'aria-label="Share on Bluesky" title="Share on Bluesky">'
-    .. '<i class="fa-brands fa-bluesky" aria-hidden="true"></i></a>',
+    .. '<i class="bi bi-bluesky" aria-hidden="true"></i></a>',
   mastodon = '<a class="social-share__btn social-share__btn--mastodon" '
     .. 'href="#" data-social-share="mastodon" rel="noopener" '
     .. 'aria-label="Share on Mastodon" title="Share on Mastodon">'
-    .. '<i class="fa-brands fa-mastodon" aria-hidden="true"></i></a>',
+    .. '<i class="bi bi-mastodon" aria-hidden="true"></i></a>',
   copy = '<button class="social-share__btn social-share__btn--copy" '
     .. 'type="button" data-social-share="copy" '
     .. 'aria-label="Copy link" title="Copy link">'
-    .. '<i class="fa-solid fa-link" aria-hidden="true"></i></button>',
+    .. '<i class="bi bi-link-45deg" aria-hidden="true"></i></button>',
 }
 
 function Pandoc(doc)
