@@ -66,16 +66,15 @@ measured in variance or, equivalently, standard deviation), the smaller the
 effect of regularization becomes. The reason for this is that the coefficient
 can be smaller for an equivalent effect on the predicted response.
 
-Many sources, including one of the first papers on the lasso by
-@tibshiraniRegressionShrinkageSelection1996, recommend that you *standardize*
-your data, which means centering and scaling each feature by its mean and
-standard deviation. If your features are normally distributed, this practice
-speaks to intuition: each feature's distribution can be described fully by its
-mean and standard deviation, so standardizing it will create a standard normal
-distribution, ensuring that the effects of regularization will be fair across
-the full set of features. After having standardized, most people will eventually
-want to return the coefficients to the original scales of the features, but
-doing so is simple.
+Many sources, including one of the first papers on the lasso by @tibshirani1996,
+recommend that you *standardize* your data, which means centering and scaling
+each feature by its mean and standard deviation. If your features are normally
+distributed, this practice speaks to intuition: each feature's distribution can
+be described fully by its mean and standard deviation, so standardizing it will
+create a standard normal distribution, ensuring that the effects of
+regularization will be fair across the full set of features. After having
+standardized, most people will eventually want to return the coefficients to the
+original scales of the features, but doing so is simple.
 
 The problem with the procedure, however, is that not all features are normally
 distributed. What, for instance, should we do about binary features?^[Features

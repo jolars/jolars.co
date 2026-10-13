@@ -14,11 +14,11 @@ comments:
     theme: "light_protanopia"
 title-block-banner: true
 draft-mode: unlinked
-cap-location: margin
 author: Johan Larsson
-# Enable Scholar metadata only for selected posts with substantive references.
-google-scholar: false
-bibliography: ../assets/bibliography.bib
+bibliography:
+  - ../assets/bibliography.bib
+  - ../cv/articles.bib
+  - ../cv/theses.bib
 reference-location: margin
 filters:
   - social-share
