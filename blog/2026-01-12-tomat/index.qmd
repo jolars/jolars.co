@@ -4,7 +4,7 @@ author: Johan Larsson
 date: 2026-01-12
 description: >
   I've decided that the world needs yet another pomodoro timer. yapt was
-  unfortunately already taken, so I named it after the Swedish tomato.
+  unfortunately already taken, so I named it after the Swedish tomato: Tomat!
 categories:
   - Tomat
   - Productivity
