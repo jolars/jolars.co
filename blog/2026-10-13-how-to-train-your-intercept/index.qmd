@@ -1,0 +1,232 @@
+---
+title: "How to Train Your Intercept"
+subtitle: "A comparison of intercept update strategies in coordinate descent"
+description: >
+  How intercept updates affect convergence in regularized generalized linear
+  models, and why one safeguarded Newton step can make a large difference.
+author: "Johan Larsson"
+date: "2026-10-13"
+categories:
+  - research
+  - optimization
+  - coordinate-descent
+  - statistical-learning
+image: images/trajectories.svg
+image-alt: >-
+  Three intercept-update strategies take different paths toward the same
+  logistic regression solution.
+title-block-banner: images/banner.svg
+title-block-banner-color: white
+css: banner.css
+---
+
+When fitting a regression model, the intercept is probably not the coefficient
+that you spend the most time thinking about. It represents the baseline
+response, is usually left unpenalized, and rarely gets much attention in
+discussions of optimization algorithms. But it turns out that the way you update
+this one coefficient can have a substantial effect on how quickly the entire
+model fits.
+
+Me and Frederik Fabricius-Bjerre study this in a new paper of ours: *How to
+Train Your Intercept: A Comparison of Intercept Update Strategies in Coordinate
+Descent*\ [@larsson2026c], we study this choice for regularized generalized
+linear models. The [code and manuscript
+source](https://github.com/jolars/intercepts) are available on GitHub. Our main
+finding is that, when the response is imbalanced, a conservative (but common)
+intercept update can slow down the whole solver. A single Newton step, with a
+safeguard against overshooting, largely removes this slowdown in our
+experiments.
+
+To make this concrete, consider @fig-convergence. We fit the same regularized
+logistic regression model to the w1a dataset\ [@platt1998] with three strategies
+for updating the intercept. Everything else in our solver stays the same. The
+Newton and exact strategies reach a relative suboptimality below $10^{-8}$ after
+roughly 45 passes over the coordinates. The gradient strategy needs more than
+*seven* times as many passes.
+
+![Convergence on w1a under three intercept-update strategies. Lower values mean
+that the objective is closer to its optimum.](images/convergence.svg){#fig-convergence width="600px" fig-alt="Relative suboptimality bound versus elapsed time on w1a. Newton and exact intercept updates converge much sooner than the conservative gradient update."}
+
+So, the treatment of the intercept *can* make a large difference, but this is
+nowhere examined in the literature. My interest in this topic grew from noticing
+that implementation of optimization algorithms often take different approaches
+to updating the intercept even though they largely agree on the right approach
+to update every other coefficient. And these papers neither explain nor justify
+their choice.
+
+This lead me to pose this problem as a project for a project course in
+statistics at my department. One of the students who picked and worked on that
+project was Frederik. Afterwards, we continued to work on this topic and have
+now finally wrapped up the work and submitted it to a journal.
+
+## The intercept in logistic regression
+
+A logistic regression model describes the probability of a positive response as
+$$
+  p_i = \Pr(Y_i = 1 \mid x_i) = \frac{1}{1 + \exp[-(\beta_0 + x_i^\top\beta)]},
+$$
+where $\beta_0$ is the intercept and $\beta$ contains the feature coefficients.
+If all the feature coefficients are zero, the intercept alone determines the
+predicted probability. For example, a probability of $0.01$ corresponds to an
+intercept of approximately $-4.6$.
+
+We fit the model by minimizing the logistic loss plus a penalty on $\beta$, such
+as the lasso penalty\ [@tibshirani1996]. The intercept is not penalized. A
+common way to solve this problem is *coordinate descent*, which repeatedly
+updates one coefficient at a time while holding the others fixed.^[I have
+previously worked on coordinate descent for SLOPE\ [@larsson2023], which is what
+has lead me to look into this issue. If you are not familiar with coordinate but
+want to learn more, @wright2015 provides an accessible overview.] We call a
+sweep over the coefficient coordinates a *pass*. In coordinate descent the
+intercept is one of the coordinates, but it has special properties: its update
+is smooth because it has no penalty, and it remains part of every pass.
+
+## Three ways to update the intercept
+
+We compare three strategies, each applied once per pass over the feature
+coefficients:
+
+The gradient strategy
+:   Take one step using a global, worst-case bound on the curvature of the loss.
+
+The Newton strategy
+
+:   Take one step using the curvature at the current fit.
+
+The exact strategy
+:   Minimize the loss over the intercept while holding the feature coefficients
+    fixed.^[In the experiments, we solve this subproblem numerically to a tight
+    tolerance.]
+
+@fig-trajectories illustrates these choices for a small logistic regression
+problem with one feature. The curves follow the intercept and feature
+coefficient as the solver approaches the solution. The gradient strategy takes
+many small steps, whereas the Newton and exact strategies arrive in only a few.
+
+![Intercept and coefficient trajectories on a one-feature logistic regression
+problem. The gray contours show level sets of the objective.](images/trajectories.svg){#fig-trajectories width="600px" fig-alt="Objective contours with three optimization paths. The gradient path approaches the solution gradually, while the Newton and exact paths reach it in a few steps."}
+
+## Why imbalance matters
+
+For logistic regression, the curvature of the averaged loss in the intercept
+direction is
+$$
+  H_{00} = \frac{1}{n}\sum_{i=1}^n p_i(1 - p_i).
+$$
+Since $p_i(1 - p_i)$ is at most $1/4$, we can use $L_0 = 1/4$ as a global
+curvature bound. If $g_0$ denotes the derivative of the loss with respect to the
+intercept, the gradient and full Newton updates are, respectively,
+$$
+  \beta_0 \leftarrow \beta_0 - \frac{g_0}{L_0}, \qquad \beta_0
+          \leftarrow \beta_0 - \frac{g_0}{H_{00}}.
+$$
+
+The gradient step is a reasonable choice when the current curvature is close to
+its upper bound. But when fitted probabilities approach zero or one,
+$p_i(1 - p_i)$ becomes small, and the two step sizes can differ greatly. In an
+intercept-only model with a fitted probability of $0.01$, the curvature is
+$0.0099$. The full Newton step is then about 25 times as large as the gradient
+step.^[This compares step sizes at the same iterate and does not imply a 25-fold
+improvement in performance.]
+
+A small intercept step would matter less if the intercept could be optimized
+independently of the other coefficients. But they are typically
+coupled---updating a feature coefficient can move the intercept's conditional
+optimum. If the next intercept update leaves it far from that optimum, the
+remaining error also affects the gradients used to update the feature
+coefficients. This gives two parts of the explanation: low curvature makes the
+conservative intercept update small, and coupling allows the resulting intercept
+error to slow progress in the rest of the model. Response imbalance makes this
+mechanism important in our experiments, but imbalance alone does not determine
+how much slower a particular fit will be.
+
+## Doesn't centering solve this?
+
+If you are familiar with linear regression, you might wonder why we cannot just
+center the features and separate the intercept from the slopes.
+
+For squared loss, that works. The cross-curvature between the intercept and
+coefficient $j$ is proportional to the mean of feature $j$. Centering makes that
+mean zero, so the intercept decouples from the feature coefficients.
+
+For logistic regression, the corresponding quantity is instead
+$$
+  H_{0j} = \frac{1}{n}\sum_{i=1}^n p_i(1 - p_i)x_{ij}.
+$$
+This is a weighted feature mean. Ordinary centering makes the unweighted mean
+zero, but generally leaves this weighted mean nonzero. Moreover, the weights
+change as we fit the model. Standardizing the features therefore does not
+necessarily remove the interaction between the intercept and the slopes.
+
+In our [earlier work on normalization](../2025-01-21-normreg/index.qmd), we
+focused on how feature scaling changes regularization\ [@larsson2025]. Centering
+was simpler: with an unpenalized intercept, we could center the features without
+changing the fitted model. That remains true for logistic regression, but the
+computational benefit does not carry over. Ordinary centering no longer
+separates the intercept from the slopes.
+
+## How much work should we spend on the intercept?
+
+If a lagging intercept causes trouble, an obvious response is to optimize it
+fully after every pass. But our experiments suggest that this is usually wasted
+work. One safeguarded Newton step typically follows nearly the same outer
+trajectory as exact intercept minimization, while requiring fewer inner steps.
+The reason is that the next sweep over the feature coefficients moves the
+intercept's conditional optimum again. Solving the intercept subproblem very
+accurately before that sweep can therefore spend effort on accuracy that will
+soon be lost.
+
+The safeguard matters too. Newton uses a local quadratic approximation, and its
+full step can overshoot when that approximation is poor. We observe this in a
+Poisson cold-start example. A backtracking line search makes the update useful
+without relying on the full step always being safe.
+
+## What happens in existing solvers?
+
+We also study six production solvers. An important distinction is whether a
+solver applies coordinate descent directly to the original GLM loss or first
+builds a quadratic approximation and solves that approximation by coordinate
+descent. Within a frozen local quadratic, the intercept curvature is already
+available, and optimizing the intercept is straightforward. A quadratic based on
+a worst-case curvature bound can retain the same conservatism as the direct
+gradient strategy.
+
+### skglm
+
+One particularly instructive example comes from
+(skglm)[https://contrib.scikit-learn.org/skglm/]. Its historical intercept
+update in version 0.5 was even more conservative than our gradient baseline: its
+step was sixteen times smaller. We submitted a patch replacing that update with
+a Newton step and compared the commits immediately before and after the fix on
+the same family of problems. As you can see, the differences in @fig-skglm are
+substantial.
+
+![Iteration-count comparison between the historical and Newton intercept
+updates in skglm. Larger values indicate a greater reduction in iterations
+after the patch.](images/skglm-comparison.svg){#fig-skglm width="500px" fig-alt="Heatmap of the base-10 logarithm of pre-fix to post-fix mean iteration counts in skglm, across response imbalance and relative regularization strength. The differences are largest under extreme imbalance and weak regularization."}
+
+### Solvers using iteratively reweighted least squares
+
+Solvers such as glmnet\ [@friedman2010] use iteratively reweighted least squares
+(IRLS) to build a local quadratic approximation of the loss. In these cases, the
+intercept problem is already a simple weighted least squares problem, and the
+different strategies collapse to the same update. So none of these solvers
+suffer from the slow convergence that we observe in our experiments. I have
+become more and more convinced that IRLS is the better approach for generalized
+linear models. Anecdotally, I have found that it often avoids some convergence
+traps that direct coordinate descent can fall into.
+
+## Recommendations
+
+Most of the time our results favor one safeguarded Newton intercept update per
+pass. This is both simple and effective. It avoids the convergence trap that the
+gradient strategy leads to and avoids wasting work on a more complex
+implementation that adds no benefit in all but a few edge cases.
+
+Our theoretical explanation is local and we do not prove a general global
+convergence rate for coordinate descent with Newton intercept updates.
+Nevertheless, our analysis and experiments point to the same practical lesson:
+keeping the intercept in step with the feature coefficients can make a large
+difference, and doing so often requires only one well-chosen update per pass.
+
+## References
