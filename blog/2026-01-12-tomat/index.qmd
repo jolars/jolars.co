@@ -132,6 +132,11 @@ tomat status -o plain
 🍅 22:29 ▶
 ```
 
+There are many other ways to install Tomat as well, including through a
+[Homebrew tap](https://github.com/jolars/homebrew-tap) and via a one-liner
+installation script. See the [installation
+guide](https://tomat.cc/guide/installation.html) for more details.
+
 ## Systemd Integration
 
 Most users will want to start the Tomat daemon automatically when they log in,
