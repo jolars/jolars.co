@@ -5,13 +5,13 @@ description: >
   effects and amplifying noise in stochastic gradient descent with limited data.
 author:
   - Johan Larsson
-abstract: |
+abstract: >
   Feature scaling affects both how quickly stochastic gradient descent learns
   rare effects and how much noise it accumulates. We compare standardized and
   unscaled training under a shared observation budget, allowing each method to
   choose its learning rate and stopping time. For two independent binary
-  features, we characterize the best attainable risk on the rare subgroup as
-  its prevalence decreases. The preferred scaling depends on how the signal is
+  features, we characterize the best attainable risk on the rare subgroup as its
+  prevalence decreases. The preferred scaling depends on how the signal is
   distributed between the common and rare features, as well as on the noise and
   available budget. Further bounds and experiments examine finite prevalence,
   reused observations, estimated preprocessing, and fitted intercepts. We also

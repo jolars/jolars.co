@@ -9,7 +9,7 @@ author:
   - Johan Larsson
   - Peter Gustafsson
 date: 2018-06-18
-abstract: |
+abstract: >
   Euler diagrams are common and user-friendly visualizations for set
   relationships. Most Euler diagrams use circles, but circles do not always
   yield accurate diagrams. A promising alternative is ellipses, which, in
@@ -18,9 +18,9 @@ abstract: |
   three-set diagrams where there are disjoint or subset relationships. The aim
   of this paper is to present eulerr: a software package for elliptical Euler
   diagrams for, in theory, any number of sets. It fits Euler diagrams using
-  numerical optimization and exact-area algorithms through a two-step
-  procedure, first generating an initial layout using pairwise relationships
-  and then finalizing this layout using all set relationships.
+  numerical optimization and exact-area algorithms through a two-step procedure,
+  first generating an initial layout using pairwise relationships and then
+  finalizing this layout using all set relationships.
 pdf: http://ceur-ws.org/Vol-2116/paper7.pdf
 github: jolars/LookAheadScreening
 cran: eulerr

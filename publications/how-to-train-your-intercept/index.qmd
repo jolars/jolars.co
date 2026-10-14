@@ -8,16 +8,16 @@ description: >
 author:
   - Johan Larsson
   - Frederik Fabricius-Bjerre
-abstract: |
+abstract: >
   The way a coordinate descent solver updates the intercept can determine how
   quickly it fits a regularized generalized linear model, particularly when
-  responses are imbalanced. We compare updates using a global curvature bound,
-  a safeguarded Newton step, and exact minimization over the intercept. Our
+  responses are imbalanced. We compare updates using a global curvature bound, a
+  safeguarded Newton step, and exact minimization over the intercept. Our
   analysis explains how conservative updates slow convergence by failing to
   resolve the coupling between the intercept and the coefficients. Experiments
   with simulated data, real data, and production solvers show that one Newton
-  step often achieves progress similar to exact minimization at a lower cost.
-  We also examine quadratic approximations and multinomial models, and give
+  step often achieves progress similar to exact minimization at a lower cost. We
+  also examine quadratic approximations and multinomial models, and give
   recommendations for handling the intercept in each setting.
 date: 2026-10-13
 citation:

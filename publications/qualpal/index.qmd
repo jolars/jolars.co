@@ -5,15 +5,15 @@ description: >
   color palettes with maximally distinct, colorblind-friendly colors.
 author:
   - Johan Larsson
-abstract: |
+abstract: >
   Qualpal is a C++ library, command-line tool, R package, and web app for
   creating qualitative color palettes with maximally distinct colors. It helps
   scientists and anyone working with data visualization choose colors that
-  remain clear and accessible. Qualpal features flexible palette generation
-  from multiple input formats, such as the HSL and LCHab color spaces or fixed
-  sets of RGB colors, and can adapt palettes to color vision deficiencies (CVD)
-  across the full dichromacy spectrum at any severity. At its core, Qualpal is
-  a lightweight C++ library with no external dependencies, making it easy to
+  remain clear and accessible. Qualpal features flexible palette generation from
+  multiple input formats, such as the HSL and LCHab color spaces or fixed sets
+  of RGB colors, and can adapt palettes to color vision deficiencies (CVD)
+  across the full dichromacy spectrum at any severity. At its core, Qualpal is a
+  lightweight C++ library with no external dependencies, making it easy to
   integrate into other software and programming languages.
 date: 2025-10-16
 url: https://joss.theoj.org/papers/10.21105/joss.08936

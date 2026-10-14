@@ -8,7 +8,7 @@ author:
   - Quentin Klopfenstein
   - Mathurin Massias
   - Jonas Wallin
-abstract: |
+abstract: >
   The lasso is the most famous sparse regression and feature selection method.
   One reason for its popularity is the speed at which the underlying
   optimization problem can be solved. Sorted L-One Penalized Estimation (SLOPE)
@@ -18,11 +18,10 @@ abstract: |
   algorithms that perform poorly in high dimensions. To tackle this issue, we
   propose a new fast algorithm to solve the SLOPE optimization problem, which
   combines proximal gradient descent and proximal coordinate descent steps. We
-  provide new results on the directional derivative of the SLOPE penalty and
-  its related SLOPE thresholding operator, as well as provide convergence
-  guarantees for our proposed solver. In extensive benchmarks on simulated and
-  real data, we show that our method outperforms a long list of competing
-  algorithms.
+  provide new results on the directional derivative of the SLOPE penalty and its
+  related SLOPE thresholding operator, as well as provide convergence guarantees
+  for our proposed solver. In extensive benchmarks on simulated and real data,
+  we show that our method outperforms a long list of competing algorithms.
 date: 2023-04-25
 citation:
   source: arXiv.org

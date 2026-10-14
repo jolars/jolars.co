@@ -5,14 +5,14 @@ description: >
   for defining and solving problems, a broad solver catalog, and constraints.
 author:
   - Johan Larsson
-abstract: |
+abstract: >
   Basin is a numerical optimization library for the Rust programming language.
   Numerical optimization is the task of finding the inputs that minimize a
   function, and it is a fundamental element across the sciences: fitting a model
-  to data, calibrating a simulation, training a machine learning model, or choosing
-  engineering parameters that minimize cost. Basin gives users a single,
-  consistent way to both state and solve such problems, with a broad catalog of
-  solvers and first-class support for constraints.
+  to data, calibrating a simulation, training a machine learning model, or
+  choosing engineering parameters that minimize cost. Basin gives users a
+  single, consistent way to both state and solve such problems, with a broad
+  catalog of solvers and first-class support for constraints.
 date: 2026-08-11
 citation:
   author:
