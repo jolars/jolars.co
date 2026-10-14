@@ -213,6 +213,24 @@ def check_rendered(site_dir: Path, report: Report) -> None:
         if not parser.meta.get("og:image"):
             report.warn(url, "missing og:image (no social preview image)")
 
+        if path.name == "index.html" and path.parent.parent == site_dir / "blog":
+            for key in (
+                "citation_title",
+                "citation_author",
+                "citation_publication_date",
+                "citation_fulltext_html_url",
+            ):
+                if not parser.meta.get(key, "").strip():
+                    report.error(url, f"missing Google Scholar metadata: {key}")
+            if parser.meta.get("citation_title") != parser.meta.get("og:title"):
+                report.error(url, "citation_title differs from the rendered title")
+            if parser.meta.get("citation_publication_date") != parser.meta.get(
+                "dcterms.date"
+            ):
+                report.error(url, "citation_publication_date differs from the post date")
+            if "citation_reference" in parser.meta:
+                report.error(url, "unexpected shared bibliography citation metadata")
+
         # Headings.
         if parser.h1_count == 0:
             report.warn(url, "no <h1> heading on page")

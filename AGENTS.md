@@ -114,7 +114,7 @@ cross-references when diagnosing build failures.
   and freeze policy.
 - `header.html` and `styles.css`: Shared header markup and styling.
 - `blog/_metadata.yml`: Blog defaults, including freeze, Giscus comments, title
-  banners, and social sharing.
+  banners, social sharing, and Google Scholar metadata.
 - `blog/YYYY-MM-DD-slug/index.qmd`: Blog posts and their local images.
 - `news/`, `publications/`, `software/`, `talks/`, and `cv/`: Other content.
 - `assets/bibliography.bib`: Shared bibliography.
@@ -157,6 +157,13 @@ sidebar focus. It changes only affected tags and preserves the remaining HTML.
 The shared `assets/scripts/search-accessibility.js` handles dynamically
 generated search options, including overlay search, keyboard selection, and
 pointer navigation.
+
+The post-render script `scripts/fix-scholar-metadata.py` corrects Quarto's
+overescaped blog citation titles using the rendered Open Graph title. It also
+removes optional `citation_reference` tags because Quarto emits the entire
+shared bibliography, including works the post does not cite. The blog listing
+disables Scholar metadata, and SEO lint checks the required metadata on
+individual posts.
 
 The render-time filter `assets/filters/frozen-figure-alt.lua` supplies image
 descriptions for five historical posts without reexecuting their computations.
