@@ -1,0 +1,38 @@
+---
+title: "Feature Normalization under Finite Training Budgets"
+description: >
+  How feature standardization changes the trade-off between learning rare
+  effects and amplifying noise in stochastic gradient descent with limited data.
+author:
+  - Johan Larsson
+abstract: |
+  Feature scaling affects both how quickly stochastic gradient descent learns
+  rare effects and how much noise it accumulates. We compare standardized and
+  unscaled training under a shared observation budget, allowing each method to
+  choose its learning rate and stopping time. For two independent binary
+  features, we characterize the best attainable risk on the rare subgroup as
+  its prevalence decreases. The preferred scaling depends on how the signal is
+  distributed between the common and rare features, as well as on the noise and
+  available budget. Further bounds and experiments examine finite prevalence,
+  reused observations, estimated preprocessing, and fitted intercepts. We also
+  show that selecting a predictor after training can reverse the comparison.
+date: 2026-10-12
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+  DOI: 10.48550/arXiv.2610.16845
+  URL: https://arxiv.org/abs/2610.16845
+  issued: 2026-10-12
+  number: arXiv:2610.16845
+  publisher: arXiv
+  title: "Feature Normalization under Finite Training Budgets"
+  type: article
+pdf: https://arxiv.org/pdf/2610.16845
+doi: 10.48550/arXiv.2610.16845
+arxiv: "2610.16845"
+categories:
+  - Normalization
+  - Standardization
+  - Optimization
+---
