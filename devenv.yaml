@@ -7,6 +7,11 @@ inputs:
         follows: nixpkgs
   nixpkgs:
     url: github:cachix/devenv-nixpkgs/rolling
+  nix-pandoc-bin:
+    url: github:doronbehar/nix-pandoc-bin
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
   workers-nixpkgs:
     url: github:NixOS/nixpkgs/master
     flake: false

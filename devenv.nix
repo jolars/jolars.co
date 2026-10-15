@@ -27,32 +27,8 @@ let
       etoolbox
       ;
   };
-  # nixpkgs ships pandoc 3.7.0.2, but quartoMinimal 1.9.37 emits the
-  # `syntax-highlighting` defaults key (from `highlight-style`), which only
-  # exists in pandoc >= 3.8. We vendor the official 3.8.3 release (the version
-  # quarto expects) and pin quarto to it via QUARTO_PANDOC below. Without this,
-  # quarto falls back to a too-old pandoc and fails with
-  # `Unknown option "syntax-highlighting"` (e.g. the CI runner's system pandoc).
-  pandoc = pkgs.stdenv.mkDerivation rec {
-    pname = "pandoc-bin";
-    version = "3.8.3";
-    src = pkgs.fetchurl {
-      url = "https://github.com/jgm/pandoc/releases/download/${version}/pandoc-${version}-linux-amd64.tar.gz";
-      hash = "sha256-wiT6uJ+CfTYjOA7LfBB4wWPHachJoUrCfo07+7kUybQ=";
-    };
-    nativeBuildInputs = [ pkgs.autoPatchelfHook ];
-    buildInputs = [
-      pkgs.stdenv.cc.cc.lib
-      pkgs.gmp
-      pkgs.zlib
-      pkgs.lua5_4
-    ];
-    installPhase = ''
-      runHook preInstall
-      install -Dm755 bin/pandoc $out/bin/pandoc
-      runHook postInstall
-    '';
-  };
+  # Quarto requires a newer Pandoc than the pinned nixpkgs provides.
+  pandoc = inputs.nix-pandoc-bin.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   # eulerr 8.1.0 ships the Rust-backed Eunoia core; the nixpkgs pin is still on
   # the old C++ 7.1.0. Build it straight from the CRAN source, which vendors its
@@ -202,7 +178,7 @@ in
     '';
   };
 
-  # Pin quarto to the vendored pandoc deterministically, regardless of PATH
+  # Pin quarto to pandoc-bin deterministically, regardless of PATH
   # order (quarto's own pandoc lookup doesn't strictly follow PATH).
   env.QUARTO_PANDOC = "${pandoc}/bin/pandoc";
   # reticulate (used by the knitr engine for `{python}` chunks) honors this over
