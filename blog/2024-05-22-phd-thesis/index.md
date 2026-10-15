@@ -3,6 +3,7 @@ title: PhD Thesis
 author: Johan Larsson
 date: "2024-05-22"
 date-modified: 2024-07-01
+google-scholar: true
 description: >
   My PhD thesis on optimization and algorithms for sparse regression has been
   published. Here I give a brief summary of the papers included in it.
