@@ -103,11 +103,14 @@ class HeadExtractor(HTMLParser):
         self.canonical: str | None = None
         self.html_lang: str | None = None
         self.h1_count = 0
+        self.has_references = False
         # (src, has_alt) for non-decorative <img> elements.
         self.imgs: list[tuple[str, bool]] = []
 
     def handle_starttag(self, tag, attrs):
         a = {k.lower(): (v or "") for k, v in attrs}
+        if "csl-entry" in a.get("class", "").split():
+            self.has_references = True
         if tag == "title":
             self._in_title = True
         elif tag == "html":
@@ -147,7 +150,7 @@ def page_url(path: Path, site_dir: Path) -> str:
     return "/" + rel
 
 
-def check_rendered(site_dir: Path, report: Report) -> None:
+def check_rendered(site_dir: Path, report: Report, *, root: Path = Path(".")) -> None:
     html_files = sorted(
         p
         for p in site_dir.rglob("*.html")
@@ -214,22 +217,34 @@ def check_rendered(site_dir: Path, report: Report) -> None:
             report.warn(url, "missing og:image (no social preview image)")
 
         if path.name == "index.html" and path.parent.parent == site_dir / "blog":
-            for key in (
-                "citation_title",
-                "citation_author",
-                "citation_publication_date",
-                "citation_fulltext_html_url",
-            ):
-                if not parser.meta.get(key, "").strip():
-                    report.error(url, f"missing Google Scholar metadata: {key}")
-            if parser.meta.get("citation_title") != parser.meta.get("og:title"):
-                report.error(url, "citation_title differs from the rendered title")
-            if parser.meta.get("citation_publication_date") != parser.meta.get(
-                "dcterms.date"
-            ):
-                report.error(url, "citation_publication_date differs from the post date")
-            if "citation_reference" in parser.meta:
-                report.error(url, "unexpected shared bibliography citation metadata")
+            post_dir = root / path.parent.relative_to(site_dir)
+            if scholar_enabled(post_dir):
+                for key in (
+                    "citation_title",
+                    "citation_author",
+                    "citation_publication_date",
+                    "citation_fulltext_html_url",
+                ):
+                    if not parser.meta.get(key, "").strip():
+                        report.error(url, f"missing Google Scholar metadata: {key}")
+                if parser.meta.get("citation_title") != parser.meta.get("og:title"):
+                    report.error(url, "citation_title differs from the rendered title")
+                if parser.meta.get("citation_publication_date") != parser.meta.get(
+                    "dcterms.date"
+                ):
+                    report.error(
+                        url, "citation_publication_date differs from the post date"
+                    )
+                if "citation_reference" in parser.meta:
+                    report.error(
+                        url, "unexpected shared bibliography citation metadata"
+                    )
+                if not parser.has_references:
+                    report.error(url, "Google Scholar post has no bibliography entries")
+            elif any(key.startswith("citation_") for key in parser.meta):
+                report.error(
+                    url, "Google Scholar metadata on a post that has not opted in"
+                )
 
         # Headings.
         if parser.h1_count == 0:
@@ -264,6 +279,18 @@ def check_rendered(site_dir: Path, report: Report) -> None:
 FM_BOUND = re.compile(r"^---\s*$")
 
 
+def read_yaml_fields(lines: list[str]) -> dict[str, str]:
+    """Read top-level scalar fields without adding a YAML dependency."""
+    fields: dict[str, str] = {}
+    for line in lines:
+        if FM_BOUND.match(line):
+            break
+        m = re.match(r"^([A-Za-z0-9_-]+):\s*(.*)$", line)
+        if m:
+            fields[m.group(1)] = m.group(2).strip()
+    return fields
+
+
 def read_frontmatter(path: Path) -> tuple[dict[str, str], int]:
     """Return a shallow {key: raw_value} map for the YAML frontmatter.
 
@@ -274,14 +301,24 @@ def read_frontmatter(path: Path) -> tuple[dict[str, str], int]:
     lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
     if not lines or not FM_BOUND.match(lines[0]):
         return {}, 0
-    fm: dict[str, str] = {}
-    for line in lines[1:]:
-        if FM_BOUND.match(line):
+    return read_yaml_fields(lines[1:]), 1
+
+
+def scholar_enabled(post_dir: Path) -> bool:
+    """Require an explicit opt-in in the post's metadata or frontmatter."""
+    metadata = post_dir / "_metadata.yml"
+    fields = (
+        read_yaml_fields(metadata.read_text(encoding="utf-8").splitlines())
+        if metadata.is_file()
+        else {}
+    )
+    for suffix in (".qmd", ".md"):
+        source = post_dir / f"index{suffix}"
+        if source.is_file():
+            frontmatter, _ = read_frontmatter(source)
+            fields.update(frontmatter)
             break
-        m = re.match(r"^([A-Za-z0-9_-]+):\s*(.*)$", line)
-        if m:
-            fm[m.group(1)] = m.group(2).strip()
-    return fm, 1
+    return fields.get("google-scholar", "").lower() == "true"
 
 
 def strip_quotes(value: str) -> str:
@@ -351,9 +388,7 @@ def render_report(report: Report, *, markdown: bool) -> None:
         return
     for f in by_severity:
         print(f"{icon[f.severity]} {f.severity.upper()}  {f.where}\n    {f.message}")
-    print(
-        f"\nseo-lint: {report.n_errors} error(s), {report.n_warnings} warning(s)"
-    )
+    print(f"\nseo-lint: {report.n_errors} error(s), {report.n_warnings} warning(s)")
 
 
 def main(argv: list[str]) -> int:
@@ -397,7 +432,7 @@ def main(argv: list[str]) -> int:
                 file=sys.stderr,
             )
             return 2
-        check_rendered(site, report)
+        check_rendered(site, report, root=Path(args.root))
 
     render_report(report, markdown=args.markdown)
 

@@ -16,7 +16,8 @@ title-block-banner: true
 draft-mode: unlinked
 cap-location: margin
 author: Johan Larsson
-google-scholar: true
+# Enable Scholar metadata only for selected posts with substantive references.
+google-scholar: false
 bibliography: ../assets/bibliography.bib
 reference-location: margin
 filters:

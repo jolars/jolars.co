@@ -1,2 +1,3 @@
 # Keep thumbnail metadata outside the source to preserve frozen computations.
 image-alt: "Eunoia: Euler and Venn Diagrams in Five Languages"
+google-scholar: true
