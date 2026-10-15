@@ -161,9 +161,13 @@ pointer navigation.
 The post-render script `scripts/fix-scholar-metadata.py` corrects Quarto's
 overescaped blog citation titles using the rendered Open Graph title. It also
 removes optional `citation_reference` tags because Quarto emits the entire
-shared bibliography, including works the post does not cite. The blog listing
-disables Scholar metadata, and SEO lint checks the required metadata on
-individual posts.
+shared bibliography, including works the post does not cite. Scholar metadata is
+disabled by default. Enable it with `google-scholar: true` in a post's
+`_metadata.yml` only for substantive research or scientific software posts that
+someone might reasonably cite. Each selected post must cite references of its
+own. Keeping this setting outside the source preserves frozen computations. SEO
+lint checks the required metadata and rendered bibliography entries for selected
+posts and rejects Scholar metadata on other posts.
 
 The render-time filter `assets/filters/frozen-figure-alt.lua` supplies image
 descriptions for five historical posts without reexecuting their computations.

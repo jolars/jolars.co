@@ -19,6 +19,8 @@ bibliography:
   - ../assets/bibliography.bib
   - ../cv/articles.bib
   - ../cv/theses.bib
+# Enable Scholar metadata only for selected posts with substantive references.
+google-scholar: false
 reference-location: margin
 filters:
   - social-share
