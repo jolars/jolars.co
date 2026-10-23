@@ -15,7 +15,7 @@ listing:
   filter-ui: true
   feed:
     categories: [R]
-  categories: true
+  categories: false
 page-layout: full
 title-block-banner: false
 ---
