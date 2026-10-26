@@ -15,10 +15,7 @@ comments:
 title-block-banner: true
 draft-mode: unlinked
 author: Johan Larsson
-bibliography:
-  - ../assets/bibliography.bib
-  - ../cv/articles.bib
-  - ../cv/theses.bib
+bibliography: ../assets/bibliography.bib
 # Enable Scholar metadata only for selected posts with substantive references.
 google-scholar: false
 reference-location: margin
