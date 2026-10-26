@@ -15,6 +15,7 @@ image: images/trajectories.svg
 image-alt: >-
   Three intercept-update strategies take different paths toward the same
   logistic regression solution.
+google-scholar: true
 open-graph:
   image: images/trajectories.png
 twitter-card:
