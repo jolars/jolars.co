@@ -2,35 +2,53 @@
 title: Coordinate Descent for SLOPE
 author: Johan Larsson
 description: >
-  An online talk for AISTATS 2023 on our fast coordinate descent algorithm for
-  SLOPE, a generalization of the lasso for sparse regression.
-abstract: |
-  The lasso is the most famous sparse regression and feature selection method.
-  One reason for its popularity is the speed at which the underlying
-  optimization problem can be solved. Sorted L-One Penalized Estimation (SLOPE)
-  is a generalization of the lasso with appealing statistical properties. In
-  spite of this, the method has not yet reached widespread interest. A major
-  reason for this is that current software packages that fit SLOPE rely on
-  algorithms that perform poorly in high dimensions. To tackle this issue, we
-  propose a new fast algorithm to solve the SLOPE optimization problem, which
-  combines proximal gradient descent and proximal coordinate descent steps. We
-  provide new results on the directional derivative of the SLOPE penalty and
-  its related SLOPE thresholding operator, as well as provide convergence
-  guarantees for our proposed solver. In extensive benchmarks on simulated and
-  real data, we show that our method outperforms a long list of competing
-  algorithms.
-date: 2022-03-31
+  Watch my AISTATS 2023 talk on our fast coordinate descent algorithm for SLOPE,
+  a generalization of the lasso for sparse regression.
+toc: false
+date: 2023-03-31
 image: preview.png
 image-alt: "Title slide from the Coordinate Descent for SLOPE talk."
 slides: https://github.com/jolars/talks/raw/main/2023-03-31-aistats-slopecd/aistats-slopecd.pdf
 arxiv: "2210.14780"
 citation:
   type: speech
-  issued: 2022-03-31
+  issued: 2023-03-31
   genre: Online
   event-title: AISTATS 2023
   event-place: Online
   url: https://youtu.be/Zq-jVFgHt5o
 ---
 
-{{< video https://youtu.be/Zq-jVFgHt5o >}}
+{{< video https://www.youtube.com/embed/Zq-jVFgHt5o title="Coordinate Descent for SLOPE (AISTATS 2023)" >}}
+
+```{=html}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Coordinate Descent for SLOPE",
+  "description": "Watch my AISTATS 2023 talk on our fast coordinate descent algorithm for SLOPE, a generalization of the lasso for sparse regression.",
+  "thumbnailUrl": "https://jolars.co/talks/cd-for-slope-aistats/preview.png",
+  "uploadDate": "2023-03-31T06:00:47-07:00",
+  "duration": "PT14M33S",
+  "embedUrl": "https://www.youtube.com/embed/Zq-jVFgHt5o",
+  "mainEntityOfPage": "https://jolars.co/talks/cd-for-slope-aistats/"
+}
+</script>
+```
+
+## Abstract
+
+The lasso is the most famous sparse regression and feature selection method. One
+reason for its popularity is the speed at which the underlying optimization
+problem can be solved. Sorted L-One Penalized Estimation (SLOPE) is a
+generalization of the lasso with appealing statistical properties. In spite of
+this, the method has not yet reached widespread interest. A major reason for
+this is that current software packages that fit SLOPE rely on algorithms that
+perform poorly in high dimensions. To tackle this issue, we propose a new fast
+algorithm to solve the SLOPE optimization problem, which combines proximal
+gradient descent and proximal coordinate descent steps. We provide new results
+on the directional derivative of the SLOPE penalty and its related SLOPE
+thresholding operator, as well as provide convergence guarantees for our
+proposed solver. In extensive benchmarks on simulated and real data, we show
+that our method outperforms a long list of competing algorithms.
