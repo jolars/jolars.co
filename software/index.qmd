@@ -11,7 +11,10 @@ listing:
       - basin/index.qmd
       - benchopt/index.qmd
       - caugi/index.qmd
+      - datamonger/index.qmd
       - eunoia/index.qmd
+      - lazymatrix/index.qmd
+      - metewand/index.qmd
       - qualpal/index.qmd
       - slope/index.qmd
     template: software.ejs
@@ -21,6 +24,7 @@ listing:
     contents:
       - arity/index.qmd
       - badness/index.qmd
+      - diplodocus/index.qmd
       - fatou/index.qmd
       - panache/index.qmd
     template: software.ejs

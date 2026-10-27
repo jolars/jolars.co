@@ -1,0 +1,27 @@
+---
+title: Datamonger
+url: https://datamonger.dev
+author: Johan Larsson
+date: 2026-08-28
+github: jolars/datamonger
+pypi: datamonger
+image: logo.png
+categories:
+  - rust
+  - python
+  - r
+  - julia
+  - cli
+description: >
+  Datamonger retrieves public research datasets in Python, R, and Julia,
+  with verified downloads, local caching, and versioned records for reproducibility.
+---
+
+Datamonger downloads public research datasets and returns native data frames
+and sparse matrices in Python, R, and Julia. Its clients verify that they
+decode the same values, and a standalone command-line tool provides verified
+downloads for use with other software.
+
+Each dataset has a versioned record describing its source, format, provenance,
+license, and citations. You can pin the registry and dataset version to keep
+an analysis reproducible and reuse cached datasets offline.

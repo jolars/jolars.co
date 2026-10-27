@@ -1,0 +1,25 @@
+---
+title: Metewand
+url: https://metewand.org
+author: Johan Larsson
+date: 2026-08-29
+github: jolars/metewand
+image: logo.svg
+categories:
+  - rust
+  - python
+  - r
+  - cli
+description: >
+  Metewand benchmarks computational methods across languages, evaluates
+  results independently, and records timings, metrics, failures, and provenance.
+---
+
+Metewand compares computational methods across languages. You write ordinary
+Python or R functions and declare the comparison in YAML. The command-line
+runner executes methods as separate processes, evaluates their answers
+independently, and retains settings, timings, metrics, failures, and provenance.
+
+The runner supports parameter grids, retries, resuming runs, and exporting
+results for analysis. Metewand is under active development, with Python and R
+packages and support for native Rust workers.

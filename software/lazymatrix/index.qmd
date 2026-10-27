@@ -1,0 +1,35 @@
+---
+title: LazyMatrix
+url: https://lazymatrix.org
+author: Johan Larsson
+date: 2026-06-10
+github: jolars/lazymatrix
+crate: lazymatrix
+pypi: lazymatrix
+image: logo.png
+categories:
+  - rust
+  - python
+description: >
+  LazyMatrix centers and scales dense, sparse, and chunked Zarr matrices
+  through matrix operations, preserving sparsity without creating a normalized copy.
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+  title: "LazyMatrix: Lazy representations of normalized matrices"
+  type: software
+  issued: 2026-10-26
+  DOI: 10.5281/zenodo.23666452
+  URL: https://lazymatrix.org
+  version: v0.1.0
+---
+
+LazyMatrix is a Rust library for column normalization of design matrices.
+It borrows the original matrix and applies fitted centers and scales during
+matrix operations, avoiding a normalized copy and preserving sparse storage.
+
+The library supports matrix-vector products, transpose products, weighted
+Gram matrices, and an implicit intercept column. Backends include faer,
+nalgebra, ndarray, sprs, and chunked Zarr arrays for matrices larger than
+memory. Fitted normalization parameters can be reused on new observations.

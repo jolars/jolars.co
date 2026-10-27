@@ -1,0 +1,23 @@
+---
+title: Diplodocus
+url: https://diplodocus.cc
+author: Johan Larsson
+date: 2026-08-30
+github: jolars/diplodocus
+crate: diplodocus
+image: logo.png
+categories:
+  - rust
+  - cli
+description: >
+  Diplodocus builds documentation sites for Python, R, Julia, and Rust
+  packages, combining API references with Markdown and Quarto guides in one site.
+---
+
+Diplodocus brings package API references and Markdown and Quarto guides
+together in one documentation site. It supports Python, R, Julia, and Rust
+packages with shared navigation, cross-references, and search.
+
+You declare packages and documentation pages in a YAML configuration file.
+The command-line tool validates sources, previews the site with automatic
+rebuilding, and builds the site for publishing.
