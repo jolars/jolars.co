@@ -157,6 +157,19 @@ async function fetchAsset(request, assets) {
   return response;
 }
 
+const movedPages = [
+  [
+    "/blog/2026-10-09-panache-an-editor-companion-for-pandoc",
+    "/blog/2026-10-09-panache-an-editor-companion-for-markdown",
+  ],
+  [
+    "/blog/2026-03-30-panache-an-editor-companion-for-pandoc",
+    "/blog/2026-10-09-panache-an-editor-companion-for-markdown",
+  ],
+  ["/blog/2026-06-20-eunoia", "/blog/2026-07-04-eunoia"],
+  ["/software/eulerr", "/software/eunoia"],
+];
+
 export default {
   fetch(request, env) {
     const url = new URL(request.url);
@@ -168,11 +181,12 @@ export default {
     }
 
     // Move published URLs before content negotiation, including linked assets.
-    const oldPost = "/blog/2026-10-09-panache-an-editor-companion-for-pandoc";
-    const newPost = "/blog/2026-10-09-panache-an-editor-companion-for-markdown";
-    if (url.pathname === oldPost || url.pathname.startsWith(`${oldPost}/`)) {
-      url.pathname = newPost + (url.pathname.slice(oldPost.length) || "/");
-      redirect = true;
+    for (const [oldPath, newPath] of movedPages) {
+      if (url.pathname === oldPath || url.pathname.startsWith(`${oldPath}/`)) {
+        url.pathname = newPath + (url.pathname.slice(oldPath.length) || "/");
+        redirect = true;
+        break;
+      }
     }
     if (redirect) return Response.redirect(url.href, 301);
 
