@@ -3,7 +3,7 @@ flavor = "quarto"
 extend-exclude = ["CLAUDE.md", ".claude/**/*"]
 
 [flavors]
-gm = ["AGENTS.md", "README.md", "TODO.md"]
+gfm = ["AGENTS.md", "README.md", "TODO.md"]
 
 [formatters]
 r = "arity"
