@@ -3,7 +3,7 @@ title: "New Blog Post: How to Train Your Intercept"
 date: 2026-10-26
 description: >
   I have published [a new blog
-  post](../blog/2026-10-26-how-to-train-your-intercept/index.qmd) about
-  intercept updates in coordinate descent and why they matter when fitting
-  models with imbalanced responses.
+  post](../blog/2026-10-26-how-to-train-your-intercept/) about intercept updates
+  in coordinate descent and why they matter when fitting models with imbalanced
+  responses.
 ---
