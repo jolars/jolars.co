@@ -250,6 +250,62 @@ test("permanently redirects the published Panache post and its assets", async ()
   }
 });
 
+test("permanently redirects historical post and software URLs", async () => {
+  const moves = [
+    [
+      "/blog/2026-03-30-panache-an-editor-companion-for-pandoc",
+      "/blog/2026-10-09-panache-an-editor-companion-for-markdown",
+    ],
+    ["/blog/2026-06-20-eunoia", "/blog/2026-07-04-eunoia"],
+    ["/software/eulerr", "/software/eunoia"],
+  ];
+  const { env, fetched } = site({});
+  for (const [before, after] of moves) {
+    for (const origin of ["https://jolars.co", "http://www.jolars.co"]) {
+      for (const method of ["GET", "HEAD"]) {
+        for (const accept of ["text/html", "text/markdown"]) {
+          for (const suffix of ["", "/", "/index.html", "/index.llms.md"]) {
+            const response = await worker.fetch(new Request(`${origin}${before}${suffix}?ref=archive`, {
+              method, headers: { accept },
+            }), env);
+            assert.equal(response.status, 301, `${before}${suffix}`);
+            assert.equal(response.headers.get("location"), `https://jolars.co${after}${suffix || "/"}?ref=archive`);
+            assert.equal(await response.text(), "");
+          }
+        }
+      }
+    }
+  }
+  assert.equal(fetched.length, 0);
+});
+
+test("keeps historical redirect destinations and similar paths distinct", async () => {
+  const { env } = site({
+    "/blog/2026-07-04-eunoia/index.html": new Response("<html>Eunoia</html>", {
+      headers: { "content-type": "text/html" },
+    }),
+    "/software/eunoia/index.html": new Response("<html>Eunoia</html>", {
+      headers: { "content-type": "text/html" },
+    }),
+  });
+  for (const path of ["/blog/2026-07-04-eunoia/", "/software/eunoia/"]) {
+    const response = await worker.fetch(new Request(`https://jolars.co${path}`), env);
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("location"), null);
+  }
+  for (const path of [
+    "/blog/2026-03-30-panache-an-editor-companion-for-pandoc-example/",
+    "/blog/2026-06-20-eunoia-example/",
+    "/software/eulerr-example/",
+    "/eulerr/",
+    "/shiny/eulerr/",
+  ]) {
+    const response = await worker.fetch(new Request(`https://jolars.co${path}`), env);
+    assert.equal(response.status, 404);
+    assert.equal(response.headers.get("location"), null);
+  }
+});
+
 test("serves the renamed Panache post without redirecting similar paths", async () => {
   const oldPost = "/blog/2026-10-09-panache-an-editor-companion-for-pandoc";
   const newPost = "/blog/2026-10-09-panache-an-editor-companion-for-markdown";

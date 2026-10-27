@@ -109,6 +109,26 @@ def check_deployment(url, www_url):
         )
         require(b"Panache" in body, "Panache post: missing content")
 
+    for old, new in [
+        ("/blog/2026-03-30-panache-an-editor-companion-for-pandoc", post),
+        ("/blog/2026-06-20-eunoia", "/blog/2026-07-04-eunoia"),
+        ("/software/eulerr", "/software/eunoia"),
+    ]:
+        for suffix in ["", "/", "/index.html"]:
+            headers, _ = check(old + suffix + "?ref=archive", status=301)
+            require(
+                headers.get("Location")
+                == urljoin(base, new + (suffix or "/") + "?ref=archive"),
+                f"{old}: incorrect redirect",
+            )
+        for accept in ["text/html", "text/markdown"]:
+            headers, body = check(new + "/", accept=accept)
+            require(
+                headers.get_content_type() == accept,
+                f"{new}: incorrect content type",
+            )
+            require(bool(body), f"{new}: empty page")
+
     for path in ["/.well-known/api-catalog", "/.well-known/markdown-service.json"]:
         _, body = check(path, accept="application/json")
         require(
