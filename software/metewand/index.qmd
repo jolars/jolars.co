@@ -11,8 +11,8 @@ categories:
   - r
   - cli
 description: >
-  Metewand benchmarks computational methods across languages, evaluates
-  results independently, and records timings, metrics, failures, and provenance.
+  Metewand benchmarks computational methods across languages, evaluates results
+  independently, and records timings, metrics, failures, and provenance.
 ---
 
 Metewand compares computational methods across languages. You write ordinary

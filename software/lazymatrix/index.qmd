@@ -11,8 +11,8 @@ categories:
   - rust
   - python
 description: >
-  LazyMatrix centers and scales dense, sparse, and chunked Zarr matrices
-  through matrix operations, preserving sparsity without creating a normalized copy.
+  LazyMatrix centers and scales dense, sparse, and chunked Zarr matrices through
+  matrix operations, preserving sparsity without creating a normalized copy.
 citation:
   author:
     - family: Larsson
@@ -25,11 +25,11 @@ citation:
   version: v0.1.0
 ---
 
-LazyMatrix is a Rust library for column normalization of design matrices.
-It borrows the original matrix and applies fitted centers and scales during
-matrix operations, avoiding a normalized copy and preserving sparse storage.
+LazyMatrix is a Rust library for column normalization of design matrices. It
+borrows the original matrix and applies fitted centers and scales during matrix
+operations, avoiding a normalized copy and preserving sparse storage.
 
-The library supports matrix-vector products, transpose products, weighted
-Gram matrices, and an implicit intercept column. Backends include faer,
-nalgebra, ndarray, sprs, and chunked Zarr arrays for matrices larger than
-memory. Fitted normalization parameters can be reused on new observations.
+The library supports matrix-vector products, transpose products, weighted Gram
+matrices, and an implicit intercept column. Backends include faer, nalgebra,
+ndarray, sprs, and chunked Zarr arrays for matrices larger than memory. Fitted
+normalization parameters can be reused on new observations.
