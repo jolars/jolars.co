@@ -16,6 +16,7 @@ listing:
       - lazymatrix/index.qmd
       - metewand/index.qmd
       - qualpal/index.qmd
+      - shrinkage/index.qmd
       - slope/index.qmd
     template: software.ejs
     categories: true

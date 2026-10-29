@@ -1,0 +1,36 @@
+---
+title: Shrinkage
+url: https://shrinkage.cc
+author: Johan Larsson
+date: 2026-09-22
+github: jolars/shrinkage
+image: logo.png
+categories:
+  - rust
+  - python
+description: >
+  Regularized regression in Rust, with composable losses, penalties, and
+  solvers, dense and sparse matrices, and Python bindings for Gaussian lasso.
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+  title: "jolars/shrinkage: v0.3.0"
+  type: software
+  issued: 2026-10-28
+  DOI: 10.5281/zenodo.23732561
+  URL: https://zenodo.org/records/23732561
+  publisher: Zenodo
+  version: v0.3.0
+---
+
+Shrinkage is a Rust library for fitting regression models with penalties that
+shrink coefficients, select features, or encourage structure. It supports
+linear, logistic, and multivariate regression, with lasso, ridge, elastic net,
+SLOPE, Group LASSO, and fusion penalties.
+
+The library combines losses, penalties, and solvers through a typed API. It
+supports dense and sparse matrices through LazyMatrix and fits regularization
+paths by reusing previous solutions. Python bindings provide dense Gaussian
+lasso fitting, prediction, and convergence diagnostics and are under
+development.
