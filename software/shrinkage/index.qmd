@@ -10,7 +10,7 @@ categories:
   - python
 description: >
   Regularized regression in Rust, with composable losses, penalties, and
-  solvers, dense and sparse matrices, and Python bindings for Gaussian lasso.
+  solvers, dense and sparse matrices.
 citation:
   author:
     - family: Larsson
@@ -30,6 +30,5 @@ SLOPE, Group LASSO, and fusion penalties.
 
 The library combines losses, penalties, and solvers through a typed API. It
 supports dense and sparse matrices through LazyMatrix and fits regularization
-paths by reusing previous solutions. Python bindings provide dense Gaussian
-lasso fitting, prediction, and convergence diagnostics and are under
+paths by reusing previous solutions. Python and R bindings are under
 development.
