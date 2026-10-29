@@ -20,14 +20,13 @@ citation:
   author:
     - family: Larsson
       given: Johan
-  issued: 2026-10-26
+  issued: "2025"
   license: MIT
   title: >-
     Panache: Language server, formatter, and linter for Quarto and other
     Markdown flavors
   type: software
-  DOI: 10.5281/zenodo.23664115
-  URL: https://zenodo.org/records/23664115
+  DOI: 10.5281/zenodo.18608442
+  URL: https://doi.org/10.5281/zenodo.18608442
   publisher: Zenodo
-  version: v3.17.1
 ---

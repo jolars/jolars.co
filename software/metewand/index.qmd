@@ -19,11 +19,10 @@ citation:
       given: Johan
   title: "Metewand: Reproducible benchmarks of computational methods across languages"
   type: software
-  issued: 2026-10-27
-  DOI: 10.5281/zenodo.23699798
-  URL: https://zenodo.org/records/23699798
+  issued: "2026"
+  DOI: 10.5281/zenodo.23699794
+  URL: https://doi.org/10.5281/zenodo.23699794
   publisher: Zenodo
-  version: v0.2.0
 ---
 
 Metewand compares computational methods across languages. You write ordinary

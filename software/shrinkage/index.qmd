@@ -15,13 +15,12 @@ citation:
   author:
     - family: Larsson
       given: Johan
-  title: "jolars/shrinkage: v0.3.0"
+  title: Shrinkage
   type: software
-  issued: 2026-10-28
-  DOI: 10.5281/zenodo.23732561
-  URL: https://zenodo.org/records/23732561
+  issued: "2026"
+  DOI: 10.5281/zenodo.23613100
+  URL: https://doi.org/10.5281/zenodo.23613100
   publisher: Zenodo
-  version: v0.3.0
 ---
 
 Shrinkage is a Rust library for fitting regression models with penalties that
