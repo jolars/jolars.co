@@ -15,6 +15,16 @@ categories:
 description: >
   Datamonger retrieves public research datasets in Python, R, and Julia, with
   verified downloads, local caching, and versioned records for reproducibility.
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+  title: "Datamonger: Reproducible retrieval and decoding of public research data"
+  type: software
+  issued: 2026-10-28
+  DOI: 10.5281/zenodo.23692468
+  URL: https://datamonger.dev
+  version: v1.4.0
 ---
 
 Datamonger downloads public research datasets and returns native data frames and
