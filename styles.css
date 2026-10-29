@@ -136,6 +136,39 @@ div.quarto-about-solana .about-entity .about-image {
   padding-bottom: 0.5em;
 }
 
+@media (max-width: 991.98px) {
+  div.quarto-about-solana .about-entity .about-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  div.quarto-about-solana .about-entity .about-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    font-size: 1.25rem;
+  }
+
+  /* Keep link names available to screen readers when only icons are visible. */
+  .quarto-about-solana .about-link-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
 
 .list.quarto-listing-custom div:last-of-type {
   border-bottom: none;

@@ -22,7 +22,8 @@ about:
       aria-label: Mastodon
       href: "https://mastodon.social/@jolars"
       rel: "me"
-    - text: "<i class='bi bi-bluesky'></i> Bluesky"
+    - icon: bluesky
+      text: Bluesky
       href: "https://bsky.app/profile/jolars.co"
       aria-label: Bluesky
     - icon: linkedin
@@ -31,7 +32,8 @@ about:
     - icon: github
       text: GitHub
       href: https://github.com/jolars
-    - text: <i class="bi bi-mortarboard"></i> Google Scholar
+    - icon: mortarboard
+      text: Google Scholar
       href: https://scholar.google.com/citations?user=DCJvywYAAAAJ
     - icon: envelope
       text: Mail
