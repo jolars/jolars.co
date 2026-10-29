@@ -20,14 +20,14 @@ citation:
   author:
     - family: Larsson
       given: Johan
-  genre: R
-  issued: 2026-03-28
+  issued: 2026-10-26
   license: MIT
-  source: GitHub
   title: >-
-    Panache: A Language Server, Formatter, and Linter for Pandoc, Quarto, and R
-    Markdown
+    Panache: Language server, formatter, and linter for Quarto and other
+    Markdown flavors
   type: software
-  URL: https://panache.bz
-  version: 2.52.0
+  DOI: 10.5281/zenodo.23664115
+  URL: https://zenodo.org/records/23664115
+  publisher: Zenodo
+  version: v3.17.1
 ---
