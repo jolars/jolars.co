@@ -21,14 +21,13 @@ citation:
   author:
     - family: Larsson
       given: Johan
-  genre: Rust
-  issued: 2026-03-29
+  issued: "2026"
   license: MIT
-  source: GitHub
   title: "Arity: A Language Server, Formatter, and Linter for R"
   type: software
+  DOI: 10.5281/zenodo.20662733
   URL: https://arity.cc
-  version: 0.25.0
+  publisher: Zenodo
 ---
 
 Arity brings formatting, linting, and language server features to R without

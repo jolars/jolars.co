@@ -20,14 +20,13 @@ citation:
   author:
     - family: Larsson
       given: Johan
-  genre: Rust
-  issued: 2026-06-06
+  issued: "2026"
   license: MIT
-  source: GitHub
   title: "Badness: A Language Server, Formatter, and Linter for LaTeX"
   type: software
+  DOI: 10.5281/zenodo.20664708
   URL: https://badness.dev
-  version: 0.26.0
+  publisher: Zenodo
 ---
 
 Badness provides formatting, linting, and editor features for LaTeX and BibTeX.
