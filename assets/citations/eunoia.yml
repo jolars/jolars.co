@@ -1,0 +1,16 @@
+citation:
+  author:
+    - family: Larsson
+      given: Johan
+    - family: Lee
+      given: Nicole M.
+  DOI: 10.48550/arXiv.2611.02198
+  URL: https://arxiv.org/abs/2611.02198
+  issued: 2026-11-01
+  number: arXiv:2611.02198
+  publisher: arXiv
+  title: >-
+    Eunoia: Area-Proportional Euler and Venn Diagrams in Rust, Julia, Python, R,
+    and JavaScript
+  title-short: Eunoia
+  type: article

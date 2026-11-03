@@ -312,13 +312,17 @@ benchopt
 
     Python package (<https://benchopt.github.io>)
 
-eulerr
+Eunoia
 
-:   Area-proportional Euler diagrams with ellipses
+:   Area-proportional Euler and Venn diagrams
 
     Author and maintainer
 
-    R package (<https://CRAN.R-project.org/package=eulerr>)
+    Rust library (<https://crates.io/crates/eunoia>), Julia package
+    (<https://github.com/jolars/Eunoia.jl>), Python package
+    (<https://pypi.org/project/eunoia/>), R package
+    (<https://CRAN.R-project.org/package=eulerr>), JavaScript package
+    (<https://www.npmjs.com/package/@jolars/eunoia>), Web app (<https://eunoia.bz>)
 
 caugi
 

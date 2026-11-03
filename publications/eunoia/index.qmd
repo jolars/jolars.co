@@ -1,0 +1,34 @@
+---
+title: >-
+  Eunoia: Area-Proportional Euler and Venn Diagrams in Rust, Julia, Python, R,
+  and JavaScript
+description: >
+  Eunoia fits area-proportional Euler diagrams and constructs Venn diagrams
+  using a shared Rust implementation with Julia, Python, R, and JavaScript
+  bindings.
+author:
+  - Johan Larsson
+  - Nicole M. Lee
+abstract: >
+  Area-proportional diagrams show set sizes through the areas of their regions,
+  but many combinations of intersections cannot be represented exactly by simple
+  shapes. We present Eunoia, a Rust library that fits Euler diagrams and builds
+  canonical Venn diagrams with four shape families: circles, ellipses, squares,
+  and rectangles. It calculates region areas analytically, combines several
+  initialization and optimization strategies, and reports diagnostics to assess
+  the resulting fit. Plotting tools handle region polygons, labels, unit glyphs,
+  and member names. Packages for Julia, Python, R, and JavaScript share the Rust
+  implementation, as do a C interface and a web application that runs locally in
+  the browser using WebAssembly.
+date: 2026-11-01
+url: https://eunoia.bz
+pdf: https://arxiv.org/pdf/2611.02198
+doi: 10.48550/arXiv.2611.02198
+arxiv: "2611.02198"
+github: jolars/eunoia
+categories:
+  - Data visualization
+  - Euler diagrams
+  - Venn diagrams
+  - Software
+---

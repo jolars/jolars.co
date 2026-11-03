@@ -1,0 +1,7 @@
+---
+title: "New Preprint: Eunoia"
+date: 2026-11-01
+description: >
+  Our [new Eunoia preprint](../publications/eunoia/), co-authored with Nicole M.
+  Lee, describes our library for area-proportional Euler and Venn diagrams.
+---
