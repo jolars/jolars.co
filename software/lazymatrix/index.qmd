@@ -11,8 +11,9 @@ categories:
   - rust
   - python
 description: >
-  LazyMatrix centers and scales dense, sparse, and chunked Zarr matrices through
-  matrix operations, preserving sparsity without creating a normalized copy.
+  LazyMatrix centers and scales dense, sparse, and out-of-memory matrices
+  through matrix operations, preserving sparsity without creating normalized
+  copies
 citation:
   author:
     - family: Larsson
