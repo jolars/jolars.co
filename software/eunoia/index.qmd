@@ -11,7 +11,7 @@ cran: eulerr
 npm: '\@jolars/eunoia'
 pypi: eunoia
 jlpkg: Eunoia
-crates: eunoia
+crate: eunoia
 image: eunoia.svg
 description: >
   Eunoia fits area-proportional Euler diagrams and constructs Venn diagrams in

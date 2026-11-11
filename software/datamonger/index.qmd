@@ -5,6 +5,7 @@ author: Johan Larsson
 date: 2026-08-28
 github: jolars/datamonger
 pypi: datamonger
+crate: datamonger
 image: logo.png
 categories:
   - rust

@@ -4,6 +4,8 @@ url: https://shrinkage.cc
 author: Johan Larsson
 date: 2026-09-22
 github: jolars/shrinkage
+pypi: shrinkage
+crate: shrinkage
 image: logo.png
 categories:
   - rust

@@ -4,6 +4,8 @@ url: https://metewand.org
 author: Johan Larsson
 date: 2026-08-29
 github: jolars/metewand
+pypi: metewand
+crate: metewand
 image: logo.svg
 categories:
   - rust
