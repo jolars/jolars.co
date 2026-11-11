@@ -19,7 +19,6 @@ listing:
       - shrinkage/index.qmd
       - slope/index.qmd
     template: software.ejs
-    categories: true
     page-size: 50
   - id: developer-tools
     contents:
@@ -29,14 +28,12 @@ listing:
       - fatou/index.qmd
       - panache/index.qmd
     template: software.ejs
-    categories: true
     page-size: 50
   - id: other-tools
     contents:
       - moloch/index.qmd
       - tomat/index.qmd
     template: software.ejs
-    categories: true
     page-size: 50
 page-layout: full
 title-block-banner: false
