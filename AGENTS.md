@@ -94,12 +94,12 @@ test frameworks or CI infrastructure for this small site.
 ## Continuous Integration
 
 `.github/workflows/publish.yml` runs on pushes to `main` and manual dispatch. It
-installs Nix and devenv, configures Cachix, restores Git timestamps, and renders
-with `devenv shell -- quarto render`. It runs advisory SEO lint and lychee
-checks, tests the Worker, and deploys with `devenv shell -- wrangler deploy`.
-Repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`
-authenticate the deployment. It checks production endpoints before submitting
-the sitemap to IndexNow and running Lighthouse.
+installs Nix and devenv, enables the public devenv binary cache, restores Git
+timestamps, and renders with `devenv shell -- quarto render`. It runs advisory
+SEO lint and lychee checks, tests the Worker, and deploys with
+`devenv shell -- wrangler deploy`. Repository secrets `CLOUDFLARE_API_TOKEN` and
+`CLOUDFLARE_ACCOUNT_ID` authenticate the deployment. It checks production
+endpoints before submitting the sitemap to IndexNow and running Lighthouse.
 
 `.github/workflows/lint.yml` runs Panache with external formatters on pushes to
 `main`. `devenv.nix` also enables the Panache formatting hook.
