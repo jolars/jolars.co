@@ -237,8 +237,8 @@ deterministically set via the quantile function), with standard deviation 1/2,
 and the other is a binary (quasi-Bernoulli) feature with class-balance $q$. The
 normal feature is standardized in every case, whereas the binary feature is
 scaled with $(q - q^2)^\delta$---its variance to the power of $\delta$. In other
-words, we have no scaling for $\delta=0$, standard deviation scaling when
-$\delta=1/2$, and variance-scaling when
+words, we have no scaling for $\delta = 0$, standard deviation scaling when
+$\delta = 1/2$, and variance-scaling when
 $\delta = 1$.](paper6-highlight.svg){#fig-paper6
 width=700px .lightbox fig-alt="Ridge and lasso coefficient estimates as a binary feature becomes more imbalanced. Standard deviation scaling stabilizes ridge estimates, while variance scaling stabilizes lasso estimates. The normal feature stays nearly constant."}
 
