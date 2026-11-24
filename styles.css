@@ -52,6 +52,58 @@ ul.publication-list li {
   display: table-row;
 }
 
+.publication-list .citation-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+}
+
+main .publication-list p .citation-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  color: var(--bs-secondary-color);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s ease-in-out;
+}
+
+.publication-list .citation-links a:is(:hover, :focus-visible) {
+  /* Darken the original hues so colored text stays legible on white. */
+  color: color-mix(in srgb, var(--citation-link-color) 65%, black);
+}
+
+.publication-list .citation-links a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.citation-links .citation-link-primary {
+  --citation-link-color: var(--bs-primary);
+}
+
+.citation-links .citation-link-success {
+  --citation-link-color: var(--bs-success);
+}
+
+.citation-links .citation-link-warning {
+  --citation-link-color: var(--bs-warning);
+}
+
+.citation-links .citation-link-danger {
+  --citation-link-color: var(--bs-danger);
+}
+
+.citation-links .citation-link-dark {
+  --citation-link-color: var(--bs-dark);
+}
+
+.citation-links .citation-link-info {
+  --citation-link-color: var(--bs-info);
+}
+
 .gslide-media {
   background-color: white;
 }
